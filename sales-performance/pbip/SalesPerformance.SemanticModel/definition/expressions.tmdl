@@ -1,0 +1,5 @@
+expression DataFolder = "C:\path\to\power-bi-projects\sales-performance\data\raw\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
+	lineageTag: 9438a358-efc6-4804-b4bb-ce857e26c569
+
+	annotation PBI_ResultType = Text
+

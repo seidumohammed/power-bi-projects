@@ -1,0 +1,25 @@
+table dim_Zone
+	lineageTag: f08c64ad-d45b-4d1c-90ce-7dfc5bc7be4c
+
+	column Zone
+		dataType: string
+		lineageTag: 29a1ffb9-d8f3-4c63-8ffe-097d4edc253a
+		summarizeBy: none
+		sourceColumn: Zone
+
+	partition dim_Zone = m
+		mode: import
+		source =
+				// Distinct zones (an invented grouping of Central Region districts), built from the district file.
+				// Used to filter both districts and targets.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "districts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Zones = Table.Distinct(Table.SelectColumns(Promoted, {"zone"})),
+				    Renamed = Table.RenameColumns(Zones, {{"zone", "Zone"}}),
+				    Trimmed = Table.TransformColumns(Renamed, {{"Zone", each Text.Trim(_), type text}})
+				in
+				    Trimmed
+
+	annotation PBI_ResultType = Table
+

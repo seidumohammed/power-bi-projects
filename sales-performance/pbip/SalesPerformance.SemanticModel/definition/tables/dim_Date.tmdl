@@ -1,0 +1,100 @@
+table dim_Date
+	lineageTag: 8795fcd0-3731-4f44-9547-bc3cd053d6d2
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: dd mmm yyyy
+		lineageTag: a561a3bd-8a80-406b-8459-bb0ca7e8a2ce
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		lineageTag: 8cd130d8-3de3-4b7a-9c2e-e9c19df46b9a
+		summarizeBy: none
+		sourceColumn: Year
+
+	column Quarter
+		dataType: string
+		lineageTag: ffb8fcea-1415-476a-8998-63ae05941d51
+		summarizeBy: none
+		sourceColumn: Quarter
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		lineageTag: 508a5f17-68a5-42bc-9708-734c858a3dee
+		summarizeBy: none
+		sourceColumn: MonthNumber
+
+	column MonthName
+		dataType: string
+		lineageTag: 33e066a9-e6dc-40b3-8fee-a59a159a3508
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNumber
+
+	column MonthStart
+		dataType: dateTime
+		formatString: mmm yy
+		lineageTag: df827cbe-c48d-4a2a-ba2c-597006a23674
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YearMonth
+		dataType: string
+		lineageTag: a57dbb09-e5b0-4ee6-a21d-8f0dd4b7709e
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+	column DayNumber
+		dataType: int64
+		isHidden
+		lineageTag: effbadac-0297-4652-bf26-7c60048024fa
+		summarizeBy: none
+		sourceColumn: DayNumber
+
+	column DayName
+		dataType: string
+		lineageTag: d8dae6e6-eef2-4cf1-9b0b-c0a0745a061c
+		summarizeBy: none
+		sourceColumn: DayName
+		sortByColumn: DayNumber
+
+	column IsWeekend
+		dataType: boolean
+		lineageTag: a339237d-3e10-4ba4-a5ad-af1973c89165
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+	partition dim_Date = m
+		mode: import
+		source =
+				// Generated calendar covering the data (2024-2025). Mark it as a date table in Power BI:
+				// Table tools > Mark as date table > Date. Sort MonthName by MonthNumber and DayName by DayNumber.
+				let
+				    StartDate = #date(2024, 1, 1),
+				    EndDate = #date(2025, 12, 31),
+				    Days = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    AsTable = Table.FromList(Days, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+				    Typed = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
+				    Year = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+				    Quarter = Table.AddColumn(Year, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    MonthNumber = Table.AddColumn(Quarter, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    MonthName = Table.AddColumn(MonthNumber, "MonthName", each Date.ToText([Date], "MMM", "en-GB"), type text),
+				    MonthStart = Table.AddColumn(MonthName, "MonthStart", each Date.StartOfMonth([Date]), type date),
+				    YearMonth = Table.AddColumn(MonthStart, "YearMonth", each Date.ToText([Date], "yyyy-MM", "en-GB"), type text),
+				    DayNumber = Table.AddColumn(YearMonth, "DayNumber", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type),
+				    DayName = Table.AddColumn(DayNumber, "DayName", each Date.ToText([Date], "ddd", "en-GB"), type text),
+				    IsWeekend = Table.AddColumn(DayName, "IsWeekend", each Date.DayOfWeek([Date], Day.Monday) >= 5, type logical)
+				in
+				    IsWeekend
+
+	annotation PBI_ResultType = Table
+

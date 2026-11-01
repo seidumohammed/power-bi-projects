@@ -1,0 +1,81 @@
+table fact_VslaMeeting
+	lineageTag: 89bae530-626c-4d12-80bf-b7cd2aac3f64
+
+	column MeetingID
+		dataType: string
+		isHidden
+		lineageTag: 966a9558-5e4f-4467-a29a-74ec03207852
+		summarizeBy: none
+		sourceColumn: MeetingID
+
+	column GroupID
+		dataType: string
+		isHidden
+		lineageTag: 1eac560d-ac9e-4155-8282-8a53d11441f4
+		summarizeBy: none
+		sourceColumn: GroupID
+
+	column MeetingDate
+		dataType: dateTime
+		isHidden
+		formatString: dd mmm yyyy
+		lineageTag: 2840ae7a-b349-480c-8d44-8d24bd5f950d
+		summarizeBy: none
+		sourceColumn: MeetingDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MembersPresent
+		dataType: int64
+		isHidden
+		lineageTag: 2c04065f-96da-4fcd-b5af-6bccb91e9a37
+		summarizeBy: none
+		sourceColumn: MembersPresent
+
+	column SavingsGHS
+		dataType: double
+		isHidden
+		lineageTag: 5a5f0316-7a6c-4650-a333-e3df162e1eac
+		summarizeBy: none
+		sourceColumn: SavingsGHS
+
+	column LoansDisbursedGHS
+		dataType: double
+		isHidden
+		lineageTag: e3d78c4a-d0f5-4ad1-8efa-1a92f4beac0b
+		summarizeBy: none
+		sourceColumn: LoansDisbursedGHS
+
+	column LoansRepaidGHS
+		dataType: double
+		isHidden
+		lineageTag: 868af836-27e2-49fe-a128-a50aebafbfc9
+		summarizeBy: none
+		sourceColumn: LoansRepaidGHS
+
+	partition fact_VslaMeeting = m
+		mode: import
+		source =
+				// Cleaning steps:
+				//   1. meeting_date: same mixed formats as visits.
+				//   2. savings_ghs: about 4% arrive as text such as "GHS 1,250.00": strip the prefix and thousands separators.
+				//   3. duplicate meeting_id rows: keep one.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "vsla_meetings.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Deduped = Table.Distinct(Promoted, {"meeting_id"}),
+				    WithDate = Table.AddColumn(Deduped, "MeetingDate",
+				        each try Date.FromText([meeting_date], [Format = "yyyy-MM-dd", Culture = "en-GB"])
+				             otherwise Date.FromText([meeting_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    WithSavings = Table.AddColumn(WithDate, "SavingsGHS",
+				        each Number.FromText(Text.Trim(Text.Replace(Text.Replace([savings_ghs], "GHS", ""), ",", "")), "en-US"), type number),
+				    Renamed = Table.RenameColumns(WithSavings, {{"meeting_id", "MeetingID"}, {"group_id", "GroupID"}, {"members_present", "MembersPresent"},
+				        {"loans_disbursed_ghs", "LoansDisbursedGHS"}, {"loans_repaid_ghs", "LoansRepaidGHS"}}),
+				    Selected = Table.SelectColumns(Renamed, {"MeetingID", "GroupID", "MeetingDate", "MembersPresent", "SavingsGHS", "LoansDisbursedGHS", "LoansRepaidGHS"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"MeetingID", type text}, {"GroupID", type text}, {"MembersPresent", Int64.Type},
+				        {"LoansDisbursedGHS", type number}, {"LoansRepaidGHS", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

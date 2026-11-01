@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "ProgrammeMonitoring"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a7636a3f-fed4-4827-ad0f-b9e581f35790"
+  }
+}

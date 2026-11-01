@@ -1,0 +1,35 @@
+relationship 6037321a-b68c-5e0a-a310-fe8417acccbb
+	fromColumn: fact_Sales.OrderDate
+	toColumn: dim_Date.Date
+
+relationship a86a963e-d4ec-55b4-b82d-0678c65fe896
+	fromColumn: fact_Sales.ProductID
+	toColumn: dim_Product.ProductID
+
+relationship 9bc4151e-5e23-54c7-b9ba-69481a95e15a
+	fromColumn: fact_Sales.CustomerID
+	toColumn: dim_Customer.CustomerID
+
+relationship cc88eec5-1250-5314-bf3b-f37fd3587383
+	fromColumn: fact_Sales.StoreID
+	toColumn: dim_Store.StoreID
+
+relationship b23d60ff-f1b7-560a-aaf4-700d876a9766
+	fromColumn: fact_Target.StoreID
+	toColumn: dim_Store.StoreID
+
+relationship 86bc29aa-dfb6-4b7f-ae93-a9d3023e619f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Store.OpenedDate
+	toColumn: LocalDateTable_750b32c0-5936-4a1e-802e-e104ea0f363c.Date
+
+relationship 5c3f47df-78ae-43b8-bb7a-83dbd32d4f45
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Customer.JoinedDate
+	toColumn: LocalDateTable_e7b2d344-73d2-48ff-ad29-8ed8d6431142.Date
+
+relationship 8508e206-e853-461e-8cee-89bd32966ee0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_Target.MonthStart
+	toColumn: LocalDateTable_65124238-f3fa-475f-849c-6682fee481ac.Date
+

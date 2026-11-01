@@ -1,0 +1,205 @@
+table _Measures
+	lineageTag: 798530bf-98e9-4346-a760-775d05a058e0
+
+	measure 'Visits Planned' = COUNTROWS ( fact_Visit )
+		formatString: #,0
+		displayFolder: Visits
+		lineageTag: 18aab4e4-6ad5-4eec-9b0e-b1d54f929184
+
+	measure 'Visits Completed' = CALCULATE ( COUNTROWS ( fact_Visit ), fact_Visit[VisitStatus] = "Completed" )
+		formatString: #,0
+		displayFolder: Visits
+		lineageTag: 1bf666a0-5e81-4283-ab30-a24d290fd89e
+
+	measure 'Visits Missed' = CALCULATE ( COUNTROWS ( fact_Visit ), fact_Visit[VisitStatus] = "Missed" )
+		formatString: #,0
+		displayFolder: Visits
+		lineageTag: 5df8b4b6-56c4-401c-9a86-b332a8da0a01
+
+	measure 'Completion Rate' = DIVIDE ( [Visits Completed], [Visits Planned] )
+		formatString: 0.0%
+		displayFolder: Visits
+		lineageTag: a00c1b40-fa68-4a59-96bd-d288345911c5
+
+	measure 'Farmers Reached' = CALCULATE ( SUM ( fact_Visit[FarmersVisited] ), fact_Visit[VisitStatus] = "Completed" )
+		formatString: #,0
+		displayFolder: Visits
+		lineageTag: d6fc1b25-3fc9-491c-ba76-1372bc8e4bfa
+
+	measure 'Avg Visit Duration (min)' = CALCULATE ( AVERAGE ( fact_Visit[DurationMin] ), fact_Visit[VisitStatus] = "Completed" )
+		formatString: 0
+		displayFolder: Visits
+		lineageTag: a7e7041d-f99d-40a7-9953-18ed5b6f7785
+
+	measure 'Visits per Officer' = DIVIDE ( [Visits Completed], DISTINCTCOUNT ( fact_Visit[OfficerID] ) )
+		formatString: 0.0
+		displayFolder: Visits
+		lineageTag: 29623526-9b4b-444f-920f-1206b86cdb94
+
+	measure 'Records Collected' = SUM ( fact_Visit[RecordsCollected] )
+		formatString: #,0
+		displayFolder: Data quality
+		lineageTag: f89ea1dc-f70c-4eea-a4d3-60d7b0b0532b
+
+	measure 'Records With Errors' = SUM ( fact_Visit[RecordsWithErrors] )
+		formatString: #,0
+		displayFolder: Data quality
+		lineageTag: 88434f7b-0a31-4d0b-bbe3-d883eb1fde29
+
+	measure 'Data Error Rate' = DIVIDE ( [Records With Errors], [Records Collected] )
+		formatString: 0.0%
+		displayFolder: Data quality
+		lineageTag: 5e7ce5c0-2a74-47ea-9766-813bdbd6958d
+
+	measure 'Error Rate Target' = 0.05
+		formatString: 0.0%
+		displayFolder: Data quality
+		lineageTag: 48518c1c-38ee-4c04-97ec-5b31d4546ae4
+
+	measure 'Error Rate Status' = IF ( [Data Error Rate] <= [Error Rate Target], "On target", "Above target" )
+		displayFolder: Data quality
+		lineageTag: 5575a732-1cb2-4c2d-948b-7615320ef9ba
+
+	measure 'Visits Target' =
+			IF (
+			    ISFILTERED ( dim_Officer[OfficerName] ) || ISFILTERED ( dim_Officer[Team] ),
+			    BLANK (),   -- targets are set by zone, so they cannot be split by officer or team
+			    CALCULATE (
+			        SUM ( fact_Target[VisitsTarget] ),
+			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			    )
+			)
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: 56c39b95-2cb2-467f-9fe0-3bd76da64ba4
+
+	measure 'Visits vs Target %' = DIVIDE ( [Visits Completed], [Visits Target] )
+		formatString: 0.0%
+		displayFolder: Targets
+		lineageTag: 4ff979ec-608e-47fd-a8bd-bb1a9aac7cc0
+
+	measure 'Visits Completed PY' = CALCULATE ( [Visits Completed], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: a99c1dce-84b4-40bc-957e-0943662eef2d
+
+	measure 'Visits Completed YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Visits Completed], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Visits Completed], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: 0.0%
+		displayFolder: Time intelligence
+		lineageTag: 5f60eaa8-d74b-4803-98b8-d1c3504d5c3f
+
+	measure 'Visits Completed YTD' = TOTALYTD ( [Visits Completed], dim_Date[Date] )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: a5e28eb0-77f9-47a1-bab6-b5262197fe14
+
+	measure 'Visits Completed 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Visits Completed], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: f2aa4733-284c-47a1-a1f8-089d2a1acb0e
+
+	measure 'Savings (GHS)' = SUM ( fact_VslaMeeting[SavingsGHS] )
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: 9b2c532a-c5c8-461c-8675-a5672de72d5f
+
+	measure 'Savings Target (GHS)' =
+			CALCULATE (
+			    SUM ( fact_Target[SavingsTargetGHS] ),
+			    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			)
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: ab96bce6-a137-4dd3-9ca3-7370e986da6b
+
+	measure 'Savings vs Target %' = DIVIDE ( [Savings (GHS)], [Savings Target (GHS)] )
+		formatString: 0.0%
+		displayFolder: Savings groups
+		lineageTag: 6d6753e2-6bd4-4259-8489-b6be9a79dbde
+
+	measure 'Savings MoM %' =
+			VAR Previous = CALCULATE ( [Savings (GHS)], DATEADD ( dim_Date[Date], -1, MONTH ) )
+			RETURN DIVIDE ( [Savings (GHS)] - Previous, Previous )
+		formatString: 0.0%
+		displayFolder: Savings groups
+		lineageTag: 1ba8c1a7-a663-483b-9fad-371affe08324
+
+	measure 'Loans Disbursed (GHS)' = SUM ( fact_VslaMeeting[LoansDisbursedGHS] )
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: f82348fb-0355-4ab4-b943-e6b78977d426
+
+	measure 'Loans Repaid (GHS)' = SUM ( fact_VslaMeeting[LoansRepaidGHS] )
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: 81600741-32b7-456f-8967-74828fc4172c
+
+	measure 'Loan Repayment Rate' = DIVIDE ( [Loans Repaid (GHS)], [Loans Disbursed (GHS)] )
+		formatString: 0.0%
+		displayFolder: Savings groups
+		lineageTag: a9de46b9-3b55-4888-8412-bd033dda1cbb
+
+	measure 'Meetings Held' = COUNTROWS ( fact_VslaMeeting )
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: 4aecb78a-ecb3-4c69-987b-fbc73a5e8c6d
+
+	measure 'Active Groups' = DISTINCTCOUNT ( fact_VslaMeeting[GroupID] )
+		formatString: #,0
+		displayFolder: Savings groups
+		lineageTag: a463ec84-e39f-411d-bf97-11b46b0a74da
+
+	measure 'Attendance Rate' =
+			DIVIDE (
+			    SUM ( fact_VslaMeeting[MembersPresent] ),
+			    SUMX ( fact_VslaMeeting, RELATED ( dim_VslaGroup[Members] ) )
+			)
+		formatString: 0.0%
+		displayFolder: Savings groups
+		lineageTag: 2cbd5a24-747f-49ab-b477-42affdc22713
+
+	measure 'Savings per Member Present (GHS)' = DIVIDE ( [Savings (GHS)], SUM ( fact_VslaMeeting[MembersPresent] ) )
+		formatString: 0.00
+		displayFolder: Savings groups
+		lineageTag: 96abbdd3-7daf-4e70-8ca3-dc44bf72d884
+
+	measure 'Zone Label' =
+			IF (
+			    ISFILTERED ( dim_Zone[Zone] ),
+			    SELECTEDVALUE ( dim_Zone[Zone], "Multiple zones" ),
+			    "All zones, Central Region"
+			)
+		displayFolder: Labels
+		lineageTag: 6d3df2cc-072d-4f23-aa55-b1b3584d47fc
+
+	measure 'Data Note' = "Synthetic data for demonstration. Central Region, Ghana. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+		lineageTag: 31d10f5b-ae70-48d2-9e98-72c8a380484a
+
+	column Dummy
+		dataType: int64
+		isHidden
+		lineageTag: c77f3715-5660-46e2-bcdb-39843adaee7c
+		summarizeBy: none
+		sourceColumn: Dummy
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Dummy = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,66 @@
+table dim_Product
+	lineageTag: d581af4c-1649-4fb9-b97f-f737bb4a290d
+
+	column ProductID
+		dataType: string
+		isHidden
+		lineageTag: 37f16ec3-7fd0-48e3-9d21-d2fe943bcfde
+		summarizeBy: none
+		sourceColumn: ProductID
+
+	column ProductName
+		dataType: string
+		lineageTag: b0265668-a18a-459f-8287-0838ed4a2cb7
+		summarizeBy: none
+		sourceColumn: ProductName
+
+	column Category
+		dataType: string
+		lineageTag: 038f6fa2-a428-497e-9350-27fae14ad4d3
+		summarizeBy: none
+		sourceColumn: Category
+
+	column Subcategory
+		dataType: string
+		lineageTag: 8bc5ef52-bb48-48d9-878d-00a877ef47e2
+		summarizeBy: none
+		sourceColumn: Subcategory
+
+	column ListPriceGHS
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 92bad74d-1ade-4cd4-8c79-36fa9d656602
+		summarizeBy: none
+		sourceColumn: ListPriceGHS
+
+	column UnitCostGHS
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 65510872-56b0-4be5-8ca3-4b70ca986e14
+		summarizeBy: none
+		sourceColumn: UnitCostGHS
+
+	column UnitMarginGHS
+		dataType: double
+		formatString: #,0.00
+		lineageTag: 89fd4267-0f8e-4c50-8310-16fbb1bc48be
+		summarizeBy: none
+		sourceColumn: UnitMarginGHS
+
+	partition dim_Product = m
+		mode: import
+		source =
+				// Adds a unit margin column so learners can see a calculated column next to the DAX measures.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"product_id", "ProductID"}, {"product_name", "ProductName"}, {"category", "Category"}, {"subcategory", "Subcategory"},
+				        {"list_price_ghs", "ListPriceGHS"}, {"unit_cost_ghs", "UnitCostGHS"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"ProductID", type text}, {"ProductName", type text}, {"Category", type text}, {"Subcategory", type text},
+				        {"ListPriceGHS", type number}, {"UnitCostGHS", type number}}, "en-US"),
+				    WithMargin = Table.AddColumn(Typed, "UnitMarginGHS", each [ListPriceGHS] - [UnitCostGHS], type number)
+				in
+				    WithMargin
+
+	annotation PBI_ResultType = Table
+

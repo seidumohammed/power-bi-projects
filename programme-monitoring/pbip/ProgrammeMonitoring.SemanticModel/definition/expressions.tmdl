@@ -1,0 +1,5 @@
+expression DataFolder = "C:\path\to\power-bi-projects\programme-monitoring\data\raw\" meta [IsParameterQuery = true, IsParameterQueryRequired = true, Type = type text]
+	lineageTag: 77aa66a8-3825-4596-a84d-58516d8d9621
+
+	annotation PBI_ResultType = Text
+

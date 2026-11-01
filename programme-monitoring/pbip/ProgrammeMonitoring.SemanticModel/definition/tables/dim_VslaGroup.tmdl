@@ -1,0 +1,58 @@
+table dim_VslaGroup
+	lineageTag: 4664fa41-f734-4743-9149-6a4a23cee5bf
+
+	column GroupID
+		dataType: string
+		isHidden
+		lineageTag: 210f00c1-5085-4058-a984-8f5ea44cd037
+		summarizeBy: none
+		sourceColumn: GroupID
+
+	column GroupName
+		dataType: string
+		lineageTag: 2ffbb8da-7fe6-4124-97bc-67d6ddc172ab
+		summarizeBy: none
+		sourceColumn: GroupName
+
+	column CommunityID
+		dataType: string
+		isHidden
+		lineageTag: 2be2ab58-460c-48b4-a80a-99d131b96820
+		summarizeBy: none
+		sourceColumn: CommunityID
+
+	column FormedDate
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: b83166e6-c4a8-466d-b20a-5ca172f79b87
+		summarizeBy: none
+		sourceColumn: FormedDate
+
+		variation Variation
+			isDefault
+			relationship: 8eec68b3-ab2a-4f8b-938b-78d131c629a1
+			defaultHierarchy: LocalDateTable_9d28c072-d03a-4095-b183-1f376c7bc353.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Members
+		dataType: int64
+		lineageTag: 5e4b5a22-580b-4700-9ba4-7c900579525f
+		summarizeBy: sum
+		sourceColumn: Members
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_VslaGroup = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "vsla_groups.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"group_id", "GroupID"}, {"group_name", "GroupName"}, {"community_id", "CommunityID"}, {"formed_date", "FormedDate"}, {"members", "Members"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"GroupID", type text}, {"GroupName", type text}, {"CommunityID", type text}, {"FormedDate", type date}, {"Members", Int64.Type}}, "en-GB")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,57 @@
+table fact_Target
+	lineageTag: 5a80ed36-ce8d-48ac-b6a3-2b0b660a216c
+
+	column MonthStart
+		dataType: dateTime
+		isHidden
+		formatString: mmm yy
+		lineageTag: 5e44f237-d635-4ea5-9f68-b3310fa30b7b
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		variation Variation
+			isDefault
+			relationship: df896073-8bf5-4977-810d-83b52e8643d7
+			defaultHierarchy: LocalDateTable_ab6e504a-cb97-4429-b431-cb77c79479c5.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Zone
+		dataType: string
+		isHidden
+		lineageTag: 3225321a-6564-4f45-9bf7-c698c10f0664
+		summarizeBy: none
+		sourceColumn: Zone
+
+	column VisitsTarget
+		dataType: int64
+		isHidden
+		lineageTag: 8e02bcc2-2b24-446f-9caf-e4fc7968c5f9
+		summarizeBy: sum
+		sourceColumn: VisitsTarget
+
+		annotation SummarizationSetBy = Automatic
+
+	column SavingsTargetGHS
+		dataType: double
+		isHidden
+		lineageTag: 91410c12-f318-456f-b235-0d1d818da971
+		summarizeBy: sum
+		sourceColumn: SavingsTargetGHS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_Target = m
+		mode: import
+		source =
+				// Monthly targets by zone. MonthStart is the first day of the month, used to match dim_Date[MonthStart].
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"zone", "Zone"}, {"visits_target", "VisitsTarget"}, {"savings_target_ghs", "SavingsTargetGHS"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"MonthStart", type date}, {"Zone", type text}, {"VisitsTarget", Int64.Type}, {"SavingsTargetGHS", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

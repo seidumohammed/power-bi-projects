@@ -1,0 +1,49 @@
+table dim_Store
+	lineageTag: 58ffd1ae-c117-47be-ac72-1af2ef1f96eb
+
+	column StoreID
+		dataType: string
+		isHidden
+		lineageTag: 573c026c-0c08-4f3d-b6f1-92e1442a7a4a
+		summarizeBy: none
+		sourceColumn: StoreID
+
+	column Store
+		dataType: string
+		lineageTag: b4111543-4d54-45d0-8d81-04bcaf28d3de
+		summarizeBy: none
+		sourceColumn: Store
+
+	column Region
+		dataType: string
+		lineageTag: dd7bdc4b-2a65-4245-9204-8ee2a01fb731
+		summarizeBy: none
+		sourceColumn: Region
+
+	column OpenedDate
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: d7b7c1b5-2d97-4d10-9a58-b993c6ff9add
+		summarizeBy: none
+		sourceColumn: OpenedDate
+
+		variation Variation
+			isDefault
+			relationship: 86bc29aa-dfb6-4b7f-ae93-a9d3023e619f
+			defaultHierarchy: LocalDateTable_750b32c0-5936-4a1e-802e-e104ea0f363c.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_Store = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "stores.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"store_id", "StoreID"}, {"store_name", "Store"}, {"region", "Region"}, {"opened", "OpenedDate"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"StoreID", type text}, {"Store", type text}, {"Region", type text}, {"OpenedDate", type date}}, "en-GB")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

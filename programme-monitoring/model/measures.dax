@@ -1,0 +1,140 @@
+// =====================================================================================
+// PROGRAMME MONITORING: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with a comment line: "// folder: <display folder> | format: <format string>".
+// =====================================================================================
+
+// folder: Visits | format: #,0
+Visits Planned = COUNTROWS ( fact_Visit )
+
+// folder: Visits | format: #,0
+Visits Completed =
+CALCULATE ( COUNTROWS ( fact_Visit ), fact_Visit[VisitStatus] = "Completed" )
+
+// folder: Visits | format: #,0
+Visits Missed =
+CALCULATE ( COUNTROWS ( fact_Visit ), fact_Visit[VisitStatus] = "Missed" )
+
+// folder: Visits | format: 0.0%
+Completion Rate = DIVIDE ( [Visits Completed], [Visits Planned] )
+
+// folder: Visits | format: #,0
+Farmers Reached =
+CALCULATE ( SUM ( fact_Visit[FarmersVisited] ), fact_Visit[VisitStatus] = "Completed" )
+
+// folder: Visits | format: 0
+Avg Visit Duration (min) =
+CALCULATE ( AVERAGE ( fact_Visit[DurationMin] ), fact_Visit[VisitStatus] = "Completed" )
+
+// folder: Visits | format: 0.0
+Visits per Officer =
+DIVIDE ( [Visits Completed], DISTINCTCOUNT ( fact_Visit[OfficerID] ) )
+
+// folder: Data quality | format: #,0
+Records Collected = SUM ( fact_Visit[RecordsCollected] )
+
+// folder: Data quality | format: #,0
+Records With Errors = SUM ( fact_Visit[RecordsWithErrors] )
+
+// folder: Data quality | format: 0.0%
+Data Error Rate = DIVIDE ( [Records With Errors], [Records Collected] )
+
+// folder: Data quality | format: 0.0%
+Error Rate Target = 0.05
+
+// folder: Data quality | format: General
+Error Rate Status =
+IF ( [Data Error Rate] <= [Error Rate Target], "On target", "Above target" )
+
+// folder: Targets | format: #,0
+Visits Target =
+IF (
+    ISFILTERED ( dim_Officer[OfficerName] ) || ISFILTERED ( dim_Officer[Team] ),
+    BLANK (),   -- targets are set by zone, so they cannot be split by officer or team
+    CALCULATE (
+        SUM ( fact_Target[VisitsTarget] ),
+        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+    )
+)
+
+// folder: Targets | format: 0.0%
+Visits vs Target % = DIVIDE ( [Visits Completed], [Visits Target] )
+
+// folder: Time intelligence | format: #,0
+Visits Completed PY =
+CALCULATE ( [Visits Completed], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0%
+Visits Completed YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Visits Completed], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Visits Completed], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )   -- latest visits year in the selection against the year before
+
+// folder: Time intelligence | format: #,0
+Visits Completed YTD = TOTALYTD ( [Visits Completed], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0
+Visits Completed 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Visits Completed], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Savings groups | format: #,0
+Savings (GHS) = SUM ( fact_VslaMeeting[SavingsGHS] )
+
+// folder: Savings groups | format: #,0
+Savings Target (GHS) =
+CALCULATE (
+    SUM ( fact_Target[SavingsTargetGHS] ),
+    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+)
+
+// folder: Savings groups | format: 0.0%
+Savings vs Target % = DIVIDE ( [Savings (GHS)], [Savings Target (GHS)] )
+
+// folder: Savings groups | format: 0.0%
+Savings MoM % =
+VAR Previous = CALCULATE ( [Savings (GHS)], DATEADD ( dim_Date[Date], -1, MONTH ) )
+RETURN DIVIDE ( [Savings (GHS)] - Previous, Previous )
+
+// folder: Savings groups | format: #,0
+Loans Disbursed (GHS) = SUM ( fact_VslaMeeting[LoansDisbursedGHS] )
+
+// folder: Savings groups | format: #,0
+Loans Repaid (GHS) = SUM ( fact_VslaMeeting[LoansRepaidGHS] )
+
+// folder: Savings groups | format: 0.0%
+Loan Repayment Rate = DIVIDE ( [Loans Repaid (GHS)], [Loans Disbursed (GHS)] )
+
+// folder: Savings groups | format: #,0
+Meetings Held = COUNTROWS ( fact_VslaMeeting )
+
+// folder: Savings groups | format: #,0
+Active Groups = DISTINCTCOUNT ( fact_VslaMeeting[GroupID] )
+
+// folder: Savings groups | format: 0.0%
+Attendance Rate =
+DIVIDE (
+    SUM ( fact_VslaMeeting[MembersPresent] ),
+    SUMX ( fact_VslaMeeting, RELATED ( dim_VslaGroup[Members] ) )
+)
+
+// folder: Savings groups | format: 0.00
+Savings per Member Present (GHS) =
+DIVIDE ( [Savings (GHS)], SUM ( fact_VslaMeeting[MembersPresent] ) )
+
+// folder: Labels | format: General
+Zone Label =
+IF (
+    ISFILTERED ( dim_Zone[Zone] ),
+    SELECTEDVALUE ( dim_Zone[Zone], "Multiple zones" ),
+    "All zones, Central Region"
+)
+
+// folder: Labels | format: General
+Data Note = "Synthetic data for demonstration. Central Region, Ghana. Period: Jan 2024 to Dec 2025."

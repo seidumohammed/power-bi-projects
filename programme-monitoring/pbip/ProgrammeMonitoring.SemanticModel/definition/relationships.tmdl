@@ -1,0 +1,51 @@
+relationship 19f13992-7a75-5da0-b113-d555e384e44c
+	fromColumn: fact_Visit.OfficerID
+	toColumn: dim_Officer.OfficerID
+
+relationship c0531022-a4c1-5dea-a3c4-e43948a06cd4
+	fromColumn: fact_Visit.CommunityID
+	toColumn: dim_Community.CommunityID
+
+relationship 7715874d-24bd-51d7-a189-2ab0712a5ebb
+	fromColumn: fact_Visit.VisitDate
+	toColumn: dim_Date.Date
+
+relationship cd1fe16c-bdad-5ab2-a61c-1143183bf01f
+	fromColumn: fact_VslaMeeting.GroupID
+	toColumn: dim_VslaGroup.GroupID
+
+relationship 69c46b57-e944-53cd-a22c-0f82e69c4981
+	fromColumn: fact_VslaMeeting.MeetingDate
+	toColumn: dim_Date.Date
+
+relationship fd572497-604d-58a8-85b3-8e2d6fb16e67
+	fromColumn: dim_VslaGroup.CommunityID
+	toColumn: dim_Community.CommunityID
+
+relationship e9a6f304-2b85-5775-b010-ae4dc52ae7e9
+	fromColumn: dim_Community.DistrictID
+	toColumn: dim_District.DistrictID
+
+relationship 7542e812-34c5-55fb-9ecf-28c0498e9b6b
+	fromColumn: dim_District.Zone
+	toColumn: dim_Zone.Zone
+
+relationship 6eb2c81e-4b3b-5fff-85d5-07f2b6ac6cfd
+	fromColumn: fact_Target.Zone
+	toColumn: dim_Zone.Zone
+
+relationship 07d6555a-688f-46df-922b-a13d944a1a6c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_Officer.StartDate
+	toColumn: LocalDateTable_637f37b8-5ea2-4a8e-b195-cd1d4a3c2f4e.Date
+
+relationship 8eec68b3-ab2a-4f8b-938b-78d131c629a1
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_VslaGroup.FormedDate
+	toColumn: LocalDateTable_9d28c072-d03a-4095-b183-1f376c7bc353.Date
+
+relationship df896073-8bf5-4977-810d-83b52e8643d7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_Target.MonthStart
+	toColumn: LocalDateTable_ab6e504a-cb97-4429-b431-cb77c79479c5.Date
+

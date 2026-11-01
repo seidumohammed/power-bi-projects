@@ -1,0 +1,37 @@
+product_id,product_name,category,subcategory,list_price_ghs,unit_cost_ghs
+P001,Bottled Water 1,Beverages,Bottled Water,56.1,44.33
+P002,Bottled Water 2,Beverages,Bottled Water,70.7,55.42
+P003,Soft Drinks 1,Beverages,Soft Drinks,78.75,66.77
+P004,Soft Drinks 2,Beverages,Soft Drinks,34.24,22.39
+P005,Juices 1,Beverages,Juices,34.9,26.7
+P006,Juices 2,Beverages,Juices,79.56,60.83
+P007,Malt Drinks 1,Beverages,Malt Drinks,68.93,48.8
+P008,Malt Drinks 2,Beverages,Malt Drinks,10.27,8.58
+P009,Cleaning 1,Household,Cleaning,7.58,6.29
+P010,Cleaning 2,Household,Cleaning,47.69,40.49
+P011,Laundry 1,Household,Laundry,67.71,37.52
+P012,Laundry 2,Household,Laundry,71.85,43.72
+P013,Kitchenware 1,Household,Kitchenware,75.92,58.72
+P014,Kitchenware 2,Household,Kitchenware,78.54,54.84
+P015,Paper Goods 1,Household,Paper Goods,46.77,29.98
+P016,Paper Goods 2,Household,Paper Goods,14.98,12.63
+P017,Soap 1,Personal Care,Soap,67.62,55.63
+P018,Soap 2,Personal Care,Soap,35.65,25.29
+P019,Hair Care 1,Personal Care,Hair Care,8.56,6.0
+P020,Hair Care 2,Personal Care,Hair Care,11.96,9.46
+P021,Oral Care 1,Personal Care,Oral Care,50.65,29.53
+P022,Oral Care 2,Personal Care,Oral Care,40.09,28.99
+P023,Skin Care 1,Personal Care,Skin Care,79.97,64.22
+P024,Skin Care 2,Personal Care,Skin Care,7.09,4.34
+P025,Rice and Grains 1,Packaged Foods,Rice and Grains,29.85,16.52
+P026,Rice and Grains 2,Packaged Foods,Rice and Grains,65.67,39.22
+P027,Rice and Grains 3,Packaged Foods,Rice and Grains,42.7,24.41
+P028,Cooking Oil 1,Packaged Foods,Cooking Oil,43.49,35.86
+P029,Cooking Oil 2,Packaged Foods,Cooking Oil,75.57,41.68
+P030,Cooking Oil 3,Packaged Foods,Cooking Oil,84.6,52.5
+P031,Canned Foods 1,Packaged Foods,Canned Foods,79.8,60.37
+P032,Canned Foods 2,Packaged Foods,Canned Foods,48.79,34.54
+P033,Canned Foods 3,Packaged Foods,Canned Foods,57.21,39.62
+P034,Snacks 1,Packaged Foods,Snacks,18.76,11.47
+P035,Snacks 2,Packaged Foods,Snacks,62.0,50.93
+P036,Snacks 3,Packaged Foods,Snacks,68.2,37.8

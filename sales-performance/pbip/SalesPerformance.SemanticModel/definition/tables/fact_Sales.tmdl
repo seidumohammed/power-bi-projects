@@ -1,0 +1,146 @@
+table fact_Sales
+	lineageTag: a76ee7ad-d42f-48d3-93db-3c00f2760460
+
+	column LineID
+		dataType: string
+		isHidden
+		lineageTag: 9049c243-690e-4ce9-be72-3080df51e1e6
+		summarizeBy: none
+		sourceColumn: LineID
+
+	column OrderID
+		dataType: string
+		isHidden
+		lineageTag: 1162c8de-9c76-43d1-8a5f-33650cf8c9fc
+		summarizeBy: none
+		sourceColumn: OrderID
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: dd mmm yyyy
+		lineageTag: a3a052b3-89f4-4537-b900-3126aa347b08
+		summarizeBy: none
+		sourceColumn: OrderDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column StoreID
+		dataType: string
+		isHidden
+		lineageTag: bafa5ce8-9fa5-4e19-b402-18bed6b61246
+		summarizeBy: none
+		sourceColumn: StoreID
+
+	column CustomerID
+		dataType: string
+		isHidden
+		lineageTag: 1c041cd4-5a1d-481a-9a05-3d9637985b64
+		summarizeBy: none
+		sourceColumn: CustomerID
+
+	column ProductID
+		dataType: string
+		isHidden
+		lineageTag: 23999842-b43d-4f98-bcd9-51aa43c3c080
+		summarizeBy: none
+		sourceColumn: ProductID
+
+	column Channel
+		dataType: string
+		lineageTag: e6259efb-715e-4684-a063-f78ebbe9541f
+		summarizeBy: none
+		sourceColumn: Channel
+
+	column Quantity
+		dataType: int64
+		isHidden
+		lineageTag: f48ed934-3ed4-4b8b-9e13-1d5d3dcc22e8
+		summarizeBy: none
+		sourceColumn: Quantity
+
+	column UnitPriceGHS
+		dataType: double
+		isHidden
+		lineageTag: 50fb312f-4910-45d4-832d-5d1b275f086c
+		summarizeBy: none
+		sourceColumn: UnitPriceGHS
+
+	column DiscountPct
+		dataType: double
+		isHidden
+		formatString: 0.0%
+		lineageTag: 6e9e5468-dd90-414d-b91a-209867ca901a
+		summarizeBy: none
+		sourceColumn: DiscountPct
+
+	column UnitCostGHS
+		dataType: double
+		isHidden
+		lineageTag: 055ec74d-38f6-49a1-93ce-801b2076676c
+		summarizeBy: none
+		sourceColumn: UnitCostGHS
+
+	column GrossSales
+		dataType: double
+		isHidden
+		lineageTag: 390381e9-1994-480f-addd-39f40b718887
+		summarizeBy: none
+		sourceColumn: GrossSales
+
+	column DiscountAmount
+		dataType: double
+		isHidden
+		lineageTag: e69b46db-dc40-401f-b91b-9e4abe86b059
+		summarizeBy: none
+		sourceColumn: DiscountAmount
+
+	column NetSales
+		dataType: double
+		isHidden
+		lineageTag: ba0b7207-47fa-4f70-9e39-fdc25a7aeeb2
+		summarizeBy: none
+		sourceColumn: NetSales
+
+	column TotalCost
+		dataType: double
+		isHidden
+		lineageTag: 842b05ca-d725-4b14-b72f-2f75c3496047
+		summarizeBy: none
+		sourceColumn: TotalCost
+
+	partition fact_Sales = m
+		mode: import
+		source =
+				// Cleaning steps (each one fixes a problem injected into sales.csv):
+				//   1. order_date is mostly yyyy-MM-dd but about 3% is dd/MM/yyyy: try one format, fall back to the other.
+				//   2. product_id has stray spaces and lower case in about 4% of rows: trim and upper-case so it matches dim_Product.
+				//   3. discount is a decimal (0.05) but about 5% arrive as text ("5%"): convert both to a decimal.
+				//   4. about 1% of rows are exact duplicates of a line_id: keep one.
+				// Line amounts are calculated here so the DAX measures can simply sum them.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "sales.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Deduped = Table.Distinct(Promoted, {"line_id"}),
+				    WithDate = Table.AddColumn(Deduped, "OrderDate",
+				        each try Date.FromText([order_date], [Format = "yyyy-MM-dd", Culture = "en-GB"])
+				             otherwise Date.FromText([order_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    CleanProduct = Table.TransformColumns(WithDate, {{"product_id", each Text.Upper(Text.Trim(_)), type text}}),
+				    WithDiscount = Table.AddColumn(CleanProduct, "DiscountPct",
+				        each if Text.EndsWith(Text.Trim([discount]), "%")
+				             then Number.FromText(Text.Replace(Text.Trim([discount]), "%", ""), "en-US") / 100
+				             else Number.FromText(Text.Trim([discount]), "en-US"), type number),
+				    Renamed = Table.RenameColumns(WithDiscount, {{"line_id", "LineID"}, {"order_id", "OrderID"}, {"store_id", "StoreID"}, {"customer_id", "CustomerID"},
+				        {"product_id", "ProductID"}, {"channel", "Channel"}, {"quantity", "Quantity"}, {"unit_price_ghs", "UnitPriceGHS"}, {"unit_cost_ghs", "UnitCostGHS"}}),
+				    Selected = Table.SelectColumns(Renamed, {"LineID", "OrderID", "OrderDate", "StoreID", "CustomerID", "ProductID", "Channel", "Quantity", "UnitPriceGHS", "DiscountPct", "UnitCostGHS"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"LineID", type text}, {"OrderID", type text}, {"StoreID", type text}, {"CustomerID", type text}, {"ProductID", type text},
+				        {"Channel", type text}, {"Quantity", Int64.Type}, {"UnitPriceGHS", type number}, {"UnitCostGHS", type number}}, "en-US"),
+				    Gross = Table.AddColumn(Typed, "GrossSales", each [Quantity] * [UnitPriceGHS], type number),
+				    DiscountAmt = Table.AddColumn(Gross, "DiscountAmount", each [GrossSales] * [DiscountPct], type number),
+				    Net = Table.AddColumn(DiscountAmt, "NetSales", each [GrossSales] - [DiscountAmount], type number),
+				    Cost = Table.AddColumn(Net, "TotalCost", each [Quantity] * [UnitCostGHS], type number)
+				in
+				    Cost
+
+	annotation PBI_ResultType = Table
+

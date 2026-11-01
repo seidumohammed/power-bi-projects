@@ -1,0 +1,118 @@
+// =====================================================================================
+// SALES PERFORMANCE: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with a comment line: "// folder: <display folder> | format: <format string>".
+// =====================================================================================
+
+// folder: Sales | format: #,0
+Gross Sales (GHS) = SUM ( fact_Sales[GrossSales] )
+
+// folder: Sales | format: #,0
+Discounts (GHS) = SUM ( fact_Sales[DiscountAmount] )
+
+// folder: Sales | format: #,0
+Net Sales (GHS) = SUM ( fact_Sales[NetSales] )
+
+// folder: Sales | format: 0.0%
+Discount Rate = DIVIDE ( [Discounts (GHS)], [Gross Sales (GHS)] )
+
+// folder: Sales | format: #,0
+Orders = DISTINCTCOUNT ( fact_Sales[OrderID] )
+
+// folder: Sales | format: #,0
+Units Sold = SUM ( fact_Sales[Quantity] )
+
+// folder: Sales | format: #,0.00
+Avg Order Value (GHS) = DIVIDE ( [Net Sales (GHS)], [Orders] )
+
+// folder: Sales | format: #,0
+Active Customers = DISTINCTCOUNT ( fact_Sales[CustomerID] )
+
+// folder: Sales | format: 0.0%
+Online Share % =
+DIVIDE ( CALCULATE ( [Net Sales (GHS)], fact_Sales[Channel] = "Online" ), [Net Sales (GHS)] )
+
+// folder: Profit | format: #,0
+Total Cost (GHS) = SUM ( fact_Sales[TotalCost] )
+
+// folder: Profit | format: #,0
+Profit (GHS) = [Net Sales (GHS)] - [Total Cost (GHS)]
+
+// folder: Profit | format: 0.0%
+Profit Margin % = DIVIDE ( [Profit (GHS)], [Net Sales (GHS)] )
+
+// folder: Targets | format: #,0
+Sales Target (GHS) =
+CALCULATE (
+    SUM ( fact_Target[SalesTargetGHS] ),
+    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+)
+
+// folder: Targets | format: 0.0%
+Target Attainment % = DIVIDE ( [Net Sales (GHS)], [Sales Target (GHS)] )
+
+// folder: Targets | format: #,0;-#,0
+Variance to Target (GHS) = [Net Sales (GHS)] - [Sales Target (GHS)]
+
+// folder: Targets | format: General
+Target Status =
+SWITCH (
+    TRUE (),
+    ISBLANK ( [Target Attainment %] ), "No target",
+    [Target Attainment %] >= 1, "Met",
+    [Target Attainment %] >= 0.95, "Close",
+    "Missed"
+)
+
+// folder: Time intelligence | format: #,0
+Net Sales PY (GHS) =
+CALCULATE ( [Net Sales (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0%
+Net Sales YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Net Sales (GHS)], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Net Sales (GHS)], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )   -- latest net sales year in the selection against the year before
+
+// folder: Time intelligence | format: #,0
+Net Sales YTD (GHS) = TOTALYTD ( [Net Sales (GHS)], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0
+Net Sales PYTD (GHS) =
+CALCULATE ( [Net Sales YTD (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0%
+Net Sales MoM % =
+VAR Previous = CALCULATE ( [Net Sales (GHS)], DATEADD ( dim_Date[Date], -1, MONTH ) )
+RETURN DIVIDE ( [Net Sales (GHS)] - Previous, Previous )
+
+// folder: Time intelligence | format: #,0
+Net Sales 3M Average (GHS) =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Net Sales (GHS)], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Ranking and share | format: 0.0%
+% of Total Net Sales =
+DIVIDE ( [Net Sales (GHS)], CALCULATE ( [Net Sales (GHS)], ALLSELECTED () ) )
+
+// folder: Ranking and share | format: 0
+Product Rank =
+RANKX ( ALLSELECTED ( dim_Product[ProductName] ), [Net Sales (GHS)], , DESC, DENSE )
+
+// folder: Ranking and share | format: #,0
+Top 10 Products Net Sales (GHS) =
+VAR TopProducts = TOPN ( 10, ALLSELECTED ( dim_Product[ProductName] ), [Net Sales (GHS)] )
+RETURN CALCULATE ( [Net Sales (GHS)], KEEPFILTERS ( TopProducts ) )
+
+// folder: Labels | format: General
+Latest Order Date =
+FORMAT ( MAX ( fact_Sales[OrderDate] ), "dd mmm yyyy" )
+
+// folder: Labels | format: General
+Data Note = "Synthetic data for demonstration. Period: Jan 2024 to Dec 2025."

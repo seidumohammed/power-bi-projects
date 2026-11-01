@@ -1,0 +1,100 @@
+table fact_Visit
+	lineageTag: a7c89457-55b7-4e61-878e-662af1a5e979
+
+	column VisitID
+		dataType: string
+		isHidden
+		lineageTag: 72a4d987-8b11-418b-9226-d8fd19e2ce0f
+		summarizeBy: none
+		sourceColumn: VisitID
+
+	column VisitDate
+		dataType: dateTime
+		isHidden
+		formatString: dd mmm yyyy
+		lineageTag: 90d642b7-0985-45b1-91dd-4305dc52abd9
+		summarizeBy: none
+		sourceColumn: VisitDate
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column OfficerID
+		dataType: string
+		isHidden
+		lineageTag: 46aba806-e165-4f95-821f-a15c76ecc4b8
+		summarizeBy: none
+		sourceColumn: OfficerID
+
+	column CommunityID
+		dataType: string
+		isHidden
+		lineageTag: c9757efd-d282-4503-a0c2-31c44ed01a92
+		summarizeBy: none
+		sourceColumn: CommunityID
+
+	column VisitType
+		dataType: string
+		lineageTag: c0dd300d-5cfd-4240-9461-4c63cb64dfbd
+		summarizeBy: none
+		sourceColumn: VisitType
+
+	column VisitStatus
+		dataType: string
+		lineageTag: 268ee33f-e266-40c5-9224-802b686aeb4f
+		summarizeBy: none
+		sourceColumn: VisitStatus
+
+	column FarmersVisited
+		dataType: int64
+		isHidden
+		lineageTag: f3bc5191-6254-4931-bb38-e2387cdccb65
+		summarizeBy: none
+		sourceColumn: FarmersVisited
+
+	column DurationMin
+		dataType: int64
+		isHidden
+		lineageTag: e8c972d6-3f00-4cff-9e45-c74b8029864a
+		summarizeBy: none
+		sourceColumn: DurationMin
+
+	column RecordsCollected
+		dataType: int64
+		isHidden
+		lineageTag: c5e5aff2-2c52-4158-b8ee-d8212aaae457
+		summarizeBy: none
+		sourceColumn: RecordsCollected
+
+	column RecordsWithErrors
+		dataType: int64
+		isHidden
+		lineageTag: eeb0c31f-009c-410d-94c8-32e9a2b7d31d
+		summarizeBy: none
+		sourceColumn: RecordsWithErrors
+
+	partition fact_Visit = m
+		mode: import
+		source =
+				// Cleaning steps (each one fixes a problem injected into visits.csv):
+				//   1. visit_date is mostly yyyy-MM-dd but about 3% is dd/MM/yyyy: try one format, fall back to the other.
+				//   2. visit_type has stray spaces and mixed case: trim, proper-case, then restore "Follow-up".
+				//   3. about 1% of rows are exact duplicates of a visit_id: keep one.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "visits.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Deduped = Table.Distinct(Promoted, {"visit_id"}),
+				    WithDate = Table.AddColumn(Deduped, "VisitDate",
+				        each try Date.FromText([visit_date], [Format = "yyyy-MM-dd", Culture = "en-GB"])
+				             otherwise Date.FromText([visit_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    CleanType = Table.TransformColumns(WithDate, {{"visit_type", each Text.Replace(Text.Proper(Text.Trim(_)), "Follow-Up", "Follow-up"), type text}}),
+				    Renamed = Table.RenameColumns(CleanType, {{"visit_id", "VisitID"}, {"officer_id", "OfficerID"}, {"community_id", "CommunityID"}, {"visit_type", "VisitType"},
+				        {"visit_status", "VisitStatus"}, {"farmers_visited", "FarmersVisited"}, {"duration_min", "DurationMin"},
+				        {"records_collected", "RecordsCollected"}, {"records_with_errors", "RecordsWithErrors"}}),
+				    Selected = Table.SelectColumns(Renamed, {"VisitID", "VisitDate", "OfficerID", "CommunityID", "VisitType", "VisitStatus", "FarmersVisited", "DurationMin", "RecordsCollected", "RecordsWithErrors"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"VisitID", type text}, {"OfficerID", type text}, {"CommunityID", type text}, {"VisitStatus", type text},
+				        {"FarmersVisited", Int64.Type}, {"DurationMin", Int64.Type}, {"RecordsCollected", Int64.Type}, {"RecordsWithErrors", Int64.Type}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

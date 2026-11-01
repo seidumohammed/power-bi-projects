@@ -1,0 +1,48 @@
+table fact_Target
+	lineageTag: d50b9bfc-9c28-42fa-81cb-94cd6aebca03
+
+	column MonthStart
+		dataType: dateTime
+		isHidden
+		formatString: mmm yy
+		lineageTag: d7bafccb-4dae-4216-affe-42a9303c184d
+		summarizeBy: none
+		sourceColumn: MonthStart
+
+		variation Variation
+			isDefault
+			relationship: 8508e206-e853-461e-8cee-89bd32966ee0
+			defaultHierarchy: LocalDateTable_65124238-f3fa-475f-849c-6682fee481ac.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column StoreID
+		dataType: string
+		isHidden
+		lineageTag: 0898ee81-4492-403d-af9d-dc6016b30df5
+		summarizeBy: none
+		sourceColumn: StoreID
+
+	column SalesTargetGHS
+		dataType: double
+		isHidden
+		lineageTag: 6450867d-0770-4ee2-be25-bc7d5dec9ba3
+		summarizeBy: sum
+		sourceColumn: SalesTargetGHS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_Target = m
+		mode: import
+		source =
+				// Monthly sales targets by store. MonthStart is the first day of the month, used to match dim_Date[MonthStart].
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"store_id", "StoreID"}, {"sales_target_ghs", "SalesTargetGHS"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"MonthStart", type date}, {"StoreID", type text}, {"SalesTargetGHS", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

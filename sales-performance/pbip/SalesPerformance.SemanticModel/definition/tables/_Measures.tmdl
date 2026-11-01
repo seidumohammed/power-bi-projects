@@ -1,0 +1,177 @@
+table _Measures
+	lineageTag: e5b7e1ad-35fc-46e1-b856-aea5fc7aaf6c
+
+	measure 'Gross Sales (GHS)' = SUM ( fact_Sales[GrossSales] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: d3c8b1eb-ab3c-420c-bc43-856da1afca2b
+
+	measure 'Discounts (GHS)' = SUM ( fact_Sales[DiscountAmount] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: a935453f-5576-450c-bd5b-dc3eef3c83b3
+
+	measure 'Net Sales (GHS)' = SUM ( fact_Sales[NetSales] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: c80168fb-979f-432e-99fb-111da50a040e
+
+	measure 'Discount Rate' = DIVIDE ( [Discounts (GHS)], [Gross Sales (GHS)] )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: 702d4265-14b8-4969-a051-6662df286b10
+
+	measure Orders = DISTINCTCOUNT ( fact_Sales[OrderID] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 8320b4c7-2a4c-464f-abd7-4b549c345e98
+
+	measure 'Units Sold' = SUM ( fact_Sales[Quantity] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: e8761bb3-5507-4512-b2dc-a1107dc80b6a
+
+	measure 'Avg Order Value (GHS)' = DIVIDE ( [Net Sales (GHS)], [Orders] )
+		formatString: #,0.00
+		displayFolder: Sales
+		lineageTag: c378f38d-8109-4165-aa6c-0173ce97a93f
+
+	measure 'Active Customers' = DISTINCTCOUNT ( fact_Sales[CustomerID] )
+		formatString: #,0
+		displayFolder: Sales
+		lineageTag: 577b6d93-0571-4283-b067-66e241ccd978
+
+	measure 'Online Share %' = DIVIDE ( CALCULATE ( [Net Sales (GHS)], fact_Sales[Channel] = "Online" ), [Net Sales (GHS)] )
+		formatString: 0.0%
+		displayFolder: Sales
+		lineageTag: facebe20-706f-4287-a50b-23829fd54e5f
+
+	measure 'Total Cost (GHS)' = SUM ( fact_Sales[TotalCost] )
+		formatString: #,0
+		displayFolder: Profit
+		lineageTag: d57b40e7-021c-42b2-b133-e0a38c112340
+
+	measure 'Profit (GHS)' = [Net Sales (GHS)] - [Total Cost (GHS)]
+		formatString: #,0
+		displayFolder: Profit
+		lineageTag: 416ab4bf-7fff-40b2-9a4e-8a932ccfa478
+
+	measure 'Profit Margin %' = DIVIDE ( [Profit (GHS)], [Net Sales (GHS)] )
+		formatString: 0.0%
+		displayFolder: Profit
+		lineageTag: a06d2e46-6d35-452a-9875-c9d7b464a31a
+
+	measure 'Sales Target (GHS)' =
+			CALCULATE (
+			    SUM ( fact_Target[SalesTargetGHS] ),
+			    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			)
+		formatString: #,0
+		displayFolder: Targets
+		lineageTag: faff6107-ea60-48ae-855b-725acfde24f2
+
+	measure 'Target Attainment %' = DIVIDE ( [Net Sales (GHS)], [Sales Target (GHS)] )
+		formatString: 0.0%
+		displayFolder: Targets
+		lineageTag: b1faf8e8-b55f-43b7-9086-e38efa04b2d9
+
+	measure 'Variance to Target (GHS)' = [Net Sales (GHS)] - [Sales Target (GHS)]
+		formatString: #,0;-#,0
+		displayFolder: Targets
+		lineageTag: 672f72a5-1d10-4cbf-b9c5-df6516e1724b
+
+	measure 'Target Status' =
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( [Target Attainment %] ), "No target",
+			    [Target Attainment %] >= 1, "Met",
+			    [Target Attainment %] >= 0.95, "Close",
+			    "Missed"
+			)
+		displayFolder: Targets
+		lineageTag: fa28f0ff-6146-4957-ae6b-70b56827f3f4
+
+	measure 'Net Sales PY (GHS)' = CALCULATE ( [Net Sales (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: 2711656a-e8a1-447c-93e3-81ddaf629994
+
+	measure 'Net Sales YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Net Sales (GHS)], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Net Sales (GHS)], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: 0.0%
+		displayFolder: Time intelligence
+		lineageTag: 75f09a38-046f-4594-a869-a8f46eb87c69
+
+	measure 'Net Sales YTD (GHS)' = TOTALYTD ( [Net Sales (GHS)], dim_Date[Date] )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: a681eaf4-7fa5-4aba-8f92-b9c6ac063256
+
+	measure 'Net Sales PYTD (GHS)' = CALCULATE ( [Net Sales YTD (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: 62dfe212-c262-4870-8346-6ee3d7f0affc
+
+	measure 'Net Sales MoM %' =
+			VAR Previous = CALCULATE ( [Net Sales (GHS)], DATEADD ( dim_Date[Date], -1, MONTH ) )
+			RETURN DIVIDE ( [Net Sales (GHS)] - Previous, Previous )
+		formatString: 0.0%
+		displayFolder: Time intelligence
+		lineageTag: 9653bbfe-024f-43c2-a90f-7e0a1dc5d98a
+
+	measure 'Net Sales 3M Average (GHS)' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Net Sales (GHS)], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: #,0
+		displayFolder: Time intelligence
+		lineageTag: bafc7e35-5838-4e43-9c61-e963ef09c11f
+
+	measure '% of Total Net Sales' = DIVIDE ( [Net Sales (GHS)], CALCULATE ( [Net Sales (GHS)], ALLSELECTED () ) )
+		formatString: 0.0%
+		displayFolder: Ranking and share
+		lineageTag: 58eea187-e7fc-47e2-853a-24bdcf13ca83
+
+	measure 'Product Rank' = RANKX ( ALLSELECTED ( dim_Product[ProductName] ), [Net Sales (GHS)], , DESC, DENSE )
+		formatString: 0
+		displayFolder: Ranking and share
+		lineageTag: d63c8c99-c2b5-4f63-b0c1-87ecbd8cd93e
+
+	measure 'Top 10 Products Net Sales (GHS)' =
+			VAR TopProducts = TOPN ( 10, ALLSELECTED ( dim_Product[ProductName] ), [Net Sales (GHS)] )
+			RETURN CALCULATE ( [Net Sales (GHS)], KEEPFILTERS ( TopProducts ) )
+		formatString: #,0
+		displayFolder: Ranking and share
+		lineageTag: aa2e33ca-6c94-4948-8e87-9280407f8371
+
+	measure 'Latest Order Date' = FORMAT ( MAX ( fact_Sales[OrderDate] ), "dd mmm yyyy" )
+		displayFolder: Labels
+		lineageTag: b5144263-6e81-4952-ab73-6552556fbbd0
+
+	measure 'Data Note' = "Synthetic data for demonstration. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+		lineageTag: a3adedd8-6aeb-4998-ad5b-056927516bef
+
+	column Dummy
+		dataType: int64
+		isHidden
+		lineageTag: 25d76bd8-e450-417c-b69f-14b6b4f7dcc1
+		summarizeBy: none
+		sourceColumn: Dummy
+
+	partition _Measures = m
+		mode: import
+		source =
+				let
+				    Source = #table(type table [Dummy = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

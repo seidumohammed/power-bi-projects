@@ -1,0 +1,57 @@
+table dim_Officer
+	lineageTag: 6946d380-73b2-43c4-a0c2-7de813e26c26
+
+	column OfficerID
+		dataType: string
+		isHidden
+		lineageTag: a378ef75-98c3-4a28-870e-39bbcb6438fd
+		summarizeBy: none
+		sourceColumn: OfficerID
+
+	column OfficerName
+		dataType: string
+		lineageTag: 003311e0-1c71-478f-bb4b-4ca8459120db
+		summarizeBy: none
+		sourceColumn: OfficerName
+
+	column Team
+		dataType: string
+		lineageTag: 844544b8-1316-4702-aa68-35bd89cc23e6
+		summarizeBy: none
+		sourceColumn: Team
+
+	column HomeZone
+		dataType: string
+		lineageTag: 2356beea-1189-4c2c-b316-1db454ec34fb
+		summarizeBy: none
+		sourceColumn: HomeZone
+
+	column StartDate
+		dataType: dateTime
+		formatString: dd mmm yyyy
+		lineageTag: 9b5f9ad8-87d8-4c74-a51a-888cb9ebfedb
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		variation Variation
+			isDefault
+			relationship: 07d6555a-688f-46df-922b-a13d944a1a6c
+			defaultHierarchy: LocalDateTable_637f37b8-5ea2-4a8e-b195-cd1d4a3c2f4e.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition dim_Officer = m
+		mode: import
+		source =
+				// Cleaning: the home_zone column arrives in mixed case with stray spaces ("  western coast ").
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "officers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"officer_id", "OfficerID"}, {"officer_name", "OfficerName"}, {"team", "Team"}, {"home_zone", "HomeZone"}, {"start_date", "StartDate"}}),
+				    CleanZone = Table.TransformColumns(Renamed, {{"HomeZone", each Text.Proper(Text.Trim(_)), type text}}),
+				    Typed = Table.TransformColumnTypes(CleanZone, {{"OfficerID", type text}, {"OfficerName", type text}, {"Team", type text}, {"StartDate", type date}}, "en-GB")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+

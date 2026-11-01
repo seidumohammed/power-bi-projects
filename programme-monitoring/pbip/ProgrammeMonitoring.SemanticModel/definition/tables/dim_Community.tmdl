@@ -1,0 +1,36 @@
+table dim_Community
+	lineageTag: 1da4f61a-e08c-47d1-bc04-a13276da2016
+
+	column CommunityID
+		dataType: string
+		isHidden
+		lineageTag: d1e87d8f-8a10-4de2-9ffe-566f6f22ec7b
+		summarizeBy: none
+		sourceColumn: CommunityID
+
+	column DistrictID
+		dataType: string
+		isHidden
+		lineageTag: 9a4e3318-821a-4c35-a0ba-2b90f7131f0d
+		summarizeBy: none
+		sourceColumn: DistrictID
+
+	column Community
+		dataType: string
+		lineageTag: c9fcbf32-ab37-4a34-85f3-a868d50a23c4
+		summarizeBy: none
+		sourceColumn: Community
+
+	partition dim_Community = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "communities.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"community_id", "CommunityID"}, {"district_id", "DistrictID"}, {"community_name", "Community"}}),
+				    Typed = Table.TransformColumnTypes(Renamed, {{"CommunityID", type text}, {"DistrictID", type text}, {"Community", type text}})
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
+
