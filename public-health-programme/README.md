@@ -30,7 +30,21 @@ A dashboard for an invented regional health directorate in the Northern Region: 
 
 ### Screenshots from Power BI Desktop
 
-_Screenshots will be added here._
+**Programme overview**
+
+![01-programme-overview](images/screenshots/01-programme-overview.png)
+
+**Immunisation**
+
+![02-immunisation](images/screenshots/02-immunisation.png)
+
+**Disease surveillance**
+
+![03-disease-surveillance](images/screenshots/03-disease-surveillance.png)
+
+**Reporting and facilities**
+
+![04-reporting-and-facilities](images/screenshots/04-reporting-and-facilities.png)
 
 ## Setting and data
 

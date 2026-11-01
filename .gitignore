@@ -11,4 +11,4 @@ requirements.txt
 # Python
 __pycache__/
 *.pyc
-.venv/
+.venv/posts/

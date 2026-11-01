@@ -30,7 +30,21 @@ A dashboard for an invented distributor serving retailers from four hubs: delive
 
 ### Screenshots from Power BI Desktop
 
-_Screenshots will be added here._
+**Service overview**
+
+![01-service-overview](images/screenshots/01-service-overview.png)
+
+**Hubs and carriers**
+
+![02-hubs-and-carriers](images/screenshots/02-hubs-and-carriers.png)
+
+**Inventory**
+
+![03-inventory](images/screenshots/03-inventory.png)
+
+**Suppliers**
+
+![04-suppliers](images/screenshots/04-suppliers.png)
 
 ## Setting and data
 

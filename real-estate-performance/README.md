@@ -30,7 +30,21 @@ A dashboard for an invented property agency in Greater Accra: sales, prices, tim
 
 ### Screenshots from Power BI Desktop
 
-_Screenshots will be added here._
+**Executive summary**
+
+![01-executive-summary](images/screenshots/01-executive-summary.png)
+
+**Market and areas**
+
+![02-market-and-areas](images/screenshots/02-market-and-areas.png)
+
+**Agents and branches**
+
+![03-agents-and-branches](images/screenshots/03-agents-and-branches.png)
+
+**Listings and targets**
+
+![04-listings-and-targets](images/screenshots/04-listings-and-targets.png)
 
 ## Setting and data
 

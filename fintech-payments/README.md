@@ -30,7 +30,21 @@ A dashboard for an invented mobile wallet provider: payment volumes, reliability
 
 ### Screenshots from Power BI Desktop
 
-_Screenshots will be added here._
+**Payments overview**
+
+![01-payments-overview](images/screenshots/01-payments-overview.png)
+
+**Channels and reliability**
+
+![02-channels-and-reliability](images/screenshots/02-channels-and-reliability.png)
+
+**Customers and growth**
+
+![03-customers-and-growth](images/screenshots/03-customers-and-growth.png)
+
+**Fraud and loans**
+
+![04-fraud-and-loans](images/screenshots/04-fraud-and-loans.png)
 
 ## Setting and data
 

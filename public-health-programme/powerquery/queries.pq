@@ -20,11 +20,11 @@ in
     Typed
 
 // ==== Query: dim_Facility ====
-// Cleaning: facility level has stray spaces.
+// Cleaning: facility level has stray spaces and mixed case.
 let
     Source = Csv.Document(File.Contents(DataFolder & "facilities.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
     Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-    Cleanfacilitylevel = Table.TransformColumns(Promoted, {{"facility_level", each Text.Trim(_), type text}}),
+    Cleanfacilitylevel = Table.TransformColumns(Promoted, {{"facility_level", each Text.Replace(Text.Proper(Text.Trim(_)), "Chps", "CHPS"), type text}}),
     Renamed = Table.RenameColumns(Cleanfacilitylevel, {{"facility_id", "FacilityID"}, {"facility", "Facility"}, {"district_id", "DistrictID"}, {"facility_level", "FacilityLevel"}, {"catchment_population", "CatchmentPopulation"}}),
     Selected = Table.SelectColumns(Renamed, {"FacilityID", "Facility", "DistrictID", "FacilityLevel", "CatchmentPopulation"}),
     Typed = Table.TransformColumnTypes(Selected, {{"FacilityID", type text}, {"Facility", type text}, {"DistrictID", type text}, {"FacilityLevel", type text}, {"CatchmentPopulation", Int64.Type}}, "en-US")

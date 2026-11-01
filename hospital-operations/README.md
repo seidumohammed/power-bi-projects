@@ -30,7 +30,21 @@ A dashboard for an invented 120-bed regional hospital: admissions, bed occupancy
 
 ### Screenshots from Power BI Desktop
 
-_Screenshots will be added here._
+**Hospital overview**
+
+![01-hospital-overview](images/screenshots/01-hospital-overview.png)
+
+**Wards and stays**
+
+![02-wards-and-stays](images/screenshots/02-wards-and-stays.png)
+
+**Emergency department**
+
+![03-emergency-department](images/screenshots/03-emergency-department.png)
+
+**Patients and quality**
+
+![04-patients-and-quality](images/screenshots/04-patients-and-quality.png)
 
 ## Setting and data
 
