@@ -30,6 +30,10 @@ A dashboard for an invented retail business with six stores in Ghana: sales, pro
 
 ### Screenshots from Power BI Desktop
 
+**Executive summary**
+
+![Executive summary](images/screenshots/01-executive-summary.png)
+
 **Products**
 
 ![Products](images/screenshots/02-products.png)
