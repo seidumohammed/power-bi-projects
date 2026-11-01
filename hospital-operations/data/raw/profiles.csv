@@ -1,0 +1,361 @@
+profile_id,sex,age_group,insurance,district
+PF001,Female,0 to 4,NHIS,Ho Municipal
+PF002,Female,0 to 4,NHIS,Hohoe Municipal
+PF003,Female,0 to 4,NHIS,Keta Municipal
+PF004,Female,0 to 4,NHIS,Kpando Municipal
+PF005,Female,0 to 4,NHIS,North Tongu
+PF006,Female,0 to 4,NHIS,South Dayi
+PF007,Female,0 to 4,NHIS,Adaklu
+PF008,Female,0 to 4,NHIS,Ketu South
+PF009,Female,0 to 4,NHIS,Agotime-Ziope
+PF010,Female,0 to 4,NHIS,Akatsi South
+PF011,Female,0 to 4,Private insurance,Ho Municipal
+PF012,Female,0 to 4,Private insurance,Hohoe Municipal
+PF013,Female,0 to 4,Private insurance,Keta Municipal
+PF014,Female,0 to 4,Private insurance,Kpando Municipal
+PF015,Female,0 to 4,  Private insurance ,North Tongu
+PF016,Female,0 to 4,Private insurance,South Dayi
+PF017,Female,0 to 4,Private insurance,Adaklu
+PF018,Female,0 to 4,Private insurance,Ketu South
+PF019,Female,0 to 4,Private insurance,Agotime-Ziope
+PF020,Female,0 to 4,Private insurance,Akatsi South
+PF021,Female,0 to 4,Self-pay,Ho Municipal
+PF022,Female,0 to 4,Self-pay,Hohoe Municipal
+PF023,  Female ,0 to 4,Self-pay,Keta Municipal
+PF024,Female,0 to 4,Self-pay,Kpando Municipal
+PF025,Female,0 to 4,Self-pay,North Tongu
+PF026,  Female ,0 to 4,Self-pay,South Dayi
+PF027,Female,0 to 4,Self-pay,Adaklu
+PF028,Female,0 to 4,Self-pay,Ketu South
+PF029,Female,0 to 4,Self-pay,Agotime-Ziope
+PF030,Female,0 to 4,Self-pay,Akatsi South
+PF031,Female,5 to 14,NHIS,Ho Municipal
+PF032,Female,5 to 14,NHIS,Hohoe Municipal
+PF033,Female,5 to 14,NHIS,Keta Municipal
+PF034,Female,5 to 14,NHIS,Kpando Municipal
+PF035,Female,5 to 14,NHIS,North Tongu
+PF036,Female,5 to 14,NHIS,South Dayi
+PF037,Female,5 to 14,NHIS,Adaklu
+PF038,Female,5 to 14,NHIS,Ketu South
+PF039,Female,5 to 14,  NHIS ,Agotime-Ziope
+PF040,Female,5 to 14,NHIS,Akatsi South
+PF041,Female,5 to 14,Private insurance,Ho Municipal
+PF042,Female,5 to 14,Private insurance,Hohoe Municipal
+PF043,Female,5 to 14,Private insurance,Keta Municipal
+PF044,Female,5 to 14,Private insurance,Kpando Municipal
+PF045,Female,5 to 14,  Private insurance ,North Tongu
+PF046,Female,5 to 14,Private insurance,South Dayi
+PF047,Female,5 to 14,Private insurance,Adaklu
+PF048,Female,5 to 14,  Private insurance ,Ketu South
+PF049,Female,5 to 14,Private insurance,Agotime-Ziope
+PF050,Female,5 to 14,Private insurance,Akatsi South
+PF051,Female,5 to 14,Self-pay,Ho Municipal
+PF052,Female,5 to 14,Self-pay,Hohoe Municipal
+PF053,Female,5 to 14,Self-pay,Keta Municipal
+PF054,Female,5 to 14,Self-pay,Kpando Municipal
+PF055,Female,5 to 14,Self-pay,North Tongu
+PF056,Female,5 to 14,Self-pay,South Dayi
+PF057,Female,5 to 14,Self-pay,Adaklu
+PF058,Female,5 to 14,Self-pay,Ketu South
+PF059,Female,5 to 14,Self-pay,Agotime-Ziope
+PF060,Female,5 to 14,Self-pay,Akatsi South
+PF061,Female,15 to 29,NHIS,Ho Municipal
+PF062,Female,15 to 29,NHIS,Hohoe Municipal
+PF063,Female,15 to 29,NHIS,Keta Municipal
+PF064,Female,15 to 29,NHIS,Kpando Municipal
+PF065,Female,15 to 29,NHIS,North Tongu
+PF066,FEMALE,15 to 29,NHIS,South Dayi
+PF067,Female,15 to 29,NHIS,Adaklu
+PF068,Female,15 to 29,NHIS,Ketu South
+PF069,Female,15 to 29,NHIS,Agotime-Ziope
+PF070,Female,15 to 29,NHIS,Akatsi South
+PF071,Female,15 to 29,Private insurance,Ho Municipal
+PF072,Female,15 to 29,Private insurance,Hohoe Municipal
+PF073,Female,15 to 29,Private insurance,Keta Municipal
+PF074,female,15 to 29,Private insurance,Kpando Municipal
+PF075,FEMALE,15 to 29,Private insurance,North Tongu
+PF076,Female,15 to 29,Private insurance,South Dayi
+PF077,Female,15 to 29,Private insurance,Adaklu
+PF078,Female,15 to 29,Private insurance,Ketu South
+PF079,Female,15 to 29,Private insurance,Agotime-Ziope
+PF080,Female,15 to 29,Private insurance,Akatsi South
+PF081,Female,15 to 29,Self-pay,Ho Municipal
+PF082,Female,15 to 29,Self-pay,Hohoe Municipal
+PF083,Female,15 to 29,Self-pay,Keta Municipal
+PF084,female,15 to 29,Self-pay,Kpando Municipal
+PF085,Female,15 to 29,Self-pay,North Tongu
+PF086,Female,15 to 29,Self-pay,South Dayi
+PF087,Female,15 to 29,self-pay,Adaklu
+PF088,Female,15 to 29,Self-pay,Ketu South
+PF089,Female,15 to 29,Self-pay,Agotime-Ziope
+PF090,Female,15 to 29,Self-pay,Akatsi South
+PF091,Female,30 to 44,nhis,Ho Municipal
+PF092,Female,30 to 44,NHIS,Hohoe Municipal
+PF093,Female,30 to 44,NHIS,Keta Municipal
+PF094,Female,30 to 44,NHIS,Kpando Municipal
+PF095,FEMALE,30 to 44,NHIS,North Tongu
+PF096,Female,30 to 44,NHIS,South Dayi
+PF097,Female,30 to 44,NHIS,Adaklu
+PF098,  Female ,30 to 44,NHIS,Ketu South
+PF099,Female,30 to 44,NHIS,Agotime-Ziope
+PF100,Female,30 to 44,NHIS,Akatsi South
+PF101,Female,30 to 44,Private insurance,Ho Municipal
+PF102,Female,30 to 44,Private insurance,Hohoe Municipal
+PF103,Female,30 to 44,Private insurance,Keta Municipal
+PF104,Female,30 to 44,Private insurance,Kpando Municipal
+PF105,Female,30 to 44,Private insurance,North Tongu
+PF106,Female,30 to 44,Private insurance,South Dayi
+PF107,Female,30 to 44,Private insurance,Adaklu
+PF108,Female,30 to 44,Private insurance,Ketu South
+PF109,Female,30 to 44,Private insurance,Agotime-Ziope
+PF110,Female,30 to 44,Private insurance,Akatsi South
+PF111,Female,30 to 44,Self-pay,Ho Municipal
+PF112,Female,30 to 44,Self-pay,Hohoe Municipal
+PF113,Female,30 to 44,Self-pay,Keta Municipal
+PF114,Female,30 to 44,Self-pay,Kpando Municipal
+PF115,Female,30 to 44,SELF-PAY,North Tongu
+PF116,Female,30 to 44,Self-pay,South Dayi
+PF117,Female,30 to 44,Self-pay,Adaklu
+PF118,Female,30 to 44,Self-pay,Ketu South
+PF119,Female,30 to 44,Self-pay,Agotime-Ziope
+PF120,Female,30 to 44,Self-pay,Akatsi South
+PF121,Female,45 to 59,NHIS,Ho Municipal
+PF122,Female,45 to 59,NHIS,Hohoe Municipal
+PF123,Female,45 to 59,NHIS,Keta Municipal
+PF124,Female,45 to 59,NHIS,Kpando Municipal
+PF125,Female,45 to 59,nhis,North Tongu
+PF126,Female,45 to 59,NHIS,South Dayi
+PF127,Female,45 to 59,NHIS,Adaklu
+PF128,Female,45 to 59,NHIS,Ketu South
+PF129,Female,45 to 59,NHIS,Agotime-Ziope
+PF130,Female,45 to 59,NHIS,Akatsi South
+PF131,Female,45 to 59,Private insurance,Ho Municipal
+PF132,Female,45 to 59,Private insurance,Hohoe Municipal
+PF133,Female,45 to 59,Private insurance,Keta Municipal
+PF134,Female,45 to 59,Private insurance,Kpando Municipal
+PF135,Female,45 to 59,Private insurance,North Tongu
+PF136,Female,45 to 59,Private insurance,South Dayi
+PF137,Female,45 to 59,Private insurance,Adaklu
+PF138,FEMALE,45 to 59,Private insurance,Ketu South
+PF139,  Female ,45 to 59,Private insurance,Agotime-Ziope
+PF140,Female,45 to 59,Private insurance,Akatsi South
+PF141,Female,45 to 59,Self-pay,Ho Municipal
+PF142,Female,45 to 59,Self-pay,Hohoe Municipal
+PF143,  Female ,45 to 59,Self-pay,Keta Municipal
+PF144,Female,45 to 59,Self-pay,Kpando Municipal
+PF145,FEMALE,45 to 59,Self-pay,North Tongu
+PF146,Female,45 to 59,Self-pay,South Dayi
+PF147,Female,45 to 59,Self-pay,Adaklu
+PF148,Female,45 to 59,Self-pay,Ketu South
+PF149,Female,45 to 59,Self-pay,Agotime-Ziope
+PF150,Female,45 to 59,Self-pay,Akatsi South
+PF151,Female,60 and over,NHIS,Ho Municipal
+PF152,Female,60 and over,NHIS,Hohoe Municipal
+PF153,Female,60 and over,NHIS,Keta Municipal
+PF154,Female,60 and over,NHIS,Kpando Municipal
+PF155,Female,60 and over,NHIS,North Tongu
+PF156,Female,60 and over,  NHIS ,South Dayi
+PF157,Female,60 and over,NHIS,Adaklu
+PF158,Female,60 and over,NHIS,Ketu South
+PF159,Female,60 and over,NHIS,Agotime-Ziope
+PF160,female,60 and over,NHIS,Akatsi South
+PF161,Female,60 and over,Private insurance,Ho Municipal
+PF162,Female,60 and over,Private insurance,Hohoe Municipal
+PF163,Female,60 and over,Private insurance,Keta Municipal
+PF164,female,60 and over,Private insurance,Kpando Municipal
+PF165,Female,60 and over,Private insurance,North Tongu
+PF166,Female,60 and over,private insurance,South Dayi
+PF167,Female,60 and over,Private insurance,Adaklu
+PF168,Female,60 and over,Private insurance,Ketu South
+PF169,Female,60 and over,Private insurance,Agotime-Ziope
+PF170,Female,60 and over,private insurance,Akatsi South
+PF171,Female,60 and over,Self-pay,Ho Municipal
+PF172,Female,60 and over,Self-pay,Hohoe Municipal
+PF173,Female,60 and over,Self-pay,Keta Municipal
+PF174,FEMALE,60 and over,Self-pay,Kpando Municipal
+PF175,Female,60 and over,Self-pay,North Tongu
+PF176,Female,60 and over,Self-pay,South Dayi
+PF177,Female,60 and over,Self-pay,Adaklu
+PF178,Female,60 and over,Self-pay,Ketu South
+PF179,Female,60 and over,Self-pay,Agotime-Ziope
+PF180,Female,60 and over,Self-pay,Akatsi South
+PF181,Male,0 to 4,NHIS,Ho Municipal
+PF182,Male,0 to 4,NHIS,Hohoe Municipal
+PF183,Male,0 to 4,NHIS,Keta Municipal
+PF184,Male,0 to 4,NHIS,Kpando Municipal
+PF185,Male,0 to 4,NHIS,North Tongu
+PF186,Male,0 to 4,NHIS,South Dayi
+PF187,Male,0 to 4,NHIS,Adaklu
+PF188,  Male ,0 to 4,NHIS,Ketu South
+PF189,Male,0 to 4,NHIS,Agotime-Ziope
+PF190,Male,0 to 4,NHIS,Akatsi South
+PF191,Male,0 to 4,Private insurance,Ho Municipal
+PF192,Male,0 to 4,Private insurance,Hohoe Municipal
+PF193,Male,0 to 4,Private insurance,Keta Municipal
+PF194,Male,0 to 4,Private insurance,Kpando Municipal
+PF195,Male,0 to 4,Private insurance,North Tongu
+PF196,Male,0 to 4,Private insurance,South Dayi
+PF197,Male,0 to 4,Private insurance,Adaklu
+PF198,Male,0 to 4,Private insurance,Ketu South
+PF199,Male,0 to 4,Private insurance,Agotime-Ziope
+PF200,Male,0 to 4,Private insurance,Akatsi South
+PF201,Male,0 to 4,Self-pay,Ho Municipal
+PF202,Male,0 to 4,Self-pay,Hohoe Municipal
+PF203,Male,0 to 4,Self-pay,Keta Municipal
+PF204,MALE,0 to 4,Self-pay,Kpando Municipal
+PF205,male,0 to 4,Self-pay,North Tongu
+PF206,Male,0 to 4,Self-pay,South Dayi
+PF207,Male,0 to 4,Self-pay,Adaklu
+PF208,Male,0 to 4,Self-pay,Ketu South
+PF209,Male,0 to 4,Self-pay,Agotime-Ziope
+PF210,Male,0 to 4,SELF-PAY,Akatsi South
+PF211,Male,5 to 14,NHIS,Ho Municipal
+PF212,Male,5 to 14,NHIS,Hohoe Municipal
+PF213,Male,5 to 14,NHIS,Keta Municipal
+PF214,Male,5 to 14,NHIS,Kpando Municipal
+PF215,MALE,5 to 14,NHIS,North Tongu
+PF216,Male,5 to 14,NHIS,South Dayi
+PF217,Male,5 to 14,NHIS,Adaklu
+PF218,Male,5 to 14,NHIS,Ketu South
+PF219,Male,5 to 14,nhis,Agotime-Ziope
+PF220,Male,5 to 14,NHIS,Akatsi South
+PF221,Male,5 to 14,Private insurance,Ho Municipal
+PF222,Male,5 to 14,Private insurance,Hohoe Municipal
+PF223,Male,5 to 14,Private insurance,Keta Municipal
+PF224,Male,5 to 14,Private insurance,Kpando Municipal
+PF225,Male,5 to 14,Private insurance,North Tongu
+PF226,Male,5 to 14,Private insurance,South Dayi
+PF227,Male,5 to 14,Private insurance,Adaklu
+PF228,Male,5 to 14,Private insurance,Ketu South
+PF229,Male,5 to 14,private insurance,Agotime-Ziope
+PF230,Male,5 to 14,Private insurance,Akatsi South
+PF231,Male,5 to 14,Self-pay,Ho Municipal
+PF232,Male,5 to 14,Self-pay,Hohoe Municipal
+PF233,Male,5 to 14,Self-pay,Keta Municipal
+PF234,Male,5 to 14,Self-pay,Kpando Municipal
+PF235,Male,5 to 14,Self-pay,North Tongu
+PF236,Male,5 to 14,Self-pay,South Dayi
+PF237,Male,5 to 14,Self-pay,Adaklu
+PF238,Male,5 to 14,Self-pay,Ketu South
+PF239,Male,5 to 14,Self-pay,Agotime-Ziope
+PF240,Male,5 to 14,Self-pay,Akatsi South
+PF241,MALE,15 to 29,NHIS,Ho Municipal
+PF242,male,15 to 29,NHIS,Hohoe Municipal
+PF243,Male,15 to 29,NHIS,Keta Municipal
+PF244,Male,15 to 29,NHIS,Kpando Municipal
+PF245,Male,15 to 29,NHIS,North Tongu
+PF246,Male,15 to 29,NHIS,South Dayi
+PF247,Male,15 to 29,NHIS,Adaklu
+PF248,Male,15 to 29,NHIS,Ketu South
+PF249,Male,15 to 29,NHIS,Agotime-Ziope
+PF250,Male,15 to 29,NHIS,Akatsi South
+PF251,Male,15 to 29,Private insurance,Ho Municipal
+PF252,male,15 to 29,Private insurance,Hohoe Municipal
+PF253,Male,15 to 29,Private insurance,Keta Municipal
+PF254,Male,15 to 29,Private insurance,Kpando Municipal
+PF255,Male,15 to 29,Private insurance,North Tongu
+PF256,Male,15 to 29,Private insurance,South Dayi
+PF257,Male,15 to 29,Private insurance,Adaklu
+PF258,Male,15 to 29,Private insurance,Ketu South
+PF259,Male,15 to 29,Private insurance,Agotime-Ziope
+PF260,Male,15 to 29,Private insurance,Akatsi South
+PF261,Male,15 to 29,Self-pay,Ho Municipal
+PF262,Male,15 to 29,Self-pay,Hohoe Municipal
+PF263,Male,15 to 29,Self-pay,Keta Municipal
+PF264,Male,15 to 29,Self-pay,Kpando Municipal
+PF265,Male,15 to 29,Self-pay,North Tongu
+PF266,MALE,15 to 29,Self-pay,South Dayi
+PF267,Male,15 to 29,Self-pay,Adaklu
+PF268,Male,15 to 29,Self-pay,Ketu South
+PF269,Male,15 to 29,Self-pay,Agotime-Ziope
+PF270,Male,15 to 29,Self-pay,Akatsi South
+PF271,Male,30 to 44,NHIS,Ho Municipal
+PF272,  Male ,30 to 44,NHIS,Hohoe Municipal
+PF273,Male,30 to 44,NHIS,Keta Municipal
+PF274,Male,30 to 44,NHIS,Kpando Municipal
+PF275,Male,30 to 44,NHIS,North Tongu
+PF276,Male,30 to 44,NHIS,South Dayi
+PF277,Male,30 to 44,NHIS,Adaklu
+PF278,Male,30 to 44,NHIS,Ketu South
+PF279,Male,30 to 44,NHIS,Agotime-Ziope
+PF280,Male,30 to 44,NHIS,Akatsi South
+PF281,Male,30 to 44,  Private insurance ,Ho Municipal
+PF282,Male,30 to 44,Private insurance,Hohoe Municipal
+PF283,Male,30 to 44,Private insurance,Keta Municipal
+PF284,Male,30 to 44,Private insurance,Kpando Municipal
+PF285,Male,30 to 44,Private insurance,North Tongu
+PF286,Male,30 to 44,Private insurance,South Dayi
+PF287,Male,30 to 44,Private insurance,Adaklu
+PF288,Male,30 to 44,Private insurance,Ketu South
+PF289,Male,30 to 44,Private insurance,Agotime-Ziope
+PF290,  Male ,30 to 44,Private insurance,Akatsi South
+PF291,MALE,30 to 44,Self-pay,Ho Municipal
+PF292,Male,30 to 44,Self-pay,Hohoe Municipal
+PF293,Male,30 to 44,Self-pay,Keta Municipal
+PF294,Male,30 to 44,Self-pay,Kpando Municipal
+PF295,Male,30 to 44,Self-pay,North Tongu
+PF296,Male,30 to 44,Self-pay,South Dayi
+PF297,Male,30 to 44,Self-pay,Adaklu
+PF298,Male,30 to 44,  Self-pay ,Ketu South
+PF299,Male,30 to 44,Self-pay,Agotime-Ziope
+PF300,Male,30 to 44,Self-pay,Akatsi South
+PF301,Male,45 to 59,NHIS,Ho Municipal
+PF302,Male,45 to 59,NHIS,Hohoe Municipal
+PF303,Male,45 to 59,NHIS,Keta Municipal
+PF304,Male,45 to 59,NHIS,Kpando Municipal
+PF305,Male,45 to 59,NHIS,North Tongu
+PF306,Male,45 to 59,NHIS,South Dayi
+PF307,Male,45 to 59,NHIS,Adaklu
+PF308,Male,45 to 59,NHIS,Ketu South
+PF309,Male,45 to 59,NHIS,Agotime-Ziope
+PF310,Male,45 to 59,NHIS,Akatsi South
+PF311,Male,45 to 59,Private insurance,Ho Municipal
+PF312,Male,45 to 59,Private insurance,Hohoe Municipal
+PF313,Male,45 to 59,Private insurance,Keta Municipal
+PF314,Male,45 to 59,Private insurance,Kpando Municipal
+PF315,Male,45 to 59,Private insurance,North Tongu
+PF316,Male,45 to 59,Private insurance,South Dayi
+PF317,Male,45 to 59,Private insurance,Adaklu
+PF318,Male,45 to 59,Private insurance,Ketu South
+PF319,Male,45 to 59,Private insurance,Agotime-Ziope
+PF320,Male,45 to 59,Private insurance,Akatsi South
+PF321,Male,45 to 59,Self-pay,Ho Municipal
+PF322,  Male ,45 to 59,Self-pay,Hohoe Municipal
+PF323,Male,45 to 59,Self-pay,Keta Municipal
+PF324,Male,45 to 59,Self-pay,Kpando Municipal
+PF325,Male,45 to 59,Self-pay,North Tongu
+PF326,Male,45 to 59,Self-pay,South Dayi
+PF327,Male,45 to 59,Self-pay,Adaklu
+PF328,Male,45 to 59,Self-pay,Ketu South
+PF329,Male,45 to 59,Self-pay,Agotime-Ziope
+PF330,Male,45 to 59,Self-pay,Akatsi South
+PF331,Male,60 and over,NHIS,Ho Municipal
+PF332,Male,60 and over,NHIS,Hohoe Municipal
+PF333,Male,60 and over,NHIS,Keta Municipal
+PF334,Male,60 and over,NHIS,Kpando Municipal
+PF335,  Male ,60 and over,NHIS,North Tongu
+PF336,  Male ,60 and over,NHIS,South Dayi
+PF337,Male,60 and over,NHIS,Adaklu
+PF338,Male,60 and over,NHIS,Ketu South
+PF339,Male,60 and over,NHIS,Agotime-Ziope
+PF340,Male,60 and over,NHIS,Akatsi South
+PF341,Male,60 and over,Private insurance,Ho Municipal
+PF342,Male,60 and over,Private insurance,Hohoe Municipal
+PF343,Male,60 and over,Private insurance,Keta Municipal
+PF344,Male,60 and over,Private insurance,Kpando Municipal
+PF345,male,60 and over,Private insurance,North Tongu
+PF346,Male,60 and over,Private insurance,South Dayi
+PF347,Male,60 and over,Private insurance,Adaklu
+PF348,Male,60 and over,Private insurance,Ketu South
+PF349,Male,60 and over,Private insurance,Agotime-Ziope
+PF350,Male,60 and over,Private insurance,Akatsi South
+PF351,Male,60 and over,Self-pay,Ho Municipal
+PF352,Male,60 and over,Self-pay,Hohoe Municipal
+PF353,Male,60 and over,Self-pay,Keta Municipal
+PF354,Male,60 and over,Self-pay,Kpando Municipal
+PF355,Male,60 and over,Self-pay,North Tongu
+PF356,Male,60 and over,Self-pay,South Dayi
+PF357,Male,60 and over,Self-pay,Adaklu
+PF358,Male,60 and over,Self-pay,Ketu South
+PF359,male,60 and over,Self-pay,Agotime-Ziope
+PF360,Male,60 and over,Self-pay,Akatsi South

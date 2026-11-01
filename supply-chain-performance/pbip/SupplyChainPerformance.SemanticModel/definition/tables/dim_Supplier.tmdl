@@ -1,0 +1,30 @@
+table dim_Supplier
+
+	column SupplierID
+		dataType: string
+		isHidden
+		sourceColumn: SupplierID
+		summarizeBy: none
+
+	column Supplier
+		dataType: string
+		sourceColumn: Supplier
+		summarizeBy: none
+
+	column Origin
+		dataType: string
+		sourceColumn: Origin
+		summarizeBy: none
+
+	partition dim_Supplier = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "suppliers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"supplier_id", "SupplierID"}, {"supplier", "Supplier"}, {"origin", "Origin"}}),
+			    Selected = Table.SelectColumns(Renamed, {"SupplierID", "Supplier", "Origin"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"SupplierID", type text}, {"Supplier", type text}, {"Origin", type text}}, "en-US")
+			in
+			    Typed
+

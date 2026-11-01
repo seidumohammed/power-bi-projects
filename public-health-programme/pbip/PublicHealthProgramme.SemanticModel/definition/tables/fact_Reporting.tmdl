@@ -1,0 +1,48 @@
+table fact_Reporting
+
+	column ReportID
+		dataType: string
+		isHidden
+		sourceColumn: ReportID
+		summarizeBy: none
+
+	column Month
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: Month
+		summarizeBy: none
+
+	column FacilityID
+		dataType: string
+		isHidden
+		sourceColumn: FacilityID
+		summarizeBy: none
+
+	column Submitted
+		dataType: int64
+		isHidden
+		sourceColumn: Submitted
+		summarizeBy: none
+
+	column OnTime
+		dataType: int64
+		isHidden
+		sourceColumn: OnTime
+		summarizeBy: none
+
+	partition fact_Reporting = m
+		mode: import
+		source =
+			// Cleaning: month in two formats, duplicate report_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "reporting.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"report_id"}),
+			    WithMonth = Table.AddColumn(Deduped, "Month", each if [month] = null or Text.Trim([month]) = "" then null else try Date.FromText([month], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([month], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Renamed = Table.RenameColumns(WithMonth, {{"report_id", "ReportID"}, {"facility_id", "FacilityID"}, {"submitted", "Submitted"}, {"on_time", "OnTime"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ReportID", "Month", "FacilityID", "Submitted", "OnTime"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ReportID", type text}, {"FacilityID", type text}, {"Submitted", Int64.Type}, {"OnTime", Int64.Type}}, "en-US")
+			in
+			    Typed
+

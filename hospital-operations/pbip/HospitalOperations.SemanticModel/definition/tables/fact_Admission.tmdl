@@ -1,0 +1,89 @@
+table fact_Admission
+
+	column AdmissionID
+		dataType: string
+		isHidden
+		sourceColumn: AdmissionID
+		summarizeBy: none
+
+	column AdmitDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: AdmitDate
+		summarizeBy: none
+
+	column DischargeDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: DischargeDate
+		summarizeBy: none
+
+	column ProfileID
+		dataType: string
+		isHidden
+		sourceColumn: ProfileID
+		summarizeBy: none
+
+	column WardID
+		dataType: string
+		isHidden
+		sourceColumn: WardID
+		summarizeBy: none
+
+	column DiagnosisID
+		dataType: string
+		isHidden
+		sourceColumn: DiagnosisID
+		summarizeBy: none
+
+	column Outcome
+		dataType: string
+		sourceColumn: Outcome
+		summarizeBy: none
+
+	column Readmitted30
+		dataType: int64
+		isHidden
+		sourceColumn: Readmitted30
+		summarizeBy: none
+
+	column LengthOfStay
+		dataType: int64
+		isHidden
+		sourceColumn: LengthOfStay
+		summarizeBy: none
+
+	column IsDeceased
+		dataType: int64
+		isHidden
+		sourceColumn: IsDeceased
+		summarizeBy: none
+
+	column IsReferred
+		dataType: int64
+		isHidden
+		sourceColumn: IsReferred
+		summarizeBy: none
+
+	partition fact_Admission = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, outcome in mixed case, duplicate admission_id rows. Length of stay and outcome flags are calculated here.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "admissions.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"admission_id"}),
+			    WithAdmitDate = Table.AddColumn(Deduped, "AdmitDate", each if [admit_date] = null or Text.Trim([admit_date]) = "" then null else try Date.FromText([admit_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([admit_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithDischargeDate = Table.AddColumn(WithAdmitDate, "DischargeDate", each if [discharge_date] = null or Text.Trim([discharge_date]) = "" then null else try Date.FromText([discharge_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([discharge_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Cleanoutcome = Table.TransformColumns(WithDischargeDate, {{"outcome", each Text.Proper(Text.Trim(_)), type text}}),
+			    Renamed = Table.RenameColumns(Cleanoutcome, {{"admission_id", "AdmissionID"}, {"profile_id", "ProfileID"}, {"ward_id", "WardID"}, {"diagnosis_id", "DiagnosisID"}, {"outcome", "Outcome"}, {"readmitted_30", "Readmitted30"}}),
+			    Selected = Table.SelectColumns(Renamed, {"AdmissionID", "AdmitDate", "DischargeDate", "ProfileID", "WardID", "DiagnosisID", "Outcome", "Readmitted30"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"AdmissionID", type text}, {"ProfileID", type text}, {"WardID", type text}, {"DiagnosisID", type text}, {"Outcome", type text}, {"Readmitted30", Int64.Type}}, "en-US"),
+			    AddLengthOfStay = Table.AddColumn(Typed, "LengthOfStay", each List.Max({1, Duration.Days([DischargeDate] - [AdmitDate])}), Int64.Type),
+			    AddIsDeceased = Table.AddColumn(AddLengthOfStay, "IsDeceased", each if [Outcome] = "Deceased" then 1 else 0, Int64.Type),
+			    AddIsReferred = Table.AddColumn(AddIsDeceased, "IsReferred", each if [Outcome] = "Referred" then 1 else 0, Int64.Type)
+			in
+			    AddIsReferred
+

@@ -1,0 +1,43 @@
+table dim_PatientProfile
+
+	column ProfileID
+		dataType: string
+		isHidden
+		sourceColumn: ProfileID
+		summarizeBy: none
+
+	column Sex
+		dataType: string
+		sourceColumn: Sex
+		summarizeBy: none
+
+	column AgeGroup
+		dataType: string
+		sourceColumn: AgeGroup
+		summarizeBy: none
+
+	column Insurance
+		dataType: string
+		sourceColumn: Insurance
+		summarizeBy: none
+
+	column District
+		dataType: string
+		sourceColumn: District
+		summarizeBy: none
+
+	partition dim_PatientProfile = m
+		mode: import
+		source =
+			// Cleaning: sex has stray spaces and mixed case; insurance has stray spaces.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "profiles.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Cleansex = Table.TransformColumns(Promoted, {{"sex", each Text.Proper(Text.Trim(_)), type text}}),
+			    Cleaninsurance = Table.TransformColumns(Cleansex, {{"insurance", each Text.Trim(_), type text}}),
+			    Renamed = Table.RenameColumns(Cleaninsurance, {{"profile_id", "ProfileID"}, {"sex", "Sex"}, {"age_group", "AgeGroup"}, {"insurance", "Insurance"}, {"district", "District"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ProfileID", "Sex", "AgeGroup", "Insurance", "District"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ProfileID", type text}, {"Sex", type text}, {"AgeGroup", type text}, {"Insurance", type text}, {"District", type text}}, "en-US")
+			in
+			    Typed
+

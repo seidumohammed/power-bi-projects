@@ -1,0 +1,35 @@
+table dim_Ward
+
+	column WardID
+		dataType: string
+		isHidden
+		sourceColumn: WardID
+		summarizeBy: none
+
+	column Ward
+		dataType: string
+		sourceColumn: Ward
+		summarizeBy: none
+
+	column Department
+		dataType: string
+		sourceColumn: Department
+		summarizeBy: none
+
+	column Beds
+		dataType: int64
+		sourceColumn: Beds
+		summarizeBy: none
+
+	partition dim_Ward = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "wards.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"ward_id", "WardID"}, {"ward", "Ward"}, {"department", "Department"}, {"beds", "Beds"}}),
+			    Selected = Table.SelectColumns(Renamed, {"WardID", "Ward", "Department", "Beds"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"WardID", type text}, {"Ward", type text}, {"Department", type text}, {"Beds", Int64.Type}}, "en-US")
+			in
+			    Typed
+

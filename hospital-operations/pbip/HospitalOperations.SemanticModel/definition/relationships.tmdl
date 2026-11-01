@@ -1,0 +1,35 @@
+relationship 5b13caca-50b5-5546-9de0-50e568b72e92
+	fromColumn: fact_Admission.AdmitDate
+	toColumn: dim_Date.Date
+
+relationship c3d30349-ce7d-59e0-b97f-1688c77f5a20
+	fromColumn: fact_Admission.ProfileID
+	toColumn: dim_PatientProfile.ProfileID
+
+relationship e99e4fce-b3df-5b6f-a43e-995bf3a5854f
+	fromColumn: fact_Admission.WardID
+	toColumn: dim_Ward.WardID
+
+relationship 6694fbfc-5abc-5736-b845-08e926f6a9b0
+	fromColumn: fact_Admission.DiagnosisID
+	toColumn: dim_Diagnosis.DiagnosisID
+
+relationship b824624f-bef4-5d42-a036-86fd417ef497
+	fromColumn: fact_Census.CensusDate
+	toColumn: dim_Date.Date
+
+relationship ccc6a558-8b92-51db-a4e8-ebbbb0dd7e9b
+	fromColumn: fact_Census.WardID
+	toColumn: dim_Ward.WardID
+
+relationship 4f12caae-7496-5cce-82d7-581b26e5c37f
+	fromColumn: fact_ED.ArrivalDate
+	toColumn: dim_Date.Date
+
+relationship 33767e82-1032-55fb-a06e-7e3b98ad21b0
+	fromColumn: fact_ED.ProfileID
+	toColumn: dim_PatientProfile.ProfileID
+
+relationship c8ebec08-a361-5813-864b-25d70d74f722
+	fromColumn: fact_Target.Ward
+	toColumn: dim_Ward.Ward

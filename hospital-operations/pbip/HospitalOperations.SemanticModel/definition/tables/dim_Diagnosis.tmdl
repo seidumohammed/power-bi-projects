@@ -1,0 +1,30 @@
+table dim_Diagnosis
+
+	column DiagnosisID
+		dataType: string
+		isHidden
+		sourceColumn: DiagnosisID
+		summarizeBy: none
+
+	column DiagnosisGroup
+		dataType: string
+		sourceColumn: DiagnosisGroup
+		summarizeBy: none
+
+	column Category
+		dataType: string
+		sourceColumn: Category
+		summarizeBy: none
+
+	partition dim_Diagnosis = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "diagnoses.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"diagnosis_id", "DiagnosisID"}, {"diagnosis_group", "DiagnosisGroup"}, {"category", "Category"}}),
+			    Selected = Table.SelectColumns(Renamed, {"DiagnosisID", "DiagnosisGroup", "Category"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"DiagnosisID", type text}, {"DiagnosisGroup", type text}, {"Category", type text}}, "en-US")
+			in
+			    Typed
+

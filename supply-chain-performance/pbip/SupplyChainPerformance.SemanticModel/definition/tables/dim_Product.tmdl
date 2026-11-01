@@ -1,0 +1,48 @@
+table dim_Product
+
+	column ProductID
+		dataType: string
+		isHidden
+		sourceColumn: ProductID
+		summarizeBy: none
+
+	column Product
+		dataType: string
+		sourceColumn: Product
+		summarizeBy: none
+
+	column Category
+		dataType: string
+		sourceColumn: Category
+		summarizeBy: none
+
+	column SupplierID
+		dataType: string
+		isHidden
+		sourceColumn: SupplierID
+		summarizeBy: none
+
+	column UnitCostGHS
+		dataType: double
+		isHidden
+		sourceColumn: UnitCostGHS
+		summarizeBy: none
+
+	column UnitPriceGHS
+		dataType: double
+		isHidden
+		sourceColumn: UnitPriceGHS
+		summarizeBy: none
+
+	partition dim_Product = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"product_id", "ProductID"}, {"product", "Product"}, {"category", "Category"}, {"supplier_id", "SupplierID"}, {"unit_cost_ghs", "UnitCostGHS"}, {"unit_price_ghs", "UnitPriceGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ProductID", "Product", "Category", "SupplierID", "UnitCostGHS", "UnitPriceGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ProductID", type text}, {"Product", type text}, {"Category", type text}, {"SupplierID", type text}, {"UnitCostGHS", type number}, {"UnitPriceGHS", type number}}, "en-US")
+			in
+			    Typed
+

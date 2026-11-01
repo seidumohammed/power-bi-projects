@@ -1,0 +1,31 @@
+product_id,product,category,supplier_id,unit_cost_ghs,unit_price_ghs
+PD01,Bottled Water 500ml,Beverages,SU02,50.19,65.23
+PD02,Bottled Water 1.5L,Beverages,SU05,7.81,10.56
+PD03,Malt Drink,Beverages,SU06,52.43,67.25
+PD04,Fruit Juice 1L,Beverages,SU06,34.99,46.68
+PD05,Soft Drink 500ml,Beverages,SU02,21.88,26.22
+PD06,Energy Drink,Beverages,SU04,51.02,62.27
+PD07,Instant Coffee,Beverages,SU01,26.75,38.48
+PD08,Rice 5kg,Packaged Food,SU01,39.76,51.65
+PD09,Spaghetti 500g,Packaged Food,SU04,8.61,11.39
+PD10,Cooking Oil 1L,Packaged Food,SU08,21.29,28.2
+PD11,Tomato Paste,Packaged Food,SU07,56.92,70.57
+PD12,Sardines,Packaged Food,SU08,38.62,51.54
+PD13,Sugar 1kg,Packaged Food,SU05,8.7,10.3
+PD14,Evaporated Milk,Packaged Food,SU01,57.25,75.59
+PD15,Corn Flakes,Packaged Food,SU08,20.38,25.93
+PD16,Biscuits,Packaged Food,SU01,5.5,6.56
+PD17,Laundry Powder 1kg,Household,SU02,9.88,13.53
+PD18,Dish Soap,Household,SU03,58.49,77.78
+PD19,Bleach 1L,Household,SU03,40.98,50.25
+PD20,Toilet Roll x9,Household,SU04,54.86,67.87
+PD21,Mosquito Coil,Household,SU05,36.09,48.56
+PD22,Matches x10,Household,SU05,47.7,61.27
+PD23,Candles x6,Household,SU08,46.91,59.63
+PD24,Bath Soap x3,Personal Care,SU02,56.3,77.1
+PD25,Toothpaste,Personal Care,SU05,14.55,17.54
+PD26,Body Lotion,Personal Care,SU02,32.36,44.65
+PD27,Shampoo 400ml,Personal Care,SU08,8.01,11.04
+PD28,Sanitary Pads,Personal Care,SU02,31.36,39.2
+PD29,Hand Sanitiser,Personal Care,SU06,12.7,17.32
+PD30,Razor Blades,Personal Care,SU04,53.67,69.01

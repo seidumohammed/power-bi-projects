@@ -1,0 +1,83 @@
+table fact_Sale
+
+	column SaleID
+		dataType: string
+		isHidden
+		sourceColumn: SaleID
+		summarizeBy: none
+
+	column ListingID
+		dataType: string
+		isHidden
+		sourceColumn: ListingID
+		summarizeBy: none
+
+	column PropertyID
+		dataType: string
+		isHidden
+		sourceColumn: PropertyID
+		summarizeBy: none
+
+	column AgentID
+		dataType: string
+		isHidden
+		sourceColumn: AgentID
+		summarizeBy: none
+
+	column ListDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: ListDate
+		summarizeBy: none
+
+	column SaleDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: SaleDate
+		summarizeBy: none
+
+	column ListPriceGHS
+		dataType: double
+		isHidden
+		sourceColumn: ListPriceGHS
+		summarizeBy: none
+
+	column SalePriceGHS
+		dataType: double
+		isHidden
+		sourceColumn: SalePriceGHS
+		summarizeBy: none
+
+	column DaysOnMarket
+		dataType: int64
+		isHidden
+		sourceColumn: DaysOnMarket
+		summarizeBy: none
+
+	column CommissionGHS
+		dataType: double
+		isHidden
+		sourceColumn: CommissionGHS
+		summarizeBy: none
+
+	partition fact_Sale = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, sale price stored as text ('GHS 1,250,000.00') in some rows, duplicate sale_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "sales.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"sale_id"}),
+			    WithListDate = Table.AddColumn(Deduped, "ListDate", each if [list_date] = null or Text.Trim([list_date]) = "" then null else try Date.FromText([list_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([list_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithSaleDate = Table.AddColumn(WithListDate, "SaleDate", each if [sale_date] = null or Text.Trim([sale_date]) = "" then null else try Date.FromText([sale_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([sale_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithSalePriceGHS = Table.AddColumn(WithSaleDate, "SalePriceGHS", each if [sale_price_ghs] = null or Text.Trim([sale_price_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([sale_price_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Renamed = Table.RenameColumns(WithSalePriceGHS, {{"sale_id", "SaleID"}, {"listing_id", "ListingID"}, {"property_id", "PropertyID"}, {"agent_id", "AgentID"}, {"list_price_ghs", "ListPriceGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"SaleID", "ListingID", "PropertyID", "AgentID", "ListDate", "SaleDate", "ListPriceGHS", "SalePriceGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"SaleID", type text}, {"ListingID", type text}, {"PropertyID", type text}, {"AgentID", type text}, {"ListPriceGHS", type number}}, "en-US"),
+			    AddDaysOnMarket = Table.AddColumn(Typed, "DaysOnMarket", each Duration.Days([SaleDate] - [ListDate]), Int64.Type),
+			    AddCommissionGHS = Table.AddColumn(AddDaysOnMarket, "CommissionGHS", each [SalePriceGHS] * 0.03, type number)
+			in
+			    AddCommissionGHS
+

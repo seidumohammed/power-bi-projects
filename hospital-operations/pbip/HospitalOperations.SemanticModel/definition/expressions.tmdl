@@ -1,0 +1,1 @@
+expression DataFolder = "C:\path\to\power-bi-projects\hospital-operations\data\raw\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]

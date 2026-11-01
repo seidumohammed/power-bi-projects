@@ -1,0 +1,30 @@
+table dim_Branch
+
+	column BranchID
+		dataType: string
+		isHidden
+		sourceColumn: BranchID
+		summarizeBy: none
+
+	column Branch
+		dataType: string
+		sourceColumn: Branch
+		summarizeBy: none
+
+	column City
+		dataType: string
+		sourceColumn: City
+		summarizeBy: none
+
+	partition dim_Branch = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "branches.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"branch_id", "BranchID"}, {"branch", "Branch"}, {"city", "City"}}),
+			    Selected = Table.SelectColumns(Renamed, {"BranchID", "Branch", "City"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"BranchID", type text}, {"Branch", type text}, {"City", type text}}, "en-US")
+			in
+			    Typed
+

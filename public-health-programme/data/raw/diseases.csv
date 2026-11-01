@@ -1,0 +1,5 @@
+disease_id,disease,type
+DS1,Malaria,Vector-borne
+DS2,Cholera,Water-borne
+DS3,Meningitis,Airborne
+DS4,Measles,Vaccine-preventable

@@ -1,0 +1,183 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure 'Sales Count' =
+			COUNTROWS ( fact_Sale )
+		formatString: "#,0"
+		displayFolder: Sales
+
+	measure 'Sales Value (GHS)' =
+			SUM ( fact_Sale[SalePriceGHS] )
+		formatString: "#,0"
+		displayFolder: Sales
+
+	measure 'Avg Sale Price (GHS)' =
+			DIVIDE ( [Sales Value (GHS)], [Sales Count] )
+		formatString: "#,0"
+		displayFolder: Sales
+
+	measure 'Avg Price per sqm (GHS)' =
+			DIVIDE ( [Sales Value (GHS)], SUMX ( fact_Sale, RELATED ( dim_Property[FloorAreaSqm] ) ) )
+		formatString: "#,0"
+		displayFolder: Sales
+
+	measure 'Days on Market' =
+			AVERAGE ( fact_Sale[DaysOnMarket] )
+		formatString: "0"
+		displayFolder: Sales
+
+	measure 'Discount to List %' =
+			DIVIDE ( SUM ( fact_Sale[ListPriceGHS] ) - SUM ( fact_Sale[SalePriceGHS] ), SUM ( fact_Sale[ListPriceGHS] ) )
+		formatString: "0.0%"
+		displayFolder: Sales
+
+	measure 'Commission (GHS)' =
+			SUM ( fact_Sale[CommissionGHS] )
+		formatString: "#,0"
+		displayFolder: Sales
+
+	measure 'Listings Count' =
+			COUNTROWS ( fact_Listing )
+		formatString: "#,0"
+		displayFolder: Listings
+
+	measure 'Avg List Price (GHS)' =
+			DIVIDE ( SUM ( fact_Listing[ListPriceGHS] ), [Listings Count] )
+		formatString: "#,0"
+		displayFolder: Listings
+
+	measure 'Active Listings' =
+			CALCULATE ( COUNTROWS ( fact_Listing ), fact_Listing[Status] = "Active" )
+		formatString: "#,0"
+		displayFolder: Listings
+
+	measure 'Withdrawn Listings' =
+			CALCULATE ( COUNTROWS ( fact_Listing ), fact_Listing[Status] = "Withdrawn" )
+		formatString: "#,0"
+		displayFolder: Listings
+
+	measure 'Sell-Through %' =
+			DIVIDE ( [Sales Count], [Listings Count] )
+		formatString: "0.0%"
+		displayFolder: Listings
+
+	measure 'Active Agents' =
+			DISTINCTCOUNT ( fact_Sale[AgentID] )
+		formatString: "#,0"
+		displayFolder: Agents
+
+	measure 'Sales per Agent' =
+			DIVIDE ( [Sales Count], [Active Agents] )
+		formatString: "0.0"
+		displayFolder: Agents
+
+	measure 'Value per Agent (GHS)' =
+			DIVIDE ( [Sales Value (GHS)], [Active Agents] )
+		formatString: "#,0"
+		displayFolder: Agents
+
+	measure 'Sales Value Target' =
+			IF (
+			    ISFILTERED ( dim_Agent[AgentName] ) || ISFILTERED ( dim_Area[Area] ) || ISFILTERED ( dim_Area[Zone] ) || ISFILTERED ( dim_Property[PropertyType] ),
+			    BLANK (),   -- the target is not set at this level
+			    CALCULATE (
+			        SUM ( fact_Target[SalesTargetGHS] ),
+			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			    )
+			)
+		formatString: "#,0"
+		displayFolder: Targets
+
+	measure 'Sales Value Attainment %' =
+			DIVIDE ( [Sales Value (GHS)], [Sales Value Target] )
+		formatString: "0.0%"
+		displayFolder: Targets
+
+	measure 'Sales Value Variance' =
+			[Sales Value (GHS)] - [Sales Value Target]
+		formatString: "#,0;-#,0"
+		displayFolder: Targets
+
+	measure 'Sales Value Status' =
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( [Sales Value Attainment %] ), "No target",
+			    [Sales Value Attainment %] >= 1, "Met",
+			    [Sales Value Attainment %] >= 0.95, "Close",
+			    "Missed"
+			)
+		displayFolder: Targets
+
+	measure 'Sales Value PY' =
+			CALCULATE ( [Sales Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sales Value YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Sales Value (GHS)], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Sales Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Sales Value YTD' =
+			TOTALYTD ( [Sales Value (GHS)], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sales Value 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Sales Value (GHS)], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sales Count PY' =
+			CALCULATE ( [Sales Count], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sales Count YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Sales Count], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Sales Count], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Sales Count YTD' =
+			TOTALYTD ( [Sales Count], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sales Count 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Sales Count], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Greater Accra. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

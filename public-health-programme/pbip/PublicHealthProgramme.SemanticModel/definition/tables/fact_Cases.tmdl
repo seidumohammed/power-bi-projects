@@ -1,0 +1,66 @@
+table fact_Cases
+
+	column CaseRecordID
+		dataType: string
+		isHidden
+		sourceColumn: CaseRecordID
+		summarizeBy: none
+
+	column Month
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: Month
+		summarizeBy: none
+
+	column FacilityID
+		dataType: string
+		isHidden
+		sourceColumn: FacilityID
+		summarizeBy: none
+
+	column DiseaseID
+		dataType: string
+		isHidden
+		sourceColumn: DiseaseID
+		summarizeBy: none
+
+	column Cases
+		dataType: int64
+		isHidden
+		sourceColumn: Cases
+		summarizeBy: none
+
+	column Deaths
+		dataType: int64
+		isHidden
+		sourceColumn: Deaths
+		summarizeBy: none
+
+	column Tested
+		dataType: int64
+		isHidden
+		sourceColumn: Tested
+		summarizeBy: none
+
+	column Positive
+		dataType: int64
+		isHidden
+		sourceColumn: Positive
+		summarizeBy: none
+
+	partition fact_Cases = m
+		mode: import
+		source =
+			// Cleaning: month in two formats, duplicate case_record_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "cases.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"case_record_id"}),
+			    WithMonth = Table.AddColumn(Deduped, "Month", each if [month] = null or Text.Trim([month]) = "" then null else try Date.FromText([month], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([month], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Renamed = Table.RenameColumns(WithMonth, {{"case_record_id", "CaseRecordID"}, {"facility_id", "FacilityID"}, {"disease_id", "DiseaseID"}, {"cases", "Cases"}, {"deaths", "Deaths"}, {"tested", "Tested"}, {"positive", "Positive"}}),
+			    Selected = Table.SelectColumns(Renamed, {"CaseRecordID", "Month", "FacilityID", "DiseaseID", "Cases", "Deaths", "Tested", "Positive"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"CaseRecordID", type text}, {"FacilityID", type text}, {"DiseaseID", type text}, {"Cases", Int64.Type}, {"Deaths", Int64.Type}, {"Tested", Int64.Type}, {"Positive", Int64.Type}}, "en-US")
+			in
+			    Typed
+

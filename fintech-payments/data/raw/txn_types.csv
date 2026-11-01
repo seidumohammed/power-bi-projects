@@ -1,0 +1,7 @@
+type_id,txn_type,txn_group
+TY01,P2P transfer,Transfers
+TY02,Merchant payment,Payments
+TY03,Bill payment,Payments
+TY04,Cash-in,Cash
+TY05,Cash-out,Cash
+TY06,Airtime,Payments

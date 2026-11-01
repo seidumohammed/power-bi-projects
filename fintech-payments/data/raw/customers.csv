@@ -1,0 +1,3201 @@
+customer_id,segment,region,acquisition_channel,joined_date
+CU0001,Salaried,Northern,Campaign,2022-01-06
+CU0002,Retail,Upper East,App,2022-01-07
+CU0003,Student,Greater Accra,Referral,2022-01-13
+CU0004,STUDENT,Greater Accra,Referral,2022-01-14
+CU0005,Retail,Volta,App,2022-01-15
+CU0006,Farmer,Upper East,Campaign,2022-01-21
+CU0007,Trader,Greater Accra,Agent,2022-01-30
+CU0008,Farmer,Northern,Agent,2022-01-30
+CU0009,Salaried,Upper West,Agent,2022-02-04
+CU0010,Retail,Volta,App,2022-02-05
+CU0011,Salaried,Northern,App,2022-02-11
+CU0012,student,Volta,Referral,2022-02-15
+CU0013,Trader,Volta,Agent,2022-02-15
+CU0014,Trader,Upper East,App,2022-02-16
+CU0015,  Salaried ,Upper East,Agent,2022-02-20
+CU0016,Retail,Northern,Agent,2022-02-21
+CU0017,Salaried,Volta,Agent,2022-02-26
+CU0018,Salaried,Upper West,Campaign,2022-02-28
+CU0019,Retail,Volta,Campaign,2022-02-28
+CU0020,Retail,Volta,Agent,2022-02-28
+CU0021,Student,Volta,Referral,2022-03-01
+CU0022,Retail,Greater Accra,App,2022-03-12
+CU0023,farmer,Northern,Campaign,2022-03-14
+CU0024,Retail,Greater Accra,App,2022-03-14
+CU0025,Trader,Volta,Referral,2022-03-16
+CU0026,STUDENT,Greater Accra,Campaign,2022-03-18
+CU0027,Trader,Greater Accra,Referral,2022-03-19
+CU0028,Trader,Northern,Agent,2022-03-20
+CU0029,Trader,Greater Accra,App,2022-03-22
+CU0030,Farmer,Greater Accra,Referral,2022-03-23
+CU0031,Salaried,Upper East,Agent,2022-03-23
+CU0032,Trader,Northern,App,2022-03-25
+CU0033,Retail,Northern,Campaign,2022-03-25
+CU0034,Student,Upper East,App,2022-03-25
+CU0035,Student,Greater Accra,Campaign,2022-03-26
+CU0036,Salaried,Upper West,Campaign,2022-03-27
+CU0037,Salaried,Upper East,Campaign,2022-03-28
+CU0038,Retail,Northern,Campaign,2022-03-28
+CU0039,Salaried,Northern,Campaign,2022-03-29
+CU0040,  Salaried ,Greater Accra,Referral,2022-03-31
+CU0041,Farmer,Greater Accra,Referral,2022-04-01
+CU0042,Farmer,Northern,Agent,2022-04-02
+CU0043,Salaried,Upper West,Agent,2022-04-03
+CU0044,Trader,Upper East,App,2022-04-05
+CU0045,Retail,Upper East,App,2022-04-05
+CU0046,Salaried,Upper West,App,2022-04-06
+CU0047,Trader,Greater Accra,Referral,2022-04-06
+CU0048,Student,Upper West,Campaign,2022-04-07
+CU0049,Salaried,Volta,Campaign,2022-04-08
+CU0050,Trader,Northern,Referral,2022-04-09
+CU0051,TRADER,Greater Accra,App,2022-04-10
+CU0052,Student,Greater Accra,Agent,2022-04-11
+CU0053,Trader,Northern,Agent,2022-04-12
+CU0054,  Trader ,Upper East,Agent,2022-04-14
+CU0055,Trader,Greater Accra,App,2022-04-15
+CU0056,Retail,Greater Accra,App,2022-04-17
+CU0057,Salaried,Northern,Agent,2022-04-18
+CU0058,Retail,Northern,App,2022-04-19
+CU0059,Retail,Greater Accra,Agent,2022-04-19
+CU0060,Retail,Northern,Agent,2022-04-20
+CU0061,Farmer,Upper East,Agent,2022-04-20
+CU0062,Student,Northern,App,2022-04-23
+CU0063,Trader,Greater Accra,Agent,2022-04-25
+CU0064,Retail,Upper West,Agent,2022-04-27
+CU0065,Student,Greater Accra,App,2022-04-27
+CU0066,Farmer,Greater Accra,Referral,2022-05-02
+CU0067,Salaried,Greater Accra,Agent,2022-05-03
+CU0068,farmer,Northern,Referral,2022-05-06
+CU0069,Trader,Upper East,Campaign,2022-05-07
+CU0070,Farmer,Upper West,Agent,2022-05-07
+CU0071,Farmer,Greater Accra,Campaign,2022-05-09
+CU0072,Farmer,Greater Accra,Campaign,2022-05-09
+CU0073,Student,Northern,App,2022-05-09
+CU0074,Retail,Upper East,Agent,2022-05-09
+CU0075,Salaried,Greater Accra,Agent,2022-05-10
+CU0076,Trader,Greater Accra,Referral,2022-05-14
+CU0077,Farmer,Volta,App,2022-05-14
+CU0078,Retail,Greater Accra,Referral,2022-05-15
+CU0079,trader,Upper East,Agent,2022-05-15
+CU0080,Retail,Upper West,Referral,2022-05-20
+CU0081,Salaried,Greater Accra,Agent,2022-05-24
+CU0082,Retail,Greater Accra,App,2022-05-26
+CU0083,Trader,Upper West,Referral,2022-05-28
+CU0084,Salaried,Greater Accra,Referral,2022-05-29
+CU0085,Salaried,Northern,App,2022-06-01
+CU0086,Student,Upper East,Agent,2022-06-03
+CU0087,Salaried,Greater Accra,App,2022-06-04
+CU0088,Retail,Greater Accra,App,2022-06-06
+CU0089,Salaried,Greater Accra,Campaign,2022-06-07
+CU0090,Retail,Greater Accra,App,2022-06-08
+CU0091,Student,Greater Accra,Referral,2022-06-09
+CU0092,Retail,Greater Accra,Campaign,2022-06-09
+CU0093,Retail,Greater Accra,App,2022-06-10
+CU0094,Retail,Upper West,Agent,2022-06-11
+CU0095,Trader,Greater Accra,Referral,2022-06-12
+CU0096,Retail,Upper West,Campaign,2022-06-12
+CU0097,Salaried,Greater Accra,App,2022-06-13
+CU0098,Retail,Greater Accra,Campaign,2022-06-13
+CU0099,  Salaried ,Upper East,Referral,2022-06-14
+CU0100,Trader,Northern,App,2022-06-15
+CU0101,Retail,Upper East,Agent,2022-06-15
+CU0102,Retail,Volta,Campaign,2022-06-18
+CU0103,Salaried,Upper East,Campaign,2022-06-18
+CU0104,Farmer,Greater Accra,Agent,2022-06-19
+CU0105,Salaried,Volta,App,2022-06-21
+CU0106,Trader,Upper East,Agent,2022-06-21
+CU0107,Salaried,Greater Accra,Agent,2022-06-22
+CU0108,Retail,Greater Accra,App,2022-06-23
+CU0109,Retail,Volta,App,2022-06-24
+CU0110,Trader,Greater Accra,Campaign,2022-06-25
+CU0111,Trader,Upper West,Agent,2022-06-25
+CU0112,Student,Greater Accra,Agent,2022-06-27
+CU0113,Retail,Upper East,Referral,2022-06-27
+CU0114,Retail,Northern,Agent,2022-06-27
+CU0115,Salaried,Northern,Referral,2022-06-28
+CU0116,Retail,Upper West,Campaign,2022-06-29
+CU0117,Trader,Volta,Agent,2022-06-30
+CU0118,Retail,Volta,Campaign,2022-06-30
+CU0119,Student,Volta,App,2022-07-01
+CU0120,Farmer,Volta,Campaign,2022-07-01
+CU0121,Retail,Greater Accra,Agent,2022-07-01
+CU0122,Salaried,Northern,Agent,2022-07-01
+CU0123,Retail,Upper West,Referral,2022-07-02
+CU0124,Salaried,Upper West,Agent,2022-07-03
+CU0125,Salaried,Volta,Agent,2022-07-04
+CU0126,  Farmer ,Greater Accra,Referral,2022-07-05
+CU0127,Farmer,Northern,App,2022-07-07
+CU0128,Trader,Northern,App,2022-07-08
+CU0129,Retail,Volta,Agent,2022-07-09
+CU0130,Salaried,Greater Accra,Referral,2022-07-09
+CU0131,Retail,Upper East,Campaign,2022-07-10
+CU0132,Trader,Greater Accra,Campaign,2022-07-10
+CU0133,Retail,Northern,Referral,2022-07-13
+CU0134,Student,Greater Accra,Agent,2022-07-13
+CU0135,Student,Northern,Referral,2022-07-14
+CU0136,Salaried,Volta,Referral,2022-07-14
+CU0137,Salaried,Northern,Referral,2022-07-14
+CU0138,Trader,Volta,Campaign,2022-07-15
+CU0139,Retail,Greater Accra,Agent,2022-07-15
+CU0140,Student,Greater Accra,App,2022-07-16
+CU0141,SALARIED,Volta,App,2022-07-17
+CU0142,Salaried,Northern,Agent,2022-07-17
+CU0143,Student,Upper East,Agent,2022-07-21
+CU0144,Salaried,Northern,Agent,2022-07-21
+CU0145,Farmer,Greater Accra,Campaign,2022-07-22
+CU0146,Trader,Greater Accra,Agent,2022-07-24
+CU0147,Farmer,Greater Accra,Agent,2022-07-24
+CU0148,  Trader ,Greater Accra,Agent,2022-07-25
+CU0149,Retail,Greater Accra,App,2022-07-25
+CU0150,Trader,Greater Accra,Campaign,2022-07-25
+CU0151,Retail,Northern,App,2022-07-26
+CU0152,Retail,Upper East,Referral,2022-07-27
+CU0153,Salaried,Greater Accra,App,2022-07-27
+CU0154,Trader,Greater Accra,Agent,2022-07-27
+CU0155,Student,Volta,App,2022-07-27
+CU0156,Trader,Upper East,Campaign,2022-07-28
+CU0157,Trader,Volta,Referral,2022-07-28
+CU0158,Retail,Northern,App,2022-07-30
+CU0159,Trader,Volta,Agent,2022-07-30
+CU0160,TRADER,Volta,App,2022-07-31
+CU0161,Trader,Greater Accra,Agent,2022-08-01
+CU0162,Trader,Upper East,Referral,2022-08-01
+CU0163,Retail,Northern,Agent,2022-08-01
+CU0164,Salaried,Greater Accra,Campaign,2022-08-02
+CU0165,Trader,Greater Accra,Agent,2022-08-03
+CU0166,Salaried,Upper East,Campaign,2022-08-04
+CU0167,Retail,Northern,Agent,2022-08-04
+CU0168,Farmer,Northern,App,2022-08-06
+CU0169,Salaried,Volta,Agent,2022-08-06
+CU0170,Retail,Northern,App,2022-08-12
+CU0171,Trader,Upper East,Referral,2022-08-14
+CU0172,Trader,Greater Accra,App,2022-08-15
+CU0173,  Student ,Northern,Agent,2022-08-16
+CU0174,Retail,Northern,Agent,2022-08-16
+CU0175,Salaried,Northern,App,2022-08-16
+CU0176,  Retail ,Volta,Referral,2022-08-19
+CU0177,Retail,Volta,Campaign,2022-08-19
+CU0178,Student,Volta,Agent,2022-08-20
+CU0179,Trader,Northern,App,2022-08-21
+CU0180,Retail,Upper West,Referral,2022-08-21
+CU0181,Retail,Upper East,Agent,2022-08-22
+CU0182,Student,Upper West,App,2022-08-23
+CU0183,Trader,Upper East,Campaign,2022-08-23
+CU0184,Trader,Upper West,Agent,2022-08-24
+CU0185,Trader,Greater Accra,App,2022-08-27
+CU0186,Trader,Northern,App,2022-08-31
+CU0187,Retail,Greater Accra,App,2022-09-01
+CU0188,Student,Greater Accra,App,2022-09-01
+CU0189,Retail,Volta,Agent,2022-09-03
+CU0190,Trader,Upper East,App,2022-09-03
+CU0191,Retail,Volta,Agent,2022-09-03
+CU0192,Retail,Greater Accra,Referral,2022-09-04
+CU0193,Retail,Greater Accra,Agent,2022-09-04
+CU0194,Retail,Greater Accra,Agent,2022-09-04
+CU0195,Trader,Greater Accra,Agent,2022-09-05
+CU0196,  Farmer ,Upper East,Referral,2022-09-06
+CU0197,Farmer,Upper East,Agent,2022-09-06
+CU0198,Salaried,Northern,Referral,2022-09-08
+CU0199,Retail,Greater Accra,App,2022-09-08
+CU0200,Farmer,Upper West,Campaign,2022-09-09
+CU0201,Farmer,Greater Accra,Campaign,2022-09-10
+CU0202,Trader,Northern,App,2022-09-11
+CU0203,Salaried,Upper East,Agent,2022-09-12
+CU0204,Retail,Greater Accra,Referral,2022-09-12
+CU0205,Trader,Greater Accra,Agent,2022-09-14
+CU0206,Farmer,Greater Accra,Referral,2022-09-15
+CU0207,Salaried,Upper West,Referral,2022-09-15
+CU0208,Salaried,Greater Accra,App,2022-09-16
+CU0209,Retail,Greater Accra,Referral,2022-09-17
+CU0210,  Retail ,Upper East,Campaign,2022-09-17
+CU0211,Student,Greater Accra,Agent,2022-09-17
+CU0212,Retail,Northern,Referral,2022-09-18
+CU0213,Retail,Greater Accra,Agent,2022-09-18
+CU0214,Retail,Upper West,Agent,2022-09-19
+CU0215,Retail,Greater Accra,Referral,2022-09-20
+CU0216,Student,Volta,Agent,2022-09-21
+CU0217,Retail,Greater Accra,Agent,2022-09-22
+CU0218,Salaried,Volta,Referral,2022-09-23
+CU0219,Retail,Northern,Agent,2022-09-23
+CU0220,TRADER,Northern,Referral,2022-09-24
+CU0221,Trader,Volta,App,2022-09-25
+CU0222,Salaried,Greater Accra,Agent,2022-09-26
+CU0223,Student,Upper East,Referral,2022-09-27
+CU0224,Student,Greater Accra,Campaign,2022-09-28
+CU0225,Salaried,Northern,Referral,2022-09-28
+CU0226,Retail,Volta,Agent,2022-09-30
+CU0227,Trader,Upper West,Agent,2022-10-02
+CU0228,Farmer,Upper East,App,2022-10-03
+CU0229,Student,Greater Accra,Referral,2022-10-03
+CU0230,Farmer,Greater Accra,Campaign,2022-10-05
+CU0231,SALARIED,Greater Accra,App,2022-10-05
+CU0232,Trader,Greater Accra,Agent,2022-10-05
+CU0233,Student,Northern,Agent,2022-10-07
+CU0234,retail,Northern,Agent,2022-10-08
+CU0235,Farmer,Greater Accra,Agent,2022-10-09
+CU0236,Trader,Greater Accra,Agent,2022-10-10
+CU0237,Trader,Volta,Campaign,2022-10-10
+CU0238,farmer,Greater Accra,Agent,2022-10-11
+CU0239,Trader,Volta,Agent,2022-10-13
+CU0240,Salaried,Northern,Agent,2022-10-13
+CU0241,Trader,Greater Accra,Referral,2022-10-14
+CU0242,Retail,Volta,Agent,2022-10-14
+CU0243,Student,Greater Accra,App,2022-10-15
+CU0244,Farmer,Upper West,Campaign,2022-10-15
+CU0245,Salaried,Upper East,Campaign,2022-10-16
+CU0246,Salaried,Greater Accra,App,2022-10-16
+CU0247,Salaried,Upper West,Agent,2022-10-17
+CU0248,Farmer,Greater Accra,Agent,2022-10-17
+CU0249,Retail,Northern,Campaign,2022-10-18
+CU0250,Trader,Greater Accra,Agent,2022-10-19
+CU0251,Trader,Upper East,Campaign,2022-10-19
+CU0252,Retail,Greater Accra,Agent,2022-10-19
+CU0253,Trader,Greater Accra,Agent,2022-10-19
+CU0254,Farmer,Volta,Referral,2022-10-21
+CU0255,Retail,Northern,Campaign,2022-10-23
+CU0256,Salaried,Upper East,Campaign,2022-10-23
+CU0257,Farmer,Volta,Campaign,2022-10-24
+CU0258,Trader,Greater Accra,App,2022-10-25
+CU0259,Trader,Northern,Agent,2022-10-26
+CU0260,Retail,Upper West,App,2022-10-26
+CU0261,Salaried,Upper West,Referral,2022-10-29
+CU0262,Student,Greater Accra,App,2022-10-30
+CU0263,Salaried,Greater Accra,Agent,2022-10-31
+CU0264,Retail,Greater Accra,Agent,2022-10-31
+CU0265,Retail,Northern,Agent,2022-10-31
+CU0266,Salaried,Volta,App,2022-11-01
+CU0267,Salaried,Greater Accra,App,2022-11-03
+CU0268,Salaried,Greater Accra,Agent,2022-11-03
+CU0269,Trader,Upper West,App,2022-11-05
+CU0270,Student,Volta,Agent,2022-11-05
+CU0271,SALARIED,Northern,Referral,2022-11-06
+CU0272,Student,Greater Accra,Agent,2022-11-06
+CU0273,Retail,Upper East,Agent,2022-11-06
+CU0274,Student,Greater Accra,Referral,2022-11-08
+CU0275,Farmer,Greater Accra,Referral,2022-11-09
+CU0276,Farmer,Greater Accra,App,2022-11-09
+CU0277,student,Upper East,App,2022-11-09
+CU0278,Trader,Greater Accra,Agent,2022-11-10
+CU0279,Student,Volta,Referral,2022-11-10
+CU0280,Student,Northern,Referral,2022-11-11
+CU0281,Retail,Northern,Agent,2022-11-11
+CU0282,Retail,Greater Accra,Agent,2022-11-12
+CU0283,Farmer,Greater Accra,App,2022-11-12
+CU0284,Salaried,Northern,Agent,2022-11-14
+CU0285,Trader,Upper East,Agent,2022-11-14
+CU0286,  Farmer ,Volta,App,2022-11-14
+CU0287,Retail,Volta,Referral,2022-11-17
+CU0288,Trader,Volta,Agent,2022-11-18
+CU0289,Student,Volta,Agent,2022-11-18
+CU0290,Retail,Greater Accra,Campaign,2022-11-18
+CU0291,Student,Greater Accra,App,2022-11-19
+CU0292,Trader,Upper East,Agent,2022-11-19
+CU0293,  Retail ,Greater Accra,Campaign,2022-11-19
+CU0294,Retail,Volta,App,2022-11-19
+CU0295,trader,Northern,App,2022-11-19
+CU0296,Farmer,Northern,Agent,2022-11-20
+CU0297,Retail,Volta,App,2022-11-21
+CU0298,Farmer,Northern,App,2022-11-21
+CU0299,Farmer,Volta,Agent,2022-11-22
+CU0300,Student,Greater Accra,Agent,2022-11-23
+CU0301,Salaried,Greater Accra,App,2022-11-24
+CU0302,Retail,Volta,App,2022-11-24
+CU0303,Trader,Volta,Agent,2022-11-25
+CU0304,retail,Greater Accra,Agent,2022-11-27
+CU0305,Salaried,Northern,Agent,2022-11-28
+CU0306,Trader,Greater Accra,App,2022-11-28
+CU0307,Trader,Volta,App,2022-11-28
+CU0308,Student,Northern,Referral,2022-11-30
+CU0309,Retail,Upper West,Campaign,2022-12-01
+CU0310,Retail,Upper West,Agent,2022-12-02
+CU0311,  Student ,Volta,Agent,2022-12-02
+CU0312,Trader,Greater Accra,Referral,2022-12-03
+CU0313,Trader,Greater Accra,Campaign,2022-12-03
+CU0314,  Farmer ,Northern,App,2022-12-04
+CU0315,Trader,Greater Accra,Referral,2022-12-04
+CU0316,Trader,Upper East,App,2022-12-04
+CU0317,Trader,Greater Accra,App,2022-12-05
+CU0318,Retail,Volta,Referral,2022-12-05
+CU0319,Trader,Greater Accra,App,2022-12-06
+CU0320,Student,Greater Accra,Referral,2022-12-06
+CU0321,Trader,Northern,App,2022-12-07
+CU0322,Trader,Greater Accra,Campaign,2022-12-08
+CU0323,Retail,Upper West,App,2022-12-09
+CU0324,Salaried,Greater Accra,App,2022-12-09
+CU0325,Trader,Greater Accra,Agent,2022-12-09
+CU0326,Farmer,Upper East,App,2022-12-10
+CU0327,Student,Greater Accra,Campaign,2022-12-10
+CU0328,Trader,Upper East,Agent,2022-12-10
+CU0329,Trader,Northern,App,2022-12-11
+CU0330,Farmer,Volta,Campaign,2022-12-11
+CU0331,Farmer,Volta,Agent,2022-12-11
+CU0332,Salaried,Upper East,Referral,2022-12-12
+CU0333,Student,Greater Accra,Referral,2022-12-12
+CU0334,Trader,Upper East,App,2022-12-13
+CU0335,Trader,Upper West,Referral,2022-12-13
+CU0336,Salaried,Upper East,Agent,2022-12-13
+CU0337,Salaried,Volta,Referral,2022-12-14
+CU0338,Trader,Greater Accra,Agent,2022-12-15
+CU0339,Trader,Northern,Referral,2022-12-15
+CU0340,Retail,Greater Accra,Campaign,2022-12-16
+CU0341,Trader,Upper East,Agent,2022-12-17
+CU0342,  Trader ,Upper West,App,2022-12-18
+CU0343,Retail,Volta,App,2022-12-19
+CU0344,Student,Volta,Agent,2022-12-20
+CU0345,Farmer,Greater Accra,Referral,2022-12-20
+CU0346,Trader,Greater Accra,Agent,2022-12-20
+CU0347,Trader,Greater Accra,Agent,2022-12-21
+CU0348,Trader,Upper West,Referral,2022-12-22
+CU0349,Trader,Upper East,Campaign,2022-12-23
+CU0350,Trader,Greater Accra,Agent,2022-12-24
+CU0351,Retail,Volta,Agent,2022-12-24
+CU0352,Retail,Upper West,Agent,2022-12-26
+CU0353,Farmer,Volta,App,2022-12-26
+CU0354,Retail,Volta,Campaign,2022-12-26
+CU0355,Trader,Greater Accra,App,2022-12-27
+CU0356,TRADER,Greater Accra,App,2022-12-27
+CU0357,Retail,Volta,Agent,2022-12-27
+CU0358,Retail,Northern,App,2022-12-28
+CU0359,Farmer,Greater Accra,Agent,2022-12-28
+CU0360,Student,Greater Accra,Agent,2022-12-29
+CU0361,Salaried,Greater Accra,App,2022-12-29
+CU0362,RETAIL,Upper West,Agent,2022-12-29
+CU0363,Student,Upper West,Agent,2022-12-31
+CU0364,Retail,Greater Accra,Referral,2022-12-31
+CU0365,retail,Greater Accra,Referral,2023-01-01
+CU0366,Farmer,Upper East,Referral,2023-01-01
+CU0367,Salaried,Greater Accra,Referral,2023-01-01
+CU0368,Student,Greater Accra,Referral,2023-01-02
+CU0369,  Student ,Upper East,Agent,2023-01-04
+CU0370,Retail,Northern,Agent,2023-01-05
+CU0371,Retail,Greater Accra,Agent,2023-01-05
+CU0372,Student,Northern,Referral,2023-01-06
+CU0373,Farmer,Greater Accra,App,2023-01-06
+CU0374,Trader,Greater Accra,Agent,2023-01-06
+CU0375,Farmer,Upper West,Agent,2023-01-06
+CU0376,Student,Upper East,Referral,2023-01-06
+CU0377,Student,Greater Accra,Campaign,2023-01-07
+CU0378,Retail,Upper East,App,2023-01-08
+CU0379,Trader,Greater Accra,Agent,2023-01-08
+CU0380,Trader,Greater Accra,Agent,2023-01-09
+CU0381,Salaried,Northern,Referral,2023-01-10
+CU0382,Salaried,Upper East,Agent,2023-01-10
+CU0383,Trader,Greater Accra,Referral,2023-01-11
+CU0384,Trader,Greater Accra,Referral,2023-01-11
+CU0385,Salaried,Northern,App,2023-01-11
+CU0386,Retail,Volta,Agent,2023-01-12
+CU0387,  Farmer ,Greater Accra,Referral,2023-01-13
+CU0388,Trader,Northern,Agent,2023-01-14
+CU0389,Retail,Upper West,Agent,2023-01-14
+CU0390,Trader,Upper East,Referral,2023-01-15
+CU0391,Trader,Volta,App,2023-01-15
+CU0392,Trader,Upper East,App,2023-01-16
+CU0393,Trader,Northern,Agent,2023-01-16
+CU0394,Student,Greater Accra,Agent,2023-01-18
+CU0395,Trader,Greater Accra,Referral,2023-01-19
+CU0396,Salaried,Greater Accra,Agent,2023-01-19
+CU0397,Retail,Upper West,Agent,2023-01-19
+CU0398,SALARIED,Upper East,App,2023-01-19
+CU0399,Farmer,Upper East,Campaign,2023-01-19
+CU0400,Salaried,Greater Accra,Referral,2023-01-20
+CU0401,Student,Upper East,Campaign,2023-01-23
+CU0402,Salaried,Upper East,Agent,2023-01-24
+CU0403,Farmer,Greater Accra,Campaign,2023-01-24
+CU0404,  Trader ,Upper West,App,2023-01-25
+CU0405,Student,Upper West,Campaign,2023-01-26
+CU0406,Salaried,Northern,Campaign,2023-01-27
+CU0407,salaried,Greater Accra,Agent,2023-01-28
+CU0408,Trader,Upper West,Campaign,2023-01-29
+CU0409,Farmer,Greater Accra,Agent,2023-01-29
+CU0410,Retail,Volta,Referral,2023-01-30
+CU0411,Retail,Greater Accra,Agent,2023-01-30
+CU0412,Student,Northern,Campaign,2023-01-31
+CU0413,Salaried,Upper East,App,2023-01-31
+CU0414,SALARIED,Northern,Agent,2023-01-31
+CU0415,Student,Greater Accra,App,2023-01-31
+CU0416,Salaried,Northern,Campaign,2023-01-31
+CU0417,Trader,Greater Accra,Agent,2023-01-31
+CU0418,Retail,Upper East,App,2023-02-01
+CU0419,Retail,Upper East,Agent,2023-02-01
+CU0420,Farmer,Upper West,Campaign,2023-02-01
+CU0421,Farmer,Greater Accra,Agent,2023-02-01
+CU0422,Farmer,Upper East,Agent,2023-02-02
+CU0423,Trader,Upper West,Referral,2023-02-02
+CU0424,Trader,Northern,Agent,2023-02-03
+CU0425,Salaried,Volta,App,2023-02-04
+CU0426,Trader,Greater Accra,App,2023-02-05
+CU0427,Student,Upper East,Agent,2023-02-05
+CU0428,SALARIED,Greater Accra,App,2023-02-06
+CU0429,  Retail ,Upper West,App,2023-02-06
+CU0430,Salaried,Greater Accra,Agent,2023-02-06
+CU0431,Trader,Greater Accra,Campaign,2023-02-06
+CU0432,Trader,Upper West,Referral,2023-02-06
+CU0433,Salaried,Greater Accra,Campaign,2023-02-07
+CU0434,Trader,Volta,Referral,2023-02-07
+CU0435,Salaried,Northern,App,2023-02-07
+CU0436,Salaried,Volta,App,2023-02-07
+CU0437,Farmer,Upper East,Referral,2023-02-08
+CU0438,Salaried,Northern,App,2023-02-08
+CU0439,Farmer,Greater Accra,Referral,2023-02-09
+CU0440,Trader,Upper West,Referral,2023-02-10
+CU0441,  Farmer ,Volta,App,2023-02-10
+CU0442,Salaried,Upper East,Agent,2023-02-10
+CU0443,Retail,Upper East,Agent,2023-02-10
+CU0444,Retail,Greater Accra,Agent,2023-02-11
+CU0445,Student,Greater Accra,Campaign,2023-02-13
+CU0446,Student,Upper East,Agent,2023-02-13
+CU0447,Farmer,Greater Accra,Campaign,2023-02-14
+CU0448,Student,Upper East,App,2023-02-14
+CU0449,Farmer,Upper West,Referral,2023-02-14
+CU0450,Student,Upper East,App,2023-02-15
+CU0451,Trader,Greater Accra,Agent,2023-02-15
+CU0452,student,Greater Accra,App,2023-02-16
+CU0453,Student,Northern,Referral,2023-02-16
+CU0454,Farmer,Volta,App,2023-02-20
+CU0455,RETAIL,Upper East,Campaign,2023-02-21
+CU0456,Trader,Greater Accra,App,2023-02-22
+CU0457,Trader,Greater Accra,Campaign,2023-02-22
+CU0458,Retail,Volta,Campaign,2023-02-22
+CU0459,  Student ,Upper West,Referral,2023-02-23
+CU0460,Student,Upper West,Campaign,2023-02-23
+CU0461,Trader,Greater Accra,Agent,2023-02-23
+CU0462,Retail,Greater Accra,Campaign,2023-02-24
+CU0463,Retail,Volta,Agent,2023-02-25
+CU0464,Student,Upper East,Campaign,2023-02-26
+CU0465,Farmer,Greater Accra,Referral,2023-02-27
+CU0466,Farmer,Volta,App,2023-02-27
+CU0467,Student,Volta,Agent,2023-02-27
+CU0468,Retail,Upper East,Campaign,2023-02-28
+CU0469,Student,Greater Accra,Campaign,2023-02-28
+CU0470,Trader,Greater Accra,Agent,2023-03-01
+CU0471,Trader,Northern,Referral,2023-03-03
+CU0472,Salaried,Greater Accra,Agent,2023-03-04
+CU0473,Salaried,Upper East,App,2023-03-04
+CU0474,Retail,Greater Accra,Agent,2023-03-05
+CU0475,Trader,Greater Accra,Agent,2023-03-05
+CU0476,Student,Greater Accra,Agent,2023-03-06
+CU0477,Retail,Northern,Campaign,2023-03-06
+CU0478,Salaried,Volta,App,2023-03-06
+CU0479,Trader,Greater Accra,Referral,2023-03-08
+CU0480,Retail,Northern,Campaign,2023-03-08
+CU0481,Retail,Northern,Agent,2023-03-09
+CU0482,Retail,Greater Accra,Agent,2023-03-10
+CU0483,Student,Greater Accra,Campaign,2023-03-10
+CU0484,Salaried,Northern,Agent,2023-03-11
+CU0485,Student,Greater Accra,Agent,2023-03-11
+CU0486,Salaried,Volta,App,2023-03-12
+CU0487,Farmer,Volta,Campaign,2023-03-12
+CU0488,Retail,Upper East,Agent,2023-03-12
+CU0489,Retail,Upper East,Agent,2023-03-14
+CU0490,Student,Northern,Agent,2023-03-14
+CU0491,Trader,Greater Accra,Referral,2023-03-18
+CU0492,Trader,Upper West,Agent,2023-03-18
+CU0493,retail,Northern,Agent,2023-03-19
+CU0494,Retail,Northern,Agent,2023-03-19
+CU0495,Retail,Greater Accra,Referral,2023-03-19
+CU0496,Salaried,Upper West,App,2023-03-20
+CU0497,Retail,Greater Accra,App,2023-03-20
+CU0498,Student,Volta,Campaign,2023-03-21
+CU0499,RETAIL,Upper West,Agent,2023-03-22
+CU0500,  Retail ,Upper West,Agent,2023-03-23
+CU0501,Salaried,Upper East,Agent,2023-03-23
+CU0502,Trader,Greater Accra,App,2023-03-23
+CU0503,Salaried,Upper East,Agent,2023-03-24
+CU0504,Trader,Volta,App,2023-03-25
+CU0505,Trader,Northern,Campaign,2023-03-27
+CU0506,Trader,Volta,Agent,2023-03-28
+CU0507,Retail,Greater Accra,Campaign,2023-03-28
+CU0508,Retail,Greater Accra,Agent,2023-03-28
+CU0509,Retail,Upper West,Referral,2023-03-29
+CU0510,RETAIL,Northern,Agent,2023-03-29
+CU0511,Student,Upper East,App,2023-03-29
+CU0512,Student,Northern,Agent,2023-03-30
+CU0513,Trader,Greater Accra,App,2023-03-30
+CU0514,Student,Volta,Agent,2023-03-31
+CU0515,Trader,Greater Accra,App,2023-03-31
+CU0516,  Student ,Volta,Campaign,2023-04-02
+CU0517,Salaried,Volta,Agent,2023-04-02
+CU0518,Trader,Northern,Referral,2023-04-03
+CU0519,Student,Greater Accra,Campaign,2023-04-04
+CU0520,Salaried,Greater Accra,Agent,2023-04-05
+CU0521,Trader,Northern,App,2023-04-06
+CU0522,Trader,Volta,Campaign,2023-04-06
+CU0523,Trader,Greater Accra,App,2023-04-07
+CU0524,TRADER,Greater Accra,Agent,2023-04-08
+CU0525,Retail,Greater Accra,Campaign,2023-04-08
+CU0526,Farmer,Upper East,Agent,2023-04-08
+CU0527,Salaried,Greater Accra,Referral,2023-04-09
+CU0528,Retail,Volta,Referral,2023-04-10
+CU0529,Trader,Volta,Agent,2023-04-10
+CU0530,Trader,Northern,Referral,2023-04-10
+CU0531,Student,Greater Accra,Agent,2023-04-10
+CU0532,Trader,Greater Accra,Campaign,2023-04-11
+CU0533,Salaried,Greater Accra,Agent,2023-04-11
+CU0534,Trader,Greater Accra,Campaign,2023-04-11
+CU0535,Student,Greater Accra,App,2023-04-11
+CU0536,Student,Volta,Campaign,2023-04-12
+CU0537,Retail,Upper East,Agent,2023-04-12
+CU0538,Salaried,Upper West,App,2023-04-13
+CU0539,Student,Upper West,Campaign,2023-04-13
+CU0540,Salaried,Greater Accra,Agent,2023-04-14
+CU0541,Student,Northern,App,2023-04-14
+CU0542,student,Northern,Campaign,2023-04-15
+CU0543,Retail,Northern,Referral,2023-04-16
+CU0544,Retail,Northern,Agent,2023-04-16
+CU0545,Trader,Volta,Referral,2023-04-17
+CU0546,Salaried,Upper East,Agent,2023-04-17
+CU0547,trader,Greater Accra,Campaign,2023-04-17
+CU0548,Trader,Greater Accra,Agent,2023-04-18
+CU0549,Trader,Upper West,Agent,2023-04-19
+CU0550,Retail,Greater Accra,App,2023-04-23
+CU0551,Salaried,Greater Accra,Referral,2023-04-23
+CU0552,Salaried,Greater Accra,Agent,2023-04-23
+CU0553,Student,Upper West,Campaign,2023-04-23
+CU0554,Trader,Upper West,Campaign,2023-04-23
+CU0555,Retail,Greater Accra,Agent,2023-04-24
+CU0556,Student,Northern,Agent,2023-04-26
+CU0557,Farmer,Upper West,App,2023-04-28
+CU0558,Retail,Greater Accra,App,2023-05-01
+CU0559,Student,Northern,Referral,2023-05-02
+CU0560,Retail,Greater Accra,Referral,2023-05-02
+CU0561,Farmer,Upper West,App,2023-05-05
+CU0562,RETAIL,Northern,App,2023-05-05
+CU0563,Salaried,Greater Accra,Agent,2023-05-05
+CU0564,Retail,Greater Accra,Referral,2023-05-05
+CU0565,Trader,Volta,App,2023-05-06
+CU0566,Retail,Greater Accra,Campaign,2023-05-06
+CU0567,Salaried,Northern,App,2023-05-07
+CU0568,Trader,Northern,Agent,2023-05-08
+CU0569,Trader,Upper West,Agent,2023-05-08
+CU0570,Retail,Greater Accra,Agent,2023-05-09
+CU0571,Salaried,Greater Accra,Campaign,2023-05-09
+CU0572,Salaried,Volta,Campaign,2023-05-09
+CU0573,Salaried,Northern,Agent,2023-05-10
+CU0574,Farmer,Northern,Agent,2023-05-10
+CU0575,Trader,Upper West,Referral,2023-05-12
+CU0576,Student,Greater Accra,App,2023-05-12
+CU0577,Salaried,Greater Accra,Agent,2023-05-12
+CU0578,Salaried,Greater Accra,Agent,2023-05-13
+CU0579,Salaried,Volta,App,2023-05-13
+CU0580,Trader,Greater Accra,App,2023-05-13
+CU0581,student,Upper West,Campaign,2023-05-14
+CU0582,retail,Greater Accra,Agent,2023-05-14
+CU0583,Trader,Greater Accra,Referral,2023-05-14
+CU0584,Farmer,Upper East,Agent,2023-05-15
+CU0585,Farmer,Northern,Agent,2023-05-15
+CU0586,Retail,Volta,Agent,2023-05-15
+CU0587,Trader,Volta,Campaign,2023-05-16
+CU0588,Farmer,Northern,App,2023-05-16
+CU0589,Salaried,Upper East,Referral,2023-05-16
+CU0590,Student,Greater Accra,Agent,2023-05-17
+CU0591,Retail,Volta,Agent,2023-05-17
+CU0592,Salaried,Greater Accra,Agent,2023-05-17
+CU0593,Retail,Northern,Agent,2023-05-18
+CU0594,Retail,Greater Accra,Referral,2023-05-19
+CU0595,Salaried,Volta,Agent,2023-05-19
+CU0596,Retail,Greater Accra,Campaign,2023-05-19
+CU0597,Retail,Upper East,Agent,2023-05-19
+CU0598,Retail,Upper East,Agent,2023-05-20
+CU0599,Trader,Volta,Agent,2023-05-20
+CU0600,Student,Greater Accra,App,2023-05-20
+CU0601,Salaried,Northern,App,2023-05-20
+CU0602,Salaried,Upper East,App,2023-05-21
+CU0603,Retail,Upper East,Campaign,2023-05-22
+CU0604,Farmer,Volta,Referral,2023-05-23
+CU0605,Trader,Greater Accra,App,2023-05-24
+CU0606,Retail,Greater Accra,Referral,2023-05-24
+CU0607,Trader,Upper West,App,2023-05-26
+CU0608,Salaried,Volta,Campaign,2023-05-26
+CU0609,Student,Northern,Agent,2023-05-26
+CU0610,Retail,Northern,Campaign,2023-05-28
+CU0611,  Retail ,Upper West,Agent,2023-05-28
+CU0612,Salaried,Greater Accra,Agent,2023-05-29
+CU0613,Student,Greater Accra,Agent,2023-05-29
+CU0614,Salaried,Volta,Referral,2023-05-30
+CU0615,Farmer,Northern,App,2023-05-30
+CU0616,Trader,Upper West,Agent,2023-05-31
+CU0617,Student,Upper East,Referral,2023-05-31
+CU0618,  Trader ,Greater Accra,Campaign,2023-05-31
+CU0619,Student,Greater Accra,Agent,2023-05-31
+CU0620,Retail,Upper West,App,2023-06-01
+CU0621,Salaried,Greater Accra,Referral,2023-06-01
+CU0622,Retail,Northern,App,2023-06-01
+CU0623,Salaried,Greater Accra,Referral,2023-06-01
+CU0624,Trader,Upper East,Referral,2023-06-02
+CU0625,FARMER,Northern,Agent,2023-06-02
+CU0626,Salaried,Upper East,Agent,2023-06-02
+CU0627,Salaried,Greater Accra,Agent,2023-06-02
+CU0628,Salaried,Greater Accra,App,2023-06-03
+CU0629,Retail,Upper East,App,2023-06-04
+CU0630,Retail,Greater Accra,Agent,2023-06-05
+CU0631,Farmer,Upper West,Referral,2023-06-05
+CU0632,RETAIL,Upper West,Referral,2023-06-06
+CU0633,Salaried,Volta,Agent,2023-06-07
+CU0634,Trader,Northern,Referral,2023-06-07
+CU0635,Trader,Greater Accra,Agent,2023-06-09
+CU0636,Student,Volta,App,2023-06-09
+CU0637,Trader,Upper West,Referral,2023-06-09
+CU0638,Salaried,Northern,App,2023-06-10
+CU0639,Trader,Greater Accra,Campaign,2023-06-11
+CU0640,Trader,Greater Accra,Agent,2023-06-11
+CU0641,Trader,Volta,App,2023-06-12
+CU0642,Retail,Upper East,App,2023-06-13
+CU0643,Retail,Volta,Referral,2023-06-14
+CU0644,Student,Upper East,App,2023-06-15
+CU0645,Retail,Upper East,Agent,2023-06-16
+CU0646,Salaried,Greater Accra,Agent,2023-06-17
+CU0647,Salaried,Upper West,Campaign,2023-06-18
+CU0648,Trader,Greater Accra,Agent,2023-06-18
+CU0649,Retail,Greater Accra,App,2023-06-19
+CU0650,Salaried,Greater Accra,App,2023-06-19
+CU0651,Trader,Greater Accra,Agent,2023-06-19
+CU0652,Salaried,Volta,Campaign,2023-06-19
+CU0653,Trader,Greater Accra,App,2023-06-20
+CU0654,Retail,Northern,Agent,2023-06-20
+CU0655,Retail,Greater Accra,Agent,2023-06-20
+CU0656,  Farmer ,Northern,App,2023-06-20
+CU0657,Trader,Greater Accra,Agent,2023-06-20
+CU0658,Retail,Greater Accra,App,2023-06-22
+CU0659,Trader,Volta,Agent,2023-06-22
+CU0660,Trader,Northern,Referral,2023-06-23
+CU0661,Student,Greater Accra,Campaign,2023-06-23
+CU0662,Retail,Volta,Referral,2023-06-24
+CU0663,Student,Greater Accra,Campaign,2023-06-24
+CU0664,Farmer,Upper West,Campaign,2023-06-25
+CU0665,Farmer,Greater Accra,Campaign,2023-06-26
+CU0666,Farmer,Greater Accra,Campaign,2023-06-26
+CU0667,Trader,Greater Accra,Referral,2023-06-26
+CU0668,Salaried,Volta,Agent,2023-06-27
+CU0669,Student,Northern,Referral,2023-06-27
+CU0670,Student,Volta,Campaign,2023-06-27
+CU0671,Farmer,Greater Accra,App,2023-06-27
+CU0672,Trader,Volta,App,2023-06-27
+CU0673,retail,Upper East,Campaign,2023-06-29
+CU0674,Retail,Greater Accra,Agent,2023-06-29
+CU0675,Retail,Upper East,Referral,2023-06-29
+CU0676,Retail,Volta,Agent,2023-06-29
+CU0677,Student,Upper East,Campaign,2023-06-29
+CU0678,Trader,Greater Accra,App,2023-06-29
+CU0679,Retail,Greater Accra,Referral,2023-06-30
+CU0680,Retail,Volta,App,2023-06-30
+CU0681,Trader,Greater Accra,Referral,2023-06-30
+CU0682,Student,Greater Accra,Referral,2023-07-01
+CU0683,Retail,Northern,Agent,2023-07-01
+CU0684,Salaried,Greater Accra,App,2023-07-02
+CU0685,Trader,Volta,Campaign,2023-07-03
+CU0686,Trader,Greater Accra,Agent,2023-07-04
+CU0687,Farmer,Upper East,Agent,2023-07-04
+CU0688,Student,Northern,App,2023-07-05
+CU0689,Retail,Greater Accra,Campaign,2023-07-05
+CU0690,Retail,Northern,Referral,2023-07-06
+CU0691,Trader,Greater Accra,App,2023-07-06
+CU0692,Retail,Upper East,Campaign,2023-07-06
+CU0693,Salaried,Greater Accra,Campaign,2023-07-06
+CU0694,Retail,Volta,Referral,2023-07-06
+CU0695,RETAIL,Greater Accra,App,2023-07-07
+CU0696,Retail,Northern,Referral,2023-07-08
+CU0697,Student,Greater Accra,Agent,2023-07-08
+CU0698,Salaried,Volta,App,2023-07-09
+CU0699,Retail,Greater Accra,Referral,2023-07-11
+CU0700,Trader,Volta,Referral,2023-07-12
+CU0701,Salaried,Volta,Referral,2023-07-14
+CU0702,Trader,Greater Accra,Agent,2023-07-15
+CU0703,Trader,Upper East,Referral,2023-07-15
+CU0704,Trader,Greater Accra,App,2023-07-16
+CU0705,Retail,Northern,Referral,2023-07-16
+CU0706,Salaried,Greater Accra,Referral,2023-07-17
+CU0707,Student,Upper East,Agent,2023-07-18
+CU0708,Retail,Volta,Referral,2023-07-18
+CU0709,Trader,Upper East,Agent,2023-07-19
+CU0710,Salaried,Greater Accra,Campaign,2023-07-20
+CU0711,Salaried,Upper West,App,2023-07-20
+CU0712,Salaried,Greater Accra,Agent,2023-07-20
+CU0713,Retail,Greater Accra,App,2023-07-21
+CU0714,Salaried,Northern,App,2023-07-22
+CU0715,Student,Northern,Agent,2023-07-23
+CU0716,Retail,Upper East,App,2023-07-23
+CU0717,Trader,Northern,Agent,2023-07-23
+CU0718,Retail,Northern,Referral,2023-07-23
+CU0719,Student,Greater Accra,Agent,2023-07-24
+CU0720,Retail,Upper East,Agent,2023-07-25
+CU0721,TRADER,Greater Accra,App,2023-07-26
+CU0722,Retail,Greater Accra,Agent,2023-07-27
+CU0723,Salaried,Northern,Referral,2023-07-27
+CU0724,Farmer,Greater Accra,Agent,2023-07-28
+CU0725,Salaried,Upper West,Referral,2023-07-28
+CU0726,Farmer,Greater Accra,Agent,2023-07-29
+CU0727,Retail,Northern,Campaign,2023-07-29
+CU0728,Farmer,Upper East,Campaign,2023-07-29
+CU0729,Farmer,Volta,Campaign,2023-07-30
+CU0730,Retail,Upper West,Agent,2023-07-30
+CU0731,Salaried,Greater Accra,Agent,2023-07-30
+CU0732,Farmer,Greater Accra,Campaign,2023-07-31
+CU0733,Farmer,Greater Accra,Campaign,2023-07-31
+CU0734,Trader,Greater Accra,Referral,2023-08-01
+CU0735,Salaried,Northern,App,2023-08-02
+CU0736,Retail,Upper East,Referral,2023-08-03
+CU0737,Farmer,Upper East,Agent,2023-08-03
+CU0738,  Student ,Greater Accra,App,2023-08-04
+CU0739,Student,Upper East,Referral,2023-08-04
+CU0740,Farmer,Northern,Campaign,2023-08-05
+CU0741,Retail,Northern,Agent,2023-08-06
+CU0742,Trader,Greater Accra,Referral,2023-08-06
+CU0743,Student,Northern,Agent,2023-08-06
+CU0744,Student,Greater Accra,Agent,2023-08-07
+CU0745,RETAIL,Volta,App,2023-08-07
+CU0746,Student,Volta,App,2023-08-08
+CU0747,Trader,Northern,Referral,2023-08-08
+CU0748,Trader,Northern,Referral,2023-08-09
+CU0749,Retail,Volta,Referral,2023-08-09
+CU0750,Trader,Upper West,Agent,2023-08-09
+CU0751,Retail,Northern,Campaign,2023-08-09
+CU0752,Student,Greater Accra,App,2023-08-09
+CU0753,Student,Greater Accra,App,2023-08-09
+CU0754,Salaried,Greater Accra,Agent,2023-08-10
+CU0755,Trader,Upper East,Agent,2023-08-10
+CU0756,Retail,Northern,App,2023-08-13
+CU0757,Trader,Greater Accra,App,2023-08-14
+CU0758,Retail,Upper West,Agent,2023-08-14
+CU0759,Farmer,Upper East,Campaign,2023-08-14
+CU0760,Student,Greater Accra,Campaign,2023-08-14
+CU0761,Student,Greater Accra,Campaign,2023-08-15
+CU0762,Retail,Greater Accra,Agent,2023-08-16
+CU0763,Trader,Upper West,App,2023-08-17
+CU0764,Retail,Northern,Campaign,2023-08-18
+CU0765,  Student ,Greater Accra,Referral,2023-08-18
+CU0766,Retail,Volta,Referral,2023-08-19
+CU0767,Trader,Volta,App,2023-08-19
+CU0768,Farmer,Upper West,App,2023-08-20
+CU0769,Salaried,Upper East,Referral,2023-08-21
+CU0770,Retail,Upper East,Campaign,2023-08-23
+CU0771,Salaried,Volta,Campaign,2023-08-23
+CU0772,Student,Upper West,Agent,2023-08-24
+CU0773,Farmer,Upper West,App,2023-08-24
+CU0774,Trader,Volta,App,2023-08-24
+CU0775,Retail,Greater Accra,App,2023-08-25
+CU0776,STUDENT,Greater Accra,Agent,2023-08-25
+CU0777,Retail,Northern,Agent,2023-08-25
+CU0778,Student,Greater Accra,Agent,2023-08-26
+CU0779,Student,Upper East,App,2023-08-26
+CU0780,Farmer,Upper East,Referral,2023-08-26
+CU0781,Retail,Greater Accra,App,2023-08-26
+CU0782,salaried,Northern,Agent,2023-08-27
+CU0783,Farmer,Upper West,Agent,2023-08-28
+CU0784,Trader,Northern,Agent,2023-08-28
+CU0785,Retail,Upper East,App,2023-08-29
+CU0786,Trader,Greater Accra,Campaign,2023-08-29
+CU0787,Retail,Upper East,App,2023-08-30
+CU0788,Farmer,Greater Accra,Referral,2023-08-30
+CU0789,Salaried,Northern,Campaign,2023-08-31
+CU0790,Salaried,Upper West,Referral,2023-08-31
+CU0791,Retail,Volta,Agent,2023-09-01
+CU0792,Student,Greater Accra,App,2023-09-01
+CU0793,Retail,Upper West,Referral,2023-09-01
+CU0794,Trader,Greater Accra,Referral,2023-09-02
+CU0795,Salaried,Volta,Referral,2023-09-02
+CU0796,Trader,Upper East,Campaign,2023-09-03
+CU0797,Salaried,Northern,Campaign,2023-09-04
+CU0798,Retail,Upper West,Campaign,2023-09-04
+CU0799,Retail,Northern,Campaign,2023-09-06
+CU0800,Student,Greater Accra,Referral,2023-09-06
+CU0801,Farmer,Greater Accra,Campaign,2023-09-07
+CU0802,Student,Greater Accra,Agent,2023-09-07
+CU0803,Farmer,Upper West,Referral,2023-09-07
+CU0804,salaried,Upper East,Campaign,2023-09-08
+CU0805,Salaried,Greater Accra,App,2023-09-08
+CU0806,Trader,Greater Accra,Campaign,2023-09-08
+CU0807,  Student ,Greater Accra,Agent,2023-09-08
+CU0808,Retail,Northern,Campaign,2023-09-09
+CU0809,Student,Volta,Agent,2023-09-10
+CU0810,Farmer,Upper West,Campaign,2023-09-10
+CU0811,TRADER,Greater Accra,Agent,2023-09-11
+CU0812,Trader,Upper East,App,2023-09-12
+CU0813,Farmer,Greater Accra,App,2023-09-12
+CU0814,Student,Greater Accra,Campaign,2023-09-13
+CU0815,Farmer,Volta,App,2023-09-14
+CU0816,Retail,Upper East,Agent,2023-09-14
+CU0817,salaried,Greater Accra,Agent,2023-09-14
+CU0818,Farmer,Greater Accra,Campaign,2023-09-16
+CU0819,Salaried,Greater Accra,Agent,2023-09-16
+CU0820,Trader,Northern,Agent,2023-09-16
+CU0821,Salaried,Upper East,Agent,2023-09-17
+CU0822,Salaried,Volta,Referral,2023-09-18
+CU0823,Retail,Greater Accra,Agent,2023-09-18
+CU0824,FARMER,Northern,App,2023-09-18
+CU0825,Retail,Northern,Referral,2023-09-19
+CU0826,STUDENT,Greater Accra,Campaign,2023-09-21
+CU0827,Student,Upper East,App,2023-09-21
+CU0828,Student,Volta,Agent,2023-09-21
+CU0829,  Trader ,Upper East,Campaign,2023-09-21
+CU0830,Salaried,Greater Accra,Agent,2023-09-22
+CU0831,Student,Upper West,Campaign,2023-09-22
+CU0832,Trader,Upper East,Campaign,2023-09-23
+CU0833,Salaried,Greater Accra,Agent,2023-09-23
+CU0834,Student,Upper West,App,2023-09-24
+CU0835,Salaried,Greater Accra,App,2023-09-24
+CU0836,Trader,Greater Accra,Campaign,2023-09-24
+CU0837,Student,Greater Accra,Referral,2023-09-25
+CU0838,Salaried,Upper West,App,2023-09-26
+CU0839,Student,Greater Accra,App,2023-09-28
+CU0840,Retail,Greater Accra,Agent,2023-09-28
+CU0841,Farmer,Greater Accra,Referral,2023-09-28
+CU0842,Retail,Greater Accra,Campaign,2023-09-29
+CU0843,Trader,Greater Accra,Campaign,2023-09-30
+CU0844,STUDENT,Volta,Referral,2023-09-30
+CU0845,Student,Greater Accra,Campaign,2023-09-30
+CU0846,Trader,Volta,Campaign,2023-10-01
+CU0847,Trader,Volta,Agent,2023-10-02
+CU0848,Farmer,Volta,App,2023-10-02
+CU0849,  Student ,Greater Accra,Referral,2023-10-02
+CU0850,Retail,Greater Accra,Referral,2023-10-03
+CU0851,Trader,Upper East,Referral,2023-10-05
+CU0852,Trader,Volta,Campaign,2023-10-05
+CU0853,Retail,Upper West,Agent,2023-10-05
+CU0854,Salaried,Greater Accra,Referral,2023-10-07
+CU0855,Farmer,Greater Accra,App,2023-10-07
+CU0856,Student,Greater Accra,App,2023-10-08
+CU0857,Student,Northern,Agent,2023-10-08
+CU0858,Farmer,Northern,Campaign,2023-10-08
+CU0859,Salaried,Upper West,App,2023-10-08
+CU0860,Student,Northern,App,2023-10-09
+CU0861,Retail,Upper East,Agent,2023-10-10
+CU0862,Retail,Greater Accra,Campaign,2023-10-10
+CU0863,Salaried,Greater Accra,Agent,2023-10-11
+CU0864,Farmer,Upper East,Agent,2023-10-11
+CU0865,Student,Greater Accra,App,2023-10-11
+CU0866,Student,Northern,Agent,2023-10-11
+CU0867,Trader,Greater Accra,Campaign,2023-10-13
+CU0868,Trader,Greater Accra,Agent,2023-10-13
+CU0869,  Salaried ,Northern,App,2023-10-13
+CU0870,Farmer,Greater Accra,Agent,2023-10-14
+CU0871,Farmer,Northern,App,2023-10-15
+CU0872,Trader,Upper West,Agent,2023-10-15
+CU0873,Farmer,Greater Accra,Agent,2023-10-15
+CU0874,Salaried,Upper East,Referral,2023-10-15
+CU0875,Salaried,Greater Accra,Campaign,2023-10-15
+CU0876,Trader,Volta,Referral,2023-10-16
+CU0877,Retail,Greater Accra,App,2023-10-17
+CU0878,Retail,Greater Accra,Agent,2023-10-18
+CU0879,Trader,Volta,Agent,2023-10-18
+CU0880,Trader,Upper East,Referral,2023-10-19
+CU0881,Salaried,Greater Accra,Referral,2023-10-19
+CU0882,Student,Upper East,Agent,2023-10-19
+CU0883,Salaried,Northern,Referral,2023-10-20
+CU0884,Retail,Volta,App,2023-10-20
+CU0885,Student,Volta,Campaign,2023-10-20
+CU0886,Farmer,Volta,Referral,2023-10-20
+CU0887,Salaried,Northern,Agent,2023-10-20
+CU0888,Trader,Northern,Agent,2023-10-21
+CU0889,Trader,Northern,Campaign,2023-10-22
+CU0890,Trader,Volta,App,2023-10-23
+CU0891,Retail,Upper West,App,2023-10-23
+CU0892,Trader,Upper East,Campaign,2023-10-23
+CU0893,Retail,Greater Accra,Agent,2023-10-24
+CU0894,Farmer,Upper East,Referral,2023-10-24
+CU0895,Student,Northern,Agent,2023-10-24
+CU0896,Farmer,Upper East,App,2023-10-26
+CU0897,Student,Volta,App,2023-10-26
+CU0898,Salaried,Greater Accra,Agent,2023-10-27
+CU0899,Farmer,Greater Accra,App,2023-10-28
+CU0900,Trader,Volta,App,2023-10-28
+CU0901,Farmer,Upper West,App,2023-10-28
+CU0902,Student,Greater Accra,Campaign,2023-10-29
+CU0903,Salaried,Upper West,App,2023-10-29
+CU0904,Retail,Northern,Campaign,2023-10-29
+CU0905,Farmer,Volta,Agent,2023-10-29
+CU0906,Student,Volta,App,2023-10-29
+CU0907,Retail,Upper East,Referral,2023-10-30
+CU0908,Farmer,Northern,Campaign,2023-10-30
+CU0909,Student,Northern,Agent,2023-10-31
+CU0910,Student,Greater Accra,App,2023-11-01
+CU0911,Retail,Greater Accra,Referral,2023-11-01
+CU0912,Trader,Greater Accra,Referral,2023-11-02
+CU0913,Trader,Greater Accra,App,2023-11-02
+CU0914,Student,Upper West,Agent,2023-11-02
+CU0915,Trader,Upper West,Agent,2023-11-02
+CU0916,Salaried,Upper East,Agent,2023-11-02
+CU0917,Trader,Greater Accra,App,2023-11-03
+CU0918,Retail,Greater Accra,Agent,2023-11-03
+CU0919,Retail,Volta,Agent,2023-11-03
+CU0920,Student,Greater Accra,Referral,2023-11-03
+CU0921,Salaried,Greater Accra,App,2023-11-04
+CU0922,Retail,Northern,Campaign,2023-11-04
+CU0923,Retail,Upper West,Campaign,2023-11-04
+CU0924,Retail,Volta,Agent,2023-11-06
+CU0925,  Retail ,Northern,App,2023-11-08
+CU0926,Student,Greater Accra,Agent,2023-11-08
+CU0927,Farmer,Upper West,Referral,2023-11-08
+CU0928,Farmer,Upper East,Agent,2023-11-09
+CU0929,Farmer,Upper West,Campaign,2023-11-09
+CU0930,Farmer,Greater Accra,App,2023-11-10
+CU0931,  Trader ,Greater Accra,Referral,2023-11-11
+CU0932,Retail,Greater Accra,Agent,2023-11-11
+CU0933,Retail,Northern,Campaign,2023-11-12
+CU0934,Trader,Greater Accra,Agent,2023-11-13
+CU0935,Retail,Greater Accra,Referral,2023-11-14
+CU0936,Retail,Upper West,Agent,2023-11-14
+CU0937,Trader,Greater Accra,App,2023-11-15
+CU0938,farmer,Upper East,Agent,2023-11-15
+CU0939,Trader,Greater Accra,App,2023-11-15
+CU0940,Farmer,Northern,Campaign,2023-11-15
+CU0941,Trader,Greater Accra,Campaign,2023-11-15
+CU0942,Farmer,Volta,Referral,2023-11-16
+CU0943,Retail,Northern,Agent,2023-11-16
+CU0944,Salaried,Greater Accra,Agent,2023-11-17
+CU0945,Student,Upper East,App,2023-11-17
+CU0946,Student,Greater Accra,Referral,2023-11-18
+CU0947,Retail,Volta,App,2023-11-18
+CU0948,  Salaried ,Volta,Agent,2023-11-19
+CU0949,Farmer,Upper West,Agent,2023-11-20
+CU0950,Retail,Northern,Campaign,2023-11-20
+CU0951,Farmer,Greater Accra,Agent,2023-11-20
+CU0952,Retail,Upper West,Referral,2023-11-23
+CU0953,Retail,Upper East,Agent,2023-11-23
+CU0954,Salaried,Volta,App,2023-11-23
+CU0955,Farmer,Greater Accra,Agent,2023-11-24
+CU0956,Trader,Northern,App,2023-11-24
+CU0957,Salaried,Upper East,Referral,2023-11-24
+CU0958,Retail,Upper West,Agent,2023-11-24
+CU0959,Trader,Greater Accra,Referral,2023-11-25
+CU0960,Student,Upper East,Campaign,2023-11-25
+CU0961,STUDENT,Greater Accra,App,2023-11-26
+CU0962,Retail,Volta,Referral,2023-11-26
+CU0963,FARMER,Greater Accra,Agent,2023-11-29
+CU0964,Farmer,Volta,Agent,2023-11-29
+CU0965,Salaried,Greater Accra,App,2023-11-29
+CU0966,Trader,Greater Accra,Agent,2023-11-30
+CU0967,Trader,Greater Accra,App,2023-11-30
+CU0968,Trader,Upper East,Campaign,2023-11-30
+CU0969,Trader,Volta,App,2023-12-01
+CU0970,Farmer,Greater Accra,Campaign,2023-12-01
+CU0971,Student,Northern,Referral,2023-12-02
+CU0972,Retail,Volta,Agent,2023-12-03
+CU0973,Student,Upper East,Agent,2023-12-03
+CU0974,Salaried,Upper East,App,2023-12-03
+CU0975,Salaried,Greater Accra,Agent,2023-12-03
+CU0976,Student,Greater Accra,Agent,2023-12-05
+CU0977,Trader,Northern,Referral,2023-12-05
+CU0978,Salaried,Greater Accra,App,2023-12-05
+CU0979,Retail,Upper East,App,2023-12-05
+CU0980,Farmer,Northern,Campaign,2023-12-06
+CU0981,Retail,Northern,App,2023-12-06
+CU0982,farmer,Greater Accra,Agent,2023-12-07
+CU0983,Trader,Greater Accra,Agent,2023-12-07
+CU0984,Retail,Upper East,Agent,2023-12-07
+CU0985,Trader,Greater Accra,Referral,2023-12-08
+CU0986,Retail,Northern,Agent,2023-12-08
+CU0987,Farmer,Northern,Campaign,2023-12-08
+CU0988,  Salaried ,Greater Accra,Agent,2023-12-08
+CU0989,Trader,Northern,Agent,2023-12-09
+CU0990,Student,Upper East,App,2023-12-09
+CU0991,Retail,Volta,Agent,2023-12-09
+CU0992,Retail,Greater Accra,Agent,2023-12-10
+CU0993,Retail,Greater Accra,Agent,2023-12-10
+CU0994,Farmer,Greater Accra,Campaign,2023-12-10
+CU0995,Trader,Volta,Agent,2023-12-10
+CU0996,student,Volta,Agent,2023-12-12
+CU0997,Retail,Greater Accra,Agent,2023-12-12
+CU0998,Student,Greater Accra,Agent,2023-12-12
+CU0999,Salaried,Greater Accra,App,2023-12-13
+CU1000,TRADER,Greater Accra,App,2023-12-13
+CU1001,Trader,Upper East,App,2023-12-13
+CU1002,Trader,Greater Accra,Agent,2023-12-14
+CU1003,Trader,Upper East,Agent,2023-12-14
+CU1004,Trader,Upper East,Campaign,2023-12-14
+CU1005,Student,Greater Accra,Referral,2023-12-15
+CU1006,Student,Greater Accra,Campaign,2023-12-15
+CU1007,Salaried,Greater Accra,Agent,2023-12-15
+CU1008,Salaried,Volta,Campaign,2023-12-15
+CU1009,Salaried,Greater Accra,Referral,2023-12-16
+CU1010,Trader,Upper West,Campaign,2023-12-16
+CU1011,Student,Volta,Agent,2023-12-17
+CU1012,Farmer,Greater Accra,Agent,2023-12-17
+CU1013,Retail,Upper East,Agent,2023-12-18
+CU1014,Retail,Greater Accra,Referral,2023-12-18
+CU1015,Retail,Northern,Agent,2023-12-18
+CU1016,  Trader ,Volta,Agent,2023-12-18
+CU1017,Trader,Northern,Agent,2023-12-19
+CU1018,Retail,Greater Accra,App,2023-12-19
+CU1019,Farmer,Greater Accra,Referral,2023-12-19
+CU1020,Retail,Greater Accra,Agent,2023-12-20
+CU1021,Student,Upper East,Agent,2023-12-21
+CU1022,Student,Upper East,Agent,2023-12-22
+CU1023,Student,Greater Accra,Campaign,2023-12-22
+CU1024,Salaried,Northern,Campaign,2023-12-23
+CU1025,Farmer,Greater Accra,App,2023-12-23
+CU1026,Retail,Northern,Agent,2023-12-23
+CU1027,Retail,Upper West,Agent,2023-12-23
+CU1028,Student,Greater Accra,Campaign,2023-12-24
+CU1029,Farmer,Greater Accra,Agent,2023-12-24
+CU1030,Trader,Northern,Referral,2023-12-24
+CU1031,Farmer,Greater Accra,Agent,2023-12-24
+CU1032,Salaried,Greater Accra,App,2023-12-25
+CU1033,Salaried,Northern,Agent,2023-12-25
+CU1034,Retail,Greater Accra,Campaign,2023-12-26
+CU1035,Farmer,Northern,Campaign,2023-12-26
+CU1036,Trader,Upper East,Campaign,2023-12-26
+CU1037,Trader,Greater Accra,Referral,2023-12-26
+CU1038,Trader,Greater Accra,Referral,2023-12-26
+CU1039,Trader,Volta,App,2023-12-27
+CU1040,Retail,Greater Accra,Agent,2023-12-27
+CU1041,Trader,Northern,Campaign,2023-12-27
+CU1042,Salaried,Greater Accra,Agent,2023-12-27
+CU1043,Trader,Greater Accra,Agent,2023-12-28
+CU1044,Trader,Upper West,Referral,2023-12-29
+CU1045,Farmer,Volta,App,2023-12-29
+CU1046,Salaried,Northern,Agent,2023-12-31
+CU1047,Salaried,Northern,App,2024-01-01
+CU1048,Farmer,Northern,Agent,2024-01-01
+CU1049,Trader,Greater Accra,Referral,2024-01-01
+CU1050,Retail,Volta,App,2024-01-01
+CU1051,Student,Greater Accra,Referral,2024-01-02
+CU1052,Student,Greater Accra,Campaign,2024-01-02
+CU1053,Retail,Greater Accra,Agent,2024-01-03
+CU1054,Trader,Greater Accra,App,2024-01-04
+CU1055,Salaried,Volta,Agent,2024-01-04
+CU1056,Student,Volta,Agent,2024-01-05
+CU1057,Retail,Upper East,Campaign,2024-01-05
+CU1058,Trader,Volta,Agent,2024-01-06
+CU1059,Student,Greater Accra,Agent,2024-01-06
+CU1060,Trader,Greater Accra,App,2024-01-06
+CU1061,Salaried,Upper East,Agent,2024-01-06
+CU1062,  Trader ,Volta,App,2024-01-07
+CU1063,Salaried,Upper East,Referral,2024-01-07
+CU1064,Trader,Volta,Campaign,2024-01-08
+CU1065,Farmer,Northern,Referral,2024-01-08
+CU1066,Farmer,Greater Accra,Agent,2024-01-08
+CU1067,Retail,Greater Accra,Agent,2024-01-09
+CU1068,Salaried,Northern,Campaign,2024-01-09
+CU1069,Student,Upper West,App,2024-01-09
+CU1070,Retail,Volta,Agent,2024-01-10
+CU1071,Farmer,Volta,App,2024-01-10
+CU1072,Retail,Upper West,Referral,2024-01-11
+CU1073,Salaried,Northern,Campaign,2024-01-11
+CU1074,Trader,Greater Accra,App,2024-01-11
+CU1075,Retail,Northern,App,2024-01-13
+CU1076,Retail,Upper West,Referral,2024-01-13
+CU1077,Trader,Greater Accra,Referral,2024-01-13
+CU1078,TRADER,Greater Accra,App,2024-01-14
+CU1079,Student,Upper East,Campaign,2024-01-14
+CU1080,Trader,Northern,Campaign,2024-01-15
+CU1081,Retail,Northern,Agent,2024-01-16
+CU1082,Trader,Upper East,App,2024-01-16
+CU1083,Retail,Northern,App,2024-01-16
+CU1084,Salaried,Upper East,Agent,2024-01-17
+CU1085,STUDENT,Greater Accra,App,2024-01-18
+CU1086,Farmer,Greater Accra,Agent,2024-01-18
+CU1087,Trader,Greater Accra,Agent,2024-01-19
+CU1088,Farmer,Upper West,Agent,2024-01-19
+CU1089,Salaried,Greater Accra,Agent,2024-01-19
+CU1090,Trader,Volta,App,2024-01-20
+CU1091,Retail,Greater Accra,Agent,2024-01-20
+CU1092,Retail,Upper East,Referral,2024-01-21
+CU1093,Salaried,Upper East,App,2024-01-21
+CU1094,Farmer,Volta,Agent,2024-01-22
+CU1095,Trader,Greater Accra,Campaign,2024-01-23
+CU1096,Retail,Greater Accra,Agent,2024-01-24
+CU1097,Farmer,Upper West,Referral,2024-01-24
+CU1098,student,Greater Accra,Agent,2024-01-25
+CU1099,trader,Upper West,Campaign,2024-01-25
+CU1100,Student,Upper East,Campaign,2024-01-25
+CU1101,Retail,Northern,Agent,2024-01-25
+CU1102,Student,Northern,Referral,2024-01-25
+CU1103,Salaried,Upper West,Agent,2024-01-26
+CU1104,Salaried,Greater Accra,Referral,2024-01-26
+CU1105,Retail,Northern,Agent,2024-01-26
+CU1106,trader,Greater Accra,Agent,2024-01-26
+CU1107,Trader,Volta,Agent,2024-01-26
+CU1108,Trader,Upper East,Referral,2024-01-26
+CU1109,Salaried,Greater Accra,Campaign,2024-01-27
+CU1110,Salaried,Upper East,Referral,2024-01-27
+CU1111,trader,Upper East,Campaign,2024-01-27
+CU1112,Trader,Greater Accra,App,2024-01-27
+CU1113,Salaried,Greater Accra,Referral,2024-01-27
+CU1114,Trader,Greater Accra,Campaign,2024-01-27
+CU1115,retail,Greater Accra,Agent,2024-01-27
+CU1116,Salaried,Upper East,Agent,2024-01-28
+CU1117,Retail,Upper West,Agent,2024-01-28
+CU1118,Trader,Greater Accra,App,2024-01-29
+CU1119,  Trader ,Upper East,App,2024-01-30
+CU1120,Trader,Greater Accra,Agent,2024-01-30
+CU1121,Trader,Greater Accra,Agent,2024-01-30
+CU1122,  Student ,Upper East,Referral,2024-01-31
+CU1123,Salaried,Upper East,App,2024-01-31
+CU1124,Salaried,Northern,Agent,2024-01-31
+CU1125,Retail,Upper West,Campaign,2024-02-01
+CU1126,Farmer,Greater Accra,App,2024-02-01
+CU1127,Retail,Greater Accra,App,2024-02-01
+CU1128,Salaried,Greater Accra,Agent,2024-02-03
+CU1129,Trader,Greater Accra,Campaign,2024-02-03
+CU1130,Farmer,Upper East,Agent,2024-02-03
+CU1131,Retail,Volta,Agent,2024-02-04
+CU1132,Retail,Upper East,App,2024-02-04
+CU1133,Student,Northern,App,2024-02-05
+CU1134,TRADER,Upper West,Agent,2024-02-05
+CU1135,Retail,Northern,Referral,2024-02-05
+CU1136,salaried,Upper West,Referral,2024-02-05
+CU1137,Farmer,Upper East,App,2024-02-05
+CU1138,Retail,Upper East,Agent,2024-02-07
+CU1139,Trader,Volta,Referral,2024-02-07
+CU1140,Trader,Greater Accra,Agent,2024-02-07
+CU1141,RETAIL,Northern,Campaign,2024-02-08
+CU1142,Farmer,Upper East,Agent,2024-02-08
+CU1143,Salaried,Greater Accra,Agent,2024-02-09
+CU1144,Retail,Upper West,Referral,2024-02-09
+CU1145,Trader,Volta,Agent,2024-02-09
+CU1146,Trader,Upper East,Referral,2024-02-10
+CU1147,Salaried,Volta,App,2024-02-10
+CU1148,Retail,Greater Accra,Campaign,2024-02-10
+CU1149,Student,Northern,Agent,2024-02-11
+CU1150,Trader,Northern,Referral,2024-02-11
+CU1151,Student,Volta,Campaign,2024-02-11
+CU1152,Trader,Northern,App,2024-02-11
+CU1153,Retail,Northern,App,2024-02-12
+CU1154,Trader,Upper East,App,2024-02-12
+CU1155,Retail,Volta,Campaign,2024-02-13
+CU1156,Retail,Greater Accra,Campaign,2024-02-13
+CU1157,Retail,Volta,App,2024-02-14
+CU1158,Trader,Upper East,App,2024-02-14
+CU1159,Trader,Volta,Campaign,2024-02-14
+CU1160,Trader,Greater Accra,Referral,2024-02-15
+CU1161,Salaried,Greater Accra,Agent,2024-02-15
+CU1162,Salaried,Greater Accra,Referral,2024-02-16
+CU1163,Student,Greater Accra,App,2024-02-17
+CU1164,Trader,Greater Accra,Agent,2024-02-17
+CU1165,Salaried,Northern,Agent,2024-02-17
+CU1166,Student,Greater Accra,App,2024-02-17
+CU1167,Student,Upper East,App,2024-02-18
+CU1168,Salaried,Greater Accra,Agent,2024-02-18
+CU1169,Farmer,Greater Accra,Agent,2024-02-19
+CU1170,Trader,Greater Accra,App,2024-02-19
+CU1171,Salaried,Upper East,Referral,2024-02-19
+CU1172,Farmer,Greater Accra,Agent,2024-02-19
+CU1173,Farmer,Greater Accra,Agent,2024-02-19
+CU1174,Student,Greater Accra,Agent,2024-02-20
+CU1175,Farmer,Greater Accra,Campaign,2024-02-20
+CU1176,Salaried,Upper East,Agent,2024-02-21
+CU1177,  Retail ,Northern,Agent,2024-02-21
+CU1178,Retail,Volta,Agent,2024-02-22
+CU1179,Salaried,Greater Accra,Agent,2024-02-23
+CU1180,Trader,Upper West,App,2024-02-24
+CU1181,Salaried,Upper East,Referral,2024-02-24
+CU1182,Farmer,Upper West,Campaign,2024-02-24
+CU1183,Trader,Northern,App,2024-02-24
+CU1184,Student,Upper West,Referral,2024-02-25
+CU1185,Salaried,Volta,Campaign,2024-02-25
+CU1186,Trader,Greater Accra,App,2024-02-26
+CU1187,Student,Upper East,Agent,2024-02-26
+CU1188,Salaried,Greater Accra,App,2024-02-27
+CU1189,Student,Upper East,Referral,2024-02-27
+CU1190,Student,Volta,App,2024-02-27
+CU1191,Salaried,Northern,Agent,2024-02-28
+CU1192,Salaried,Upper West,App,2024-02-28
+CU1193,Salaried,Greater Accra,Agent,2024-02-28
+CU1194,retail,Greater Accra,Agent,2024-02-28
+CU1195,Retail,Volta,Campaign,2024-02-28
+CU1196,Trader,Upper East,Referral,2024-02-29
+CU1197,Retail,Northern,Referral,2024-02-29
+CU1198,Student,Volta,App,2024-02-29
+CU1199,Trader,Greater Accra,App,2024-02-29
+CU1200,Retail,Upper East,Campaign,2024-03-01
+CU1201,Farmer,Greater Accra,Agent,2024-03-02
+CU1202,Retail,Upper West,App,2024-03-02
+CU1203,Salaried,Greater Accra,Agent,2024-03-03
+CU1204,Farmer,Greater Accra,Agent,2024-03-03
+CU1205,Student,Greater Accra,Campaign,2024-03-04
+CU1206,Salaried,Greater Accra,App,2024-03-04
+CU1207,TRADER,Greater Accra,Agent,2024-03-04
+CU1208,Salaried,Upper East,Agent,2024-03-05
+CU1209,Salaried,Greater Accra,Referral,2024-03-05
+CU1210,Farmer,Upper West,Agent,2024-03-05
+CU1211,Retail,Greater Accra,Referral,2024-03-05
+CU1212,Retail,Volta,App,2024-03-06
+CU1213,Salaried,Greater Accra,App,2024-03-06
+CU1214,Retail,Northern,Agent,2024-03-08
+CU1215,  Trader ,Greater Accra,App,2024-03-09
+CU1216,Trader,Volta,App,2024-03-09
+CU1217,Retail,Volta,Referral,2024-03-09
+CU1218,Retail,Greater Accra,Campaign,2024-03-09
+CU1219,Farmer,Greater Accra,Agent,2024-03-10
+CU1220,Trader,Northern,Agent,2024-03-10
+CU1221,Retail,Upper West,App,2024-03-10
+CU1222,Salaried,Volta,Agent,2024-03-10
+CU1223,Retail,Upper West,Agent,2024-03-10
+CU1224,Trader,Northern,App,2024-03-11
+CU1225,Student,Greater Accra,Campaign,2024-03-11
+CU1226,Trader,Northern,Campaign,2024-03-11
+CU1227,Trader,Upper West,Agent,2024-03-11
+CU1228,Salaried,Upper West,App,2024-03-12
+CU1229,Farmer,Greater Accra,App,2024-03-12
+CU1230,Farmer,Upper West,App,2024-03-13
+CU1231,Trader,Upper West,App,2024-03-13
+CU1232,Student,Greater Accra,Agent,2024-03-13
+CU1233,Trader,Upper West,Agent,2024-03-14
+CU1234,Retail,Upper West,Agent,2024-03-15
+CU1235,Trader,Upper East,Referral,2024-03-16
+CU1236,Retail,Upper West,Agent,2024-03-16
+CU1237,Salaried,Northern,App,2024-03-17
+CU1238,Retail,Greater Accra,Agent,2024-03-17
+CU1239,Salaried,Upper East,Referral,2024-03-17
+CU1240,Farmer,Upper East,Agent,2024-03-17
+CU1241,Retail,Upper East,Referral,2024-03-18
+CU1242,Student,Northern,Agent,2024-03-18
+CU1243,Trader,Volta,Agent,2024-03-19
+CU1244,Trader,Volta,Referral,2024-03-19
+CU1245,Retail,Upper West,Agent,2024-03-20
+CU1246,Trader,Upper East,Agent,2024-03-21
+CU1247,Salaried,Greater Accra,Referral,2024-03-21
+CU1248,Trader,Northern,App,2024-03-21
+CU1249,trader,Greater Accra,Agent,2024-03-21
+CU1250,Retail,Greater Accra,Agent,2024-03-21
+CU1251,Salaried,Greater Accra,Referral,2024-03-22
+CU1252,Farmer,Greater Accra,Referral,2024-03-22
+CU1253,Trader,Greater Accra,Agent,2024-03-22
+CU1254,Student,Greater Accra,Agent,2024-03-23
+CU1255,retail,Greater Accra,Referral,2024-03-24
+CU1256,Student,Greater Accra,App,2024-03-24
+CU1257,Retail,Greater Accra,Referral,2024-03-25
+CU1258,Farmer,Greater Accra,App,2024-03-25
+CU1259,Retail,Northern,Agent,2024-03-25
+CU1260,Salaried,Upper East,Campaign,2024-03-26
+CU1261,Student,Upper West,Agent,2024-03-26
+CU1262,Trader,Greater Accra,Campaign,2024-03-26
+CU1263,Retail,Upper West,App,2024-03-27
+CU1264,Farmer,Greater Accra,Referral,2024-03-27
+CU1265,Farmer,Upper West,Agent,2024-03-27
+CU1266,Student,Greater Accra,App,2024-03-27
+CU1267,Farmer,Upper West,Referral,2024-03-28
+CU1268,TRADER,Upper East,App,2024-03-28
+CU1269,Trader,Greater Accra,Campaign,2024-03-28
+CU1270,Retail,Greater Accra,App,2024-03-28
+CU1271,Student,Volta,Referral,2024-03-28
+CU1272,Salaried,Northern,Agent,2024-03-29
+CU1273,salaried,Greater Accra,Referral,2024-03-29
+CU1274,Trader,Greater Accra,Agent,2024-03-29
+CU1275,Salaried,Greater Accra,Agent,2024-03-29
+CU1276,Farmer,Greater Accra,Agent,2024-03-29
+CU1277,Trader,Upper West,Referral,2024-03-29
+CU1278,Retail,Greater Accra,Campaign,2024-03-29
+CU1279,Retail,Upper West,App,2024-03-30
+CU1280,Retail,Northern,Referral,2024-03-30
+CU1281,Salaried,Greater Accra,Agent,2024-03-30
+CU1282,Salaried,Northern,Agent,2024-03-31
+CU1283,Salaried,Greater Accra,Campaign,2024-03-31
+CU1284,Retail,Upper West,Agent,2024-03-31
+CU1285,Salaried,Greater Accra,Agent,2024-04-01
+CU1286,TRADER,Greater Accra,Referral,2024-04-01
+CU1287,Farmer,Northern,Agent,2024-04-02
+CU1288,Retail,Northern,Agent,2024-04-02
+CU1289,Farmer,Greater Accra,Agent,2024-04-03
+CU1290,Retail,Upper East,Agent,2024-04-03
+CU1291,Student,Greater Accra,App,2024-04-03
+CU1292,Salaried,Upper East,Referral,2024-04-05
+CU1293,Trader,Greater Accra,Referral,2024-04-06
+CU1294,Retail,Greater Accra,Referral,2024-04-06
+CU1295,Retail,Greater Accra,Campaign,2024-04-06
+CU1296,Student,Greater Accra,Agent,2024-04-06
+CU1297,Retail,Greater Accra,Campaign,2024-04-07
+CU1298,Student,Upper East,App,2024-04-07
+CU1299,Farmer,Greater Accra,Agent,2024-04-07
+CU1300,Student,Upper East,Campaign,2024-04-07
+CU1301,Retail,Upper East,Campaign,2024-04-08
+CU1302,Salaried,Greater Accra,Campaign,2024-04-08
+CU1303,Student,Upper West,Campaign,2024-04-08
+CU1304,Salaried,Upper West,App,2024-04-08
+CU1305,Trader,Volta,Agent,2024-04-09
+CU1306,Retail,Greater Accra,Referral,2024-04-11
+CU1307,Student,Northern,Referral,2024-04-11
+CU1308,Salaried,Volta,Agent,2024-04-11
+CU1309,TRADER,Greater Accra,Agent,2024-04-11
+CU1310,Farmer,Greater Accra,Referral,2024-04-11
+CU1311,Salaried,Northern,Agent,2024-04-11
+CU1312,Retail,Volta,Campaign,2024-04-12
+CU1313,Trader,Upper West,Referral,2024-04-12
+CU1314,  Retail ,Greater Accra,App,2024-04-12
+CU1315,Farmer,Northern,App,2024-04-13
+CU1316,Farmer,Volta,Campaign,2024-04-13
+CU1317,Student,Volta,Campaign,2024-04-14
+CU1318,Salaried,Northern,Campaign,2024-04-14
+CU1319,Salaried,Upper East,Referral,2024-04-14
+CU1320,Trader,Greater Accra,Referral,2024-04-14
+CU1321,Retail,Greater Accra,Campaign,2024-04-14
+CU1322,Retail,Volta,Agent,2024-04-15
+CU1323,Retail,Upper East,Campaign,2024-04-15
+CU1324,Farmer,Upper East,Campaign,2024-04-16
+CU1325,Salaried,Upper East,Referral,2024-04-16
+CU1326,Trader,Upper East,Referral,2024-04-16
+CU1327,Retail,Northern,App,2024-04-17
+CU1328,Retail,Northern,App,2024-04-17
+CU1329,Salaried,Greater Accra,Agent,2024-04-17
+CU1330,Trader,Volta,Campaign,2024-04-17
+CU1331,Retail,Greater Accra,Agent,2024-04-18
+CU1332,Student,Greater Accra,Referral,2024-04-18
+CU1333,Trader,Greater Accra,App,2024-04-19
+CU1334,Student,Volta,Campaign,2024-04-19
+CU1335,TRADER,Greater Accra,Campaign,2024-04-19
+CU1336,Student,Upper West,Agent,2024-04-19
+CU1337,Trader,Greater Accra,Campaign,2024-04-19
+CU1338,Trader,Greater Accra,Agent,2024-04-21
+CU1339,Trader,Greater Accra,Agent,2024-04-21
+CU1340,Salaried,Northern,Campaign,2024-04-21
+CU1341,Farmer,Upper West,Agent,2024-04-21
+CU1342,  Retail ,Greater Accra,App,2024-04-21
+CU1343,Trader,Greater Accra,Referral,2024-04-22
+CU1344,Trader,Greater Accra,Referral,2024-04-22
+CU1345,Trader,Upper West,Agent,2024-04-22
+CU1346,Trader,Greater Accra,Referral,2024-04-23
+CU1347,Student,Greater Accra,App,2024-04-23
+CU1348,Retail,Volta,Referral,2024-04-23
+CU1349,Salaried,Upper West,Agent,2024-04-23
+CU1350,Farmer,Upper West,Referral,2024-04-24
+CU1351,Retail,Greater Accra,Agent,2024-04-24
+CU1352,Retail,Upper West,App,2024-04-24
+CU1353,farmer,Northern,Referral,2024-04-24
+CU1354,Retail,Greater Accra,Agent,2024-04-25
+CU1355,Salaried,Volta,Referral,2024-04-25
+CU1356,Retail,Greater Accra,Campaign,2024-04-25
+CU1357,Student,Volta,Agent,2024-04-25
+CU1358,Retail,Northern,App,2024-04-26
+CU1359,Student,Greater Accra,App,2024-04-26
+CU1360,Student,Upper East,Referral,2024-04-27
+CU1361,Salaried,Greater Accra,Campaign,2024-04-27
+CU1362,Trader,Northern,Agent,2024-04-27
+CU1363,Trader,Greater Accra,Referral,2024-04-28
+CU1364,Salaried,Upper East,Agent,2024-04-28
+CU1365,  Trader ,Volta,App,2024-04-28
+CU1366,Student,Northern,App,2024-04-29
+CU1367,Trader,Upper West,Agent,2024-04-29
+CU1368,Trader,Greater Accra,Agent,2024-04-29
+CU1369,Farmer,Greater Accra,Agent,2024-04-30
+CU1370,Trader,Upper West,App,2024-04-30
+CU1371,Retail,Upper West,Referral,2024-04-30
+CU1372,Retail,Northern,Campaign,2024-05-01
+CU1373,trader,Volta,App,2024-05-01
+CU1374,Student,Upper West,App,2024-05-01
+CU1375,Trader,Greater Accra,Referral,2024-05-02
+CU1376,Trader,Greater Accra,App,2024-05-02
+CU1377,Student,Greater Accra,Campaign,2024-05-02
+CU1378,Salaried,Greater Accra,App,2024-05-02
+CU1379,Student,Greater Accra,Referral,2024-05-02
+CU1380,Retail,Volta,App,2024-05-02
+CU1381,Student,Greater Accra,Agent,2024-05-03
+CU1382,Retail,Upper West,Agent,2024-05-03
+CU1383,Retail,Northern,Campaign,2024-05-04
+CU1384,Farmer,Upper East,Agent,2024-05-04
+CU1385,Salaried,Greater Accra,Campaign,2024-05-04
+CU1386,Retail,Northern,Campaign,2024-05-04
+CU1387,  Retail ,Greater Accra,Agent,2024-05-05
+CU1388,Retail,Greater Accra,Agent,2024-05-05
+CU1389,Retail,Upper East,App,2024-05-05
+CU1390,Farmer,Northern,Agent,2024-05-06
+CU1391,Salaried,Greater Accra,Agent,2024-05-07
+CU1392,Student,Northern,App,2024-05-07
+CU1393,Salaried,Northern,Campaign,2024-05-07
+CU1394,Retail,Greater Accra,App,2024-05-07
+CU1395,Trader,Greater Accra,Agent,2024-05-07
+CU1396,Retail,Upper East,Agent,2024-05-07
+CU1397,Student,Northern,Referral,2024-05-07
+CU1398,Farmer,Upper East,Referral,2024-05-08
+CU1399,Farmer,Greater Accra,Agent,2024-05-08
+CU1400,Farmer,Greater Accra,Agent,2024-05-08
+CU1401,Salaried,Northern,Referral,2024-05-09
+CU1402,Student,Volta,Referral,2024-05-09
+CU1403,Trader,Upper East,Referral,2024-05-10
+CU1404,Student,Volta,App,2024-05-10
+CU1405,  Trader ,Upper West,Referral,2024-05-11
+CU1406,Farmer,Greater Accra,Campaign,2024-05-11
+CU1407,Farmer,Greater Accra,Campaign,2024-05-11
+CU1408,  Retail ,Upper West,App,2024-05-11
+CU1409,Trader,Volta,Agent,2024-05-12
+CU1410,Farmer,Greater Accra,Agent,2024-05-13
+CU1411,Student,Upper East,Referral,2024-05-13
+CU1412,Retail,Northern,App,2024-05-13
+CU1413,Student,Greater Accra,Referral,2024-05-14
+CU1414,TRADER,Greater Accra,App,2024-05-14
+CU1415,Salaried,Greater Accra,Agent,2024-05-15
+CU1416,Retail,Northern,Campaign,2024-05-15
+CU1417,Salaried,Upper West,Agent,2024-05-16
+CU1418,Retail,Volta,App,2024-05-17
+CU1419,Student,Volta,Agent,2024-05-17
+CU1420,Retail,Upper West,Referral,2024-05-17
+CU1421,Salaried,Volta,Agent,2024-05-18
+CU1422,Farmer,Upper East,Campaign,2024-05-19
+CU1423,Salaried,Greater Accra,Referral,2024-05-19
+CU1424,Farmer,Greater Accra,App,2024-05-19
+CU1425,Salaried,Greater Accra,Referral,2024-05-19
+CU1426,Trader,Upper West,App,2024-05-20
+CU1427,Farmer,Volta,Campaign,2024-05-20
+CU1428,Trader,Upper East,App,2024-05-21
+CU1429,Farmer,Northern,Referral,2024-05-21
+CU1430,Salaried,Upper West,Agent,2024-05-21
+CU1431,trader,Greater Accra,Agent,2024-05-21
+CU1432,Farmer,Upper East,Agent,2024-05-21
+CU1433,Trader,Greater Accra,Agent,2024-05-21
+CU1434,Trader,Upper East,App,2024-05-22
+CU1435,Retail,Upper West,Agent,2024-05-22
+CU1436,Farmer,Upper East,Agent,2024-05-22
+CU1437,Farmer,Greater Accra,Campaign,2024-05-22
+CU1438,STUDENT,Upper East,Referral,2024-05-22
+CU1439,Retail,Upper East,Agent,2024-05-23
+CU1440,Salaried,Volta,App,2024-05-23
+CU1441,Salaried,Upper West,App,2024-05-24
+CU1442,Student,Upper East,Agent,2024-05-24
+CU1443,Farmer,Upper East,App,2024-05-25
+CU1444,Retail,Greater Accra,Referral,2024-05-26
+CU1445,Salaried,Greater Accra,App,2024-05-27
+CU1446,Retail,Greater Accra,Agent,2024-05-27
+CU1447,Salaried,Northern,Referral,2024-05-28
+CU1448,Salaried,Volta,App,2024-05-28
+CU1449,Salaried,Upper West,App,2024-05-28
+CU1450,Farmer,Upper East,Campaign,2024-05-29
+CU1451,Salaried,Volta,Agent,2024-05-29
+CU1452,Student,Greater Accra,Referral,2024-05-29
+CU1453,Retail,Greater Accra,App,2024-05-29
+CU1454,Retail,Greater Accra,App,2024-05-31
+CU1455,Retail,Greater Accra,App,2024-05-31
+CU1456,Trader,Upper East,App,2024-06-01
+CU1457,Trader,Northern,Agent,2024-06-01
+CU1458,Trader,Upper East,Referral,2024-06-01
+CU1459,Retail,Upper East,Referral,2024-06-02
+CU1460,Student,Upper West,Campaign,2024-06-02
+CU1461,Student,Volta,Campaign,2024-06-02
+CU1462,Student,Upper West,Agent,2024-06-02
+CU1463,Salaried,Greater Accra,Agent,2024-06-02
+CU1464,Salaried,Greater Accra,App,2024-06-03
+CU1465,Farmer,Volta,Campaign,2024-06-03
+CU1466,Student,Greater Accra,Referral,2024-06-03
+CU1467,  Student ,Volta,App,2024-06-04
+CU1468,Student,Greater Accra,Referral,2024-06-04
+CU1469,Farmer,Upper East,Referral,2024-06-05
+CU1470,Student,Greater Accra,Agent,2024-06-05
+CU1471,Salaried,Greater Accra,Agent,2024-06-06
+CU1472,Retail,Greater Accra,App,2024-06-06
+CU1473,Farmer,Greater Accra,Agent,2024-06-07
+CU1474,Farmer,Upper East,Referral,2024-06-07
+CU1475,Salaried,Upper West,Agent,2024-06-08
+CU1476,Retail,Greater Accra,Referral,2024-06-09
+CU1477,Student,Northern,Campaign,2024-06-09
+CU1478,Salaried,Northern,Referral,2024-06-09
+CU1479,Salaried,Upper East,Campaign,2024-06-09
+CU1480,Salaried,Greater Accra,Referral,2024-06-10
+CU1481,Salaried,Northern,Agent,2024-06-11
+CU1482,Trader,Volta,Agent,2024-06-11
+CU1483,Retail,Volta,App,2024-06-12
+CU1484,Retail,Volta,Agent,2024-06-12
+CU1485,Salaried,Volta,Agent,2024-06-12
+CU1486,Salaried,Northern,Agent,2024-06-12
+CU1487,Farmer,Greater Accra,Campaign,2024-06-13
+CU1488,Student,Volta,Referral,2024-06-13
+CU1489,STUDENT,Greater Accra,Referral,2024-06-14
+CU1490,Trader,Upper East,App,2024-06-14
+CU1491,Salaried,Northern,Campaign,2024-06-15
+CU1492,Farmer,Greater Accra,App,2024-06-15
+CU1493,  Farmer ,Volta,Agent,2024-06-15
+CU1494,Trader,Volta,Agent,2024-06-15
+CU1495,Student,Upper West,Campaign,2024-06-16
+CU1496,Farmer,Upper East,Campaign,2024-06-16
+CU1497,Trader,Greater Accra,Agent,2024-06-18
+CU1498,  Retail ,Upper East,Agent,2024-06-18
+CU1499,Retail,Upper East,Agent,2024-06-19
+CU1500,Farmer,Volta,App,2024-06-19
+CU1501,Salaried,Greater Accra,Agent,2024-06-19
+CU1502,Salaried,Upper East,Campaign,2024-06-20
+CU1503,Trader,Northern,Campaign,2024-06-20
+CU1504,Salaried,Greater Accra,App,2024-06-21
+CU1505,Trader,Greater Accra,App,2024-06-21
+CU1506,Salaried,Greater Accra,Agent,2024-06-21
+CU1507,Retail,Northern,Agent,2024-06-22
+CU1508,Retail,Greater Accra,App,2024-06-22
+CU1509,farmer,Northern,Referral,2024-06-22
+CU1510,Farmer,Greater Accra,Referral,2024-06-24
+CU1511,Salaried,Northern,Agent,2024-06-24
+CU1512,Student,Greater Accra,Agent,2024-06-25
+CU1513,Trader,Volta,Referral,2024-06-26
+CU1514,Student,Upper West,Agent,2024-06-26
+CU1515,Trader,Greater Accra,Agent,2024-06-26
+CU1516,Trader,Greater Accra,Referral,2024-06-26
+CU1517,Farmer,Volta,App,2024-06-26
+CU1518,Retail,Greater Accra,Agent,2024-06-27
+CU1519,Trader,Greater Accra,Agent,2024-06-28
+CU1520,Retail,Volta,Referral,2024-06-28
+CU1521,Trader,Volta,Agent,2024-06-28
+CU1522,Student,Northern,Campaign,2024-06-29
+CU1523,Trader,Greater Accra,Campaign,2024-06-29
+CU1524,FARMER,Greater Accra,Referral,2024-06-29
+CU1525,Student,Upper East,Agent,2024-06-29
+CU1526,Farmer,Greater Accra,App,2024-06-29
+CU1527,Retail,Upper West,Agent,2024-06-30
+CU1528,Salaried,Greater Accra,Referral,2024-06-30
+CU1529,Salaried,Northern,App,2024-06-30
+CU1530,Salaried,Northern,Campaign,2024-06-30
+CU1531,Farmer,Greater Accra,Agent,2024-07-01
+CU1532,Student,Greater Accra,Campaign,2024-07-01
+CU1533,Student,Greater Accra,App,2024-07-01
+CU1534,Trader,Upper East,Agent,2024-07-02
+CU1535,Retail,Upper West,App,2024-07-02
+CU1536,Farmer,Greater Accra,Agent,2024-07-02
+CU1537,Trader,Volta,Agent,2024-07-03
+CU1538,Salaried,Greater Accra,Agent,2024-07-03
+CU1539,Trader,Greater Accra,Agent,2024-07-04
+CU1540,Retail,Upper East,Referral,2024-07-04
+CU1541,salaried,Greater Accra,Agent,2024-07-04
+CU1542,Farmer,Greater Accra,App,2024-07-04
+CU1543,Retail,Volta,Agent,2024-07-05
+CU1544,Retail,Northern,Agent,2024-07-05
+CU1545,Student,Greater Accra,Agent,2024-07-06
+CU1546,Salaried,Greater Accra,Agent,2024-07-06
+CU1547,Trader,Greater Accra,Campaign,2024-07-07
+CU1548,Farmer,Upper East,App,2024-07-07
+CU1549,Retail,Northern,Referral,2024-07-07
+CU1550,Trader,Northern,Campaign,2024-07-08
+CU1551,Retail,Greater Accra,App,2024-07-08
+CU1552,Student,Upper East,Campaign,2024-07-08
+CU1553,Student,Greater Accra,Agent,2024-07-08
+CU1554,Salaried,Greater Accra,App,2024-07-09
+CU1555,Trader,Greater Accra,Agent,2024-07-09
+CU1556,Retail,Greater Accra,App,2024-07-10
+CU1557,Farmer,Upper West,App,2024-07-11
+CU1558,Farmer,Greater Accra,Agent,2024-07-12
+CU1559,Retail,Upper West,App,2024-07-13
+CU1560,Student,Volta,App,2024-07-13
+CU1561,  Farmer ,Northern,App,2024-07-14
+CU1562,Retail,Northern,App,2024-07-14
+CU1563,Farmer,Greater Accra,Agent,2024-07-15
+CU1564,student,Upper East,Agent,2024-07-15
+CU1565,Student,Greater Accra,Referral,2024-07-15
+CU1566,Salaried,Northern,Agent,2024-07-15
+CU1567,Trader,Upper West,Agent,2024-07-15
+CU1568,Salaried,Greater Accra,Referral,2024-07-16
+CU1569,Salaried,Northern,App,2024-07-16
+CU1570,Retail,Upper East,Agent,2024-07-17
+CU1571,Trader,Upper East,Campaign,2024-07-17
+CU1572,Salaried,Greater Accra,Referral,2024-07-18
+CU1573,Retail,Upper East,Agent,2024-07-18
+CU1574,Trader,Greater Accra,Agent,2024-07-18
+CU1575,Student,Greater Accra,Agent,2024-07-18
+CU1576,Retail,Northern,Campaign,2024-07-19
+CU1577,Student,Upper East,Referral,2024-07-19
+CU1578,Retail,Greater Accra,Agent,2024-07-19
+CU1579,Farmer,Volta,Referral,2024-07-19
+CU1580,Retail,Upper East,Referral,2024-07-20
+CU1581,Trader,Volta,Referral,2024-07-21
+CU1582,TRADER,Upper West,Referral,2024-07-21
+CU1583,Student,Greater Accra,App,2024-07-21
+CU1584,Retail,Northern,Agent,2024-07-21
+CU1585,Farmer,Greater Accra,Agent,2024-07-21
+CU1586,Farmer,Upper East,Agent,2024-07-22
+CU1587,  Retail ,Upper East,App,2024-07-22
+CU1588,Student,Greater Accra,App,2024-07-22
+CU1589,Trader,Greater Accra,App,2024-07-22
+CU1590,Student,Upper West,Campaign,2024-07-23
+CU1591,Trader,Greater Accra,Agent,2024-07-24
+CU1592,Student,Northern,Referral,2024-07-24
+CU1593,Trader,Greater Accra,Campaign,2024-07-24
+CU1594,Salaried,Volta,Agent,2024-07-24
+CU1595,Farmer,Upper East,Campaign,2024-07-25
+CU1596,Farmer,Greater Accra,Referral,2024-07-25
+CU1597,Retail,Greater Accra,Campaign,2024-07-25
+CU1598,Retail,Volta,Campaign,2024-07-25
+CU1599,Retail,Northern,Agent,2024-07-26
+CU1600,Retail,Volta,Agent,2024-07-26
+CU1601,Salaried,Volta,App,2024-07-26
+CU1602,Student,Greater Accra,App,2024-07-27
+CU1603,Student,Greater Accra,Referral,2024-07-28
+CU1604,Retail,Greater Accra,App,2024-07-28
+CU1605,Retail,Greater Accra,App,2024-07-28
+CU1606,salaried,Volta,Agent,2024-07-29
+CU1607,Retail,Volta,Referral,2024-07-29
+CU1608,Salaried,Greater Accra,Campaign,2024-07-31
+CU1609,Student,Upper West,Agent,2024-07-31
+CU1610,trader,Upper West,Agent,2024-08-01
+CU1611,Trader,Upper West,Agent,2024-08-01
+CU1612,Retail,Greater Accra,Campaign,2024-08-02
+CU1613,Salaried,Upper East,Agent,2024-08-02
+CU1614,Retail,Upper East,Campaign,2024-08-02
+CU1615,Salaried,Upper East,Campaign,2024-08-02
+CU1616,Student,Greater Accra,Campaign,2024-08-03
+CU1617,Trader,Volta,Campaign,2024-08-03
+CU1618,Salaried,Greater Accra,Agent,2024-08-03
+CU1619,Student,Upper West,Campaign,2024-08-04
+CU1620,Retail,Greater Accra,Agent,2024-08-04
+CU1621,Salaried,Upper East,Agent,2024-08-04
+CU1622,Trader,Volta,Campaign,2024-08-05
+CU1623,Salaried,Volta,Agent,2024-08-06
+CU1624,  Salaried ,Greater Accra,Referral,2024-08-06
+CU1625,Trader,Upper East,App,2024-08-08
+CU1626,Trader,Northern,App,2024-08-08
+CU1627,Trader,Volta,Referral,2024-08-08
+CU1628,Retail,Northern,Agent,2024-08-10
+CU1629,Retail,Upper West,Agent,2024-08-10
+CU1630,Retail,Greater Accra,App,2024-08-11
+CU1631,Farmer,Northern,Referral,2024-08-11
+CU1632,Student,Greater Accra,Agent,2024-08-11
+CU1633,Salaried,Upper East,Campaign,2024-08-12
+CU1634,Trader,Greater Accra,App,2024-08-12
+CU1635,Trader,Northern,Agent,2024-08-12
+CU1636,Trader,Upper West,Agent,2024-08-12
+CU1637,Retail,Upper East,Campaign,2024-08-12
+CU1638,  Student ,Northern,App,2024-08-13
+CU1639,Salaried,Northern,App,2024-08-13
+CU1640,Salaried,Upper West,Agent,2024-08-13
+CU1641,Retail,Upper West,App,2024-08-14
+CU1642,Salaried,Upper East,Campaign,2024-08-15
+CU1643,Retail,Upper East,Agent,2024-08-15
+CU1644,Farmer,Greater Accra,App,2024-08-15
+CU1645,FARMER,Northern,Agent,2024-08-15
+CU1646,Retail,Greater Accra,Agent,2024-08-16
+CU1647,Salaried,Upper East,Agent,2024-08-17
+CU1648,Student,Northern,Campaign,2024-08-18
+CU1649,Retail,Greater Accra,Referral,2024-08-19
+CU1650,Retail,Upper East,Agent,2024-08-20
+CU1651,Salaried,Upper East,App,2024-08-20
+CU1652,Trader,Upper East,Agent,2024-08-21
+CU1653,Trader,Upper West,Referral,2024-08-21
+CU1654,Salaried,Northern,Agent,2024-08-21
+CU1655,Trader,Greater Accra,Agent,2024-08-21
+CU1656,Trader,Upper East,App,2024-08-21
+CU1657,Retail,Greater Accra,App,2024-08-22
+CU1658,Student,Volta,App,2024-08-22
+CU1659,Salaried,Volta,Referral,2024-08-22
+CU1660,Trader,Greater Accra,Agent,2024-08-23
+CU1661,Trader,Greater Accra,Agent,2024-08-24
+CU1662,Retail,Greater Accra,App,2024-08-24
+CU1663,Trader,Greater Accra,Referral,2024-08-24
+CU1664,RETAIL,Volta,Agent,2024-08-25
+CU1665,Student,Northern,Agent,2024-08-25
+CU1666,Salaried,Greater Accra,Agent,2024-08-25
+CU1667,Salaried,Greater Accra,Agent,2024-08-25
+CU1668,Retail,Greater Accra,App,2024-08-25
+CU1669,Trader,Greater Accra,Agent,2024-08-25
+CU1670,Student,Greater Accra,Campaign,2024-08-25
+CU1671,Retail,Upper West,Campaign,2024-08-26
+CU1672,Trader,Greater Accra,Campaign,2024-08-26
+CU1673,Farmer,Greater Accra,Referral,2024-08-26
+CU1674,Salaried,Northern,Agent,2024-08-26
+CU1675,Salaried,Greater Accra,Campaign,2024-08-26
+CU1676,Retail,Greater Accra,Agent,2024-08-27
+CU1677,Trader,Northern,Agent,2024-08-27
+CU1678,Salaried,Greater Accra,Referral,2024-08-27
+CU1679,Student,Upper East,Campaign,2024-08-27
+CU1680,Student,Upper West,Referral,2024-08-27
+CU1681,RETAIL,Northern,Referral,2024-08-28
+CU1682,Salaried,Northern,Agent,2024-08-29
+CU1683,Farmer,Greater Accra,Campaign,2024-08-29
+CU1684,Retail,Volta,Campaign,2024-08-29
+CU1685,Retail,Northern,Referral,2024-08-30
+CU1686,Trader,Upper West,Referral,2024-08-30
+CU1687,student,Greater Accra,Agent,2024-08-30
+CU1688,Salaried,Northern,Agent,2024-08-30
+CU1689,Salaried,Volta,App,2024-08-30
+CU1690,Trader,Greater Accra,Referral,2024-08-31
+CU1691,Retail,Upper East,App,2024-08-31
+CU1692,Farmer,Greater Accra,Referral,2024-09-01
+CU1693,Retail,Volta,App,2024-09-01
+CU1694,Farmer,Greater Accra,App,2024-09-02
+CU1695,Trader,Northern,Agent,2024-09-02
+CU1696,Farmer,Upper East,Campaign,2024-09-02
+CU1697,Trader,Northern,Agent,2024-09-02
+CU1698,Trader,Greater Accra,Agent,2024-09-02
+CU1699,Farmer,Upper East,Referral,2024-09-03
+CU1700,Salaried,Greater Accra,Agent,2024-09-03
+CU1701,Trader,Greater Accra,App,2024-09-03
+CU1702,Trader,Upper East,Campaign,2024-09-03
+CU1703,Retail,Northern,Campaign,2024-09-03
+CU1704,Farmer,Greater Accra,App,2024-09-03
+CU1705,Trader,Volta,Agent,2024-09-04
+CU1706,Farmer,Volta,App,2024-09-05
+CU1707,Trader,Northern,App,2024-09-05
+CU1708,Trader,Greater Accra,Agent,2024-09-05
+CU1709,Trader,Greater Accra,Agent,2024-09-05
+CU1710,Salaried,Greater Accra,Agent,2024-09-05
+CU1711,Salaried,Greater Accra,App,2024-09-06
+CU1712,Trader,Greater Accra,Referral,2024-09-06
+CU1713,  Student ,Volta,Agent,2024-09-06
+CU1714,Trader,Upper East,Campaign,2024-09-07
+CU1715,  Retail ,Northern,Agent,2024-09-07
+CU1716,Farmer,Northern,Agent,2024-09-08
+CU1717,Retail,Northern,Referral,2024-09-08
+CU1718,Student,Northern,Campaign,2024-09-08
+CU1719,Farmer,Greater Accra,Referral,2024-09-09
+CU1720,Farmer,Volta,App,2024-09-09
+CU1721,TRADER,Greater Accra,Referral,2024-09-10
+CU1722,Retail,Volta,Referral,2024-09-10
+CU1723,Student,Greater Accra,Campaign,2024-09-10
+CU1724,Retail,Greater Accra,App,2024-09-11
+CU1725,Student,Greater Accra,App,2024-09-11
+CU1726,Retail,Volta,App,2024-09-11
+CU1727,Farmer,Upper East,App,2024-09-12
+CU1728,Farmer,Greater Accra,App,2024-09-12
+CU1729,Retail,Upper East,App,2024-09-12
+CU1730,Salaried,Greater Accra,Agent,2024-09-13
+CU1731,Retail,Northern,Agent,2024-09-13
+CU1732,Farmer,Northern,App,2024-09-13
+CU1733,Trader,Volta,Referral,2024-09-13
+CU1734,Student,Greater Accra,App,2024-09-14
+CU1735,Salaried,Greater Accra,Agent,2024-09-14
+CU1736,Trader,Upper West,App,2024-09-14
+CU1737,Student,Greater Accra,App,2024-09-14
+CU1738,Retail,Upper West,Campaign,2024-09-15
+CU1739,Farmer,Volta,Campaign,2024-09-15
+CU1740,Retail,Northern,App,2024-09-16
+CU1741,Retail,Upper East,Referral,2024-09-17
+CU1742,Salaried,Northern,Referral,2024-09-17
+CU1743,Retail,Upper East,Campaign,2024-09-17
+CU1744,Retail,Volta,Agent,2024-09-18
+CU1745,Student,Greater Accra,Agent,2024-09-18
+CU1746,Salaried,Upper West,App,2024-09-19
+CU1747,Salaried,Upper West,Campaign,2024-09-19
+CU1748,Student,Upper West,Campaign,2024-09-19
+CU1749,STUDENT,Northern,Campaign,2024-09-20
+CU1750,Farmer,Greater Accra,Agent,2024-09-20
+CU1751,Retail,Northern,App,2024-09-20
+CU1752,Retail,Volta,App,2024-09-20
+CU1753,Salaried,Greater Accra,Campaign,2024-09-20
+CU1754,Farmer,Volta,Referral,2024-09-20
+CU1755,Trader,Northern,Referral,2024-09-21
+CU1756,Student,Greater Accra,Campaign,2024-09-21
+CU1757,Salaried,Greater Accra,Agent,2024-09-21
+CU1758,Trader,Greater Accra,App,2024-09-21
+CU1759,Student,Volta,Agent,2024-09-21
+CU1760,Retail,Volta,Agent,2024-09-22
+CU1761,Trader,Upper East,Campaign,2024-09-22
+CU1762,Trader,Greater Accra,Campaign,2024-09-22
+CU1763,retail,Greater Accra,App,2024-09-23
+CU1764,Trader,Upper West,Agent,2024-09-23
+CU1765,Retail,Greater Accra,App,2024-09-23
+CU1766,  Student ,Greater Accra,Campaign,2024-09-23
+CU1767,Trader,Upper West,App,2024-09-24
+CU1768,Trader,Northern,Agent,2024-09-25
+CU1769,STUDENT,Greater Accra,App,2024-09-25
+CU1770,Retail,Upper East,App,2024-09-25
+CU1771,Retail,Volta,Campaign,2024-09-25
+CU1772,Trader,Greater Accra,Campaign,2024-09-26
+CU1773,Salaried,Volta,App,2024-09-26
+CU1774,Student,Greater Accra,Campaign,2024-09-27
+CU1775,Salaried,Greater Accra,Agent,2024-09-27
+CU1776,Retail,Northern,Agent,2024-09-28
+CU1777,Student,Greater Accra,Referral,2024-09-28
+CU1778,Trader,Greater Accra,Campaign,2024-09-28
+CU1779,salaried,Northern,App,2024-09-29
+CU1780,Trader,Greater Accra,Agent,2024-09-29
+CU1781,Salaried,Volta,App,2024-09-30
+CU1782,Retail,Greater Accra,Referral,2024-09-30
+CU1783,Retail,Greater Accra,Agent,2024-09-30
+CU1784,Salaried,Northern,Agent,2024-10-01
+CU1785,Trader,Greater Accra,Agent,2024-10-01
+CU1786,Salaried,Greater Accra,Agent,2024-10-01
+CU1787,Salaried,Upper East,Campaign,2024-10-01
+CU1788,Retail,Greater Accra,Referral,2024-10-01
+CU1789,Trader,Greater Accra,Referral,2024-10-02
+CU1790,trader,Greater Accra,App,2024-10-02
+CU1791,Retail,Northern,Agent,2024-10-02
+CU1792,Retail,Greater Accra,Agent,2024-10-02
+CU1793,Farmer,Volta,App,2024-10-02
+CU1794,Trader,Northern,App,2024-10-03
+CU1795,Retail,Volta,Agent,2024-10-03
+CU1796,Retail,Upper East,Agent,2024-10-04
+CU1797,Salaried,Upper East,App,2024-10-05
+CU1798,Trader,Volta,App,2024-10-05
+CU1799,Trader,Northern,App,2024-10-05
+CU1800,Salaried,Volta,Agent,2024-10-05
+CU1801,Retail,Upper East,Referral,2024-10-05
+CU1802,Retail,Greater Accra,Agent,2024-10-05
+CU1803,Retail,Volta,Agent,2024-10-06
+CU1804,Trader,Northern,Referral,2024-10-06
+CU1805,Farmer,Upper West,Referral,2024-10-06
+CU1806,Salaried,Greater Accra,Agent,2024-10-07
+CU1807,Student,Volta,Agent,2024-10-07
+CU1808,Student,Greater Accra,Referral,2024-10-08
+CU1809,Trader,Greater Accra,Campaign,2024-10-08
+CU1810,Retail,Upper West,Referral,2024-10-08
+CU1811,Trader,Upper East,App,2024-10-08
+CU1812,Retail,Greater Accra,App,2024-10-08
+CU1813,Trader,Northern,Agent,2024-10-09
+CU1814,Student,Volta,Referral,2024-10-10
+CU1815,Student,Volta,Agent,2024-10-11
+CU1816,Trader,Volta,App,2024-10-11
+CU1817,Retail,Greater Accra,App,2024-10-11
+CU1818,Retail,Northern,Agent,2024-10-12
+CU1819,student,Greater Accra,Agent,2024-10-12
+CU1820,Salaried,Greater Accra,Referral,2024-10-12
+CU1821,Retail,Upper East,Campaign,2024-10-12
+CU1822,Trader,Greater Accra,Agent,2024-10-12
+CU1823,Farmer,Upper East,Agent,2024-10-13
+CU1824,Farmer,Greater Accra,Agent,2024-10-13
+CU1825,Student,Greater Accra,App,2024-10-14
+CU1826,Retail,Greater Accra,App,2024-10-14
+CU1827,Student,Northern,Referral,2024-10-14
+CU1828,Student,Greater Accra,Agent,2024-10-15
+CU1829,Trader,Greater Accra,App,2024-10-15
+CU1830,Trader,Upper West,Referral,2024-10-15
+CU1831,Retail,Upper East,Referral,2024-10-15
+CU1832,Student,Greater Accra,Campaign,2024-10-15
+CU1833,STUDENT,Greater Accra,Agent,2024-10-16
+CU1834,Retail,Greater Accra,Agent,2024-10-16
+CU1835,Retail,Northern,App,2024-10-17
+CU1836,Salaried,Greater Accra,Referral,2024-10-17
+CU1837,Trader,Upper East,Referral,2024-10-17
+CU1838,Salaried,Greater Accra,Campaign,2024-10-17
+CU1839,Farmer,Greater Accra,Agent,2024-10-18
+CU1840,Trader,Greater Accra,Campaign,2024-10-19
+CU1841,trader,Northern,Campaign,2024-10-20
+CU1842,Retail,Upper West,Agent,2024-10-20
+CU1843,Trader,Greater Accra,App,2024-10-20
+CU1844,Trader,Greater Accra,Campaign,2024-10-22
+CU1845,Salaried,Upper West,App,2024-10-22
+CU1846,Student,Upper East,Agent,2024-10-22
+CU1847,Salaried,Upper East,App,2024-10-23
+CU1848,Trader,Northern,App,2024-10-23
+CU1849,Student,Northern,Agent,2024-10-23
+CU1850,Student,Greater Accra,Agent,2024-10-23
+CU1851,Retail,Greater Accra,Campaign,2024-10-24
+CU1852,TRADER,Greater Accra,Referral,2024-10-24
+CU1853,  Retail ,Volta,App,2024-10-24
+CU1854,Salaried,Volta,App,2024-10-24
+CU1855,Trader,Volta,Referral,2024-10-25
+CU1856,Trader,Greater Accra,Agent,2024-10-25
+CU1857,Student,Volta,Campaign,2024-10-25
+CU1858,Student,Greater Accra,Referral,2024-10-25
+CU1859,Retail,Greater Accra,Agent,2024-10-25
+CU1860,RETAIL,Volta,Agent,2024-10-26
+CU1861,Retail,Greater Accra,Campaign,2024-10-26
+CU1862,Trader,Upper East,Agent,2024-10-27
+CU1863,Farmer,Greater Accra,App,2024-10-28
+CU1864,Retail,Northern,Referral,2024-10-28
+CU1865,Retail,Greater Accra,App,2024-10-29
+CU1866,Retail,Upper West,App,2024-10-30
+CU1867,Student,Greater Accra,Agent,2024-10-30
+CU1868,Trader,Greater Accra,Agent,2024-10-30
+CU1869,Retail,Upper East,Referral,2024-10-30
+CU1870,Student,Volta,Referral,2024-10-31
+CU1871,Farmer,Volta,Referral,2024-10-31
+CU1872,Trader,Volta,Referral,2024-11-01
+CU1873,Trader,Greater Accra,Referral,2024-11-01
+CU1874,Student,Greater Accra,Agent,2024-11-01
+CU1875,STUDENT,Greater Accra,Campaign,2024-11-02
+CU1876,  Trader ,Greater Accra,Referral,2024-11-02
+CU1877,Retail,Greater Accra,App,2024-11-02
+CU1878,Trader,Volta,Referral,2024-11-02
+CU1879,Farmer,Northern,Referral,2024-11-03
+CU1880,Trader,Greater Accra,App,2024-11-03
+CU1881,Retail,Greater Accra,Referral,2024-11-03
+CU1882,Trader,Northern,Campaign,2024-11-03
+CU1883,Retail,Greater Accra,Campaign,2024-11-04
+CU1884,Retail,Greater Accra,App,2024-11-04
+CU1885,Retail,Greater Accra,App,2024-11-04
+CU1886,Trader,Upper West,Referral,2024-11-05
+CU1887,Salaried,Upper West,App,2024-11-05
+CU1888,Student,Greater Accra,Campaign,2024-11-05
+CU1889,Farmer,Northern,Campaign,2024-11-05
+CU1890,Retail,Greater Accra,Referral,2024-11-06
+CU1891,Retail,Greater Accra,Agent,2024-11-06
+CU1892,Trader,Upper West,Referral,2024-11-06
+CU1893,Farmer,Upper East,Agent,2024-11-07
+CU1894,Trader,Greater Accra,Agent,2024-11-07
+CU1895,Student,Volta,Campaign,2024-11-07
+CU1896,Trader,Greater Accra,Referral,2024-11-08
+CU1897,Trader,Greater Accra,Referral,2024-11-08
+CU1898,Trader,Greater Accra,Agent,2024-11-08
+CU1899,Trader,Greater Accra,App,2024-11-09
+CU1900,Salaried,Northern,Agent,2024-11-09
+CU1901,Trader,Northern,App,2024-11-10
+CU1902,Farmer,Northern,Referral,2024-11-10
+CU1903,Retail,Volta,Campaign,2024-11-11
+CU1904,Salaried,Greater Accra,Referral,2024-11-11
+CU1905,Student,Northern,Referral,2024-11-11
+CU1906,Student,Upper East,Agent,2024-11-11
+CU1907,SALARIED,Greater Accra,Referral,2024-11-11
+CU1908,Salaried,Greater Accra,Campaign,2024-11-11
+CU1909,Trader,Upper West,Agent,2024-11-12
+CU1910,Retail,Greater Accra,Agent,2024-11-12
+CU1911,Farmer,Northern,Campaign,2024-11-12
+CU1912,FARMER,Greater Accra,Agent,2024-11-12
+CU1913,Trader,Northern,Referral,2024-11-13
+CU1914,Retail,Northern,App,2024-11-13
+CU1915,Student,Greater Accra,Agent,2024-11-14
+CU1916,Farmer,Volta,Agent,2024-11-14
+CU1917,Student,Upper East,Campaign,2024-11-15
+CU1918,Farmer,Greater Accra,Agent,2024-11-15
+CU1919,Salaried,Greater Accra,Agent,2024-11-15
+CU1920,Retail,Volta,Agent,2024-11-15
+CU1921,Salaried,Greater Accra,Agent,2024-11-15
+CU1922,Farmer,Greater Accra,Referral,2024-11-15
+CU1923,Salaried,Volta,Campaign,2024-11-16
+CU1924,Student,Northern,Agent,2024-11-17
+CU1925,  Salaried ,Upper East,Agent,2024-11-17
+CU1926,Retail,Greater Accra,App,2024-11-17
+CU1927,salaried,Upper West,Agent,2024-11-17
+CU1928,Trader,Greater Accra,Referral,2024-11-17
+CU1929,Student,Upper West,App,2024-11-17
+CU1930,Student,Northern,Referral,2024-11-17
+CU1931,Salaried,Upper East,App,2024-11-19
+CU1932,Salaried,Volta,App,2024-11-20
+CU1933,Trader,Greater Accra,App,2024-11-20
+CU1934,Retail,Upper West,App,2024-11-20
+CU1935,Trader,Upper West,Agent,2024-11-22
+CU1936,Trader,Northern,Agent,2024-11-23
+CU1937,Trader,Volta,Campaign,2024-11-24
+CU1938,Salaried,Volta,Campaign,2024-11-24
+CU1939,Salaried,Greater Accra,App,2024-11-24
+CU1940,TRADER,Volta,App,2024-11-24
+CU1941,Retail,Volta,Agent,2024-11-25
+CU1942,Trader,Upper East,Agent,2024-11-25
+CU1943,Farmer,Upper East,Referral,2024-11-25
+CU1944,Retail,Upper West,Agent,2024-11-26
+CU1945,Trader,Upper East,Campaign,2024-11-26
+CU1946,retail,Upper West,Agent,2024-11-26
+CU1947,Student,Greater Accra,Agent,2024-11-27
+CU1948,Salaried,Greater Accra,App,2024-11-27
+CU1949,Salaried,Greater Accra,Referral,2024-11-27
+CU1950,Trader,Greater Accra,Agent,2024-11-27
+CU1951,Salaried,Greater Accra,App,2024-11-28
+CU1952,Trader,Greater Accra,Agent,2024-11-28
+CU1953,STUDENT,Upper East,Referral,2024-11-28
+CU1954,  Student ,Greater Accra,Campaign,2024-11-29
+CU1955,Farmer,Volta,Referral,2024-11-30
+CU1956,Retail,Upper West,Agent,2024-11-30
+CU1957,Student,Upper East,Agent,2024-11-30
+CU1958,Salaried,Northern,Agent,2024-12-01
+CU1959,Salaried,Greater Accra,Referral,2024-12-01
+CU1960,Trader,Northern,Referral,2024-12-01
+CU1961,Student,Volta,Campaign,2024-12-01
+CU1962,Student,Greater Accra,App,2024-12-02
+CU1963,Farmer,Upper East,Agent,2024-12-02
+CU1964,Trader,Greater Accra,Referral,2024-12-03
+CU1965,Student,Upper East,Referral,2024-12-03
+CU1966,Retail,Northern,Agent,2024-12-04
+CU1967,Salaried,Greater Accra,Agent,2024-12-04
+CU1968,FARMER,Greater Accra,App,2024-12-04
+CU1969,Retail,Greater Accra,Referral,2024-12-05
+CU1970,Retail,Greater Accra,Agent,2024-12-05
+CU1971,student,Volta,Campaign,2024-12-05
+CU1972,Salaried,Greater Accra,Referral,2024-12-06
+CU1973,Salaried,Greater Accra,Agent,2024-12-06
+CU1974,Salaried,Greater Accra,Agent,2024-12-06
+CU1975,Student,Greater Accra,Referral,2024-12-07
+CU1976,  Salaried ,Northern,App,2024-12-08
+CU1977,Trader,Volta,Agent,2024-12-09
+CU1978,  Student ,Upper West,Agent,2024-12-09
+CU1979,Farmer,Northern,Referral,2024-12-09
+CU1980,Student,Greater Accra,App,2024-12-09
+CU1981,Retail,Upper East,Campaign,2024-12-10
+CU1982,Student,Greater Accra,App,2024-12-10
+CU1983,Salaried,Upper East,Campaign,2024-12-11
+CU1984,Salaried,Greater Accra,App,2024-12-11
+CU1985,Trader,Northern,App,2024-12-11
+CU1986,Trader,Greater Accra,Agent,2024-12-11
+CU1987,Retail,Greater Accra,App,2024-12-11
+CU1988,Student,Northern,Referral,2024-12-12
+CU1989,  Salaried ,Volta,Campaign,2024-12-12
+CU1990,Retail,Greater Accra,Referral,2024-12-12
+CU1991,Salaried,Upper West,App,2024-12-12
+CU1992,Student,Greater Accra,Agent,2024-12-12
+CU1993,Trader,Greater Accra,Referral,2024-12-12
+CU1994,Salaried,Upper East,App,2024-12-12
+CU1995,Retail,Greater Accra,Agent,2024-12-13
+CU1996,Retail,Greater Accra,App,2024-12-14
+CU1997,Trader,Upper East,App,2024-12-14
+CU1998,Student,Greater Accra,App,2024-12-14
+CU1999,Farmer,Northern,Campaign,2024-12-15
+CU2000,Salaried,Greater Accra,App,2024-12-15
+CU2001,Salaried,Volta,Agent,2024-12-16
+CU2002,Trader,Greater Accra,App,2024-12-16
+CU2003,Trader,Northern,Referral,2024-12-17
+CU2004,Retail,Volta,Campaign,2024-12-17
+CU2005,Salaried,Greater Accra,Agent,2024-12-18
+CU2006,Salaried,Upper West,Referral,2024-12-19
+CU2007,Farmer,Greater Accra,Agent,2024-12-19
+CU2008,Retail,Greater Accra,Referral,2024-12-20
+CU2009,Retail,Upper West,Agent,2024-12-21
+CU2010,Salaried,Greater Accra,Agent,2024-12-21
+CU2011,Retail,Upper West,Agent,2024-12-21
+CU2012,Retail,Greater Accra,Campaign,2024-12-21
+CU2013,Trader,Greater Accra,Agent,2024-12-21
+CU2014,Farmer,Greater Accra,Agent,2024-12-21
+CU2015,Trader,Upper West,Agent,2024-12-22
+CU2016,Farmer,Greater Accra,Referral,2024-12-22
+CU2017,Student,Upper East,Agent,2024-12-22
+CU2018,Farmer,Greater Accra,Agent,2024-12-23
+CU2019,Student,Northern,Referral,2024-12-23
+CU2020,Salaried,Greater Accra,Referral,2024-12-24
+CU2021,Trader,Greater Accra,Referral,2024-12-24
+CU2022,  Retail ,Northern,Agent,2024-12-25
+CU2023,Retail,Greater Accra,App,2024-12-26
+CU2024,Retail,Northern,Agent,2024-12-26
+CU2025,Trader,Greater Accra,Agent,2024-12-26
+CU2026,Salaried,Upper West,Referral,2024-12-27
+CU2027,retail,Greater Accra,Referral,2024-12-27
+CU2028,TRADER,Northern,Referral,2024-12-27
+CU2029,FARMER,Upper West,App,2024-12-27
+CU2030,Salaried,Northern,Agent,2024-12-27
+CU2031,Student,Greater Accra,Campaign,2024-12-28
+CU2032,Retail,Upper West,Referral,2024-12-28
+CU2033,Student,Northern,Agent,2024-12-28
+CU2034,Student,Northern,Referral,2024-12-28
+CU2035,TRADER,Upper East,Referral,2024-12-28
+CU2036,Trader,Northern,App,2024-12-28
+CU2037,Retail,Greater Accra,Campaign,2024-12-29
+CU2038,Trader,Volta,Referral,2024-12-29
+CU2039,Retail,Greater Accra,Agent,2024-12-30
+CU2040,Trader,Upper East,App,2024-12-30
+CU2041,  Trader ,Volta,Agent,2024-12-31
+CU2042,Retail,Volta,App,2024-12-31
+CU2043,Student,Greater Accra,App,2025-01-01
+CU2044,Trader,Greater Accra,Campaign,2025-01-01
+CU2045,Salaried,Northern,Referral,2025-01-01
+CU2046,Salaried,Greater Accra,Referral,2025-01-02
+CU2047,Trader,Upper West,Referral,2025-01-03
+CU2048,Student,Northern,Referral,2025-01-05
+CU2049,Salaried,Northern,App,2025-01-05
+CU2050,Student,Upper West,Campaign,2025-01-05
+CU2051,Student,Greater Accra,Agent,2025-01-06
+CU2052,Student,Greater Accra,Agent,2025-01-06
+CU2053,Farmer,Upper West,Campaign,2025-01-07
+CU2054,Trader,Upper East,Agent,2025-01-07
+CU2055,Trader,Upper East,Referral,2025-01-08
+CU2056,Retail,Northern,App,2025-01-08
+CU2057,Student,Upper East,Agent,2025-01-08
+CU2058,Salaried,Volta,Agent,2025-01-09
+CU2059,Retail,Upper East,App,2025-01-09
+CU2060,Student,Upper West,Campaign,2025-01-10
+CU2061,Salaried,Northern,Campaign,2025-01-11
+CU2062,Trader,Upper West,Agent,2025-01-11
+CU2063,Salaried,Upper East,Agent,2025-01-11
+CU2064,Salaried,Northern,Referral,2025-01-13
+CU2065,Retail,Upper West,Agent,2025-01-13
+CU2066,Trader,Upper West,Campaign,2025-01-13
+CU2067,Retail,Northern,Campaign,2025-01-14
+CU2068,Salaried,Greater Accra,Agent,2025-01-14
+CU2069,Trader,Upper West,App,2025-01-14
+CU2070,Retail,Volta,Agent,2025-01-15
+CU2071,Retail,Greater Accra,App,2025-01-15
+CU2072,Retail,Greater Accra,Agent,2025-01-15
+CU2073,Trader,Greater Accra,Agent,2025-01-15
+CU2074,Trader,Upper West,Campaign,2025-01-16
+CU2075,Trader,Volta,App,2025-01-16
+CU2076,Retail,Upper West,Referral,2025-01-16
+CU2077,Salaried,Greater Accra,Agent,2025-01-16
+CU2078,Salaried,Upper West,App,2025-01-16
+CU2079,Trader,Upper West,Agent,2025-01-16
+CU2080,Salaried,Northern,Agent,2025-01-17
+CU2081,Farmer,Greater Accra,Referral,2025-01-17
+CU2082,Salaried,Upper East,Referral,2025-01-18
+CU2083,Salaried,Volta,Referral,2025-01-19
+CU2084,Retail,Volta,App,2025-01-19
+CU2085,Retail,Upper East,App,2025-01-19
+CU2086,Retail,Greater Accra,App,2025-01-20
+CU2087,Farmer,Northern,Campaign,2025-01-20
+CU2088,Trader,Northern,Agent,2025-01-20
+CU2089,Student,Volta,App,2025-01-20
+CU2090,TRADER,Volta,Agent,2025-01-20
+CU2091,Salaried,Greater Accra,Agent,2025-01-21
+CU2092,Salaried,Greater Accra,Agent,2025-01-21
+CU2093,Student,Greater Accra,Referral,2025-01-21
+CU2094,Salaried,Greater Accra,App,2025-01-23
+CU2095,Student,Greater Accra,Referral,2025-01-23
+CU2096,Trader,Northern,Referral,2025-01-23
+CU2097,Student,Northern,Agent,2025-01-23
+CU2098,Student,Northern,Referral,2025-01-23
+CU2099,Salaried,Greater Accra,Referral,2025-01-23
+CU2100,Retail,Upper East,Referral,2025-01-25
+CU2101,Trader,Greater Accra,Agent,2025-01-25
+CU2102,Salaried,Upper West,Agent,2025-01-26
+CU2103,Student,Volta,App,2025-01-26
+CU2104,Trader,Greater Accra,Agent,2025-01-26
+CU2105,Salaried,Greater Accra,Referral,2025-01-27
+CU2106,Trader,Northern,App,2025-01-27
+CU2107,Student,Greater Accra,App,2025-01-28
+CU2108,Salaried,Upper East,Agent,2025-01-28
+CU2109,Trader,Volta,Agent,2025-01-29
+CU2110,Retail,Greater Accra,Agent,2025-01-30
+CU2111,Farmer,Greater Accra,Campaign,2025-01-31
+CU2112,Student,Northern,Referral,2025-02-01
+CU2113,Retail,Upper West,Referral,2025-02-01
+CU2114,  Farmer ,Upper West,Agent,2025-02-01
+CU2115,Retail,Northern,Campaign,2025-02-02
+CU2116,Student,Volta,Campaign,2025-02-02
+CU2117,RETAIL,Greater Accra,App,2025-02-03
+CU2118,Student,Greater Accra,Referral,2025-02-03
+CU2119,Retail,Northern,Referral,2025-02-04
+CU2120,Farmer,Upper West,App,2025-02-04
+CU2121,Retail,Volta,Referral,2025-02-04
+CU2122,Retail,Upper West,Agent,2025-02-05
+CU2123,Retail,Upper West,App,2025-02-05
+CU2124,Retail,Volta,Campaign,2025-02-05
+CU2125,Retail,Greater Accra,App,2025-02-05
+CU2126,Student,Greater Accra,App,2025-02-05
+CU2127,Salaried,Greater Accra,App,2025-02-05
+CU2128,Salaried,Greater Accra,App,2025-02-06
+CU2129,Student,Greater Accra,App,2025-02-06
+CU2130,Salaried,Volta,Agent,2025-02-06
+CU2131,Salaried,Northern,Referral,2025-02-06
+CU2132,Salaried,Greater Accra,App,2025-02-07
+CU2133,Trader,Volta,App,2025-02-07
+CU2134,Salaried,Volta,Campaign,2025-02-08
+CU2135,Farmer,Greater Accra,App,2025-02-08
+CU2136,Farmer,Greater Accra,Referral,2025-02-09
+CU2137,Salaried,Greater Accra,Agent,2025-02-09
+CU2138,Salaried,Northern,Campaign,2025-02-09
+CU2139,Salaried,Volta,Campaign,2025-02-10
+CU2140,Farmer,Upper West,Campaign,2025-02-11
+CU2141,Salaried,Volta,Referral,2025-02-11
+CU2142,Retail,Greater Accra,Campaign,2025-02-11
+CU2143,Trader,Upper East,Referral,2025-02-11
+CU2144,Farmer,Northern,Agent,2025-02-12
+CU2145,Retail,Upper East,Agent,2025-02-12
+CU2146,Trader,Greater Accra,Agent,2025-02-12
+CU2147,Salaried,Greater Accra,Agent,2025-02-12
+CU2148,Trader,Northern,Agent,2025-02-12
+CU2149,Retail,Volta,App,2025-02-12
+CU2150,Retail,Greater Accra,Referral,2025-02-12
+CU2151,Retail,Greater Accra,Referral,2025-02-15
+CU2152,Trader,Upper East,Agent,2025-02-16
+CU2153,Salaried,Greater Accra,Campaign,2025-02-16
+CU2154,Salaried,Volta,App,2025-02-16
+CU2155,Trader,Northern,Agent,2025-02-17
+CU2156,Trader,Greater Accra,Agent,2025-02-17
+CU2157,salaried,Upper East,Referral,2025-02-17
+CU2158,Retail,Greater Accra,Agent,2025-02-17
+CU2159,Farmer,Upper West,Campaign,2025-02-18
+CU2160,Student,Upper East,App,2025-02-18
+CU2161,  Trader ,Upper East,Agent,2025-02-18
+CU2162,salaried,Northern,Referral,2025-02-18
+CU2163,  Salaried ,Upper East,Agent,2025-02-18
+CU2164,Trader,Volta,App,2025-02-18
+CU2165,Retail,Northern,Campaign,2025-02-18
+CU2166,trader,Northern,App,2025-02-19
+CU2167,Student,Upper East,Agent,2025-02-19
+CU2168,Farmer,Greater Accra,Campaign,2025-02-19
+CU2169,  Student ,Greater Accra,App,2025-02-19
+CU2170,Farmer,Greater Accra,App,2025-02-19
+CU2171,retail,Greater Accra,Campaign,2025-02-20
+CU2172,Retail,Northern,Referral,2025-02-20
+CU2173,Student,Volta,App,2025-02-20
+CU2174,Trader,Greater Accra,App,2025-02-21
+CU2175,Retail,Northern,Referral,2025-02-21
+CU2176,Student,Volta,Agent,2025-02-21
+CU2177,Retail,Greater Accra,Referral,2025-02-21
+CU2178,Retail,Greater Accra,Referral,2025-02-22
+CU2179,Salaried,Northern,Referral,2025-02-23
+CU2180,Trader,Volta,Agent,2025-02-23
+CU2181,Farmer,Greater Accra,Referral,2025-02-23
+CU2182,Student,Greater Accra,Campaign,2025-02-23
+CU2183,Trader,Upper West,Referral,2025-02-23
+CU2184,Salaried,Greater Accra,Agent,2025-02-23
+CU2185,Retail,Northern,Agent,2025-02-23
+CU2186,Trader,Upper West,Campaign,2025-02-24
+CU2187,Trader,Volta,App,2025-02-24
+CU2188,Retail,Greater Accra,App,2025-02-24
+CU2189,  Salaried ,Greater Accra,Campaign,2025-02-24
+CU2190,Student,Volta,Referral,2025-02-24
+CU2191,Salaried,Upper West,Referral,2025-02-25
+CU2192,Retail,Upper East,Agent,2025-02-26
+CU2193,STUDENT,Upper East,Agent,2025-02-26
+CU2194,Retail,Northern,Referral,2025-02-26
+CU2195,Trader,Volta,Agent,2025-02-26
+CU2196,Farmer,Upper East,Agent,2025-02-26
+CU2197,Trader,Greater Accra,Agent,2025-02-27
+CU2198,Retail,Northern,Agent,2025-02-27
+CU2199,Retail,Upper East,Referral,2025-02-27
+CU2200,Student,Greater Accra,Agent,2025-02-27
+CU2201,Trader,Greater Accra,Referral,2025-02-28
+CU2202,Student,Greater Accra,Campaign,2025-02-28
+CU2203,Farmer,Volta,Referral,2025-02-28
+CU2204,Retail,Greater Accra,Referral,2025-02-28
+CU2205,Farmer,Upper West,Agent,2025-02-28
+CU2206,Trader,Volta,App,2025-03-01
+CU2207,RETAIL,Greater Accra,App,2025-03-01
+CU2208,Farmer,Greater Accra,Agent,2025-03-01
+CU2209,Salaried,Upper West,Campaign,2025-03-01
+CU2210,Farmer,Greater Accra,Referral,2025-03-01
+CU2211,Salaried,Greater Accra,Referral,2025-03-02
+CU2212,Retail,Volta,Referral,2025-03-02
+CU2213,Trader,Upper West,Referral,2025-03-02
+CU2214,Retail,Northern,App,2025-03-02
+CU2215,Trader,Northern,App,2025-03-02
+CU2216,Salaried,Greater Accra,App,2025-03-02
+CU2217,Trader,Greater Accra,Referral,2025-03-03
+CU2218,Farmer,Upper East,App,2025-03-03
+CU2219,TRADER,Upper West,Referral,2025-03-04
+CU2220,Trader,Northern,Referral,2025-03-04
+CU2221,Student,Upper West,App,2025-03-04
+CU2222,Salaried,Greater Accra,Campaign,2025-03-04
+CU2223,Trader,Upper West,Agent,2025-03-04
+CU2224,Trader,Upper East,Agent,2025-03-05
+CU2225,Farmer,Upper West,App,2025-03-05
+CU2226,Retail,Greater Accra,Agent,2025-03-06
+CU2227,Retail,Greater Accra,Referral,2025-03-06
+CU2228,Retail,Northern,App,2025-03-07
+CU2229,Salaried,Northern,Campaign,2025-03-07
+CU2230,farmer,Greater Accra,App,2025-03-07
+CU2231,Student,Northern,Agent,2025-03-07
+CU2232,Trader,Greater Accra,Campaign,2025-03-07
+CU2233,Farmer,Northern,Agent,2025-03-08
+CU2234,Farmer,Upper West,Agent,2025-03-08
+CU2235,Retail,Greater Accra,Campaign,2025-03-08
+CU2236,Farmer,Upper East,Campaign,2025-03-08
+CU2237,Salaried,Greater Accra,App,2025-03-08
+CU2238,Trader,Northern,Campaign,2025-03-08
+CU2239,Trader,Northern,Campaign,2025-03-08
+CU2240,Retail,Volta,Campaign,2025-03-09
+CU2241,Trader,Greater Accra,Agent,2025-03-09
+CU2242,Salaried,Northern,App,2025-03-09
+CU2243,Retail,Greater Accra,Campaign,2025-03-11
+CU2244,Student,Upper West,App,2025-03-11
+CU2245,Retail,Upper East,App,2025-03-11
+CU2246,Trader,Volta,Agent,2025-03-11
+CU2247,Retail,Upper West,Agent,2025-03-11
+CU2248,Salaried,Volta,Campaign,2025-03-11
+CU2249,Retail,Upper East,Referral,2025-03-11
+CU2250,Retail,Upper East,Agent,2025-03-12
+CU2251,Retail,Upper East,Campaign,2025-03-12
+CU2252,Student,Greater Accra,Campaign,2025-03-12
+CU2253,Trader,Greater Accra,Agent,2025-03-13
+CU2254,Student,Greater Accra,Agent,2025-03-13
+CU2255,Student,Greater Accra,Campaign,2025-03-14
+CU2256,Retail,Upper West,Campaign,2025-03-14
+CU2257,Retail,Greater Accra,Agent,2025-03-16
+CU2258,Student,Greater Accra,Agent,2025-03-16
+CU2259,Salaried,Upper West,Referral,2025-03-17
+CU2260,Retail,Volta,App,2025-03-18
+CU2261,Retail,Greater Accra,Agent,2025-03-18
+CU2262,Farmer,Northern,Referral,2025-03-18
+CU2263,Retail,Greater Accra,Referral,2025-03-19
+CU2264,Salaried,Greater Accra,Agent,2025-03-19
+CU2265,Retail,Greater Accra,Agent,2025-03-20
+CU2266,Salaried,Greater Accra,Campaign,2025-03-20
+CU2267,Trader,Upper West,App,2025-03-21
+CU2268,Student,Upper East,Campaign,2025-03-21
+CU2269,Student,Northern,Campaign,2025-03-21
+CU2270,Trader,Upper East,App,2025-03-21
+CU2271,Retail,Upper East,Agent,2025-03-21
+CU2272,Salaried,Greater Accra,Campaign,2025-03-21
+CU2273,Retail,Upper West,Agent,2025-03-22
+CU2274,  Retail ,Volta,App,2025-03-22
+CU2275,Retail,Greater Accra,Agent,2025-03-22
+CU2276,Farmer,Greater Accra,App,2025-03-23
+CU2277,Farmer,Greater Accra,Agent,2025-03-23
+CU2278,Salaried,Upper East,App,2025-03-24
+CU2279,trader,Upper East,Agent,2025-03-24
+CU2280,Student,Northern,Agent,2025-03-24
+CU2281,Salaried,Greater Accra,Referral,2025-03-24
+CU2282,RETAIL,Greater Accra,Referral,2025-03-25
+CU2283,farmer,Volta,Campaign,2025-03-25
+CU2284,Retail,Northern,Referral,2025-03-26
+CU2285,Trader,Greater Accra,Agent,2025-03-26
+CU2286,Farmer,Greater Accra,Campaign,2025-03-26
+CU2287,Retail,Volta,App,2025-03-26
+CU2288,Salaried,Volta,Agent,2025-03-27
+CU2289,Trader,Greater Accra,Campaign,2025-03-27
+CU2290,Retail,Greater Accra,App,2025-03-27
+CU2291,Farmer,Greater Accra,Referral,2025-03-29
+CU2292,salaried,Volta,Campaign,2025-03-31
+CU2293,Retail,Greater Accra,App,2025-04-01
+CU2294,SALARIED,Northern,Agent,2025-04-01
+CU2295,Retail,Northern,Referral,2025-04-01
+CU2296,Student,Northern,Referral,2025-04-01
+CU2297,Salaried,Northern,Campaign,2025-04-01
+CU2298,Student,Upper West,Campaign,2025-04-02
+CU2299,Retail,Northern,App,2025-04-02
+CU2300,Trader,Volta,Referral,2025-04-02
+CU2301,Trader,Greater Accra,Referral,2025-04-03
+CU2302,Student,Upper East,Referral,2025-04-03
+CU2303,trader,Greater Accra,App,2025-04-04
+CU2304,Retail,Upper East,Referral,2025-04-04
+CU2305,Retail,Volta,Agent,2025-04-04
+CU2306,Trader,Greater Accra,App,2025-04-05
+CU2307,Farmer,Upper East,App,2025-04-05
+CU2308,Farmer,Upper East,Referral,2025-04-06
+CU2309,Farmer,Upper West,Agent,2025-04-06
+CU2310,Trader,Upper West,Referral,2025-04-07
+CU2311,Retail,Upper East,Agent,2025-04-07
+CU2312,Farmer,Northern,App,2025-04-07
+CU2313,Retail,Upper West,Campaign,2025-04-07
+CU2314,RETAIL,Upper East,App,2025-04-07
+CU2315,Student,Upper West,Agent,2025-04-08
+CU2316,Student,Upper East,Referral,2025-04-08
+CU2317,Retail,Greater Accra,Referral,2025-04-08
+CU2318,Student,Greater Accra,Referral,2025-04-08
+CU2319,Retail,Greater Accra,Referral,2025-04-09
+CU2320,Trader,Greater Accra,Agent,2025-04-09
+CU2321,Salaried,Greater Accra,App,2025-04-09
+CU2322,farmer,Volta,Referral,2025-04-11
+CU2323,SALARIED,Northern,Referral,2025-04-11
+CU2324,Farmer,Upper West,App,2025-04-11
+CU2325,Student,Greater Accra,Agent,2025-04-11
+CU2326,Trader,Greater Accra,App,2025-04-12
+CU2327,Trader,Upper West,Referral,2025-04-12
+CU2328,Trader,Volta,Campaign,2025-04-12
+CU2329,Retail,Volta,Referral,2025-04-12
+CU2330,Retail,Volta,App,2025-04-12
+CU2331,RETAIL,Volta,App,2025-04-12
+CU2332,Student,Greater Accra,Campaign,2025-04-12
+CU2333,Salaried,Greater Accra,Agent,2025-04-13
+CU2334,Student,Northern,App,2025-04-13
+CU2335,Trader,Upper East,Agent,2025-04-13
+CU2336,Student,Upper East,Agent,2025-04-13
+CU2337,Salaried,Greater Accra,Agent,2025-04-14
+CU2338,Salaried,Northern,Referral,2025-04-14
+CU2339,Salaried,Greater Accra,App,2025-04-14
+CU2340,Retail,Greater Accra,Agent,2025-04-14
+CU2341,Retail,Upper East,Campaign,2025-04-14
+CU2342,Student,Northern,App,2025-04-14
+CU2343,Salaried,Greater Accra,Campaign,2025-04-15
+CU2344,Student,Volta,Agent,2025-04-15
+CU2345,Student,Northern,Referral,2025-04-15
+CU2346,Retail,Northern,Agent,2025-04-15
+CU2347,Student,Upper East,Agent,2025-04-15
+CU2348,Trader,Greater Accra,Agent,2025-04-16
+CU2349,SALARIED,Greater Accra,App,2025-04-16
+CU2350,student,Greater Accra,Referral,2025-04-17
+CU2351,Farmer,Volta,Agent,2025-04-17
+CU2352,Farmer,Upper West,Campaign,2025-04-17
+CU2353,Farmer,Upper West,Agent,2025-04-17
+CU2354,Retail,Northern,Campaign,2025-04-17
+CU2355,Student,Upper East,Agent,2025-04-19
+CU2356,Student,Northern,Campaign,2025-04-19
+CU2357,Salaried,Greater Accra,Campaign,2025-04-19
+CU2358,Salaried,Upper West,App,2025-04-19
+CU2359,Salaried,Volta,Agent,2025-04-20
+CU2360,Student,Greater Accra,App,2025-04-20
+CU2361,Student,Volta,Campaign,2025-04-20
+CU2362,Student,Greater Accra,Campaign,2025-04-21
+CU2363,Student,Upper West,Agent,2025-04-21
+CU2364,trader,Greater Accra,App,2025-04-21
+CU2365,Retail,Volta,Agent,2025-04-21
+CU2366,Student,Greater Accra,Agent,2025-04-21
+CU2367,Farmer,Upper East,App,2025-04-21
+CU2368,Farmer,Upper West,App,2025-04-21
+CU2369,Farmer,Northern,Campaign,2025-04-21
+CU2370,Farmer,Greater Accra,App,2025-04-21
+CU2371,Trader,Upper East,Agent,2025-04-22
+CU2372,Trader,Northern,Referral,2025-04-22
+CU2373,Salaried,Upper West,Agent,2025-04-22
+CU2374,Salaried,Upper West,Agent,2025-04-23
+CU2375,Retail,Upper East,Campaign,2025-04-24
+CU2376,Retail,Greater Accra,App,2025-04-25
+CU2377,Trader,Volta,Campaign,2025-04-25
+CU2378,STUDENT,Greater Accra,Referral,2025-04-25
+CU2379,Farmer,Volta,Campaign,2025-04-25
+CU2380,  Retail ,Greater Accra,Agent,2025-04-25
+CU2381,Student,Greater Accra,Campaign,2025-04-25
+CU2382,Farmer,Greater Accra,App,2025-04-25
+CU2383,Salaried,Northern,Campaign,2025-04-26
+CU2384,Salaried,Volta,Referral,2025-04-27
+CU2385,Student,Upper West,Referral,2025-04-27
+CU2386,Student,Greater Accra,Campaign,2025-04-27
+CU2387,Salaried,Upper East,Campaign,2025-04-28
+CU2388,  Student ,Greater Accra,Agent,2025-04-28
+CU2389,Farmer,Upper East,Agent,2025-04-29
+CU2390,Trader,Greater Accra,Campaign,2025-04-30
+CU2391,Trader,Volta,Campaign,2025-04-30
+CU2392,  Student ,Upper West,Agent,2025-04-30
+CU2393,Retail,Greater Accra,App,2025-05-01
+CU2394,Trader,Greater Accra,App,2025-05-01
+CU2395,Student,Greater Accra,Agent,2025-05-01
+CU2396,Student,Northern,Referral,2025-05-02
+CU2397,Salaried,Volta,Referral,2025-05-02
+CU2398,Farmer,Greater Accra,Campaign,2025-05-02
+CU2399,Farmer,Greater Accra,Agent,2025-05-02
+CU2400,STUDENT,Upper East,Campaign,2025-05-04
+CU2401,Salaried,Greater Accra,Referral,2025-05-05
+CU2402,Student,Volta,App,2025-05-06
+CU2403,Trader,Greater Accra,Agent,2025-05-06
+CU2404,Farmer,Greater Accra,Campaign,2025-05-07
+CU2405,  Retail ,Upper East,App,2025-05-07
+CU2406,Retail,Greater Accra,Referral,2025-05-07
+CU2407,Trader,Upper East,App,2025-05-07
+CU2408,Retail,Volta,Agent,2025-05-08
+CU2409,Student,Volta,Referral,2025-05-08
+CU2410,Salaried,Greater Accra,Referral,2025-05-08
+CU2411,Student,Greater Accra,Campaign,2025-05-08
+CU2412,Salaried,Volta,App,2025-05-09
+CU2413,Student,Greater Accra,Agent,2025-05-10
+CU2414,Farmer,Northern,Referral,2025-05-10
+CU2415,retail,Greater Accra,App,2025-05-10
+CU2416,Student,Greater Accra,Referral,2025-05-10
+CU2417,Student,Greater Accra,Agent,2025-05-10
+CU2418,Trader,Upper East,Agent,2025-05-12
+CU2419,Trader,Greater Accra,Agent,2025-05-12
+CU2420,Student,Greater Accra,Referral,2025-05-12
+CU2421,Salaried,Greater Accra,Agent,2025-05-12
+CU2422,Student,Greater Accra,Campaign,2025-05-13
+CU2423,Farmer,Volta,Agent,2025-05-14
+CU2424,Retail,Volta,App,2025-05-14
+CU2425,Student,Greater Accra,App,2025-05-14
+CU2426,Salaried,Volta,App,2025-05-14
+CU2427,Salaried,Volta,Referral,2025-05-15
+CU2428,RETAIL,Greater Accra,Referral,2025-05-16
+CU2429,Trader,Greater Accra,App,2025-05-16
+CU2430,Salaried,Volta,Campaign,2025-05-17
+CU2431,Farmer,Volta,Referral,2025-05-17
+CU2432,Salaried,Greater Accra,App,2025-05-17
+CU2433,trader,Greater Accra,Agent,2025-05-18
+CU2434,Salaried,Greater Accra,Referral,2025-05-18
+CU2435,Farmer,Upper West,App,2025-05-18
+CU2436,Student,Upper West,Campaign,2025-05-18
+CU2437,STUDENT,Greater Accra,App,2025-05-19
+CU2438,  Salaried ,Northern,Referral,2025-05-20
+CU2439,Student,Upper West,Referral,2025-05-20
+CU2440,Salaried,Volta,App,2025-05-21
+CU2441,Retail,Greater Accra,Agent,2025-05-21
+CU2442,Trader,Greater Accra,Agent,2025-05-22
+CU2443,SALARIED,Volta,Agent,2025-05-23
+CU2444,Salaried,Greater Accra,Campaign,2025-05-23
+CU2445,Student,Greater Accra,Referral,2025-05-24
+CU2446,Retail,Greater Accra,Agent,2025-05-24
+CU2447,Student,Greater Accra,Agent,2025-05-24
+CU2448,Student,Greater Accra,Agent,2025-05-24
+CU2449,  Farmer ,Northern,Referral,2025-05-25
+CU2450,Retail,Greater Accra,Agent,2025-05-26
+CU2451,Student,Greater Accra,Agent,2025-05-26
+CU2452,Salaried,Greater Accra,Agent,2025-05-26
+CU2453,Student,Greater Accra,Campaign,2025-05-27
+CU2454,Trader,Upper East,Campaign,2025-05-27
+CU2455,Salaried,Upper West,Agent,2025-05-27
+CU2456,Retail,Greater Accra,Agent,2025-05-28
+CU2457,Farmer,Greater Accra,App,2025-05-28
+CU2458,  Retail ,Greater Accra,App,2025-05-29
+CU2459,Trader,Volta,Agent,2025-05-29
+CU2460,Trader,Northern,App,2025-05-29
+CU2461,Student,Greater Accra,App,2025-05-29
+CU2462,Student,Greater Accra,Referral,2025-05-29
+CU2463,Retail,Greater Accra,Referral,2025-05-29
+CU2464,Student,Northern,Campaign,2025-05-29
+CU2465,Student,Greater Accra,Campaign,2025-05-29
+CU2466,Trader,Northern,Campaign,2025-05-30
+CU2467,Salaried,Greater Accra,App,2025-05-30
+CU2468,Salaried,Greater Accra,Referral,2025-05-30
+CU2469,Trader,Greater Accra,Campaign,2025-05-31
+CU2470,Retail,Volta,Referral,2025-05-31
+CU2471,Student,Greater Accra,Referral,2025-06-01
+CU2472,Farmer,Greater Accra,Campaign,2025-06-01
+CU2473,Trader,Volta,Referral,2025-06-01
+CU2474,Salaried,Greater Accra,App,2025-06-02
+CU2475,  Retail ,Volta,Campaign,2025-06-02
+CU2476,Salaried,Upper West,Campaign,2025-06-02
+CU2477,Farmer,Northern,Agent,2025-06-02
+CU2478,Retail,Upper West,App,2025-06-03
+CU2479,Retail,Northern,App,2025-06-03
+CU2480,  Salaried ,Greater Accra,App,2025-06-03
+CU2481,Trader,Greater Accra,App,2025-06-04
+CU2482,Trader,Greater Accra,Referral,2025-06-05
+CU2483,Trader,Northern,Campaign,2025-06-06
+CU2484,Farmer,Greater Accra,Referral,2025-06-07
+CU2485,Retail,Greater Accra,App,2025-06-07
+CU2486,  Salaried ,Volta,App,2025-06-07
+CU2487,Salaried,Greater Accra,App,2025-06-08
+CU2488,Trader,Greater Accra,Agent,2025-06-08
+CU2489,Student,Upper East,Agent,2025-06-08
+CU2490,Retail,Upper West,Referral,2025-06-08
+CU2491,Retail,Greater Accra,Agent,2025-06-09
+CU2492,  Trader ,Greater Accra,Campaign,2025-06-09
+CU2493,  Retail ,Greater Accra,App,2025-06-09
+CU2494,Farmer,Upper East,Agent,2025-06-09
+CU2495,Retail,Upper East,Agent,2025-06-10
+CU2496,Trader,Northern,Agent,2025-06-10
+CU2497,Salaried,Upper West,Campaign,2025-06-11
+CU2498,Retail,Greater Accra,Campaign,2025-06-11
+CU2499,Trader,Northern,Campaign,2025-06-12
+CU2500,Salaried,Greater Accra,Referral,2025-06-12
+CU2501,Trader,Upper East,Agent,2025-06-12
+CU2502,Trader,Upper East,App,2025-06-12
+CU2503,Retail,Volta,App,2025-06-12
+CU2504,  Retail ,Northern,App,2025-06-13
+CU2505,Retail,Northern,Referral,2025-06-14
+CU2506,Student,Greater Accra,Campaign,2025-06-14
+CU2507,Student,Upper East,Campaign,2025-06-14
+CU2508,trader,Volta,App,2025-06-15
+CU2509,Trader,Northern,Agent,2025-06-15
+CU2510,Retail,Volta,Referral,2025-06-15
+CU2511,Salaried,Northern,Agent,2025-06-15
+CU2512,Retail,Upper West,Agent,2025-06-16
+CU2513,Retail,Northern,Campaign,2025-06-16
+CU2514,Farmer,Greater Accra,App,2025-06-16
+CU2515,RETAIL,Volta,Agent,2025-06-16
+CU2516,Farmer,Volta,Agent,2025-06-16
+CU2517,Student,Greater Accra,Agent,2025-06-16
+CU2518,Trader,Upper East,Agent,2025-06-17
+CU2519,Salaried,Volta,App,2025-06-17
+CU2520,Retail,Volta,Referral,2025-06-18
+CU2521,STUDENT,Northern,Agent,2025-06-18
+CU2522,trader,Upper West,Campaign,2025-06-18
+CU2523,Farmer,Greater Accra,Agent,2025-06-19
+CU2524,Student,Upper West,Agent,2025-06-19
+CU2525,Farmer,Upper West,Campaign,2025-06-19
+CU2526,Farmer,Upper East,App,2025-06-19
+CU2527,Retail,Greater Accra,Agent,2025-06-20
+CU2528,Salaried,Upper East,Agent,2025-06-20
+CU2529,Farmer,Upper West,App,2025-06-20
+CU2530,Trader,Volta,Agent,2025-06-20
+CU2531,retail,Volta,Referral,2025-06-21
+CU2532,Retail,Greater Accra,Agent,2025-06-21
+CU2533,Retail,Greater Accra,Referral,2025-06-22
+CU2534,salaried,Volta,App,2025-06-22
+CU2535,Trader,Greater Accra,Agent,2025-06-23
+CU2536,Trader,Volta,App,2025-06-23
+CU2537,Salaried,Upper West,Referral,2025-06-23
+CU2538,Trader,Greater Accra,Campaign,2025-06-23
+CU2539,Retail,Upper East,App,2025-06-23
+CU2540,Trader,Upper East,Agent,2025-06-24
+CU2541,Student,Upper West,Referral,2025-06-24
+CU2542,Salaried,Upper West,Campaign,2025-06-25
+CU2543,  Farmer ,Greater Accra,Agent,2025-06-25
+CU2544,Trader,Upper West,App,2025-06-25
+CU2545,Farmer,Northern,Agent,2025-06-25
+CU2546,Trader,Upper East,Campaign,2025-06-25
+CU2547,Retail,Greater Accra,Agent,2025-06-26
+CU2548,farmer,Upper East,Referral,2025-06-26
+CU2549,Student,Greater Accra,App,2025-06-26
+CU2550,Trader,Upper West,Referral,2025-06-26
+CU2551,Farmer,Greater Accra,Agent,2025-06-26
+CU2552,Retail,Upper West,Agent,2025-06-26
+CU2553,Trader,Northern,Agent,2025-06-27
+CU2554,Farmer,Greater Accra,Referral,2025-06-27
+CU2555,Farmer,Greater Accra,Referral,2025-06-28
+CU2556,Retail,Upper West,Agent,2025-06-28
+CU2557,Salaried,Volta,Agent,2025-06-28
+CU2558,Trader,Volta,Referral,2025-06-29
+CU2559,Salaried,Upper West,Campaign,2025-06-29
+CU2560,Student,Northern,App,2025-06-29
+CU2561,Salaried,Upper East,Agent,2025-06-30
+CU2562,Trader,Upper West,Agent,2025-06-30
+CU2563,Trader,Volta,Agent,2025-07-01
+CU2564,Trader,Northern,Agent,2025-07-01
+CU2565,Salaried,Upper West,Referral,2025-07-02
+CU2566,Farmer,Northern,Agent,2025-07-02
+CU2567,Retail,Northern,App,2025-07-02
+CU2568,Retail,Upper East,Agent,2025-07-03
+CU2569,Salaried,Greater Accra,Referral,2025-07-03
+CU2570,Trader,Greater Accra,App,2025-07-04
+CU2571,Trader,Northern,App,2025-07-04
+CU2572,Farmer,Greater Accra,Campaign,2025-07-04
+CU2573,Trader,Greater Accra,Campaign,2025-07-04
+CU2574,Salaried,Northern,Agent,2025-07-04
+CU2575,Retail,Northern,Agent,2025-07-05
+CU2576,Salaried,Greater Accra,Agent,2025-07-05
+CU2577,Retail,Upper East,App,2025-07-05
+CU2578,Student,Upper East,App,2025-07-05
+CU2579,Retail,Northern,Agent,2025-07-06
+CU2580,Salaried,Volta,Agent,2025-07-06
+CU2581,Trader,Upper East,Campaign,2025-07-06
+CU2582,Retail,Northern,Referral,2025-07-07
+CU2583,Student,Upper West,Campaign,2025-07-07
+CU2584,Retail,Northern,Campaign,2025-07-07
+CU2585,Retail,Upper West,Campaign,2025-07-07
+CU2586,Salaried,Upper West,Campaign,2025-07-08
+CU2587,Retail,Northern,Agent,2025-07-08
+CU2588,Retail,Upper East,Agent,2025-07-08
+CU2589,Retail,Upper West,App,2025-07-08
+CU2590,Retail,Greater Accra,App,2025-07-08
+CU2591,Retail,Greater Accra,Referral,2025-07-08
+CU2592,Salaried,Greater Accra,Referral,2025-07-08
+CU2593,Salaried,Northern,Agent,2025-07-09
+CU2594,Retail,Greater Accra,Campaign,2025-07-09
+CU2595,Retail,Upper West,App,2025-07-09
+CU2596,Retail,Greater Accra,Campaign,2025-07-10
+CU2597,Student,Greater Accra,Agent,2025-07-11
+CU2598,Salaried,Greater Accra,App,2025-07-11
+CU2599,Salaried,Upper East,App,2025-07-11
+CU2600,Retail,Upper West,App,2025-07-12
+CU2601,Student,Northern,App,2025-07-12
+CU2602,Student,Volta,Agent,2025-07-12
+CU2603,Student,Volta,Referral,2025-07-12
+CU2604,Student,Greater Accra,Agent,2025-07-13
+CU2605,Salaried,Upper East,Agent,2025-07-13
+CU2606,Trader,Upper East,Agent,2025-07-14
+CU2607,RETAIL,Upper East,App,2025-07-14
+CU2608,Student,Greater Accra,App,2025-07-14
+CU2609,Retail,Northern,Campaign,2025-07-14
+CU2610,Retail,Greater Accra,App,2025-07-14
+CU2611,Trader,Volta,Agent,2025-07-15
+CU2612,Trader,Greater Accra,Agent,2025-07-15
+CU2613,Student,Volta,App,2025-07-15
+CU2614,Retail,Northern,Referral,2025-07-15
+CU2615,Trader,Greater Accra,Agent,2025-07-16
+CU2616,Salaried,Greater Accra,Agent,2025-07-16
+CU2617,Retail,Upper West,App,2025-07-16
+CU2618,Farmer,Northern,Referral,2025-07-16
+CU2619,Farmer,Upper West,Referral,2025-07-17
+CU2620,Trader,Upper West,Campaign,2025-07-17
+CU2621,Salaried,Volta,Referral,2025-07-17
+CU2622,Salaried,Northern,Campaign,2025-07-17
+CU2623,Trader,Upper East,Referral,2025-07-18
+CU2624,Salaried,Volta,App,2025-07-18
+CU2625,Salaried,Greater Accra,Agent,2025-07-19
+CU2626,  Student ,Volta,Agent,2025-07-19
+CU2627,Salaried,Northern,Referral,2025-07-19
+CU2628,Retail,Upper East,Agent,2025-07-20
+CU2629,Student,Volta,Agent,2025-07-21
+CU2630,Student,Greater Accra,Campaign,2025-07-21
+CU2631,Salaried,Greater Accra,Referral,2025-07-21
+CU2632,Salaried,Upper West,Campaign,2025-07-22
+CU2633,Salaried,Northern,Agent,2025-07-22
+CU2634,Retail,Volta,Referral,2025-07-23
+CU2635,Retail,Greater Accra,Campaign,2025-07-23
+CU2636,Retail,Northern,Campaign,2025-07-24
+CU2637,Salaried,Upper East,Referral,2025-07-24
+CU2638,Salaried,Upper East,Agent,2025-07-24
+CU2639,Student,Upper West,App,2025-07-25
+CU2640,Trader,Northern,Agent,2025-07-25
+CU2641,Trader,Northern,Campaign,2025-07-26
+CU2642,Retail,Volta,App,2025-07-26
+CU2643,Trader,Northern,Agent,2025-07-26
+CU2644,Student,Greater Accra,Referral,2025-07-27
+CU2645,Trader,Upper East,App,2025-07-27
+CU2646,Farmer,Greater Accra,Referral,2025-07-27
+CU2647,Retail,Greater Accra,Agent,2025-07-28
+CU2648,Student,Volta,Agent,2025-07-28
+CU2649,trader,Greater Accra,Campaign,2025-07-30
+CU2650,Retail,Greater Accra,Referral,2025-07-30
+CU2651,Student,Northern,Agent,2025-07-30
+CU2652,Trader,Greater Accra,Campaign,2025-07-31
+CU2653,Trader,Volta,Referral,2025-07-31
+CU2654,Student,Volta,Referral,2025-07-31
+CU2655,Salaried,Greater Accra,Campaign,2025-08-01
+CU2656,Salaried,Volta,Campaign,2025-08-01
+CU2657,  Trader ,Volta,Agent,2025-08-01
+CU2658,Retail,Northern,Agent,2025-08-01
+CU2659,Student,Greater Accra,Agent,2025-08-02
+CU2660,Student,Greater Accra,Referral,2025-08-02
+CU2661,Trader,Greater Accra,Agent,2025-08-02
+CU2662,salaried,Upper West,Referral,2025-08-03
+CU2663,Farmer,Volta,App,2025-08-04
+CU2664,Trader,Greater Accra,App,2025-08-04
+CU2665,Farmer,Upper West,Campaign,2025-08-04
+CU2666,Trader,Greater Accra,Agent,2025-08-04
+CU2667,Salaried,Upper East,App,2025-08-04
+CU2668,Trader,Northern,Campaign,2025-08-04
+CU2669,Farmer,Greater Accra,Campaign,2025-08-05
+CU2670,Retail,Volta,Referral,2025-08-06
+CU2671,Retail,Greater Accra,Referral,2025-08-06
+CU2672,Salaried,Northern,App,2025-08-06
+CU2673,Salaried,Greater Accra,App,2025-08-07
+CU2674,Salaried,Upper East,App,2025-08-07
+CU2675,Retail,Greater Accra,App,2025-08-07
+CU2676,Retail,Greater Accra,App,2025-08-08
+CU2677,Retail,Northern,App,2025-08-08
+CU2678,Trader,Upper East,Campaign,2025-08-08
+CU2679,Salaried,Upper East,Agent,2025-08-08
+CU2680,Retail,Upper West,Agent,2025-08-08
+CU2681,Student,Upper West,Agent,2025-08-09
+CU2682,Retail,Volta,Agent,2025-08-09
+CU2683,Salaried,Northern,Referral,2025-08-09
+CU2684,Student,Northern,App,2025-08-09
+CU2685,Salaried,Northern,Agent,2025-08-10
+CU2686,Trader,Upper East,Agent,2025-08-10
+CU2687,Salaried,Greater Accra,Agent,2025-08-10
+CU2688,Retail,Greater Accra,App,2025-08-10
+CU2689,Salaried,Upper East,Campaign,2025-08-10
+CU2690,Trader,Greater Accra,Agent,2025-08-10
+CU2691,Farmer,Volta,Referral,2025-08-10
+CU2692,Salaried,Volta,Referral,2025-08-11
+CU2693,Retail,Greater Accra,Agent,2025-08-12
+CU2694,Retail,Northern,App,2025-08-12
+CU2695,Retail,Northern,App,2025-08-12
+CU2696,Student,Greater Accra,Agent,2025-08-12
+CU2697,Salaried,Greater Accra,Agent,2025-08-12
+CU2698,Retail,Greater Accra,Referral,2025-08-13
+CU2699,Retail,Upper West,Agent,2025-08-13
+CU2700,Retail,Northern,Agent,2025-08-13
+CU2701,Retail,Greater Accra,Campaign,2025-08-14
+CU2702,Trader,Volta,Referral,2025-08-14
+CU2703,Retail,Greater Accra,Agent,2025-08-15
+CU2704,  Trader ,Upper West,Agent,2025-08-15
+CU2705,Salaried,Greater Accra,Agent,2025-08-15
+CU2706,Retail,Upper West,App,2025-08-15
+CU2707,Salaried,Greater Accra,Agent,2025-08-16
+CU2708,Trader,Greater Accra,Agent,2025-08-16
+CU2709,Farmer,Greater Accra,Campaign,2025-08-17
+CU2710,Farmer,Greater Accra,App,2025-08-17
+CU2711,Trader,Northern,Referral,2025-08-17
+CU2712,Salaried,Northern,Campaign,2025-08-17
+CU2713,Salaried,Greater Accra,Campaign,2025-08-17
+CU2714,Farmer,Greater Accra,App,2025-08-18
+CU2715,Salaried,Volta,App,2025-08-18
+CU2716,Trader,Greater Accra,App,2025-08-19
+CU2717,Salaried,Greater Accra,Campaign,2025-08-20
+CU2718,Trader,Greater Accra,App,2025-08-20
+CU2719,Trader,Greater Accra,Campaign,2025-08-20
+CU2720,RETAIL,Greater Accra,App,2025-08-20
+CU2721,Salaried,Upper West,App,2025-08-22
+CU2722,Salaried,Volta,App,2025-08-22
+CU2723,Trader,Upper East,Campaign,2025-08-22
+CU2724,Trader,Upper West,Agent,2025-08-22
+CU2725,Salaried,Greater Accra,Referral,2025-08-22
+CU2726,Retail,Greater Accra,App,2025-08-23
+CU2727,Retail,Upper East,Referral,2025-08-23
+CU2728,Farmer,Greater Accra,Campaign,2025-08-23
+CU2729,Retail,Northern,App,2025-08-23
+CU2730,Salaried,Greater Accra,App,2025-08-24
+CU2731,Salaried,Northern,Campaign,2025-08-25
+CU2732,Retail,Volta,App,2025-08-25
+CU2733,SALARIED,Upper West,Agent,2025-08-26
+CU2734,Student,Northern,Agent,2025-08-26
+CU2735,Farmer,Volta,Agent,2025-08-26
+CU2736,Student,Greater Accra,Referral,2025-08-26
+CU2737,Farmer,Upper West,Campaign,2025-08-26
+CU2738,Retail,Northern,Agent,2025-08-27
+CU2739,Farmer,Volta,App,2025-08-27
+CU2740,Salaried,Greater Accra,App,2025-08-28
+CU2741,Salaried,Greater Accra,Campaign,2025-08-28
+CU2742,Trader,Volta,Agent,2025-08-30
+CU2743,Retail,Upper West,Agent,2025-08-30
+CU2744,Retail,Northern,Campaign,2025-08-30
+CU2745,Farmer,Northern,Agent,2025-08-30
+CU2746,Student,Greater Accra,App,2025-08-31
+CU2747,Trader,Greater Accra,App,2025-08-31
+CU2748,Salaried,Greater Accra,Referral,2025-09-01
+CU2749,Salaried,Northern,Referral,2025-09-01
+CU2750,Student,Volta,Referral,2025-09-02
+CU2751,Salaried,Greater Accra,App,2025-09-02
+CU2752,Retail,Volta,App,2025-09-03
+CU2753,Trader,Volta,Referral,2025-09-03
+CU2754,Farmer,Greater Accra,App,2025-09-03
+CU2755,retail,Northern,Agent,2025-09-03
+CU2756,Salaried,Upper East,Referral,2025-09-04
+CU2757,Farmer,Greater Accra,Referral,2025-09-04
+CU2758,Salaried,Upper East,App,2025-09-04
+CU2759,Student,Upper East,App,2025-09-04
+CU2760,Farmer,Greater Accra,Campaign,2025-09-04
+CU2761,Retail,Volta,App,2025-09-05
+CU2762,Retail,Northern,Agent,2025-09-05
+CU2763,Salaried,Northern,Agent,2025-09-06
+CU2764,Student,Greater Accra,Referral,2025-09-06
+CU2765,Trader,Volta,Campaign,2025-09-06
+CU2766,Student,Greater Accra,Referral,2025-09-06
+CU2767,Salaried,Upper West,Campaign,2025-09-06
+CU2768,Salaried,Volta,App,2025-09-06
+CU2769,Trader,Upper West,Referral,2025-09-07
+CU2770,Salaried,Greater Accra,App,2025-09-07
+CU2771,Salaried,Upper West,Campaign,2025-09-07
+CU2772,Trader,Greater Accra,Agent,2025-09-07
+CU2773,STUDENT,Greater Accra,Referral,2025-09-08
+CU2774,Trader,Greater Accra,Referral,2025-09-08
+CU2775,Retail,Greater Accra,Agent,2025-09-08
+CU2776,Salaried,Upper East,Campaign,2025-09-08
+CU2777,Retail,Greater Accra,Referral,2025-09-08
+CU2778,Farmer,Greater Accra,Agent,2025-09-08
+CU2779,Retail,Greater Accra,Agent,2025-09-08
+CU2780,Salaried,Upper East,Agent,2025-09-09
+CU2781,Trader,Northern,Agent,2025-09-09
+CU2782,SALARIED,Greater Accra,Campaign,2025-09-09
+CU2783,Retail,Upper West,App,2025-09-09
+CU2784,Retail,Greater Accra,App,2025-09-10
+CU2785,Retail,Northern,Agent,2025-09-10
+CU2786,Trader,Upper East,Agent,2025-09-10
+CU2787,Retail,Upper East,App,2025-09-11
+CU2788,Student,Northern,App,2025-09-11
+CU2789,Trader,Northern,Referral,2025-09-11
+CU2790,Trader,Volta,Campaign,2025-09-12
+CU2791,Retail,Northern,Agent,2025-09-12
+CU2792,TRADER,Greater Accra,Agent,2025-09-12
+CU2793,Student,Northern,App,2025-09-12
+CU2794,Farmer,Greater Accra,Agent,2025-09-12
+CU2795,Retail,Northern,Agent,2025-09-13
+CU2796,Salaried,Upper West,Agent,2025-09-13
+CU2797,Retail,Upper East,Referral,2025-09-13
+CU2798,Farmer,Greater Accra,App,2025-09-13
+CU2799,Trader,Greater Accra,App,2025-09-14
+CU2800,Salaried,Volta,App,2025-09-14
+CU2801,Student,Volta,App,2025-09-14
+CU2802,Salaried,Greater Accra,Agent,2025-09-14
+CU2803,Student,Volta,Referral,2025-09-14
+CU2804,Salaried,Volta,Agent,2025-09-14
+CU2805,Student,Greater Accra,Campaign,2025-09-15
+CU2806,Retail,Upper East,Campaign,2025-09-15
+CU2807,Student,Northern,Agent,2025-09-15
+CU2808,Trader,Greater Accra,Agent,2025-09-15
+CU2809,farmer,Volta,Agent,2025-09-16
+CU2810,Student,Volta,App,2025-09-16
+CU2811,Retail,Upper East,Campaign,2025-09-17
+CU2812,Farmer,Greater Accra,Campaign,2025-09-17
+CU2813,Retail,Volta,App,2025-09-17
+CU2814,Trader,Upper West,App,2025-09-17
+CU2815,Trader,Greater Accra,Referral,2025-09-18
+CU2816,Retail,Greater Accra,Agent,2025-09-18
+CU2817,Retail,Greater Accra,App,2025-09-18
+CU2818,Student,Volta,Campaign,2025-09-19
+CU2819,Student,Volta,Campaign,2025-09-20
+CU2820,Salaried,Greater Accra,Referral,2025-09-21
+CU2821,Salaried,Volta,Referral,2025-09-21
+CU2822,Salaried,Greater Accra,Campaign,2025-09-21
+CU2823,Farmer,Northern,Campaign,2025-09-21
+CU2824,retail,Greater Accra,Referral,2025-09-21
+CU2825,RETAIL,Upper East,Campaign,2025-09-22
+CU2826,Trader,Upper West,Referral,2025-09-22
+CU2827,Trader,Greater Accra,Agent,2025-09-22
+CU2828,Retail,Northern,Campaign,2025-09-22
+CU2829,Trader,Greater Accra,App,2025-09-23
+CU2830,Student,Greater Accra,Agent,2025-09-23
+CU2831,Student,Upper West,Campaign,2025-09-23
+CU2832,Farmer,Greater Accra,App,2025-09-23
+CU2833,trader,Northern,App,2025-09-24
+CU2834,Farmer,Northern,App,2025-09-24
+CU2835,Trader,Upper West,Referral,2025-09-24
+CU2836,Salaried,Volta,Agent,2025-09-24
+CU2837,Retail,Northern,Referral,2025-09-24
+CU2838,Retail,Volta,Agent,2025-09-24
+CU2839,Student,Northern,Referral,2025-09-25
+CU2840,Retail,Upper East,Referral,2025-09-25
+CU2841,Student,Upper West,Campaign,2025-09-25
+CU2842,Trader,Greater Accra,Agent,2025-09-25
+CU2843,Student,Upper West,App,2025-09-25
+CU2844,Trader,Greater Accra,Agent,2025-09-25
+CU2845,Salaried,Upper East,Referral,2025-09-26
+CU2846,Retail,Volta,App,2025-09-26
+CU2847,Farmer,Volta,Campaign,2025-09-26
+CU2848,Salaried,Upper East,Agent,2025-09-26
+CU2849,Trader,Greater Accra,Agent,2025-09-26
+CU2850,Retail,Northern,Campaign,2025-09-26
+CU2851,Salaried,Volta,App,2025-09-27
+CU2852,  Student ,Greater Accra,Campaign,2025-09-27
+CU2853,Farmer,Northern,App,2025-09-27
+CU2854,Student,Upper East,App,2025-09-28
+CU2855,Trader,Northern,Referral,2025-09-28
+CU2856,Trader,Upper West,Campaign,2025-09-28
+CU2857,Trader,Greater Accra,Agent,2025-09-29
+CU2858,  Salaried ,Volta,Campaign,2025-09-29
+CU2859,Retail,Volta,App,2025-09-29
+CU2860,Student,Greater Accra,Agent,2025-09-30
+CU2861,Trader,Greater Accra,Agent,2025-09-30
+CU2862,Trader,Greater Accra,App,2025-10-01
+CU2863,Student,Volta,Campaign,2025-10-01
+CU2864,Salaried,Greater Accra,Agent,2025-10-01
+CU2865,Salaried,Northern,Referral,2025-10-01
+CU2866,Farmer,Greater Accra,Agent,2025-10-02
+CU2867,Trader,Volta,Referral,2025-10-03
+CU2868,Farmer,Volta,App,2025-10-03
+CU2869,student,Volta,Agent,2025-10-03
+CU2870,RETAIL,Greater Accra,App,2025-10-03
+CU2871,Student,Upper East,App,2025-10-04
+CU2872,Student,Greater Accra,Campaign,2025-10-04
+CU2873,Salaried,Northern,Agent,2025-10-05
+CU2874,Student,Northern,Campaign,2025-10-05
+CU2875,Trader,Volta,Agent,2025-10-05
+CU2876,Farmer,Upper West,Agent,2025-10-05
+CU2877,Student,Greater Accra,Agent,2025-10-05
+CU2878,Salaried,Greater Accra,Referral,2025-10-06
+CU2879,Salaried,Northern,App,2025-10-06
+CU2880,Salaried,Greater Accra,Campaign,2025-10-06
+CU2881,Trader,Volta,Agent,2025-10-07
+CU2882,Retail,Upper East,Agent,2025-10-07
+CU2883,Salaried,Greater Accra,Campaign,2025-10-08
+CU2884,Trader,Upper East,Campaign,2025-10-08
+CU2885,Trader,Upper East,Agent,2025-10-08
+CU2886,Trader,Greater Accra,Agent,2025-10-09
+CU2887,Trader,Northern,Referral,2025-10-09
+CU2888,Trader,Greater Accra,Agent,2025-10-09
+CU2889,Trader,Upper East,Agent,2025-10-09
+CU2890,Farmer,Greater Accra,Referral,2025-10-10
+CU2891,Retail,Volta,Campaign,2025-10-10
+CU2892,Salaried,Upper East,App,2025-10-10
+CU2893,Trader,Northern,Referral,2025-10-11
+CU2894,Farmer,Northern,Campaign,2025-10-12
+CU2895,Trader,Volta,Agent,2025-10-12
+CU2896,Salaried,Greater Accra,Agent,2025-10-12
+CU2897,Salaried,Greater Accra,Agent,2025-10-12
+CU2898,Retail,Northern,Campaign,2025-10-13
+CU2899,Trader,Greater Accra,Referral,2025-10-13
+CU2900,salaried,Greater Accra,Agent,2025-10-13
+CU2901,Retail,Greater Accra,Agent,2025-10-13
+CU2902,Trader,Northern,App,2025-10-13
+CU2903,Salaried,Greater Accra,App,2025-10-14
+CU2904,Student,Greater Accra,Agent,2025-10-14
+CU2905,Retail,Greater Accra,Campaign,2025-10-14
+CU2906,Farmer,Greater Accra,Referral,2025-10-14
+CU2907,Farmer,Greater Accra,Agent,2025-10-14
+CU2908,Farmer,Volta,Agent,2025-10-15
+CU2909,Student,Volta,App,2025-10-15
+CU2910,Retail,Volta,App,2025-10-15
+CU2911,Trader,Volta,Agent,2025-10-16
+CU2912,Student,Volta,App,2025-10-17
+CU2913,Trader,Upper West,Referral,2025-10-17
+CU2914,SALARIED,Greater Accra,Campaign,2025-10-18
+CU2915,Retail,Upper West,Referral,2025-10-18
+CU2916,Retail,Northern,Campaign,2025-10-18
+CU2917,Farmer,Greater Accra,Agent,2025-10-18
+CU2918,Salaried,Volta,Agent,2025-10-19
+CU2919,FARMER,Upper West,Referral,2025-10-19
+CU2920,Student,Volta,App,2025-10-19
+CU2921,Trader,Greater Accra,Agent,2025-10-19
+CU2922,Trader,Volta,Referral,2025-10-20
+CU2923,Student,Northern,Agent,2025-10-20
+CU2924,Trader,Upper East,Campaign,2025-10-20
+CU2925,Retail,Upper West,Agent,2025-10-20
+CU2926,Farmer,Upper West,Agent,2025-10-21
+CU2927,Trader,Upper East,Agent,2025-10-21
+CU2928,Farmer,Volta,Campaign,2025-10-21
+CU2929,Farmer,Greater Accra,Agent,2025-10-21
+CU2930,Salaried,Northern,Campaign,2025-10-22
+CU2931,Student,Northern,Agent,2025-10-23
+CU2932,Retail,Northern,Referral,2025-10-23
+CU2933,Farmer,Volta,App,2025-10-23
+CU2934,Farmer,Volta,Referral,2025-10-23
+CU2935,  Salaried ,Northern,App,2025-10-23
+CU2936,Retail,Greater Accra,Agent,2025-10-23
+CU2937,Farmer,Greater Accra,Campaign,2025-10-23
+CU2938,retail,Northern,Campaign,2025-10-24
+CU2939,Student,Greater Accra,Campaign,2025-10-24
+CU2940,Trader,Upper West,Campaign,2025-10-24
+CU2941,Trader,Greater Accra,Agent,2025-10-25
+CU2942,Retail,Upper East,Campaign,2025-10-25
+CU2943,Trader,Northern,Agent,2025-10-25
+CU2944,Farmer,Northern,App,2025-10-26
+CU2945,Retail,Upper West,Campaign,2025-10-26
+CU2946,Retail,Greater Accra,App,2025-10-26
+CU2947,Trader,Volta,Campaign,2025-10-26
+CU2948,Trader,Upper West,Agent,2025-10-26
+CU2949,Retail,Volta,Campaign,2025-10-27
+CU2950,Farmer,Upper East,Agent,2025-10-27
+CU2951,Trader,Volta,Referral,2025-10-27
+CU2952,Student,Greater Accra,App,2025-10-28
+CU2953,Farmer,Greater Accra,Campaign,2025-10-28
+CU2954,Retail,Volta,App,2025-10-28
+CU2955,Farmer,Upper East,App,2025-10-28
+CU2956,Salaried,Volta,App,2025-10-28
+CU2957,Salaried,Greater Accra,App,2025-10-28
+CU2958,TRADER,Upper West,Agent,2025-10-28
+CU2959,Student,Northern,Agent,2025-10-28
+CU2960,Trader,Greater Accra,Agent,2025-10-28
+CU2961,Trader,Northern,Agent,2025-10-29
+CU2962,Student,Greater Accra,Agent,2025-10-29
+CU2963,Farmer,Greater Accra,Agent,2025-10-29
+CU2964,Salaried,Upper East,Agent,2025-10-29
+CU2965,Retail,Upper West,Referral,2025-10-29
+CU2966,Retail,Upper West,Agent,2025-10-29
+CU2967,Retail,Greater Accra,Agent,2025-10-29
+CU2968,  Trader ,Northern,Referral,2025-10-30
+CU2969,Retail,Northern,Campaign,2025-10-30
+CU2970,Salaried,Greater Accra,Referral,2025-10-31
+CU2971,Trader,Greater Accra,Agent,2025-10-31
+CU2972,Retail,Volta,App,2025-10-31
+CU2973,Student,Upper East,Agent,2025-10-31
+CU2974,salaried,Upper East,Campaign,2025-11-01
+CU2975,  Salaried ,Greater Accra,Agent,2025-11-01
+CU2976,trader,Greater Accra,Campaign,2025-11-01
+CU2977,Trader,Northern,Agent,2025-11-02
+CU2978,Trader,Upper East,Agent,2025-11-03
+CU2979,Salaried,Greater Accra,Campaign,2025-11-03
+CU2980,Trader,Greater Accra,Agent,2025-11-03
+CU2981,  Farmer ,Upper West,Agent,2025-11-03
+CU2982,SALARIED,Volta,Agent,2025-11-04
+CU2983,Student,Greater Accra,Campaign,2025-11-04
+CU2984,Salaried,Greater Accra,Agent,2025-11-04
+CU2985,Retail,Northern,Agent,2025-11-04
+CU2986,salaried,Upper East,App,2025-11-04
+CU2987,Trader,Upper East,App,2025-11-05
+CU2988,Salaried,Volta,Campaign,2025-11-05
+CU2989,Trader,Upper West,Campaign,2025-11-05
+CU2990,Salaried,Greater Accra,App,2025-11-05
+CU2991,Trader,Upper East,Campaign,2025-11-05
+CU2992,Salaried,Volta,Agent,2025-11-06
+CU2993,Retail,Greater Accra,Agent,2025-11-06
+CU2994,Farmer,Volta,App,2025-11-06
+CU2995,Student,Upper West,Agent,2025-11-06
+CU2996,Retail,Northern,App,2025-11-06
+CU2997,retail,Northern,Campaign,2025-11-06
+CU2998,Farmer,Greater Accra,App,2025-11-06
+CU2999,Salaried,Greater Accra,App,2025-11-06
+CU3000,Retail,Volta,App,2025-11-07
+CU3001,Farmer,Northern,Agent,2025-11-07
+CU3002,Salaried,Greater Accra,Campaign,2025-11-08
+CU3003,Salaried,Volta,App,2025-11-08
+CU3004,Retail,Greater Accra,Referral,2025-11-09
+CU3005,Retail,Upper West,Referral,2025-11-09
+CU3006,Trader,Greater Accra,Agent,2025-11-09
+CU3007,Salaried,Upper East,App,2025-11-09
+CU3008,Salaried,Greater Accra,App,2025-11-09
+CU3009,Trader,Northern,Agent,2025-11-09
+CU3010,Salaried,Greater Accra,Agent,2025-11-10
+CU3011,Salaried,Upper West,Referral,2025-11-10
+CU3012,Salaried,Greater Accra,Campaign,2025-11-10
+CU3013,Salaried,Upper West,App,2025-11-10
+CU3014,  Salaried ,Northern,App,2025-11-10
+CU3015,Trader,Northern,Referral,2025-11-10
+CU3016,SALARIED,Volta,Agent,2025-11-10
+CU3017,Salaried,Upper East,Referral,2025-11-11
+CU3018,Retail,Greater Accra,Campaign,2025-11-12
+CU3019,Student,Upper West,Campaign,2025-11-12
+CU3020,Student,Greater Accra,Campaign,2025-11-12
+CU3021,Salaried,Northern,Campaign,2025-11-13
+CU3022,Retail,Northern,Agent,2025-11-14
+CU3023,Farmer,Volta,Referral,2025-11-14
+CU3024,Retail,Greater Accra,Referral,2025-11-14
+CU3025,Farmer,Upper West,App,2025-11-14
+CU3026,retail,Greater Accra,Agent,2025-11-14
+CU3027,Salaried,Upper East,App,2025-11-15
+CU3028,Retail,Greater Accra,Agent,2025-11-15
+CU3029,Retail,Upper West,Agent,2025-11-15
+CU3030,Trader,Greater Accra,App,2025-11-15
+CU3031,Trader,Volta,App,2025-11-16
+CU3032,Student,Volta,Referral,2025-11-16
+CU3033,Salaried,Volta,App,2025-11-16
+CU3034,  Retail ,Volta,Agent,2025-11-16
+CU3035,Farmer,Greater Accra,Agent,2025-11-17
+CU3036,Student,Greater Accra,App,2025-11-17
+CU3037,Salaried,Greater Accra,App,2025-11-17
+CU3038,Retail,Greater Accra,Agent,2025-11-18
+CU3039,Farmer,Volta,Agent,2025-11-18
+CU3040,Farmer,Volta,Agent,2025-11-19
+CU3041,Trader,Upper East,Campaign,2025-11-19
+CU3042,Farmer,Northern,Agent,2025-11-19
+CU3043,Farmer,Greater Accra,Campaign,2025-11-19
+CU3044,Student,Volta,Agent,2025-11-19
+CU3045,Salaried,Volta,Agent,2025-11-19
+CU3046,Retail,Upper West,Referral,2025-11-21
+CU3047,Retail,Upper East,Campaign,2025-11-21
+CU3048,Student,Volta,App,2025-11-22
+CU3049,Student,Greater Accra,Campaign,2025-11-23
+CU3050,Student,Greater Accra,Campaign,2025-11-23
+CU3051,Salaried,Upper West,App,2025-11-23
+CU3052,Student,Volta,App,2025-11-24
+CU3053,Trader,Greater Accra,Agent,2025-11-24
+CU3054,Retail,Northern,Campaign,2025-11-24
+CU3055,Farmer,Greater Accra,App,2025-11-25
+CU3056,Farmer,Greater Accra,Referral,2025-11-25
+CU3057,Trader,Volta,Referral,2025-11-25
+CU3058,Retail,Greater Accra,Campaign,2025-11-26
+CU3059,Student,Volta,Campaign,2025-11-26
+CU3060,Salaried,Volta,App,2025-11-26
+CU3061,Trader,Upper West,Agent,2025-11-26
+CU3062,Student,Volta,App,2025-11-26
+CU3063,Student,Volta,Referral,2025-11-26
+CU3064,Student,Northern,App,2025-11-27
+CU3065,RETAIL,Northern,Agent,2025-11-27
+CU3066,SALARIED,Northern,Referral,2025-11-27
+CU3067,Student,Greater Accra,Agent,2025-11-27
+CU3068,  Trader ,Greater Accra,Referral,2025-11-27
+CU3069,Trader,Greater Accra,Referral,2025-11-27
+CU3070,Retail,Greater Accra,App,2025-11-28
+CU3071,Retail,Greater Accra,Agent,2025-11-28
+CU3072,Salaried,Upper East,Campaign,2025-11-28
+CU3073,Salaried,Greater Accra,Agent,2025-11-28
+CU3074,Salaried,Upper West,Agent,2025-11-28
+CU3075,Trader,Northern,Referral,2025-11-28
+CU3076,Student,Upper East,Agent,2025-11-28
+CU3077,Salaried,Northern,App,2025-11-28
+CU3078,Retail,Upper West,App,2025-11-29
+CU3079,student,Greater Accra,App,2025-11-29
+CU3080,Salaried,Greater Accra,App,2025-11-29
+CU3081,Student,Volta,App,2025-11-29
+CU3082,Trader,Upper East,Referral,2025-11-30
+CU3083,Salaried,Greater Accra,Agent,2025-11-30
+CU3084,Salaried,Upper West,Agent,2025-11-30
+CU3085,Salaried,Upper East,Agent,2025-11-30
+CU3086,Salaried,Volta,Referral,2025-11-30
+CU3087,Salaried,Upper East,Referral,2025-11-30
+CU3088,Trader,Volta,App,2025-11-30
+CU3089,Salaried,Upper East,Agent,2025-12-01
+CU3090,Student,Greater Accra,App,2025-12-01
+CU3091,Trader,Greater Accra,Referral,2025-12-01
+CU3092,Salaried,Northern,App,2025-12-02
+CU3093,Student,Upper East,App,2025-12-02
+CU3094,Trader,Greater Accra,Campaign,2025-12-02
+CU3095,Student,Volta,Agent,2025-12-02
+CU3096,Retail,Greater Accra,Campaign,2025-12-03
+CU3097,trader,Greater Accra,App,2025-12-03
+CU3098,Salaried,Greater Accra,Agent,2025-12-03
+CU3099,Salaried,Greater Accra,Agent,2025-12-03
+CU3100,Student,Greater Accra,App,2025-12-03
+CU3101,Farmer,Upper West,Agent,2025-12-03
+CU3102,Salaried,Greater Accra,Agent,2025-12-03
+CU3103,Salaried,Volta,Campaign,2025-12-03
+CU3104,Farmer,Upper East,Campaign,2025-12-03
+CU3105,Retail,Greater Accra,App,2025-12-03
+CU3106,Trader,Greater Accra,Agent,2025-12-04
+CU3107,Student,Greater Accra,App,2025-12-04
+CU3108,Salaried,Greater Accra,Referral,2025-12-04
+CU3109,Trader,Northern,Agent,2025-12-04
+CU3110,Retail,Upper East,Campaign,2025-12-04
+CU3111,Farmer,Volta,App,2025-12-05
+CU3112,Student,Volta,Agent,2025-12-05
+CU3113,Retail,Greater Accra,Agent,2025-12-05
+CU3114,FARMER,Northern,Referral,2025-12-06
+CU3115,Retail,Northern,Agent,2025-12-07
+CU3116,Retail,Upper West,Agent,2025-12-07
+CU3117,Salaried,Upper East,Referral,2025-12-07
+CU3118,Farmer,Northern,App,2025-12-07
+CU3119,Farmer,Greater Accra,Referral,2025-12-08
+CU3120,Salaried,Greater Accra,Agent,2025-12-08
+CU3121,Retail,Upper East,Campaign,2025-12-08
+CU3122,Trader,Greater Accra,Agent,2025-12-08
+CU3123,Salaried,Greater Accra,Campaign,2025-12-08
+CU3124,Retail,Greater Accra,Agent,2025-12-08
+CU3125,Salaried,Greater Accra,Referral,2025-12-08
+CU3126,Trader,Greater Accra,Agent,2025-12-09
+CU3127,  Salaried ,Upper East,Campaign,2025-12-09
+CU3128,Retail,Volta,Agent,2025-12-10
+CU3129,Retail,Upper West,Referral,2025-12-10
+CU3130,Salaried,Greater Accra,Referral,2025-12-10
+CU3131,Retail,Volta,App,2025-12-10
+CU3132,Student,Volta,Campaign,2025-12-10
+CU3133,Retail,Volta,Campaign,2025-12-10
+CU3134,Student,Northern,App,2025-12-11
+CU3135,Farmer,Volta,Campaign,2025-12-11
+CU3136,student,Upper West,Campaign,2025-12-11
+CU3137,Student,Greater Accra,Referral,2025-12-11
+CU3138,Salaried,Upper West,Campaign,2025-12-12
+CU3139,Salaried,Northern,Agent,2025-12-12
+CU3140,Trader,Greater Accra,Referral,2025-12-12
+CU3141,Retail,Greater Accra,Agent,2025-12-13
+CU3142,Retail,Volta,App,2025-12-13
+CU3143,Trader,Volta,App,2025-12-13
+CU3144,Retail,Greater Accra,Referral,2025-12-13
+CU3145,Trader,Upper East,Agent,2025-12-13
+CU3146,Farmer,Volta,App,2025-12-14
+CU3147,Retail,Upper West,Campaign,2025-12-14
+CU3148,Student,Northern,Campaign,2025-12-14
+CU3149,Salaried,Volta,Referral,2025-12-14
+CU3150,Salaried,Northern,Agent,2025-12-14
+CU3151,Student,Northern,Campaign,2025-12-14
+CU3152,Farmer,Upper West,Agent,2025-12-14
+CU3153,RETAIL,Upper East,Referral,2025-12-15
+CU3154,Trader,Northern,Agent,2025-12-15
+CU3155,Retail,Greater Accra,App,2025-12-15
+CU3156,Retail,Volta,App,2025-12-15
+CU3157,Trader,Upper East,App,2025-12-16
+CU3158,Retail,Northern,Agent,2025-12-16
+CU3159,Trader,Upper East,App,2025-12-16
+CU3160,Retail,Greater Accra,Agent,2025-12-16
+CU3161,Trader,Northern,Agent,2025-12-16
+CU3162,Student,Upper East,Agent,2025-12-17
+CU3163,Retail,Northern,Campaign,2025-12-17
+CU3164,Student,Northern,Referral,2025-12-17
+CU3165,Retail,Upper West,Agent,2025-12-17
+CU3166,Salaried,Northern,Agent,2025-12-18
+CU3167,TRADER,Greater Accra,Referral,2025-12-18
+CU3168,Trader,Greater Accra,Referral,2025-12-18
+CU3169,Trader,Northern,Campaign,2025-12-18
+CU3170,Salaried,Northern,Referral,2025-12-18
+CU3171,Farmer,Greater Accra,Campaign,2025-12-19
+CU3172,Retail,Greater Accra,App,2025-12-19
+CU3173,Student,Upper West,Agent,2025-12-21
+CU3174,Farmer,Greater Accra,Referral,2025-12-21
+CU3175,Salaried,Greater Accra,Agent,2025-12-22
+CU3176,Trader,Upper West,Referral,2025-12-22
+CU3177,Retail,Upper East,Agent,2025-12-24
+CU3178,Salaried,Greater Accra,Agent,2025-12-24
+CU3179,Salaried,Greater Accra,Campaign,2025-12-24
+CU3180,Retail,Upper West,App,2025-12-25
+CU3181,Trader,Greater Accra,App,2025-12-25
+CU3182,Retail,Volta,Agent,2025-12-25
+CU3183,Retail,Greater Accra,Referral,2025-12-25
+CU3184,Salaried,Greater Accra,Agent,2025-12-25
+CU3185,Salaried,Northern,Campaign,2025-12-26
+CU3186,Salaried,Upper West,Agent,2025-12-26
+CU3187,Trader,Upper West,Campaign,2025-12-26
+CU3188,Farmer,Greater Accra,Campaign,2025-12-26
+CU3189,Salaried,Northern,Referral,2025-12-27
+CU3190,Trader,Northern,Agent,2025-12-27
+CU3191,Trader,Upper East,Referral,2025-12-27
+CU3192,Farmer,Northern,Referral,2025-12-27
+CU3193,RETAIL,Volta,App,2025-12-27
+CU3194,Farmer,Greater Accra,Agent,2025-12-28
+CU3195,Farmer,Volta,Campaign,2025-12-28
+CU3196,Salaried,Volta,Referral,2025-12-28
+CU3197,Retail,Greater Accra,Campaign,2025-12-29
+CU3198,Trader,Volta,Agent,2025-12-29
+CU3199,Farmer,Northern,Agent,2025-12-30
+CU3200,Trader,Upper East,App,2025-12-30

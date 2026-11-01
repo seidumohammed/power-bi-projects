@@ -1,11 +1,16 @@
 # Power BI portfolio projects
 
-Two Power BI dashboards built on **synthetic data**, each with documented Power Query cleaning, a star-schema data model, DAX measures, a report design and a user guide.
+Seven Power BI dashboards built on **synthetic data**, each with documented Power Query cleaning, a star-schema data model, DAX measures, a report design and a user guide. They use three different layout systems.
 
 | Project | Question it answers | Setting |
 | :-- | :-- | :-- |
 | [Programme Monitoring](programme-monitoring/) | Is a field programme on track, and is its data getting better? | Central Region, Ghana (invented zones, savings groups and officers) |
 | [Sales Performance](sales-performance/) | How is a retail business performing against last year and against target? | Six retail stores in Ghana (invented business) |
+| [Real Estate Performance](real-estate-performance/) | How are listings, sales, agents and branches performing against target? | Greater Accra (invented agency) |
+| [Supply Chain Performance](supply-chain-performance/) | Are orders delivered on time and in full, and is stock healthy? | Hubs in Tema, Takoradi, Tamale and Ho (invented distributor) |
+| [FinTech Payments](fintech-payments/) | How do channels, fraud and loans perform? | Invented mobile money and lending provider |
+| [Hospital Operations](hospital-operations/) | How busy is the hospital and how good is care? | Invented 120-bed hospital, Volta Region |
+| [Public Health Programme](public-health-programme/) | How are immunisation, surveillance and reporting doing? | Invented health directorate, Northern Region |
 
 All names, groups, businesses and numbers are made up. District and town names are real place names used only as labels. Nothing here comes from a real employer, programme or customer.
 
@@ -25,7 +30,7 @@ All names, groups, businesses and numbers are made up. District and town names a
 
 1. Install Power BI Desktop (free, Windows).
 2. In Desktop, turn on **File > Options and settings > Options > Preview features > Power BI Project (.pbip) save option**, then restart. Newer builds may have it on already.
-3. Open `programme-monitoring/pbip/ProgrammeMonitoring.pbip` or `sales-performance/pbip/SalesPerformance.pbip`.
+3. Open the `.pbip` file in the `pbip` folder of the project you want, for example `hospital-operations/pbip/HospitalOperations.pbip`.
 4. The projects contain a placeholder data folder (`C:\path\to\power-bi-projects\...`). Set the real one once: Home > Transform data > Edit parameters > `DataFolder` = the project's `data\raw` folder, **with a trailing backslash**.
 5. Home > **Refresh**.
 

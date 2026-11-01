@@ -1,0 +1,10 @@
+diagnosis_id,diagnosis_group,category
+DX01,Malaria,Infectious
+DX02,Maternal and newborn,Maternal
+DX03,Injury and trauma,Injury
+DX04,Respiratory infection,Infectious
+DX05,Hypertension and stroke,Chronic
+DX06,Diabetes,Chronic
+DX07,Gastrointestinal,Infectious
+DX08,Elective surgery,Surgical
+DX09,Critical illness,Other

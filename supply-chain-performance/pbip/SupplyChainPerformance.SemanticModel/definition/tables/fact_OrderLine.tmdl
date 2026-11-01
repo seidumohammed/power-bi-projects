@@ -1,0 +1,144 @@
+table fact_OrderLine
+
+	column LineID
+		dataType: string
+		isHidden
+		sourceColumn: LineID
+		summarizeBy: none
+
+	column OrderID
+		dataType: string
+		isHidden
+		sourceColumn: OrderID
+		summarizeBy: none
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: OrderDate
+		summarizeBy: none
+
+	column RequiredDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: RequiredDate
+		summarizeBy: none
+
+	column ShipDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: ShipDate
+		summarizeBy: none
+
+	column DeliveryDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: DeliveryDate
+		summarizeBy: none
+
+	column CustomerID
+		dataType: string
+		isHidden
+		sourceColumn: CustomerID
+		summarizeBy: none
+
+	column ProductID
+		dataType: string
+		isHidden
+		sourceColumn: ProductID
+		summarizeBy: none
+
+	column WarehouseID
+		dataType: string
+		isHidden
+		sourceColumn: WarehouseID
+		summarizeBy: none
+
+	column CarrierID
+		dataType: string
+		isHidden
+		sourceColumn: CarrierID
+		summarizeBy: none
+
+	column OrderedQty
+		dataType: int64
+		isHidden
+		sourceColumn: OrderedQty
+		summarizeBy: none
+
+	column ShippedQty
+		dataType: int64
+		isHidden
+		sourceColumn: ShippedQty
+		summarizeBy: none
+
+	column UnitPriceGHS
+		dataType: double
+		isHidden
+		sourceColumn: UnitPriceGHS
+		summarizeBy: none
+
+	column FreightCostGHS
+		dataType: double
+		isHidden
+		sourceColumn: FreightCostGHS
+		summarizeBy: none
+
+	column IsOnTime
+		dataType: int64
+		isHidden
+		sourceColumn: IsOnTime
+		summarizeBy: none
+
+	column IsInFull
+		dataType: int64
+		isHidden
+		sourceColumn: IsInFull
+		summarizeBy: none
+
+	column IsOTIF
+		dataType: int64
+		isHidden
+		sourceColumn: IsOTIF
+		summarizeBy: none
+
+	column LeadTimeDays
+		dataType: int64
+		isHidden
+		sourceColumn: LeadTimeDays
+		summarizeBy: none
+
+	column ShippedValueGHS
+		dataType: double
+		isHidden
+		sourceColumn: ShippedValueGHS
+		summarizeBy: none
+
+	partition fact_OrderLine = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, freight cost stored as text ('GHS 340.00') in some rows, duplicate line_id rows. Service flags are calculated here.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "order_lines.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"line_id"}),
+			    WithOrderDate = Table.AddColumn(Deduped, "OrderDate", each if [order_date] = null or Text.Trim([order_date]) = "" then null else try Date.FromText([order_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([order_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithRequiredDate = Table.AddColumn(WithOrderDate, "RequiredDate", each if [required_date] = null or Text.Trim([required_date]) = "" then null else try Date.FromText([required_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([required_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithShipDate = Table.AddColumn(WithRequiredDate, "ShipDate", each if [ship_date] = null or Text.Trim([ship_date]) = "" then null else try Date.FromText([ship_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([ship_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithDeliveryDate = Table.AddColumn(WithShipDate, "DeliveryDate", each if [delivery_date] = null or Text.Trim([delivery_date]) = "" then null else try Date.FromText([delivery_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([delivery_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithFreightCostGHS = Table.AddColumn(WithDeliveryDate, "FreightCostGHS", each if [freight_cost_ghs] = null or Text.Trim([freight_cost_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([freight_cost_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Renamed = Table.RenameColumns(WithFreightCostGHS, {{"line_id", "LineID"}, {"order_id", "OrderID"}, {"customer_id", "CustomerID"}, {"product_id", "ProductID"}, {"warehouse_id", "WarehouseID"}, {"carrier_id", "CarrierID"}, {"ordered_qty", "OrderedQty"}, {"shipped_qty", "ShippedQty"}, {"unit_price_ghs", "UnitPriceGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"LineID", "OrderID", "OrderDate", "RequiredDate", "ShipDate", "DeliveryDate", "CustomerID", "ProductID", "WarehouseID", "CarrierID", "OrderedQty", "ShippedQty", "UnitPriceGHS", "FreightCostGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"LineID", type text}, {"OrderID", type text}, {"CustomerID", type text}, {"ProductID", type text}, {"WarehouseID", type text}, {"CarrierID", type text}, {"OrderedQty", Int64.Type}, {"ShippedQty", Int64.Type}, {"UnitPriceGHS", type number}}, "en-US"),
+			    AddIsOnTime = Table.AddColumn(Typed, "IsOnTime", each if [DeliveryDate] <= [RequiredDate] then 1 else 0, Int64.Type),
+			    AddIsInFull = Table.AddColumn(AddIsOnTime, "IsInFull", each if [ShippedQty] >= [OrderedQty] then 1 else 0, Int64.Type),
+			    AddIsOTIF = Table.AddColumn(AddIsInFull, "IsOTIF", each [IsOnTime] * [IsInFull], Int64.Type),
+			    AddLeadTimeDays = Table.AddColumn(AddIsOTIF, "LeadTimeDays", each Duration.Days([DeliveryDate] - [OrderDate]), Int64.Type),
+			    AddShippedValueGHS = Table.AddColumn(AddLeadTimeDays, "ShippedValueGHS", each [ShippedQty] * [UnitPriceGHS], type number)
+			in
+			    AddShippedValueGHS
+

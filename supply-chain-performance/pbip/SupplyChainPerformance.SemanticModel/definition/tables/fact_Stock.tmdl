@@ -1,0 +1,53 @@
+table fact_Stock
+
+	column SnapshotDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: SnapshotDate
+		summarizeBy: none
+
+	column WarehouseID
+		dataType: string
+		isHidden
+		sourceColumn: WarehouseID
+		summarizeBy: none
+
+	column ProductID
+		dataType: string
+		isHidden
+		sourceColumn: ProductID
+		summarizeBy: none
+
+	column OnHandQty
+		dataType: int64
+		isHidden
+		sourceColumn: OnHandQty
+		summarizeBy: none
+
+	column DemandQty
+		dataType: int64
+		isHidden
+		sourceColumn: DemandQty
+		summarizeBy: none
+
+	column IsStockout
+		dataType: int64
+		isHidden
+		sourceColumn: IsStockout
+		summarizeBy: none
+
+	partition fact_Stock = m
+		mode: import
+		source =
+			// Month-end stock count per hub and product.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "stock.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"snapshot_date", "SnapshotDate"}, {"warehouse_id", "WarehouseID"}, {"product_id", "ProductID"}, {"on_hand_qty", "OnHandQty"}, {"demand_qty", "DemandQty"}}),
+			    Selected = Table.SelectColumns(Renamed, {"SnapshotDate", "WarehouseID", "ProductID", "OnHandQty", "DemandQty"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"SnapshotDate", type date}, {"WarehouseID", type text}, {"ProductID", type text}, {"OnHandQty", Int64.Type}, {"DemandQty", Int64.Type}}, "en-US"),
+			    AddIsStockout = Table.AddColumn(Typed, "IsStockout", each if [OnHandQty] <= 0 then 1 else 0, Int64.Type)
+			in
+			    AddIsStockout
+

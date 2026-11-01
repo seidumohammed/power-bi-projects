@@ -1,0 +1,44 @@
+table dim_Property
+
+	column PropertyID
+		dataType: string
+		isHidden
+		sourceColumn: PropertyID
+		summarizeBy: none
+
+	column AreaID
+		dataType: string
+		isHidden
+		sourceColumn: AreaID
+		summarizeBy: none
+
+	column PropertyType
+		dataType: string
+		sourceColumn: PropertyType
+		summarizeBy: none
+
+	column Bedrooms
+		dataType: int64
+		sourceColumn: Bedrooms
+		summarizeBy: none
+
+	column FloorAreaSqm
+		dataType: double
+		formatString: "#,0"
+		sourceColumn: FloorAreaSqm
+		summarizeBy: none
+
+	partition dim_Property = m
+		mode: import
+		source =
+			// Cleaning: property_type has stray spaces and mixed case.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "properties.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Cleanpropertytype = Table.TransformColumns(Promoted, {{"property_type", each Text.Proper(Text.Trim(_)), type text}}),
+			    Renamed = Table.RenameColumns(Cleanpropertytype, {{"property_id", "PropertyID"}, {"area_id", "AreaID"}, {"property_type", "PropertyType"}, {"bedrooms", "Bedrooms"}, {"floor_area_sqm", "FloorAreaSqm"}}),
+			    Selected = Table.SelectColumns(Renamed, {"PropertyID", "AreaID", "PropertyType", "Bedrooms", "FloorAreaSqm"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"PropertyID", type text}, {"AreaID", type text}, {"PropertyType", type text}, {"Bedrooms", Int64.Type}, {"FloorAreaSqm", type number}}, "en-US")
+			in
+			    Typed
+

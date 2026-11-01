@@ -1,0 +1,145 @@
+// =====================================================================================
+// PUBLIC HEALTH PROGRAMME: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Immunisation | format: #,0 | desc: Vaccine doses given.
+Doses Given =
+SUM ( fact_Immunisation[Doses] )
+
+// folder: Immunisation | format: #,0 | desc: Children expected to be vaccinated in the months selected.
+Children Targeted =
+SUM ( fact_Immunisation[TargetChildren] )
+
+// folder: Immunisation | format: 0.0% | desc: Doses given divided by children targeted.
+Coverage % =
+DIVIDE ( [Doses Given], [Children Targeted] )
+
+// folder: Immunisation | format: 0% | desc: The coverage each district aims for.
+Coverage Target =
+CALCULATE (
+    AVERAGE ( fact_Target[CoverageTarget] ),
+    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+)
+
+// folder: Immunisation | format: 0.0%;-0.0% | desc: Coverage minus its target, in percentage points.
+Coverage Gap (points) =
+[Coverage %] - [Coverage Target]
+
+// folder: Immunisation | format: #,0 | desc: First Penta doses given.
+Penta 1 Doses =
+CALCULATE ( [Doses Given], dim_Antigen[Antigen] = "Penta 1" )
+
+// folder: Immunisation | format: #,0 | desc: Third Penta doses given.
+Penta 3 Doses =
+CALCULATE ( [Doses Given], dim_Antigen[Antigen] = "Penta 3" )
+
+// folder: Immunisation | format: 0.0% | desc: Children who started Penta but did not finish the series.
+Penta Dropout % =
+DIVIDE ( [Penta 1 Doses] - [Penta 3 Doses], [Penta 1 Doses] )
+
+// folder: Surveillance | format: #,0 | desc: Reported cases.
+Cases =
+SUM ( fact_Cases[Cases] )
+
+// folder: Surveillance | format: #,0 | desc: Reported deaths.
+Deaths =
+SUM ( fact_Cases[Deaths] )
+
+// folder: Surveillance | format: 0.00% | desc: Deaths divided by cases.
+Case Fatality % =
+DIVIDE ( [Deaths], [Cases] )
+
+// folder: Surveillance | format: #,0 | desc: Tests done.
+Tests Done =
+SUM ( fact_Cases[Tested] )
+
+// folder: Surveillance | format: 0.0% | desc: Positive tests divided by tests done.
+Test Positivity % =
+DIVIDE ( SUM ( fact_Cases[Positive] ), [Tests Done] )
+
+// folder: Surveillance | format: #,0 | desc: People living in the catchment areas of the facilities selected.
+Catchment Population =
+SUMX ( VALUES ( dim_Facility[FacilityID] ), CALCULATE ( MAX ( dim_Facility[CatchmentPopulation] ) ) )
+
+// folder: Surveillance | format: 0.0 | desc: Cases per 1,000 people in the catchment, for the months selected.
+Cases per 1,000 =
+DIVIDE ( [Cases] * 1000, [Catchment Population] )
+
+// folder: Reporting | format: #,0 | desc: Monthly reports expected: one per facility per month.
+Reports Expected =
+COUNTROWS ( fact_Reporting ) 
+
+// folder: Reporting | format: #,0 | desc: Reports received.
+Reports Submitted =
+SUM ( fact_Reporting[Submitted] )
+
+// folder: Reporting | format: #,0 | desc: Reports received by the deadline.
+Reports On Time =
+SUM ( fact_Reporting[OnTime] )
+
+// folder: Reporting | format: 0.0% | desc: Reports received divided by reports expected.
+Reporting Completeness % =
+DIVIDE ( [Reports Submitted], [Reports Expected] )
+
+// folder: Reporting | format: 0.0% | desc: Reports on time divided by reports received.
+Reporting Timeliness % =
+DIVIDE ( [Reports On Time], [Reports Submitted] )
+
+// folder: Reporting | format: #,0 | desc: Number of facilities.
+Facilities =
+DISTINCTCOUNT ( dim_Facility[FacilityID] )
+
+// folder: Time intelligence | format: #,0 | desc: Doses in the same period one year earlier. Use it on a monthly chart, not on a card.
+Doses PY =
+CALCULATE ( [Doses Given], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in doses in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Doses YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Doses Given], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Doses Given], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Doses from the start of the year to the date shown.
+Doses YTD =
+TOTALYTD ( [Doses Given], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly doses over the last three months up to the month shown.
+Doses 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Doses Given], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Cases in the same period one year earlier. Use it on a monthly chart, not on a card.
+Cases PY =
+CALCULATE ( [Cases], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in cases in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Cases YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Cases], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Cases], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Cases from the start of the year to the date shown.
+Cases YTD =
+TOTALYTD ( [Cases], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly cases over the last three months up to the month shown.
+Cases 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Cases], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Regional health directorate, Northern Region. Period: Jan 2024 to Dec 2025."

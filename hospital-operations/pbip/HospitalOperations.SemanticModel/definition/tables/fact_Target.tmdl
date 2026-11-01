@@ -1,0 +1,34 @@
+table fact_Target
+
+	column MonthStart
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: MonthStart
+		summarizeBy: none
+
+	column Ward
+		dataType: string
+		isHidden
+		sourceColumn: Ward
+		summarizeBy: none
+
+	column OccupancyTarget
+		dataType: double
+		isHidden
+		formatString: "0%"
+		sourceColumn: OccupancyTarget
+		summarizeBy: none
+
+	partition fact_Target = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"ward", "Ward"}, {"occupancy_target", "OccupancyTarget"}}),
+			    Selected = Table.SelectColumns(Renamed, {"MonthStart", "Ward", "OccupancyTarget"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"MonthStart", type date}, {"Ward", type text}, {"OccupancyTarget", type number}}, "en-US")
+			in
+			    Typed
+

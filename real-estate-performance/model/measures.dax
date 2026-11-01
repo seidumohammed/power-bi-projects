@@ -1,0 +1,147 @@
+// =====================================================================================
+// REAL ESTATE PERFORMANCE: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Sales | format: #,0 | desc: Number of completed sales.
+Sales Count =
+COUNTROWS ( fact_Sale )
+
+// folder: Sales | format: #,0 | desc: Total sale price of completed sales, in Ghana cedis.
+Sales Value (GHS) =
+SUM ( fact_Sale[SalePriceGHS] )
+
+// folder: Sales | format: #,0 | desc: Sales value divided by the number of sales.
+Avg Sale Price (GHS) =
+DIVIDE ( [Sales Value (GHS)], [Sales Count] )
+
+// folder: Sales | format: #,0 | desc: Sales value divided by the total floor area sold. Mixes property types unless one is selected.
+Avg Price per sqm (GHS) =
+DIVIDE ( [Sales Value (GHS)], SUMX ( fact_Sale, RELATED ( dim_Property[FloorAreaSqm] ) ) )
+
+// folder: Sales | format: 0 | desc: Average days from listing to sale for completed sales.
+Days on Market =
+AVERAGE ( fact_Sale[DaysOnMarket] )
+
+// folder: Sales | format: 0.0% | desc: How far sale prices fall below the asking price.
+Discount to List % =
+DIVIDE ( SUM ( fact_Sale[ListPriceGHS] ) - SUM ( fact_Sale[SalePriceGHS] ), SUM ( fact_Sale[ListPriceGHS] ) )
+
+// folder: Sales | format: #,0 | desc: Commission at an assumed 3% of the sale price.
+Commission (GHS) =
+SUM ( fact_Sale[CommissionGHS] )
+
+// folder: Listings | format: #,0 | desc: Number of listings added.
+Listings Count =
+COUNTROWS ( fact_Listing )
+
+// folder: Listings | format: #,0 | desc: Average asking price of listings added.
+Avg List Price (GHS) =
+DIVIDE ( SUM ( fact_Listing[ListPriceGHS] ), [Listings Count] )
+
+// folder: Listings | format: #,0 | desc: Listings still on the market at the end of the data.
+Active Listings =
+CALCULATE ( COUNTROWS ( fact_Listing ), fact_Listing[Status] = "Active" )
+
+// folder: Listings | format: #,0 | desc: Listings taken off the market without a sale.
+Withdrawn Listings =
+CALCULATE ( COUNTROWS ( fact_Listing ), fact_Listing[Status] = "Withdrawn" )
+
+// folder: Listings | format: 0.0% | desc: Sales closed divided by listings added in the same period (a guide, not an exact match).
+Sell-Through % =
+DIVIDE ( [Sales Count], [Listings Count] )
+
+// folder: Agents | format: #,0 | desc: Agents with at least one sale.
+Active Agents =
+DISTINCTCOUNT ( fact_Sale[AgentID] )
+
+// folder: Agents | format: 0.0 | desc: Average number of sales per active agent.
+Sales per Agent =
+DIVIDE ( [Sales Count], [Active Agents] )
+
+// folder: Agents | format: #,0 | desc: Average sales value per active agent.
+Value per Agent (GHS) =
+DIVIDE ( [Sales Value (GHS)], [Active Agents] )
+
+// folder: Targets | format: #,0 | desc: Planned sales value for the months and filters selected.
+Sales Value Target =
+IF (
+    ISFILTERED ( dim_Agent[AgentName] ) || ISFILTERED ( dim_Area[Area] ) || ISFILTERED ( dim_Area[Zone] ) || ISFILTERED ( dim_Property[PropertyType] ),
+    BLANK (),   -- the target is not set at this level
+    CALCULATE (
+        SUM ( fact_Target[SalesTargetGHS] ),
+        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+    )
+)
+
+// folder: Targets | format: 0.0% | desc: Sales Value divided by its target.
+Sales Value Attainment % =
+DIVIDE ( [Sales Value (GHS)], [Sales Value Target] )
+
+// folder: Targets | format: #,0;-#,0 | desc: Sales Value minus its target. Negative means below target.
+Sales Value Variance =
+[Sales Value (GHS)] - [Sales Value Target]
+
+// folder: Targets | format: General | desc: "Met" at 100% or more, "Close" from 95%, otherwise "Missed".
+Sales Value Status =
+SWITCH (
+    TRUE (),
+    ISBLANK ( [Sales Value Attainment %] ), "No target",
+    [Sales Value Attainment %] >= 1, "Met",
+    [Sales Value Attainment %] >= 0.95, "Close",
+    "Missed"
+)
+
+// folder: Time intelligence | format: #,0 | desc: Sales Value in the same period one year earlier. Use it on a monthly chart, not on a card.
+Sales Value PY =
+CALCULATE ( [Sales Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in sales value in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Sales Value YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Sales Value (GHS)], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Sales Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Sales Value from the start of the year to the date shown.
+Sales Value YTD =
+TOTALYTD ( [Sales Value (GHS)], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly sales value over the last three months up to the month shown.
+Sales Value 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Sales Value (GHS)], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Sales Count in the same period one year earlier. Use it on a monthly chart, not on a card.
+Sales Count PY =
+CALCULATE ( [Sales Count], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in sales count in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Sales Count YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Sales Count], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Sales Count], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Sales Count from the start of the year to the date shown.
+Sales Count YTD =
+TOTALYTD ( [Sales Count], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly sales count over the last three months up to the month shown.
+Sales Count 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Sales Count], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Greater Accra. Period: Jan 2024 to Dec 2025."

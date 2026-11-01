@@ -1,0 +1,173 @@
+// =====================================================================================
+// FINTECH PAYMENTS: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Payments | format: #,0 | desc: Number of transaction attempts, successful or not.
+Transactions =
+COUNTROWS ( fact_Transaction )
+
+// folder: Payments | format: #,0 | desc: Transactions that completed.
+Successful Transactions =
+SUM ( fact_Transaction[IsSuccess] )
+
+// folder: Payments | format: #,0 | desc: Transactions that failed.
+Failed Transactions =
+SUM ( fact_Transaction[IsFailed] )
+
+// folder: Payments | format: 0.0% | desc: Successful transactions divided by all attempts.
+Success Rate % =
+DIVIDE ( [Successful Transactions], [Transactions] )
+
+// folder: Payments | format: 0.0% | desc: Failed transactions divided by all attempts.
+Failure Rate % =
+DIVIDE ( [Failed Transactions], [Transactions] )
+
+// folder: Payments | format: 0.0% | desc: Transactions reversed after completing, divided by all attempts.
+Reversal Rate % =
+DIVIDE ( SUM ( fact_Transaction[IsReversed] ), [Transactions] )
+
+// folder: Payments | format: #,0 | desc: Value of successful transactions, in Ghana cedis.
+Txn Value (GHS) =
+SUM ( fact_Transaction[SuccessValueGHS] )
+
+// folder: Payments | format: #,0.00 | desc: Average value of a successful transaction.
+Avg Txn Value (GHS) =
+DIVIDE ( [Txn Value (GHS)], [Successful Transactions] )
+
+// folder: Payments | format: #,0 | desc: Fees charged on successful transactions.
+Fee Revenue (GHS) =
+SUM ( fact_Transaction[FeeGHS] )
+
+// folder: Customers | format: #,0 | desc: Customers with at least one successful transaction in the period.
+Active Customers =
+CALCULATE ( DISTINCTCOUNT ( fact_Transaction[CustomerID] ), fact_Transaction[IsSuccess] = 1 )
+
+// folder: Customers | format: #,0 | desc: Customers who joined in the period selected.
+New Customers =
+VAR FirstDay = MIN ( dim_Date[Date] )
+VAR LastDay = MAX ( dim_Date[Date] )
+RETURN COUNTROWS ( FILTER ( dim_Customer, dim_Customer[JoinedDate] >= FirstDay && dim_Customer[JoinedDate] <= LastDay ) )
+
+// folder: Customers | format: 0.0 | desc: Successful transactions divided by active customers.
+Txns per Active Customer =
+DIVIDE ( [Successful Transactions], [Active Customers] )
+
+// folder: Risk | format: #,0 | desc: Transactions flagged as fraud.
+Fraud Cases =
+SUM ( fact_Transaction[IsFraud] )
+
+// folder: Risk | format: 0.0 | desc: Fraud cases per 10,000 transactions.
+Fraud Rate (per 10,000) =
+DIVIDE ( [Fraud Cases], [Transactions] ) * 10000
+
+// folder: Risk | format: #,0 | desc: Value of transactions flagged as fraud.
+Fraud Value (GHS) =
+SUM ( fact_Transaction[FraudValueGHS] )
+
+// folder: Loans | format: #,0 | desc: Number of loans disbursed.
+Loans Disbursed (count) =
+COUNTROWS ( fact_Loan )
+
+// folder: Loans | format: #,0 | desc: Value of loans disbursed.
+Loans Disbursed (GHS) =
+SUM ( fact_Loan[AmountGHS] )
+
+// folder: Loans | format: #,0 | desc: Balance still owed on loans.
+Loans Outstanding (GHS) =
+SUM ( fact_Loan[OutstandingGHS] )
+
+// folder: Loans | format: 0.0% | desc: Portfolio at risk: balance of loans more than 30 days late divided by the total balance owed.
+PAR30 % =
+DIVIDE ( SUM ( fact_Loan[PAR30BalanceGHS] ), [Loans Outstanding (GHS)] )
+
+// folder: Loans | format: 0.0% | desc: Loans in default divided by loans disbursed.
+Default Rate % =
+DIVIDE ( SUM ( fact_Loan[IsDefault] ), [Loans Disbursed (count)] )
+
+// folder: Loans | format: #,0 | desc: Average loan amount.
+Avg Loan Size (GHS) =
+DIVIDE ( [Loans Disbursed (GHS)], [Loans Disbursed (count)] )
+
+// folder: Targets | format: #,0 | desc: Planned txn value for the months and filters selected.
+Txn Value Target =
+IF (
+    ISFILTERED ( dim_Customer[Segment] ) || ISFILTERED ( dim_TxnType[TxnType] ) || ISFILTERED ( dim_Channel[Channel] ) || ISFILTERED ( dim_Customer[AcquisitionChannel] ),
+    BLANK (),   -- the target is not set at this level
+    CALCULATE (
+        SUM ( fact_Target[TxnValueTargetGHS] ),
+        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+    )
+)
+
+// folder: Targets | format: 0.0% | desc: Txn Value divided by its target.
+Txn Value Attainment % =
+DIVIDE ( [Txn Value (GHS)], [Txn Value Target] )
+
+// folder: Targets | format: #,0;-#,0 | desc: Txn Value minus its target. Negative means below target.
+Txn Value Variance =
+[Txn Value (GHS)] - [Txn Value Target]
+
+// folder: Targets | format: General | desc: "Met" at 100% or more, "Close" from 95%, otherwise "Missed".
+Txn Value Status =
+SWITCH (
+    TRUE (),
+    ISBLANK ( [Txn Value Attainment %] ), "No target",
+    [Txn Value Attainment %] >= 1, "Met",
+    [Txn Value Attainment %] >= 0.95, "Close",
+    "Missed"
+)
+
+// folder: Time intelligence | format: #,0 | desc: Txn Value in the same period one year earlier. Use it on a monthly chart, not on a card.
+Txn Value PY =
+CALCULATE ( [Txn Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in txn value in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Txn Value YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Txn Value (GHS)], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Txn Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Txn Value from the start of the year to the date shown.
+Txn Value YTD =
+TOTALYTD ( [Txn Value (GHS)], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly txn value over the last three months up to the month shown.
+Txn Value 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Txn Value (GHS)], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Fee Revenue in the same period one year earlier. Use it on a monthly chart, not on a card.
+Fee Revenue PY =
+CALCULATE ( [Fee Revenue (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in fee revenue in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Fee Revenue YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Fee Revenue (GHS)], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Fee Revenue (GHS)], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Fee Revenue from the start of the year to the date shown.
+Fee Revenue YTD =
+TOTALYTD ( [Fee Revenue (GHS)], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly fee revenue over the last three months up to the month shown.
+Fee Revenue 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Fee Revenue (GHS)], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Ghana mobile wallet. Period: Jan 2024 to Dec 2025."

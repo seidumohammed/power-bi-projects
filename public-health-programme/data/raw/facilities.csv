@@ -1,0 +1,66 @@
+facility_id,facility,district_id,facility_level,catchment_population
+F001,Tamale North Hospital,D01,Hospital,164000
+F002,Tamale South CHPS,D01,CHPS COMPOUND,26510
+F003,Tamale East Clinic,D01,clinic,21893
+F004,Tamale West Health,D01,Health centre,19056
+F005,Tamale Central CHPS,D01,CHPS compound,20597
+F006,Tamale Market CHPS,D01,CHPS compound,17713
+F007,Tamale Station CHPS,D01,CHPS compound,21737
+F008,Tamale Hill Clinic,D01,Clinic,15695
+F009,Tamale Road CHPS,D01,CHPS compound,13427
+F010,Tamale North Health,D01,Health centre,24203
+F011,Tamale South CHPS 2,D01,CHPS compound,30288
+F012,Tamale East Health,D01,Health centre,18156
+F013,Tamale West CHPS,D01,CHPS compound,13623
+F014,Tamale Central CHPS 2,D01,CHPS compound,27290
+F015,Tamale Market Health,D01,Health centre,20137
+F016,Tamale Station Health,D01,Health centre,30926
+F017,Tamale Hill Health,D01,Health centre,21531
+F018,Tamale Road CHPS 2,D01,CHPS compound,24726
+F019,Tamale North CHPS,D01,CHPS compound,24266
+F020,Sagnarigu North Hospital,D02,HOSPITAL,60000
+F021,Sagnarigu South CHPS,D02,CHPS compound,21256
+F022,Sagnarigu East CHPS,D02,CHPS compound,26664
+F023,Sagnarigu West Health,D02,Health centre,26185
+F024,Sagnarigu Central CHPS,D02,CHPS compound,26344
+F025,Sagnarigu Market CHPS,D02,CHPS compound,15779
+F026,Sagnarigu Station CHPS,D02,CHPS compound,21693
+F027,Savelugu North Health,D03,Health centre,22953
+F028,Savelugu South Health,D03,Health centre,30725
+F029,Savelugu East CHPS,D03,CHPS compound,28330
+F030,Savelugu West CHPS,D03,CHPS compound,28167
+F031,Savelugu Central Clinic,D03,Clinic,21158
+F032,Savelugu Market CHPS,D03,CHPS compound,11587
+F033,Kumbungu North CHPS,D04,CHPS compound,27462
+F034,Kumbungu South CHPS,D04,CHPS compound,17868
+F035,Kumbungu East CHPS,D04,CHPS compound,17853
+F036,Kumbungu West CHPS,D04,CHPS compound,29634
+F037,Tolon North Clinic,D05,Clinic,20870
+F038,Tolon South CHPS,D05,CHPS compound,11930
+F039,Tolon East CHPS,D05,CHPS compound,24194
+F040,Tolon West CHPS,D05,CHPS compound,19672
+F041,Tolon Central Health,D05,Health centre,21913
+F042,Nanton North CHPS,D06,CHPS compound,21341
+F043,Nanton South Health,D06,Health centre,18580
+F044,Nanton East Clinic,D06,Clinic,25001
+F045,Yendi North Hospital,D07,Hospital,60000
+F046,Yendi South CHPS,D07,CHPS compound,22470
+F047,Yendi East CHPS,D07,CHPS compound,20640
+F048,Yendi West Health,D07,Health centre,18380
+F049,Yendi Central Health,D07,Health centre,21731
+F050,Yendi Market CHPS,D07,CHPS compound,28128
+F051,Yendi Station Health,D07,Health centre,12529
+F052,Mion North CHPS,D08,CHPS compound,34530
+F053,Mion South CHPS,D08,CHPS compound,9327
+F054,Mion East CHPS,D08,CHPS compound,15985
+F055,Mion West Health,D08,Health centre,17924
+F056,Gushegu North CHPS,D09,CHPS compound,12183
+F057,Gushegu South CHPS,D09,CHPS compound,23628
+F058,Gushegu East Clinic,D09,Clinic,11936
+F059,Gushegu West Health,D09,Health centre,16653
+F060,Gushegu Central Health,D09,health centre,24103
+F061,Gushegu Market Health,D09,Health centre,26802
+F062,Karaga North Clinic,D10,CLINIC,28932
+F063,Karaga South CHPS,D10,CHPS compound,32574
+F064,Karaga East CHPS,D10,CHPS compound,15338
+F065,Karaga West CHPS,D10,CHPS compound,20942

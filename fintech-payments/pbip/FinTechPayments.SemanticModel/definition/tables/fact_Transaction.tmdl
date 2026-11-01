@@ -1,0 +1,113 @@
+table fact_Transaction
+
+	column TxnID
+		dataType: string
+		isHidden
+		sourceColumn: TxnID
+		summarizeBy: none
+
+	column TxnDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: TxnDate
+		summarizeBy: none
+
+	column CustomerID
+		dataType: string
+		isHidden
+		sourceColumn: CustomerID
+		summarizeBy: none
+
+	column TypeID
+		dataType: string
+		isHidden
+		sourceColumn: TypeID
+		summarizeBy: none
+
+	column ChannelID
+		dataType: string
+		isHidden
+		sourceColumn: ChannelID
+		summarizeBy: none
+
+	column AmountGHS
+		dataType: double
+		isHidden
+		sourceColumn: AmountGHS
+		summarizeBy: none
+
+	column FeeGHS
+		dataType: double
+		isHidden
+		sourceColumn: FeeGHS
+		summarizeBy: none
+
+	column Status
+		dataType: string
+		sourceColumn: Status
+		summarizeBy: none
+
+	column FailureReason
+		dataType: string
+		sourceColumn: FailureReason
+		summarizeBy: none
+
+	column IsFraud
+		dataType: int64
+		isHidden
+		sourceColumn: IsFraud
+		summarizeBy: none
+
+	column IsSuccess
+		dataType: int64
+		isHidden
+		sourceColumn: IsSuccess
+		summarizeBy: none
+
+	column IsFailed
+		dataType: int64
+		isHidden
+		sourceColumn: IsFailed
+		summarizeBy: none
+
+	column IsReversed
+		dataType: int64
+		isHidden
+		sourceColumn: IsReversed
+		summarizeBy: none
+
+	column SuccessValueGHS
+		dataType: double
+		isHidden
+		sourceColumn: SuccessValueGHS
+		summarizeBy: none
+
+	column FraudValueGHS
+		dataType: double
+		isHidden
+		sourceColumn: FraudValueGHS
+		summarizeBy: none
+
+	partition fact_Transaction = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, amount stored as text ('GHS 1,250.00') in some rows, status in mixed case, duplicate txn_id rows. Status flags are calculated here.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "transactions.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"txn_id"}),
+			    WithTxnDate = Table.AddColumn(Deduped, "TxnDate", each if [txn_date] = null or Text.Trim([txn_date]) = "" then null else try Date.FromText([txn_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([txn_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithAmountGHS = Table.AddColumn(WithTxnDate, "AmountGHS", each if [amount_ghs] = null or Text.Trim([amount_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([amount_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Cleanstatus = Table.TransformColumns(WithAmountGHS, {{"status", each Text.Proper(Text.Trim(_)), type text}}),
+			    Renamed = Table.RenameColumns(Cleanstatus, {{"txn_id", "TxnID"}, {"customer_id", "CustomerID"}, {"type_id", "TypeID"}, {"channel_id", "ChannelID"}, {"fee_ghs", "FeeGHS"}, {"status", "Status"}, {"failure_reason", "FailureReason"}, {"is_fraud", "IsFraud"}}),
+			    Selected = Table.SelectColumns(Renamed, {"TxnID", "TxnDate", "CustomerID", "TypeID", "ChannelID", "AmountGHS", "FeeGHS", "Status", "FailureReason", "IsFraud"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"TxnID", type text}, {"CustomerID", type text}, {"TypeID", type text}, {"ChannelID", type text}, {"FeeGHS", type number}, {"Status", type text}, {"FailureReason", type text}, {"IsFraud", Int64.Type}}, "en-US"),
+			    AddIsSuccess = Table.AddColumn(Typed, "IsSuccess", each if [Status] = "Success" then 1 else 0, Int64.Type),
+			    AddIsFailed = Table.AddColumn(AddIsSuccess, "IsFailed", each if [Status] = "Failed" then 1 else 0, Int64.Type),
+			    AddIsReversed = Table.AddColumn(AddIsFailed, "IsReversed", each if [Status] = "Reversed" then 1 else 0, Int64.Type),
+			    AddSuccessValueGHS = Table.AddColumn(AddIsReversed, "SuccessValueGHS", each [AmountGHS] * [IsSuccess], type number),
+			    AddFraudValueGHS = Table.AddColumn(AddSuccessValueGHS, "FraudValueGHS", each [AmountGHS] * [IsFraud], type number)
+			in
+			    AddFraudValueGHS
+

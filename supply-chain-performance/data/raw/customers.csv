@@ -1,0 +1,81 @@
+customer_id,customer,customer_type,region
+CU001,"Supermarket 01, Northern",SUPERMARKET,Northern
+CU002,"Mini-mart 02, Greater Accra",Mini-mart,Greater Accra
+CU003,"Supermarket 03, Western",Supermarket,Western
+CU004,"Mini-mart 04, Western",Mini-mart,Western
+CU005,"Wholesaler 05, Greater Accra",Wholesaler,Greater Accra
+CU006,"Wholesaler 06, Western",Wholesaler,Western
+CU007,"Mini-mart 07, Volta",Mini-mart,Volta
+CU008,"Supermarket 08, Western",Supermarket,Western
+CU009,"Pharmacy 09, Greater Accra",Pharmacy,Greater Accra
+CU010,"Mini-mart 10, Greater Accra",Mini-mart,Greater Accra
+CU011,"Supermarket 11, Western",Supermarket,Western
+CU012,"Mini-mart 12, Greater Accra",Mini-mart,Greater Accra
+CU013,"Mini-mart 13, Greater Accra",  Mini-mart ,Greater Accra
+CU014,"Wholesaler 14, Northern",Wholesaler,Northern
+CU015,"Supermarket 15, Greater Accra",Supermarket,Greater Accra
+CU016,"Supermarket 16, Northern",Supermarket,Northern
+CU017,"Wholesaler 17, Greater Accra",Wholesaler,Greater Accra
+CU018,"Mini-mart 18, Volta",Mini-mart,Volta
+CU019,"Mini-mart 19, Greater Accra",Mini-mart,Greater Accra
+CU020,"Restaurant group 20, Western",Restaurant group,Western
+CU021,"Supermarket 21, Greater Accra",Supermarket,Greater Accra
+CU022,"Mini-mart 22, Upper East",Mini-mart,Upper East
+CU023,"Wholesaler 23, Greater Accra",Wholesaler,Greater Accra
+CU024,"Mini-mart 24, Northern",Mini-mart,Northern
+CU025,"Mini-mart 25, Greater Accra",Mini-mart,Greater Accra
+CU026,"Mini-mart 26, Upper East",  Mini-mart ,Upper East
+CU027,"Supermarket 27, Volta",Supermarket,Volta
+CU028,"Supermarket 28, Greater Accra",Supermarket,Greater Accra
+CU029,"Mini-mart 29, Western",Mini-mart,Western
+CU030,"Pharmacy 30, Western",Pharmacy,Western
+CU031,"Mini-mart 31, Western",Mini-mart,Western
+CU032,"Wholesaler 32, Western",Wholesaler,Western
+CU033,"Supermarket 33, Greater Accra",  Supermarket ,Greater Accra
+CU034,"Mini-mart 34, Northern",Mini-mart,Northern
+CU035,"Pharmacy 35, Greater Accra",Pharmacy,Greater Accra
+CU036,"Pharmacy 36, Upper East",Pharmacy,Upper East
+CU037,"Supermarket 37, Northern",Supermarket,Northern
+CU038,"Mini-mart 38, Volta",Mini-mart,Volta
+CU039,"Supermarket 39, Volta",SUPERMARKET,Volta
+CU040,"Mini-mart 40, Greater Accra",mini-mart,Greater Accra
+CU041,"Wholesaler 41, Northern",Wholesaler,Northern
+CU042,"Wholesaler 42, Greater Accra",Wholesaler,Greater Accra
+CU043,"Wholesaler 43, Northern",Wholesaler,Northern
+CU044,"Supermarket 44, Volta",Supermarket,Volta
+CU045,"Supermarket 45, Upper East",supermarket,Upper East
+CU046,"Pharmacy 46, Volta",  Pharmacy ,Volta
+CU047,"Restaurant group 47, Volta",Restaurant group,Volta
+CU048,"Mini-mart 48, Northern",Mini-mart,Northern
+CU049,"Mini-mart 49, Northern",Mini-mart,Northern
+CU050,"Supermarket 50, Greater Accra",Supermarket,Greater Accra
+CU051,"Restaurant group 51, Volta",  Restaurant group ,Volta
+CU052,"Mini-mart 52, Western",Mini-mart,Western
+CU053,"Supermarket 53, Greater Accra",Supermarket,Greater Accra
+CU054,"Wholesaler 54, Greater Accra",Wholesaler,Greater Accra
+CU055,"Mini-mart 55, Greater Accra",Mini-mart,Greater Accra
+CU056,"Mini-mart 56, Greater Accra",Mini-mart,Greater Accra
+CU057,"Pharmacy 57, Greater Accra",Pharmacy,Greater Accra
+CU058,"Mini-mart 58, Volta",Mini-mart,Volta
+CU059,"Supermarket 59, Volta",Supermarket,Volta
+CU060,"Pharmacy 60, Western",Pharmacy,Western
+CU061,"Mini-mart 61, Greater Accra",Mini-mart,Greater Accra
+CU062,"Supermarket 62, Volta",Supermarket,Volta
+CU063,"Mini-mart 63, Volta",Mini-mart,Volta
+CU064,"Mini-mart 64, Western",Mini-mart,Western
+CU065,"Pharmacy 65, Upper East",Pharmacy,Upper East
+CU066,"Restaurant group 66, Greater Accra",Restaurant group,Greater Accra
+CU067,"Supermarket 67, Volta",Supermarket,Volta
+CU068,"Supermarket 68, Volta",Supermarket,Volta
+CU069,"Mini-mart 69, Greater Accra",Mini-mart,Greater Accra
+CU070,"Mini-mart 70, Western",Mini-mart,Western
+CU071,"Mini-mart 71, Northern",Mini-mart,Northern
+CU072,"Mini-mart 72, Greater Accra",Mini-mart,Greater Accra
+CU073,"Mini-mart 73, Volta",Mini-mart,Volta
+CU074,"Supermarket 74, Western",Supermarket,Western
+CU075,"Supermarket 75, Greater Accra",Supermarket,Greater Accra
+CU076,"Mini-mart 76, Northern",Mini-mart,Northern
+CU077,"Pharmacy 77, Western",Pharmacy,Western
+CU078,"Supermarket 78, Volta",Supermarket,Volta
+CU079,"Mini-mart 79, Greater Accra",Mini-mart,Greater Accra
+CU080,"Mini-mart 80, Greater Accra",Mini-mart,Greater Accra

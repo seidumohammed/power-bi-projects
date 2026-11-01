@@ -1,0 +1,96 @@
+table fact_Receipt
+
+	column ReceiptID
+		dataType: string
+		isHidden
+		sourceColumn: ReceiptID
+		summarizeBy: none
+
+	column PODate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: PODate
+		summarizeBy: none
+
+	column ExpectedDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: ExpectedDate
+		summarizeBy: none
+
+	column ReceiptDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: ReceiptDate
+		summarizeBy: none
+
+	column SupplierID
+		dataType: string
+		isHidden
+		sourceColumn: SupplierID
+		summarizeBy: none
+
+	column ProductID
+		dataType: string
+		isHidden
+		sourceColumn: ProductID
+		summarizeBy: none
+
+	column WarehouseID
+		dataType: string
+		isHidden
+		sourceColumn: WarehouseID
+		summarizeBy: none
+
+	column OrderedQty
+		dataType: int64
+		isHidden
+		sourceColumn: OrderedQty
+		summarizeBy: none
+
+	column ReceivedQty
+		dataType: int64
+		isHidden
+		sourceColumn: ReceivedQty
+		summarizeBy: none
+
+	column RejectedQty
+		dataType: int64
+		isHidden
+		sourceColumn: RejectedQty
+		summarizeBy: none
+
+	column IsOnTime
+		dataType: int64
+		isHidden
+		sourceColumn: IsOnTime
+		summarizeBy: none
+
+	column LeadTimeDays
+		dataType: int64
+		isHidden
+		sourceColumn: LeadTimeDays
+		summarizeBy: none
+
+	partition fact_Receipt = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats and duplicate receipt_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "receipts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"receipt_id"}),
+			    WithPODate = Table.AddColumn(Deduped, "PODate", each if [po_date] = null or Text.Trim([po_date]) = "" then null else try Date.FromText([po_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([po_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithExpectedDate = Table.AddColumn(WithPODate, "ExpectedDate", each if [expected_date] = null or Text.Trim([expected_date]) = "" then null else try Date.FromText([expected_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([expected_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithReceiptDate = Table.AddColumn(WithExpectedDate, "ReceiptDate", each if [receipt_date] = null or Text.Trim([receipt_date]) = "" then null else try Date.FromText([receipt_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([receipt_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Renamed = Table.RenameColumns(WithReceiptDate, {{"receipt_id", "ReceiptID"}, {"supplier_id", "SupplierID"}, {"product_id", "ProductID"}, {"warehouse_id", "WarehouseID"}, {"ordered_qty", "OrderedQty"}, {"received_qty", "ReceivedQty"}, {"rejected_qty", "RejectedQty"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ReceiptID", "PODate", "ExpectedDate", "ReceiptDate", "SupplierID", "ProductID", "WarehouseID", "OrderedQty", "ReceivedQty", "RejectedQty"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ReceiptID", type text}, {"SupplierID", type text}, {"ProductID", type text}, {"WarehouseID", type text}, {"OrderedQty", Int64.Type}, {"ReceivedQty", Int64.Type}, {"RejectedQty", Int64.Type}}, "en-US"),
+			    AddIsOnTime = Table.AddColumn(Typed, "IsOnTime", each if [ReceiptDate] <= [ExpectedDate] then 1 else 0, Int64.Type),
+			    AddLeadTimeDays = Table.AddColumn(AddIsOnTime, "LeadTimeDays", each Duration.Days([ReceiptDate] - [PODate]), Int64.Type)
+			in
+			    AddLeadTimeDays
+

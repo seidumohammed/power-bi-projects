@@ -1,0 +1,184 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure 'Doses Given' =
+			SUM ( fact_Immunisation[Doses] )
+		formatString: "#,0"
+		displayFolder: Immunisation
+
+	measure 'Children Targeted' =
+			SUM ( fact_Immunisation[TargetChildren] )
+		formatString: "#,0"
+		displayFolder: Immunisation
+
+	measure 'Coverage %' =
+			DIVIDE ( [Doses Given], [Children Targeted] )
+		formatString: "0.0%"
+		displayFolder: Immunisation
+
+	measure 'Coverage Target' =
+			CALCULATE (
+			    AVERAGE ( fact_Target[CoverageTarget] ),
+			    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			)
+		formatString: "0%"
+		displayFolder: Immunisation
+
+	measure 'Coverage Gap (points)' =
+			[Coverage %] - [Coverage Target]
+		formatString: "0.0%;-0.0%"
+		displayFolder: Immunisation
+
+	measure 'Penta 1 Doses' =
+			CALCULATE ( [Doses Given], dim_Antigen[Antigen] = "Penta 1" )
+		formatString: "#,0"
+		displayFolder: Immunisation
+
+	measure 'Penta 3 Doses' =
+			CALCULATE ( [Doses Given], dim_Antigen[Antigen] = "Penta 3" )
+		formatString: "#,0"
+		displayFolder: Immunisation
+
+	measure 'Penta Dropout %' =
+			DIVIDE ( [Penta 1 Doses] - [Penta 3 Doses], [Penta 1 Doses] )
+		formatString: "0.0%"
+		displayFolder: Immunisation
+
+	measure Cases =
+			SUM ( fact_Cases[Cases] )
+		formatString: "#,0"
+		displayFolder: Surveillance
+
+	measure Deaths =
+			SUM ( fact_Cases[Deaths] )
+		formatString: "#,0"
+		displayFolder: Surveillance
+
+	measure 'Case Fatality %' =
+			DIVIDE ( [Deaths], [Cases] )
+		formatString: "0.00%"
+		displayFolder: Surveillance
+
+	measure 'Tests Done' =
+			SUM ( fact_Cases[Tested] )
+		formatString: "#,0"
+		displayFolder: Surveillance
+
+	measure 'Test Positivity %' =
+			DIVIDE ( SUM ( fact_Cases[Positive] ), [Tests Done] )
+		formatString: "0.0%"
+		displayFolder: Surveillance
+
+	measure 'Catchment Population' =
+			SUMX ( VALUES ( dim_Facility[FacilityID] ), CALCULATE ( MAX ( dim_Facility[CatchmentPopulation] ) ) )
+		formatString: "#,0"
+		displayFolder: Surveillance
+
+	measure 'Cases per 1,000' =
+			DIVIDE ( [Cases] * 1000, [Catchment Population] )
+		formatString: "0.0"
+		displayFolder: Surveillance
+
+	measure 'Reports Expected' =
+			COUNTROWS ( fact_Reporting )
+		formatString: "#,0"
+		displayFolder: Reporting
+
+	measure 'Reports Submitted' =
+			SUM ( fact_Reporting[Submitted] )
+		formatString: "#,0"
+		displayFolder: Reporting
+
+	measure 'Reports On Time' =
+			SUM ( fact_Reporting[OnTime] )
+		formatString: "#,0"
+		displayFolder: Reporting
+
+	measure 'Reporting Completeness %' =
+			DIVIDE ( [Reports Submitted], [Reports Expected] )
+		formatString: "0.0%"
+		displayFolder: Reporting
+
+	measure 'Reporting Timeliness %' =
+			DIVIDE ( [Reports On Time], [Reports Submitted] )
+		formatString: "0.0%"
+		displayFolder: Reporting
+
+	measure Facilities =
+			DISTINCTCOUNT ( dim_Facility[FacilityID] )
+		formatString: "#,0"
+		displayFolder: Reporting
+
+	measure 'Doses PY' =
+			CALCULATE ( [Doses Given], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Doses YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Doses Given], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Doses Given], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Doses YTD' =
+			TOTALYTD ( [Doses Given], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Doses 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Doses Given], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Cases PY' =
+			CALCULATE ( [Cases], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Cases YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Cases], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Cases], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Cases YTD' =
+			TOTALYTD ( [Cases], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Cases 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Cases], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Regional health directorate, Northern Region. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

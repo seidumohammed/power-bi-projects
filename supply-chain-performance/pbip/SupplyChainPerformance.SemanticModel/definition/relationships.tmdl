@@ -1,0 +1,51 @@
+relationship 93e0760d-7f3e-5060-9cb3-4af774e24cbe
+	fromColumn: fact_OrderLine.OrderDate
+	toColumn: dim_Date.Date
+
+relationship 44856adf-ba01-566f-a0b9-b7616b8d0932
+	fromColumn: fact_OrderLine.CustomerID
+	toColumn: dim_Customer.CustomerID
+
+relationship 97c1a609-2915-5a20-83d6-1e8c52926313
+	fromColumn: fact_OrderLine.ProductID
+	toColumn: dim_Product.ProductID
+
+relationship b643aee5-48ea-54d5-91d0-202fc414aba8
+	fromColumn: fact_OrderLine.WarehouseID
+	toColumn: dim_Warehouse.WarehouseID
+
+relationship a85289e0-9be0-5e88-867e-a75c717da717
+	fromColumn: fact_OrderLine.CarrierID
+	toColumn: dim_Carrier.CarrierID
+
+relationship e5b290a5-28d6-5c33-a104-54805a6360a1
+	fromColumn: fact_Stock.SnapshotDate
+	toColumn: dim_Date.Date
+
+relationship a9abddd9-0fbf-58e8-bfbc-0a714d817eec
+	fromColumn: fact_Stock.WarehouseID
+	toColumn: dim_Warehouse.WarehouseID
+
+relationship 7857cbfa-f428-5389-a351-ab98bf7d61c8
+	fromColumn: fact_Stock.ProductID
+	toColumn: dim_Product.ProductID
+
+relationship ce26e672-2156-54ac-84ce-433139866ee7
+	fromColumn: fact_Receipt.PODate
+	toColumn: dim_Date.Date
+
+relationship d43c6f88-232f-54fe-bb4a-90076a714448
+	fromColumn: fact_Receipt.SupplierID
+	toColumn: dim_Supplier.SupplierID
+
+relationship b9bfa30e-c60f-563c-8981-9a7553aeba30
+	fromColumn: fact_Receipt.ProductID
+	toColumn: dim_Product.ProductID
+
+relationship 619c82ce-fb12-56d2-ac5c-1b868dc65225
+	fromColumn: fact_Receipt.WarehouseID
+	toColumn: dim_Warehouse.WarehouseID
+
+relationship 92ff1ca1-6dee-5f37-8ce1-ea09fd5d18e6
+	fromColumn: fact_Target.Warehouse
+	toColumn: dim_Warehouse.Warehouse

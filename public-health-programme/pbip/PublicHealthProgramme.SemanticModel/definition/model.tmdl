@@ -1,0 +1,15 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table dim_District
+ref table dim_Facility
+ref table dim_Antigen
+ref table dim_Disease
+ref table fact_Immunisation
+ref table fact_Cases
+ref table fact_Reporting
+ref table fact_Target
+ref table dim_Date
+ref table _Measures

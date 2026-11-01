@@ -1,0 +1,37 @@
+table dim_Agent
+
+	column AgentID
+		dataType: string
+		isHidden
+		sourceColumn: AgentID
+		summarizeBy: none
+
+	column AgentName
+		dataType: string
+		sourceColumn: AgentName
+		summarizeBy: none
+
+	column BranchID
+		dataType: string
+		isHidden
+		sourceColumn: BranchID
+		summarizeBy: none
+
+	column JoinedDate
+		dataType: dateTime
+		formatString: "dd mmm yyyy"
+		sourceColumn: JoinedDate
+		summarizeBy: none
+
+	partition dim_Agent = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "agents.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"agent_id", "AgentID"}, {"agent_name", "AgentName"}, {"branch_id", "BranchID"}, {"joined_date", "JoinedDate"}}),
+			    Selected = Table.SelectColumns(Renamed, {"AgentID", "AgentName", "BranchID", "JoinedDate"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"AgentID", type text}, {"AgentName", type text}, {"BranchID", type text}, {"JoinedDate", type date}}, "en-US")
+			in
+			    Typed
+

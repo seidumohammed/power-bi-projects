@@ -1,0 +1,44 @@
+table dim_Facility
+
+	column FacilityID
+		dataType: string
+		isHidden
+		sourceColumn: FacilityID
+		summarizeBy: none
+
+	column Facility
+		dataType: string
+		sourceColumn: Facility
+		summarizeBy: none
+
+	column DistrictID
+		dataType: string
+		isHidden
+		sourceColumn: DistrictID
+		summarizeBy: none
+
+	column FacilityLevel
+		dataType: string
+		sourceColumn: FacilityLevel
+		summarizeBy: none
+
+	column CatchmentPopulation
+		dataType: int64
+		isHidden
+		sourceColumn: CatchmentPopulation
+		summarizeBy: none
+
+	partition dim_Facility = m
+		mode: import
+		source =
+			// Cleaning: facility level has stray spaces.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "facilities.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Cleanfacilitylevel = Table.TransformColumns(Promoted, {{"facility_level", each Text.Trim(_), type text}}),
+			    Renamed = Table.RenameColumns(Cleanfacilitylevel, {{"facility_id", "FacilityID"}, {"facility", "Facility"}, {"district_id", "DistrictID"}, {"facility_level", "FacilityLevel"}, {"catchment_population", "CatchmentPopulation"}}),
+			    Selected = Table.SelectColumns(Renamed, {"FacilityID", "Facility", "DistrictID", "FacilityLevel", "CatchmentPopulation"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"FacilityID", type text}, {"Facility", type text}, {"DistrictID", type text}, {"FacilityLevel", type text}, {"CatchmentPopulation", Int64.Type}}, "en-US")
+			in
+			    Typed
+

@@ -1,0 +1,179 @@
+// =====================================================================================
+// SUPPLY CHAIN PERFORMANCE: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Service | format: #,0 | desc: Number of customer order lines.
+Order Lines =
+COUNTROWS ( fact_OrderLine )
+
+// folder: Service | format: #,0 | desc: Number of distinct customer orders.
+Orders =
+DISTINCTCOUNT ( fact_OrderLine[OrderID] )
+
+// folder: Service | format: #,0 | desc: Units customers asked for.
+Units Ordered =
+SUM ( fact_OrderLine[OrderedQty] )
+
+// folder: Service | format: #,0 | desc: Units actually shipped.
+Units Shipped =
+SUM ( fact_OrderLine[ShippedQty] )
+
+// folder: Service | format: 0.0% | desc: Units shipped divided by units ordered.
+Fill Rate % =
+DIVIDE ( [Units Shipped], [Units Ordered] )
+
+// folder: Service | format: 0.0% | desc: Order lines delivered on or before the required date.
+On-Time % =
+DIVIDE ( SUM ( fact_OrderLine[IsOnTime] ), [Order Lines] )
+
+// folder: Service | format: 0.0% | desc: Order lines where the quantity shipped is at least the quantity ordered.
+In-Full % =
+DIVIDE ( SUM ( fact_OrderLine[IsInFull] ), [Order Lines] )
+
+// folder: Service | format: 0.0% | desc: Order lines delivered both on time and in full.
+OTIF % =
+DIVIDE ( SUM ( fact_OrderLine[IsOTIF] ), [Order Lines] )
+
+// folder: Service | format: #,0 | desc: Order lines delivered after the required date.
+Late Lines =
+[Order Lines] - SUM ( fact_OrderLine[IsOnTime] )
+
+// folder: Service | format: 0.0 | desc: Average days from order to delivery.
+Avg Lead Time (days) =
+AVERAGE ( fact_OrderLine[LeadTimeDays] )
+
+// folder: Service | format: #,0 | desc: Value of units shipped at list price, in Ghana cedis.
+Shipped Value (GHS) =
+SUM ( fact_OrderLine[ShippedValueGHS] )
+
+// folder: Service | format: #,0 | desc: Total freight cost.
+Freight Cost (GHS) =
+SUM ( fact_OrderLine[FreightCostGHS] )
+
+// folder: Service | format: 0.00 | desc: Freight cost divided by units shipped.
+Freight per Unit (GHS) =
+DIVIDE ( [Freight Cost (GHS)], [Units Shipped] )
+
+// folder: Targets | format: 0.0% | desc: The OTIF rate each hub aims for in the months selected.
+OTIF Target =
+IF (
+    ISFILTERED ( dim_Customer[Customer] ) || ISFILTERED ( dim_Customer[CustomerType] ) || ISFILTERED ( dim_Customer[Region] ) || ISFILTERED ( dim_Product[Category] ) || ISFILTERED ( dim_Carrier[Carrier] ),
+    BLANK (),   -- the target is set per hub only
+    CALCULATE (
+        AVERAGE ( fact_Target[OTIFTarget] ),
+        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+    )
+)
+
+// folder: Targets | format: 0.0% | desc: OTIF divided by its target.
+OTIF Attainment % =
+DIVIDE ( [OTIF %], [OTIF Target] )
+
+// folder: Targets | format: 0.0%;-0.0% | desc: OTIF minus its target, in percentage points. Negative means below target.
+OTIF Gap (points) =
+[OTIF %] - [OTIF Target]
+
+// folder: Targets | format: General | desc: "Met" at 100% or more, "Close" from 95%, otherwise "Missed".
+OTIF Status =
+SWITCH (
+    TRUE (),
+    ISBLANK ( [OTIF Attainment %] ), "No target",
+    [OTIF Attainment %] >= 1, "Met",
+    [OTIF Attainment %] >= 0.95, "Close",
+    "Missed"
+)
+
+// folder: Inventory | format: #,0 | desc: Units in stock at the last month-end of the period selected.
+Stock On Hand (units) =
+VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+RETURN CALCULATE ( SUM ( fact_Stock[OnHandQty] ), fact_Stock[SnapshotDate] = LastSnap )
+
+// folder: Inventory | format: #,0 | desc: Stock on hand valued at unit cost.
+Stock Value (GHS) =
+VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+RETURN SUMX ( FILTER ( fact_Stock, fact_Stock[SnapshotDate] = LastSnap ), fact_Stock[OnHandQty] * RELATED ( dim_Product[UnitCostGHS] ) )
+
+// folder: Inventory | format: 0 | desc: Days the closing stock would last at the demand of the last month.
+Days of Cover =
+VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+VAR Demand = CALCULATE ( SUM ( fact_Stock[DemandQty] ), fact_Stock[SnapshotDate] = LastSnap )
+RETURN DIVIDE ( [Stock On Hand (units)], Demand / 30 )
+
+// folder: Inventory | format: 0.0% | desc: Share of month-end hub and product counts that were at zero.
+Stockout Rate % =
+DIVIDE ( SUM ( fact_Stock[IsStockout] ), COUNTROWS ( fact_Stock ) )
+
+// folder: Suppliers | format: #,0 | desc: Number of supplier delivery lines.
+Supplier Deliveries =
+COUNTROWS ( fact_Receipt )
+
+// folder: Suppliers | format: 0.0% | desc: Supplier deliveries received on or before the expected date.
+Supplier On-Time % =
+DIVIDE ( SUM ( fact_Receipt[IsOnTime] ), [Supplier Deliveries] )
+
+// folder: Suppliers | format: 0.0% | desc: Units received divided by units ordered from suppliers.
+Supplier Fill % =
+DIVIDE ( SUM ( fact_Receipt[ReceivedQty] ), SUM ( fact_Receipt[OrderedQty] ) )
+
+// folder: Suppliers | format: 0.0% | desc: Units rejected on arrival divided by units received.
+Rejection Rate % =
+DIVIDE ( SUM ( fact_Receipt[RejectedQty] ), SUM ( fact_Receipt[ReceivedQty] ) )
+
+// folder: Suppliers | format: 0.0 | desc: Average days from purchase order to receipt.
+Supplier Lead Time (days) =
+AVERAGE ( fact_Receipt[LeadTimeDays] )
+
+// folder: Time intelligence | format: #,0 | desc: Shipped Value in the same period one year earlier. Use it on a monthly chart, not on a card.
+Shipped Value PY =
+CALCULATE ( [Shipped Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in shipped value in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Shipped Value YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Shipped Value from the start of the year to the date shown.
+Shipped Value YTD =
+TOTALYTD ( [Shipped Value (GHS)], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly shipped value over the last three months up to the month shown.
+Shipped Value 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Shipped Value (GHS)], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Order Lines in the same period one year earlier. Use it on a monthly chart, not on a card.
+Order Lines PY =
+CALCULATE ( [Order Lines], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in order lines in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Order Lines YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Order Lines from the start of the year to the date shown.
+Order Lines YTD =
+TOTALYTD ( [Order Lines], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly order lines over the last three months up to the month shown.
+Order Lines 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Order Lines], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Ghana distribution network. Period: Jan 2024 to Dec 2025."

@@ -1,0 +1,33 @@
+table fact_Target
+
+	column MonthStart
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: MonthStart
+		summarizeBy: none
+
+	column Branch
+		dataType: string
+		isHidden
+		sourceColumn: Branch
+		summarizeBy: none
+
+	column SalesTargetGHS
+		dataType: double
+		isHidden
+		sourceColumn: SalesTargetGHS
+		summarizeBy: none
+
+	partition fact_Target = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"branch", "Branch"}, {"sales_target_ghs", "SalesTargetGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"MonthStart", "Branch", "SalesTargetGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"MonthStart", type date}, {"Branch", type text}, {"SalesTargetGHS", type number}}, "en-US")
+			in
+			    Typed
+

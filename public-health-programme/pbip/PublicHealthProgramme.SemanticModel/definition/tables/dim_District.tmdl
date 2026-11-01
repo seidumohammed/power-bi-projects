@@ -1,0 +1,35 @@
+table dim_District
+
+	column DistrictID
+		dataType: string
+		isHidden
+		sourceColumn: DistrictID
+		summarizeBy: none
+
+	column District
+		dataType: string
+		sourceColumn: District
+		summarizeBy: none
+
+	column Subregion
+		dataType: string
+		sourceColumn: Subregion
+		summarizeBy: none
+
+	column Population
+		dataType: int64
+		sourceColumn: Population
+		summarizeBy: none
+
+	partition dim_District = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "districts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"district_id", "DistrictID"}, {"district", "District"}, {"subregion", "Subregion"}, {"population", "Population"}}),
+			    Selected = Table.SelectColumns(Renamed, {"DistrictID", "District", "Subregion", "Population"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"DistrictID", type text}, {"District", type text}, {"Subregion", type text}, {"Population", Int64.Type}}, "en-US")
+			in
+			    Typed
+

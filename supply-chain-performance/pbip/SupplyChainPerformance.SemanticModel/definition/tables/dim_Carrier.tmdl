@@ -1,0 +1,30 @@
+table dim_Carrier
+
+	column CarrierID
+		dataType: string
+		isHidden
+		sourceColumn: CarrierID
+		summarizeBy: none
+
+	column Carrier
+		dataType: string
+		sourceColumn: Carrier
+		summarizeBy: none
+
+	column Mode
+		dataType: string
+		sourceColumn: Mode
+		summarizeBy: none
+
+	partition dim_Carrier = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "carriers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"carrier_id", "CarrierID"}, {"carrier", "Carrier"}, {"mode", "Mode"}}),
+			    Selected = Table.SelectColumns(Renamed, {"CarrierID", "Carrier", "Mode"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"CarrierID", type text}, {"Carrier", type text}, {"Mode", type text}}, "en-US")
+			in
+			    Typed
+

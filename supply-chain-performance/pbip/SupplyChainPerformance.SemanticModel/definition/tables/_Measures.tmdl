@@ -1,0 +1,222 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure 'Order Lines' =
+			COUNTROWS ( fact_OrderLine )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure Orders =
+			DISTINCTCOUNT ( fact_OrderLine[OrderID] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Units Ordered' =
+			SUM ( fact_OrderLine[OrderedQty] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Units Shipped' =
+			SUM ( fact_OrderLine[ShippedQty] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Fill Rate %' =
+			DIVIDE ( [Units Shipped], [Units Ordered] )
+		formatString: "0.0%"
+		displayFolder: Service
+
+	measure 'On-Time %' =
+			DIVIDE ( SUM ( fact_OrderLine[IsOnTime] ), [Order Lines] )
+		formatString: "0.0%"
+		displayFolder: Service
+
+	measure 'In-Full %' =
+			DIVIDE ( SUM ( fact_OrderLine[IsInFull] ), [Order Lines] )
+		formatString: "0.0%"
+		displayFolder: Service
+
+	measure 'OTIF %' =
+			DIVIDE ( SUM ( fact_OrderLine[IsOTIF] ), [Order Lines] )
+		formatString: "0.0%"
+		displayFolder: Service
+
+	measure 'Late Lines' =
+			[Order Lines] - SUM ( fact_OrderLine[IsOnTime] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Avg Lead Time (days)' =
+			AVERAGE ( fact_OrderLine[LeadTimeDays] )
+		formatString: "0.0"
+		displayFolder: Service
+
+	measure 'Shipped Value (GHS)' =
+			SUM ( fact_OrderLine[ShippedValueGHS] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Freight Cost (GHS)' =
+			SUM ( fact_OrderLine[FreightCostGHS] )
+		formatString: "#,0"
+		displayFolder: Service
+
+	measure 'Freight per Unit (GHS)' =
+			DIVIDE ( [Freight Cost (GHS)], [Units Shipped] )
+		formatString: "0.00"
+		displayFolder: Service
+
+	measure 'OTIF Target' =
+			IF (
+			    ISFILTERED ( dim_Customer[Customer] ) || ISFILTERED ( dim_Customer[CustomerType] ) || ISFILTERED ( dim_Customer[Region] ) || ISFILTERED ( dim_Product[Category] ) || ISFILTERED ( dim_Carrier[Carrier] ),
+			    BLANK (),   -- the target is set per hub only
+			    CALCULATE (
+			        AVERAGE ( fact_Target[OTIFTarget] ),
+			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			    )
+			)
+		formatString: "0.0%"
+		displayFolder: Targets
+
+	measure 'OTIF Attainment %' =
+			DIVIDE ( [OTIF %], [OTIF Target] )
+		formatString: "0.0%"
+		displayFolder: Targets
+
+	measure 'OTIF Gap (points)' =
+			[OTIF %] - [OTIF Target]
+		formatString: "0.0%;-0.0%"
+		displayFolder: Targets
+
+	measure 'OTIF Status' =
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( [OTIF Attainment %] ), "No target",
+			    [OTIF Attainment %] >= 1, "Met",
+			    [OTIF Attainment %] >= 0.95, "Close",
+			    "Missed"
+			)
+		displayFolder: Targets
+
+	measure 'Stock On Hand (units)' =
+			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+			RETURN CALCULATE ( SUM ( fact_Stock[OnHandQty] ), fact_Stock[SnapshotDate] = LastSnap )
+		formatString: "#,0"
+		displayFolder: Inventory
+
+	measure 'Stock Value (GHS)' =
+			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+			RETURN SUMX ( FILTER ( fact_Stock, fact_Stock[SnapshotDate] = LastSnap ), fact_Stock[OnHandQty] * RELATED ( dim_Product[UnitCostGHS] ) )
+		formatString: "#,0"
+		displayFolder: Inventory
+
+	measure 'Days of Cover' =
+			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
+			VAR Demand = CALCULATE ( SUM ( fact_Stock[DemandQty] ), fact_Stock[SnapshotDate] = LastSnap )
+			RETURN DIVIDE ( [Stock On Hand (units)], Demand / 30 )
+		formatString: "0"
+		displayFolder: Inventory
+
+	measure 'Stockout Rate %' =
+			DIVIDE ( SUM ( fact_Stock[IsStockout] ), COUNTROWS ( fact_Stock ) )
+		formatString: "0.0%"
+		displayFolder: Inventory
+
+	measure 'Supplier Deliveries' =
+			COUNTROWS ( fact_Receipt )
+		formatString: "#,0"
+		displayFolder: Suppliers
+
+	measure 'Supplier On-Time %' =
+			DIVIDE ( SUM ( fact_Receipt[IsOnTime] ), [Supplier Deliveries] )
+		formatString: "0.0%"
+		displayFolder: Suppliers
+
+	measure 'Supplier Fill %' =
+			DIVIDE ( SUM ( fact_Receipt[ReceivedQty] ), SUM ( fact_Receipt[OrderedQty] ) )
+		formatString: "0.0%"
+		displayFolder: Suppliers
+
+	measure 'Rejection Rate %' =
+			DIVIDE ( SUM ( fact_Receipt[RejectedQty] ), SUM ( fact_Receipt[ReceivedQty] ) )
+		formatString: "0.0%"
+		displayFolder: Suppliers
+
+	measure 'Supplier Lead Time (days)' =
+			AVERAGE ( fact_Receipt[LeadTimeDays] )
+		formatString: "0.0"
+		displayFolder: Suppliers
+
+	measure 'Shipped Value PY' =
+			CALCULATE ( [Shipped Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Shipped Value YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Shipped Value YTD' =
+			TOTALYTD ( [Shipped Value (GHS)], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Shipped Value 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Shipped Value (GHS)], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Order Lines PY' =
+			CALCULATE ( [Order Lines], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Order Lines YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Order Lines YTD' =
+			TOTALYTD ( [Order Lines], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Order Lines 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Order Lines], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Ghana distribution network. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

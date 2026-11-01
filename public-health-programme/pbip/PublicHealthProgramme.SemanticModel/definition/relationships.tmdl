@@ -1,0 +1,39 @@
+relationship 2579bd02-bfae-5bff-80e1-845c72edf392
+	fromColumn: dim_Facility.DistrictID
+	toColumn: dim_District.DistrictID
+
+relationship bc9f1028-56ad-522d-a6cb-d027c2fe1809
+	fromColumn: fact_Immunisation.Month
+	toColumn: dim_Date.Date
+
+relationship 1aec81df-c0f4-5f04-92a4-f69103f178de
+	fromColumn: fact_Immunisation.FacilityID
+	toColumn: dim_Facility.FacilityID
+
+relationship 432c0baf-e28b-507f-a015-02ebed2992f9
+	fromColumn: fact_Immunisation.AntigenID
+	toColumn: dim_Antigen.AntigenID
+
+relationship 0a67b534-9e5b-5bdd-a0e1-300c970cf71f
+	fromColumn: fact_Cases.Month
+	toColumn: dim_Date.Date
+
+relationship 46d5bcf7-59d4-5542-b9f0-9d2c4cd9467b
+	fromColumn: fact_Cases.FacilityID
+	toColumn: dim_Facility.FacilityID
+
+relationship 231a1494-eece-5e13-91b4-bbac2d8e3792
+	fromColumn: fact_Cases.DiseaseID
+	toColumn: dim_Disease.DiseaseID
+
+relationship 76548dfa-7fce-5dd0-8f90-0fc1a936a05c
+	fromColumn: fact_Reporting.Month
+	toColumn: dim_Date.Date
+
+relationship 3013bf99-d01f-5a8d-8c2a-bfaf1f553a96
+	fromColumn: fact_Reporting.FacilityID
+	toColumn: dim_Facility.FacilityID
+
+relationship 4292dfbb-9cb9-5349-b286-5cc1c86ce971
+	fromColumn: fact_Target.District
+	toColumn: dim_District.District

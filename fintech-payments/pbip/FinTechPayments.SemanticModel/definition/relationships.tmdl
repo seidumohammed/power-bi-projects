@@ -1,0 +1,31 @@
+relationship c03ec064-ccb0-59e4-9b64-4c01446a5e94
+	fromColumn: fact_Transaction.TxnDate
+	toColumn: dim_Date.Date
+
+relationship 15d92a46-18c0-5a07-9b22-52517168024f
+	fromColumn: fact_Transaction.CustomerID
+	toColumn: dim_Customer.CustomerID
+
+relationship 4bbd0338-705a-5fbf-bdb3-e09c72f04d7a
+	fromColumn: fact_Transaction.TypeID
+	toColumn: dim_TxnType.TypeID
+
+relationship 3da2c25d-48b5-54b9-a087-079450085979
+	fromColumn: fact_Transaction.ChannelID
+	toColumn: dim_Channel.ChannelID
+
+relationship 89538a86-2c66-5cfd-ad3b-99e5ba6af742
+	fromColumn: fact_Loan.DisbursedDate
+	toColumn: dim_Date.Date
+
+relationship 1089a6c3-49c0-5ed5-820d-1d8ed6a46fa1
+	fromColumn: fact_Loan.CustomerID
+	toColumn: dim_Customer.CustomerID
+
+relationship f113b780-7ab0-54e0-a2b5-06274b3a5fec
+	fromColumn: dim_Customer.Region
+	toColumn: dim_Region.Region
+
+relationship 2e343d24-5b1a-5c17-b1ad-a5de3a6c0bff
+	fromColumn: fact_Target.Region
+	toColumn: dim_Region.Region

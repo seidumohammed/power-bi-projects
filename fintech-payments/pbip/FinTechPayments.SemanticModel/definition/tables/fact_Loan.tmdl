@@ -1,0 +1,87 @@
+table fact_Loan
+
+	column LoanID
+		dataType: string
+		isHidden
+		sourceColumn: LoanID
+		summarizeBy: none
+
+	column CustomerID
+		dataType: string
+		isHidden
+		sourceColumn: CustomerID
+		summarizeBy: none
+
+	column DisbursedDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: DisbursedDate
+		summarizeBy: none
+
+	column AmountGHS
+		dataType: double
+		isHidden
+		sourceColumn: AmountGHS
+		summarizeBy: none
+
+	column TermDays
+		dataType: int64
+		sourceColumn: TermDays
+		summarizeBy: none
+
+	column Status
+		dataType: string
+		sourceColumn: Status
+		summarizeBy: none
+
+	column DaysPastDue
+		dataType: int64
+		isHidden
+		sourceColumn: DaysPastDue
+		summarizeBy: none
+
+	column RepaidGHS
+		dataType: double
+		isHidden
+		sourceColumn: RepaidGHS
+		summarizeBy: none
+
+	column OutstandingGHS
+		dataType: double
+		isHidden
+		sourceColumn: OutstandingGHS
+		summarizeBy: none
+
+	column IsDefault
+		dataType: int64
+		isHidden
+		sourceColumn: IsDefault
+		summarizeBy: none
+
+	column PAR30BalanceGHS
+		dataType: double
+		isHidden
+		sourceColumn: PAR30BalanceGHS
+		summarizeBy: none
+
+	partition fact_Loan = m
+		mode: import
+		source =
+			// Cleaning: date in two formats, amount stored as text, status in mixed case, duplicate loan_id rows. Outstanding balance and risk flags are calculated here.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "loans.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"loan_id"}),
+			    WithDisbursedDate = Table.AddColumn(Deduped, "DisbursedDate", each if [disbursed_date] = null or Text.Trim([disbursed_date]) = "" then null else try Date.FromText([disbursed_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([disbursed_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithAmountGHS = Table.AddColumn(WithDisbursedDate, "AmountGHS", each if [amount_ghs] = null or Text.Trim([amount_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([amount_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Cleanstatus = Table.TransformColumns(WithAmountGHS, {{"status", each Text.Proper(Text.Trim(_)), type text}}),
+			    Renamed = Table.RenameColumns(Cleanstatus, {{"loan_id", "LoanID"}, {"customer_id", "CustomerID"}, {"term_days", "TermDays"}, {"status", "Status"}, {"days_past_due", "DaysPastDue"}, {"repaid_ghs", "RepaidGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"LoanID", "CustomerID", "DisbursedDate", "AmountGHS", "TermDays", "Status", "DaysPastDue", "RepaidGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"LoanID", type text}, {"CustomerID", type text}, {"TermDays", Int64.Type}, {"Status", type text}, {"DaysPastDue", Int64.Type}, {"RepaidGHS", type number}}, "en-US"),
+			    AddOutstandingGHS = Table.AddColumn(Typed, "OutstandingGHS", each if [Status] = "Repaid" then 0 else [AmountGHS] - [RepaidGHS], type number),
+			    AddIsDefault = Table.AddColumn(AddOutstandingGHS, "IsDefault", each if [Status] = "Default" then 1 else 0, Int64.Type),
+			    AddPAR30BalanceGHS = Table.AddColumn(AddIsDefault, "PAR30BalanceGHS", each if [DaysPastDue] > 30 then [OutstandingGHS] else 0, type number)
+			in
+			    AddPAR30BalanceGHS
+

@@ -1,0 +1,35 @@
+relationship 76491526-1515-5b3f-ae12-52c6b8d83590
+	fromColumn: fact_Listing.PropertyID
+	toColumn: dim_Property.PropertyID
+
+relationship f613ce42-5694-5606-a112-b965b9e10f4a
+	fromColumn: fact_Listing.AgentID
+	toColumn: dim_Agent.AgentID
+
+relationship 6c44a07e-4bc6-51a1-8c76-c696b34bc69c
+	fromColumn: fact_Listing.ListDate
+	toColumn: dim_Date.Date
+
+relationship e843eda7-b1c3-552d-83fe-27d025d0d174
+	fromColumn: fact_Sale.PropertyID
+	toColumn: dim_Property.PropertyID
+
+relationship fd4488dc-d29a-569e-a3ec-c85a4c4e0b21
+	fromColumn: fact_Sale.AgentID
+	toColumn: dim_Agent.AgentID
+
+relationship 5df916aa-e70b-58e6-a735-654e7e466078
+	fromColumn: fact_Sale.SaleDate
+	toColumn: dim_Date.Date
+
+relationship 8dccff30-afa8-53ae-9f70-7289f55077cb
+	fromColumn: dim_Property.AreaID
+	toColumn: dim_Area.AreaID
+
+relationship 072fdb63-d554-5c34-93dc-6b3710933369
+	fromColumn: dim_Agent.BranchID
+	toColumn: dim_Branch.BranchID
+
+relationship 0daabc83-9b07-5085-a923-c1316394e8ff
+	fromColumn: fact_Target.Branch
+	toColumn: dim_Branch.Branch

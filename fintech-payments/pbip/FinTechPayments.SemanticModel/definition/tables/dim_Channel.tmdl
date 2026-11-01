@@ -1,0 +1,25 @@
+table dim_Channel
+
+	column ChannelID
+		dataType: string
+		isHidden
+		sourceColumn: ChannelID
+		summarizeBy: none
+
+	column Channel
+		dataType: string
+		sourceColumn: Channel
+		summarizeBy: none
+
+	partition dim_Channel = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "channels.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"channel_id", "ChannelID"}, {"channel", "Channel"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ChannelID", "Channel"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ChannelID", type text}, {"Channel", type text}}, "en-US")
+			in
+			    Typed
+

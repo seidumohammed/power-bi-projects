@@ -1,0 +1,16 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table dim_Warehouse
+ref table dim_Customer
+ref table dim_Product
+ref table dim_Supplier
+ref table dim_Carrier
+ref table fact_OrderLine
+ref table fact_Stock
+ref table fact_Receipt
+ref table fact_Target
+ref table dim_Date
+ref table _Measures

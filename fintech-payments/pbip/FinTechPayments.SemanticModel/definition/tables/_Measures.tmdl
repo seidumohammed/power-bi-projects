@@ -1,0 +1,215 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure Transactions =
+			COUNTROWS ( fact_Transaction )
+		formatString: "#,0"
+		displayFolder: Payments
+
+	measure 'Successful Transactions' =
+			SUM ( fact_Transaction[IsSuccess] )
+		formatString: "#,0"
+		displayFolder: Payments
+
+	measure 'Failed Transactions' =
+			SUM ( fact_Transaction[IsFailed] )
+		formatString: "#,0"
+		displayFolder: Payments
+
+	measure 'Success Rate %' =
+			DIVIDE ( [Successful Transactions], [Transactions] )
+		formatString: "0.0%"
+		displayFolder: Payments
+
+	measure 'Failure Rate %' =
+			DIVIDE ( [Failed Transactions], [Transactions] )
+		formatString: "0.0%"
+		displayFolder: Payments
+
+	measure 'Reversal Rate %' =
+			DIVIDE ( SUM ( fact_Transaction[IsReversed] ), [Transactions] )
+		formatString: "0.0%"
+		displayFolder: Payments
+
+	measure 'Txn Value (GHS)' =
+			SUM ( fact_Transaction[SuccessValueGHS] )
+		formatString: "#,0"
+		displayFolder: Payments
+
+	measure 'Avg Txn Value (GHS)' =
+			DIVIDE ( [Txn Value (GHS)], [Successful Transactions] )
+		formatString: "#,0.00"
+		displayFolder: Payments
+
+	measure 'Fee Revenue (GHS)' =
+			SUM ( fact_Transaction[FeeGHS] )
+		formatString: "#,0"
+		displayFolder: Payments
+
+	measure 'Active Customers' =
+			CALCULATE ( DISTINCTCOUNT ( fact_Transaction[CustomerID] ), fact_Transaction[IsSuccess] = 1 )
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'New Customers' =
+			VAR FirstDay = MIN ( dim_Date[Date] )
+			VAR LastDay = MAX ( dim_Date[Date] )
+			RETURN COUNTROWS ( FILTER ( dim_Customer, dim_Customer[JoinedDate] >= FirstDay && dim_Customer[JoinedDate] <= LastDay ) )
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Txns per Active Customer' =
+			DIVIDE ( [Successful Transactions], [Active Customers] )
+		formatString: "0.0"
+		displayFolder: Customers
+
+	measure 'Fraud Cases' =
+			SUM ( fact_Transaction[IsFraud] )
+		formatString: "#,0"
+		displayFolder: Risk
+
+	measure 'Fraud Rate (per 10,000)' =
+			DIVIDE ( [Fraud Cases], [Transactions] ) * 10000
+		formatString: "0.0"
+		displayFolder: Risk
+
+	measure 'Fraud Value (GHS)' =
+			SUM ( fact_Transaction[FraudValueGHS] )
+		formatString: "#,0"
+		displayFolder: Risk
+
+	measure 'Loans Disbursed (count)' =
+			COUNTROWS ( fact_Loan )
+		formatString: "#,0"
+		displayFolder: Loans
+
+	measure 'Loans Disbursed (GHS)' =
+			SUM ( fact_Loan[AmountGHS] )
+		formatString: "#,0"
+		displayFolder: Loans
+
+	measure 'Loans Outstanding (GHS)' =
+			SUM ( fact_Loan[OutstandingGHS] )
+		formatString: "#,0"
+		displayFolder: Loans
+
+	measure 'PAR30 %' =
+			DIVIDE ( SUM ( fact_Loan[PAR30BalanceGHS] ), [Loans Outstanding (GHS)] )
+		formatString: "0.0%"
+		displayFolder: Loans
+
+	measure 'Default Rate %' =
+			DIVIDE ( SUM ( fact_Loan[IsDefault] ), [Loans Disbursed (count)] )
+		formatString: "0.0%"
+		displayFolder: Loans
+
+	measure 'Avg Loan Size (GHS)' =
+			DIVIDE ( [Loans Disbursed (GHS)], [Loans Disbursed (count)] )
+		formatString: "#,0"
+		displayFolder: Loans
+
+	measure 'Txn Value Target' =
+			IF (
+			    ISFILTERED ( dim_Customer[Segment] ) || ISFILTERED ( dim_TxnType[TxnType] ) || ISFILTERED ( dim_Channel[Channel] ) || ISFILTERED ( dim_Customer[AcquisitionChannel] ),
+			    BLANK (),   -- the target is not set at this level
+			    CALCULATE (
+			        SUM ( fact_Target[TxnValueTargetGHS] ),
+			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			    )
+			)
+		formatString: "#,0"
+		displayFolder: Targets
+
+	measure 'Txn Value Attainment %' =
+			DIVIDE ( [Txn Value (GHS)], [Txn Value Target] )
+		formatString: "0.0%"
+		displayFolder: Targets
+
+	measure 'Txn Value Variance' =
+			[Txn Value (GHS)] - [Txn Value Target]
+		formatString: "#,0;-#,0"
+		displayFolder: Targets
+
+	measure 'Txn Value Status' =
+			SWITCH (
+			    TRUE (),
+			    ISBLANK ( [Txn Value Attainment %] ), "No target",
+			    [Txn Value Attainment %] >= 1, "Met",
+			    [Txn Value Attainment %] >= 0.95, "Close",
+			    "Missed"
+			)
+		displayFolder: Targets
+
+	measure 'Txn Value PY' =
+			CALCULATE ( [Txn Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Txn Value YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Txn Value (GHS)], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Txn Value (GHS)], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Txn Value YTD' =
+			TOTALYTD ( [Txn Value (GHS)], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Txn Value 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Txn Value (GHS)], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Fee Revenue PY' =
+			CALCULATE ( [Fee Revenue (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Fee Revenue YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Fee Revenue (GHS)], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Fee Revenue (GHS)], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Fee Revenue YTD' =
+			TOTALYTD ( [Fee Revenue (GHS)], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Fee Revenue 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Fee Revenue (GHS)], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Ghana mobile wallet. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+
