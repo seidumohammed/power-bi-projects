@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "pageOrder": [
+    "ds01_realestate",
+    "ds02_hospital",
+    "ds03_fintech",
+    "ds04_tealleft",
+    "ds05_slaterail",
+    "ds06_minimalline",
+    "ds07_navygold",
+    "ds08_corpblue",
+    "ds09_pastelmosaic",
+    "ds10_editorial",
+    "ds11_ambercharcoal",
+    "ds12_gradientband",
+    "ds13_compactanalyst"
+  ],
+  "activePageName": "ds01_realestate"
+}

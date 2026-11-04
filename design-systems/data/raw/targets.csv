@@ -1,0 +1,169 @@
+month,ward,occupancy_target
+2024-01-01,Male Medical,0.85
+2024-01-01,Female Medical,0.85
+2024-01-01,Surgical,0.85
+2024-01-01,Maternity,0.85
+2024-01-01,Paediatrics,0.85
+2024-01-01,Intensive Care,0.85
+2024-01-01,Emergency Observation,0.85
+2024-02-01,Male Medical,0.85
+2024-02-01,Female Medical,0.85
+2024-02-01,Surgical,0.85
+2024-02-01,Maternity,0.85
+2024-02-01,Paediatrics,0.85
+2024-02-01,Intensive Care,0.85
+2024-02-01,Emergency Observation,0.85
+2024-03-01,Male Medical,0.85
+2024-03-01,Female Medical,0.85
+2024-03-01,Surgical,0.85
+2024-03-01,Maternity,0.85
+2024-03-01,Paediatrics,0.85
+2024-03-01,Intensive Care,0.85
+2024-03-01,Emergency Observation,0.85
+2024-04-01,Male Medical,0.85
+2024-04-01,Female Medical,0.85
+2024-04-01,Surgical,0.85
+2024-04-01,Maternity,0.85
+2024-04-01,Paediatrics,0.85
+2024-04-01,Intensive Care,0.85
+2024-04-01,Emergency Observation,0.85
+2024-05-01,Male Medical,0.85
+2024-05-01,Female Medical,0.85
+2024-05-01,Surgical,0.85
+2024-05-01,Maternity,0.85
+2024-05-01,Paediatrics,0.85
+2024-05-01,Intensive Care,0.85
+2024-05-01,Emergency Observation,0.85
+2024-06-01,Male Medical,0.85
+2024-06-01,Female Medical,0.85
+2024-06-01,Surgical,0.85
+2024-06-01,Maternity,0.85
+2024-06-01,Paediatrics,0.85
+2024-06-01,Intensive Care,0.85
+2024-06-01,Emergency Observation,0.85
+2024-07-01,Male Medical,0.85
+2024-07-01,Female Medical,0.85
+2024-07-01,Surgical,0.85
+2024-07-01,Maternity,0.85
+2024-07-01,Paediatrics,0.85
+2024-07-01,Intensive Care,0.85
+2024-07-01,Emergency Observation,0.85
+2024-08-01,Male Medical,0.85
+2024-08-01,Female Medical,0.85
+2024-08-01,Surgical,0.85
+2024-08-01,Maternity,0.85
+2024-08-01,Paediatrics,0.85
+2024-08-01,Intensive Care,0.85
+2024-08-01,Emergency Observation,0.85
+2024-09-01,Male Medical,0.85
+2024-09-01,Female Medical,0.85
+2024-09-01,Surgical,0.85
+2024-09-01,Maternity,0.85
+2024-09-01,Paediatrics,0.85
+2024-09-01,Intensive Care,0.85
+2024-09-01,Emergency Observation,0.85
+2024-10-01,Male Medical,0.85
+2024-10-01,Female Medical,0.85
+2024-10-01,Surgical,0.85
+2024-10-01,Maternity,0.85
+2024-10-01,Paediatrics,0.85
+2024-10-01,Intensive Care,0.85
+2024-10-01,Emergency Observation,0.85
+2024-11-01,Male Medical,0.85
+2024-11-01,Female Medical,0.85
+2024-11-01,Surgical,0.85
+2024-11-01,Maternity,0.85
+2024-11-01,Paediatrics,0.85
+2024-11-01,Intensive Care,0.85
+2024-11-01,Emergency Observation,0.85
+2024-12-01,Male Medical,0.85
+2024-12-01,Female Medical,0.85
+2024-12-01,Surgical,0.85
+2024-12-01,Maternity,0.85
+2024-12-01,Paediatrics,0.85
+2024-12-01,Intensive Care,0.85
+2024-12-01,Emergency Observation,0.85
+2025-01-01,Male Medical,0.85
+2025-01-01,Female Medical,0.85
+2025-01-01,Surgical,0.85
+2025-01-01,Maternity,0.85
+2025-01-01,Paediatrics,0.85
+2025-01-01,Intensive Care,0.85
+2025-01-01,Emergency Observation,0.85
+2025-02-01,Male Medical,0.85
+2025-02-01,Female Medical,0.85
+2025-02-01,Surgical,0.85
+2025-02-01,Maternity,0.85
+2025-02-01,Paediatrics,0.85
+2025-02-01,Intensive Care,0.85
+2025-02-01,Emergency Observation,0.85
+2025-03-01,Male Medical,0.85
+2025-03-01,Female Medical,0.85
+2025-03-01,Surgical,0.85
+2025-03-01,Maternity,0.85
+2025-03-01,Paediatrics,0.85
+2025-03-01,Intensive Care,0.85
+2025-03-01,Emergency Observation,0.85
+2025-04-01,Male Medical,0.85
+2025-04-01,Female Medical,0.85
+2025-04-01,Surgical,0.85
+2025-04-01,Maternity,0.85
+2025-04-01,Paediatrics,0.85
+2025-04-01,Intensive Care,0.85
+2025-04-01,Emergency Observation,0.85
+2025-05-01,Male Medical,0.85
+2025-05-01,Female Medical,0.85
+2025-05-01,Surgical,0.85
+2025-05-01,Maternity,0.85
+2025-05-01,Paediatrics,0.85
+2025-05-01,Intensive Care,0.85
+2025-05-01,Emergency Observation,0.85
+2025-06-01,Male Medical,0.85
+2025-06-01,Female Medical,0.85
+2025-06-01,Surgical,0.85
+2025-06-01,Maternity,0.85
+2025-06-01,Paediatrics,0.85
+2025-06-01,Intensive Care,0.85
+2025-06-01,Emergency Observation,0.85
+2025-07-01,Male Medical,0.85
+2025-07-01,Female Medical,0.85
+2025-07-01,Surgical,0.85
+2025-07-01,Maternity,0.85
+2025-07-01,Paediatrics,0.85
+2025-07-01,Intensive Care,0.85
+2025-07-01,Emergency Observation,0.85
+2025-08-01,Male Medical,0.85
+2025-08-01,Female Medical,0.85
+2025-08-01,Surgical,0.85
+2025-08-01,Maternity,0.85
+2025-08-01,Paediatrics,0.85
+2025-08-01,Intensive Care,0.85
+2025-08-01,Emergency Observation,0.85
+2025-09-01,Male Medical,0.85
+2025-09-01,Female Medical,0.85
+2025-09-01,Surgical,0.85
+2025-09-01,Maternity,0.85
+2025-09-01,Paediatrics,0.85
+2025-09-01,Intensive Care,0.85
+2025-09-01,Emergency Observation,0.85
+2025-10-01,Male Medical,0.85
+2025-10-01,Female Medical,0.85
+2025-10-01,Surgical,0.85
+2025-10-01,Maternity,0.85
+2025-10-01,Paediatrics,0.85
+2025-10-01,Intensive Care,0.85
+2025-10-01,Emergency Observation,0.85
+2025-11-01,Male Medical,0.85
+2025-11-01,Female Medical,0.85
+2025-11-01,Surgical,0.85
+2025-11-01,Maternity,0.85
+2025-11-01,Paediatrics,0.85
+2025-11-01,Intensive Care,0.85
+2025-11-01,Emergency Observation,0.85
+2025-12-01,Male Medical,0.85
+2025-12-01,Female Medical,0.85
+2025-12-01,Surgical,0.85
+2025-12-01,Maternity,0.85
+2025-12-01,Paediatrics,0.85
+2025-12-01,Intensive Care,0.85
+2025-12-01,Emergency Observation,0.85

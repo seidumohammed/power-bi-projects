@@ -1,0 +1,76 @@
+table fact_ED
+
+	column VisitID
+		dataType: string
+		isHidden
+		sourceColumn: VisitID
+		summarizeBy: none
+
+	column ArrivalDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: ArrivalDate
+		summarizeBy: none
+
+	column ProfileID
+		dataType: string
+		isHidden
+		sourceColumn: ProfileID
+		summarizeBy: none
+
+	column TriageLevel
+		dataType: string
+		sourceColumn: TriageLevel
+		summarizeBy: none
+
+	column WaitMinutes
+		dataType: double
+		isHidden
+		sourceColumn: WaitMinutes
+		summarizeBy: none
+
+	column Disposition
+		dataType: string
+		sourceColumn: Disposition
+		summarizeBy: none
+
+	column IsWithinTarget
+		dataType: int64
+		isHidden
+		sourceColumn: IsWithinTarget
+		summarizeBy: none
+
+	column IsLWBS
+		dataType: int64
+		isHidden
+		sourceColumn: IsLWBS
+		summarizeBy: none
+
+	column IsAdmitted
+		dataType: int64
+		isHidden
+		sourceColumn: IsAdmitted
+		summarizeBy: none
+
+	partition fact_ED = m
+		mode: import
+		source =
+			// Cleaning: date in two formats, waiting time stored as text ('45 min') in some rows, triage and disposition in mixed case, duplicate visit_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "ed_visits.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"visit_id"}),
+			    WithArrivalDate = Table.AddColumn(Deduped, "ArrivalDate", each if [arrival_date] = null or Text.Trim([arrival_date]) = "" then null else try Date.FromText([arrival_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([arrival_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithWaitMinutes = Table.AddColumn(WithArrivalDate, "WaitMinutes", each if [wait_minutes] = null or Text.Trim([wait_minutes]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Lower([wait_minutes]), "min", "")), "en-US"), type number),
+			    Cleantriagelevel = Table.TransformColumns(WithWaitMinutes, {{"triage_level", each Text.Proper(Text.Trim(_)), type text}}),
+			    Cleandisposition = Table.TransformColumns(Cleantriagelevel, {{"disposition", each Text.Proper(Text.Trim(_)), type text}}),
+			    Renamed = Table.RenameColumns(Cleandisposition, {{"visit_id", "VisitID"}, {"profile_id", "ProfileID"}, {"triage_level", "TriageLevel"}, {"disposition", "Disposition"}}),
+			    Selected = Table.SelectColumns(Renamed, {"VisitID", "ArrivalDate", "ProfileID", "TriageLevel", "WaitMinutes", "Disposition"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"VisitID", type text}, {"ProfileID", type text}, {"TriageLevel", type text}, {"Disposition", type text}}, "en-US"),
+			    AddIsWithinTarget = Table.AddColumn(Typed, "IsWithinTarget", each if if [TriageLevel] = "Red" then [WaitMinutes] <= 10 else if [TriageLevel] = "Orange" then [WaitMinutes] <= 30 else if [TriageLevel] = "Yellow" then [WaitMinutes] <= 60 else [WaitMinutes] <= 120 then 1 else 0, Int64.Type),
+			    AddIsLWBS = Table.AddColumn(AddIsWithinTarget, "IsLWBS", each if [Disposition] = "Left Without Being Seen" then 1 else 0, Int64.Type),
+			    AddIsAdmitted = Table.AddColumn(AddIsLWBS, "IsAdmitted", each if [Disposition] = "Admitted" then 1 else 0, Int64.Type)
+			in
+			    AddIsAdmitted
+

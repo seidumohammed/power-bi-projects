@@ -1,0 +1,121 @@
+{
+  "name": "Hospital Theme",
+  "dataColors": [
+    "#1D7A8C",
+    "#E4572E",
+    "#F2B134",
+    "#12355B",
+    "#6FAF6B",
+    "#7C8DB5",
+    "#B565A7",
+    "#9AA8B5"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#17283B",
+  "tableAccent": "#1D7A8C",
+  "good": "#6FAF6B",
+  "neutral": "#F2B134",
+  "bad": "#E4572E",
+  "maximum": "#1D7A8C",
+  "center": "#F2B134",
+  "minimum": "#E4572E",
+  "textClasses": {
+    "callout": {
+      "fontSize": 26,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1D7A8C"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#17283B"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#17283B"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#5C6B7A"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold",
+            "fontColor": {
+              "solid": {
+                "color": "#17283B"
+              }
+            },
+            "alignment": "left"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#D9E3EC"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#5C6B7A"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#5C6B7A"
+              }
+            },
+            "showAxisTitle": false,
+            "gridlineColor": {
+              "solid": {
+                "color": "#E6EDF4"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#5C6B7A"
+              }
+            },
+            "position": "Top"
+          }
+        ]
+      }
+    }
+  }
+}

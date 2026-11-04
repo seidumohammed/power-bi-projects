@@ -1,0 +1,169 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure Admissions =
+			COUNTROWS ( fact_Admission )
+		formatString: "#,0"
+		displayFolder: Admissions
+
+	measure 'Avg Length of Stay (days)' =
+			AVERAGE ( fact_Admission[LengthOfStay] )
+		formatString: "0.0"
+		displayFolder: Admissions
+
+	measure 'Bed Days Used' =
+			SUM ( fact_Admission[LengthOfStay] )
+		formatString: "#,0"
+		displayFolder: Admissions
+
+	measure 'Readmission Rate %' =
+			DIVIDE ( SUM ( fact_Admission[Readmitted30] ), [Admissions] )
+		formatString: "0.0%"
+		displayFolder: Quality
+
+	measure 'Mortality Rate %' =
+			DIVIDE ( SUM ( fact_Admission[IsDeceased] ), [Admissions] )
+		formatString: "0.0%"
+		displayFolder: Quality
+
+	measure 'Referral Rate %' =
+			DIVIDE ( SUM ( fact_Admission[IsReferred] ), [Admissions] )
+		formatString: "0.0%"
+		displayFolder: Quality
+
+	measure 'NHIS Share %' =
+			DIVIDE ( CALCULATE ( [Admissions], dim_PatientProfile[Insurance] = "NHIS" ), [Admissions] )
+		formatString: "0.0%"
+		displayFolder: Admissions
+
+	measure 'Occupied Bed Days' =
+			SUM ( fact_Census[OccupiedBeds] )
+		formatString: "#,0"
+		displayFolder: Beds
+
+	measure 'Available Bed Days' =
+			SUMX ( fact_Census, RELATED ( dim_Ward[Beds] ) )
+		formatString: "#,0"
+		displayFolder: Beds
+
+	measure 'Bed Occupancy %' =
+			DIVIDE ( [Occupied Bed Days], [Available Bed Days] )
+		formatString: "0.0%"
+		displayFolder: Beds
+
+	measure 'Occupancy Target' =
+			CALCULATE (
+			    AVERAGE ( fact_Target[OccupancyTarget] ),
+			    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+			)
+		formatString: "0%"
+		displayFolder: Beds
+
+	measure 'Occupancy Gap (points)' =
+			[Bed Occupancy %] - [Occupancy Target]
+		formatString: "0.0%;-0.0%"
+		displayFolder: Beds
+
+	measure 'ED Visits' =
+			COUNTROWS ( fact_ED )
+		formatString: "#,0"
+		displayFolder: Emergency
+
+	measure 'Avg Wait (min)' =
+			AVERAGE ( fact_ED[WaitMinutes] )
+		formatString: "0"
+		displayFolder: Emergency
+
+	measure 'Seen Within Target %' =
+			DIVIDE ( SUM ( fact_ED[IsWithinTarget] ), [ED Visits] )
+		formatString: "0.0%"
+		displayFolder: Emergency
+
+	measure 'ED Target %' =
+			0.9
+		formatString: "0%"
+		displayFolder: Emergency
+
+	measure 'Left Without Being Seen %' =
+			DIVIDE ( SUM ( fact_ED[IsLWBS] ), [ED Visits] )
+		formatString: "0.0%"
+		displayFolder: Emergency
+
+	measure 'ED Admission Rate %' =
+			DIVIDE ( SUM ( fact_ED[IsAdmitted] ), [ED Visits] )
+		formatString: "0.0%"
+		displayFolder: Emergency
+
+	measure 'Admissions PY' =
+			CALCULATE ( [Admissions], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Admissions YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Admissions], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Admissions], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Admissions YTD' =
+			TOTALYTD ( [Admissions], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Admissions 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Admissions], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'ED Visits PY' =
+			CALCULATE ( [ED Visits], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'ED Visits YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [ED Visits], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [ED Visits], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'ED Visits YTD' =
+			TOTALYTD ( [ED Visits], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'ED Visits 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [ED Visits], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Regional hospital, Volta Region. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

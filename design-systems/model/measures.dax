@@ -1,0 +1,133 @@
+// =====================================================================================
+// DESIGN SYSTEMS GALLERY: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Admissions | format: #,0 | desc: Number of admissions.
+Admissions =
+COUNTROWS ( fact_Admission )
+
+// folder: Admissions | format: 0.0 | desc: Average days from admission to discharge.
+Avg Length of Stay (days) =
+AVERAGE ( fact_Admission[LengthOfStay] )
+
+// folder: Admissions | format: #,0 | desc: Total days patients spent in a bed.
+Bed Days Used =
+SUM ( fact_Admission[LengthOfStay] )
+
+// folder: Quality | format: 0.0% | desc: Admissions followed by another admission within 30 days, divided by all admissions.
+Readmission Rate % =
+DIVIDE ( SUM ( fact_Admission[Readmitted30] ), [Admissions] )
+
+// folder: Quality | format: 0.0% | desc: Admissions that ended in death, divided by all admissions.
+Mortality Rate % =
+DIVIDE ( SUM ( fact_Admission[IsDeceased] ), [Admissions] )
+
+// folder: Quality | format: 0.0% | desc: Admissions referred to another facility, divided by all admissions.
+Referral Rate % =
+DIVIDE ( SUM ( fact_Admission[IsReferred] ), [Admissions] )
+
+// folder: Admissions | format: 0.0% | desc: Share of admissions covered by national health insurance.
+NHIS Share % =
+DIVIDE ( CALCULATE ( [Admissions], dim_PatientProfile[Insurance] = "NHIS" ), [Admissions] )
+
+// folder: Beds | format: #,0 | desc: Beds occupied, summed over the days selected.
+Occupied Bed Days =
+SUM ( fact_Census[OccupiedBeds] )
+
+// folder: Beds | format: #,0 | desc: Beds available, summed over the days selected.
+Available Bed Days =
+SUMX ( fact_Census, RELATED ( dim_Ward[Beds] ) )
+
+// folder: Beds | format: 0.0% | desc: Occupied bed days divided by available bed days.
+Bed Occupancy % =
+DIVIDE ( [Occupied Bed Days], [Available Bed Days] )
+
+// folder: Beds | format: 0% | desc: The occupancy rate each ward aims for.
+Occupancy Target =
+CALCULATE (
+    AVERAGE ( fact_Target[OccupancyTarget] ),
+    TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
+)
+
+// folder: Beds | format: 0.0%;-0.0% | desc: Occupancy minus its target, in percentage points.
+Occupancy Gap (points) =
+[Bed Occupancy %] - [Occupancy Target]
+
+// folder: Emergency | format: #,0 | desc: Number of emergency department visits.
+ED Visits =
+COUNTROWS ( fact_ED )
+
+// folder: Emergency | format: 0 | desc: Average minutes from arrival to being seen.
+Avg Wait (min) =
+AVERAGE ( fact_ED[WaitMinutes] )
+
+// folder: Emergency | format: 0.0% | desc: Visits seen within the time target for their triage level.
+Seen Within Target % =
+DIVIDE ( SUM ( fact_ED[IsWithinTarget] ), [ED Visits] )
+
+// folder: Emergency | format: 0% | desc: Aim: 90% of visits seen within target.
+ED Target % =
+0.9
+
+// folder: Emergency | format: 0.0% | desc: Visits where the patient left before being seen.
+Left Without Being Seen % =
+DIVIDE ( SUM ( fact_ED[IsLWBS] ), [ED Visits] )
+
+// folder: Emergency | format: 0.0% | desc: Emergency visits that led to an admission.
+ED Admission Rate % =
+DIVIDE ( SUM ( fact_ED[IsAdmitted] ), [ED Visits] )
+
+// folder: Time intelligence | format: #,0 | desc: Admissions in the same period one year earlier. Use it on a monthly chart, not on a card.
+Admissions PY =
+CALCULATE ( [Admissions], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in admissions in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Admissions YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Admissions], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Admissions], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Admissions from the start of the year to the date shown.
+Admissions YTD =
+TOTALYTD ( [Admissions], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly admissions over the last three months up to the month shown.
+Admissions 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Admissions], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: ED Visits in the same period one year earlier. Use it on a monthly chart, not on a card.
+ED Visits PY =
+CALCULATE ( [ED Visits], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in ed visits in the latest year selected compared with the year before (same quarters if a quarter is selected).
+ED Visits YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [ED Visits], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [ED Visits], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: ED Visits from the start of the year to the date shown.
+ED Visits YTD =
+TOTALYTD ( [ED Visits], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly ed visits over the last three months up to the month shown.
+ED Visits 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [ED Visits], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Regional hospital, Volta Region. Period: Jan 2024 to Dec 2025."

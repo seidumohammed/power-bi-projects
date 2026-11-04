@@ -1,6 +1,6 @@
 # Power BI portfolio projects
 
-Seven Power BI dashboards built on **synthetic data**, each with documented Power Query cleaning, a star-schema data model, DAX measures, a report design and a user guide. They use three different layout systems.
+Ten Power BI dashboards, plus a gallery of thirteen design systems, built on **synthetic data**, each with documented Power Query cleaning, a star-schema data model, DAX measures, a report design and a user guide. Each project uses one of the design systems.
 
 | Project | Question it answers | Setting |
 | :-- | :-- | :-- |
@@ -11,6 +11,10 @@ Seven Power BI dashboards built on **synthetic data**, each with documented Powe
 | [FinTech Payments](fintech-payments/) | How do channels, fraud and loans perform? | Invented mobile money and lending provider |
 | [Hospital Operations](hospital-operations/) | How busy is the hospital and how good is care? | Invented 120-bed hospital, Volta Region |
 | [Public Health Programme](public-health-programme/) | How are immunisation, surveillance and reporting doing? | Invented health directorate, Northern Region |
+| [Campaign Performance](campaign-performance/) | Which paid channels and campaigns earn their budget? | Invented online retailer in Accra |
+| [Customer Acquisition and Retention](customer-retention/) | What does a customer cost to win, and how long do they stay? | Invented grocery delivery app, Ghana |
+| [Content and Email Engagement](content-engagement/) | Which content engages by email, social and web? | Invented financial-literacy publisher |
+| [Design Systems Gallery](design-systems/) | What do thirteen design systems look like on one dashboard? | Same hospital data on 13 pages |
 
 All names, groups, businesses and numbers are made up. District and town names are real place names used only as labels. Nothing here comes from a real employer, programme or customer.
 

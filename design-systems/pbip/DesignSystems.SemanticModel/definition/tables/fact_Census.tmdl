@@ -1,0 +1,34 @@
+table fact_Census
+
+	column CensusDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: CensusDate
+		summarizeBy: none
+
+	column WardID
+		dataType: string
+		isHidden
+		sourceColumn: WardID
+		summarizeBy: none
+
+	column OccupiedBeds
+		dataType: int64
+		isHidden
+		sourceColumn: OccupiedBeds
+		summarizeBy: none
+
+	partition fact_Census = m
+		mode: import
+		source =
+			// Beds occupied per ward and day.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "census.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"census_date", "CensusDate"}, {"ward_id", "WardID"}, {"occupied_beds", "OccupiedBeds"}}),
+			    Selected = Table.SelectColumns(Renamed, {"CensusDate", "WardID", "OccupiedBeds"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"CensusDate", type date}, {"WardID", type text}, {"OccupiedBeds", Int64.Type}}, "en-US")
+			in
+			    Typed
+

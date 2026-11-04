@@ -1,0 +1,8 @@
+ward_id,ward,department,beds
+WD01,Male Medical,Medicine,24
+WD02,Female Medical,Medicine,24
+WD03,Surgical,Surgery,22
+WD04,Maternity,Obstetrics,18
+WD05,Paediatrics,Paediatrics,16
+WD06,Intensive Care,Critical Care,6
+WD07,Emergency Observation,Emergency,10
