@@ -1,0 +1,15 @@
+relationship 45db97a4-fcbd-5228-970a-3a904c7079b3
+	fromColumn: dim_Campaign.ChannelID
+	toColumn: dim_Channel.ChannelID
+
+relationship e135cb15-c1f2-599f-9d7e-74a5ba14852b
+	fromColumn: fact_Ads.AdDate
+	toColumn: dim_Date.Date
+
+relationship e9af2d3f-bf2d-5320-9089-33c9cffd7e66
+	fromColumn: fact_Ads.CampaignID
+	toColumn: dim_Campaign.CampaignID
+
+relationship 53887037-886d-53e6-a465-e771da76a1c2
+	fromColumn: fact_Budget.Channel
+	toColumn: dim_Channel.Channel

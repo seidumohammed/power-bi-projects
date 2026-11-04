@@ -1,0 +1,27 @@
+relationship b6e1a892-d7b9-568b-8ce4-31dc5f3208c4
+	fromColumn: dim_Customer.ChannelID
+	toColumn: dim_Channel.ChannelID
+
+relationship 515ac939-fc0e-5012-8e04-c9e07f87f523
+	fromColumn: fact_Order.OrderDate
+	toColumn: dim_Date.Date
+
+relationship ccb000de-d5f4-5bb1-8418-ac0df5200deb
+	fromColumn: fact_Order.CustomerID
+	toColumn: dim_Customer.CustomerID
+
+relationship 2819a82f-d2db-5dc2-9df5-124fbbc226cc
+	fromColumn: fact_Funnel.Month
+	toColumn: dim_Date.Date
+
+relationship 82250611-15cf-5a7c-b056-94914cffa860
+	fromColumn: fact_Funnel.ChannelID
+	toColumn: dim_Channel.ChannelID
+
+relationship 0a24925e-1ee7-531e-8fa4-5de22afeb4c1
+	fromColumn: fact_Spend.Month
+	toColumn: dim_Date.Date
+
+relationship 56fae450-50e7-5e84-b3cd-2ae98cd2bf25
+	fromColumn: fact_Spend.ChannelID
+	toColumn: dim_Channel.ChannelID

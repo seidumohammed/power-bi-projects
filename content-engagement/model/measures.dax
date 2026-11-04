@@ -1,0 +1,157 @@
+// =====================================================================================
+// CONTENT AND EMAIL ENGAGEMENT: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Content | format: #,0 | desc: Pieces of content published in the dates selected.
+Content Published =
+CALCULATE (
+    COUNTROWS ( dim_Content ),
+    TREATAS ( VALUES ( dim_Date[Date] ), dim_Content[PublishDate] )
+)
+
+// folder: Email | format: #,0 | desc: Emails sent.
+Emails Sent =
+SUM ( fact_Email[Sent] )
+
+// folder: Email | format: #,0 | desc: Emails that reached an inbox.
+Emails Delivered =
+SUM ( fact_Email[Delivered] )
+
+// folder: Email | format: 0.0% | desc: Delivered divided by sent.
+Delivery Rate % =
+DIVIDE ( [Emails Delivered], [Emails Sent] )
+
+// folder: Email | format: #,0 | desc: Emails opened.
+Email Opens =
+SUM ( fact_Email[Opens] )
+
+// folder: Email | format: 0.0% | desc: Opens divided by delivered.
+Open Rate % =
+DIVIDE ( [Email Opens], [Emails Delivered] )
+
+// folder: Email | format: #,0 | desc: Clicks on links in emails.
+Email Clicks =
+SUM ( fact_Email[Clicks] )
+
+// folder: Email | format: 0.0% | desc: Clicks divided by delivered.
+Click Rate % =
+DIVIDE ( [Email Clicks], [Emails Delivered] )
+
+// folder: Email | format: 0.0% | desc: Clicks divided by opens.
+Click to Open % =
+DIVIDE ( [Email Clicks], [Email Opens] )
+
+// folder: Email | format: #,0 | desc: Readers who unsubscribed.
+Unsubscribes =
+SUM ( fact_Email[Unsubscribes] )
+
+// folder: Email | format: 0.00% | desc: Unsubscribes divided by delivered.
+Unsubscribe Rate % =
+DIVIDE ( [Unsubscribes], [Emails Delivered] )
+
+// folder: Email | format: #,0 | desc: Signups that followed an email click.
+Email Signups =
+SUM ( fact_Email[Signups] )
+
+// folder: Social | format: #,0 | desc: Times posts were shown.
+Social Impressions =
+SUM ( fact_Social[Impressions] )
+
+// folder: Social | format: #,0 | desc: Likes, comments, shares and clicks.
+Engagements =
+SUM ( fact_Social[Engagements] )
+
+// folder: Social | format: 0.0% | desc: Engagements divided by impressions.
+Engagement Rate % =
+DIVIDE ( [Engagements], [Social Impressions] )
+
+// folder: Social | format: #,0 | desc: Times posts were shared.
+Shares =
+SUM ( fact_Social[Shares] )
+
+// folder: Social | format: #,0 | desc: New followers from posts.
+Followers Gained =
+SUM ( fact_Social[FollowersGained] )
+
+// folder: Web | format: #,0 | desc: Website visits.
+Sessions =
+SUM ( fact_Web[Sessions] )
+
+// folder: Web | format: #,0 | desc: Weekly visitors, summed over weeks.
+Web Users =
+SUM ( fact_Web[Users] )
+
+// folder: Web | format: 0.0% | desc: Share of visits that left after one page, weighted by sessions.
+Bounce Rate % =
+DIVIDE ( SUMX ( fact_Web, fact_Web[BounceRate] * fact_Web[Sessions] ), [Sessions] )
+
+// folder: Web | format: 0 | desc: Average seconds on the page, weighted by sessions.
+Avg Time on Page (sec) =
+DIVIDE ( SUMX ( fact_Web, fact_Web[AvgSeconds] * fact_Web[Sessions] ), [Sessions] )
+
+// folder: Web | format: #,0 | desc: Signups made on the website.
+Web Signups =
+SUM ( fact_Web[Signups] )
+
+// folder: Web | format: 0.00% | desc: Signups divided by sessions.
+Web Signup Rate % =
+DIVIDE ( [Web Signups], [Sessions] )
+
+// folder: Results | format: #,0 | desc: Signups from email and the website.
+Total Signups =
+[Email Signups] + [Web Signups]
+
+// folder: Time intelligence | format: #,0 | desc: Sessions in the same period one year earlier. Use it on a monthly chart, not on a card.
+Sessions PY =
+CALCULATE ( [Sessions], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in sessions in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Sessions YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Sessions], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Sessions], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Sessions from the start of the year to the date shown.
+Sessions YTD =
+TOTALYTD ( [Sessions], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly sessions over the last three months up to the month shown.
+Sessions 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Sessions], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Engagements in the same period one year earlier. Use it on a monthly chart, not on a card.
+Engagements PY =
+CALCULATE ( [Engagements], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in engagements in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Engagements YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Engagements], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Engagements], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Engagements from the start of the year to the date shown.
+Engagements YTD =
+TOTALYTD ( [Engagements], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly engagements over the last three months up to the month shown.
+Engagements 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Engagements], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Financial-literacy publisher, Ghana. Period: Jan 2024 to Dec 2025."

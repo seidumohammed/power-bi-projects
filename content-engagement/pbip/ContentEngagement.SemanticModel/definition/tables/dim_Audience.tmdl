@@ -1,0 +1,25 @@
+table dim_Audience
+
+	column AudienceID
+		dataType: string
+		isHidden
+		sourceColumn: AudienceID
+		summarizeBy: none
+
+	column AudienceSegment
+		dataType: string
+		sourceColumn: AudienceSegment
+		summarizeBy: none
+
+	partition dim_Audience = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "audiences.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"audience_id", "AudienceID"}, {"audience_segment", "AudienceSegment"}}),
+			    Selected = Table.SelectColumns(Renamed, {"AudienceID", "AudienceSegment"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"AudienceID", type text}, {"AudienceSegment", type text}}, "en-US")
+			in
+			    Typed
+

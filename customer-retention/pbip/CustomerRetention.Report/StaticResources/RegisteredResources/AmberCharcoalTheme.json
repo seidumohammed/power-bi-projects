@@ -1,0 +1,121 @@
+{
+  "name": "AmberCharcoal Theme",
+  "dataColors": [
+    "#F2A93B",
+    "#4FC3F7",
+    "#EF6C57",
+    "#8BC34A",
+    "#BA68C8",
+    "#8895A7",
+    "#B9C2CE",
+    "#5B6B7F"
+  ],
+  "background": "#1E2128",
+  "foreground": "#E8EAED",
+  "tableAccent": "#F2A93B",
+  "good": "#2E9E6B",
+  "neutral": "#E9A23B",
+  "bad": "#D8523F",
+  "maximum": "#F2A93B",
+  "center": "#E9A23B",
+  "minimum": "#D8523F",
+  "textClasses": {
+    "callout": {
+      "fontSize": 26,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#F2A93B"
+    },
+    "title": {
+      "fontSize": 12,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#E8EAED"
+    },
+    "header": {
+      "fontSize": 11,
+      "fontFace": "Segoe UI Semibold",
+      "color": "#E8EAED"
+    },
+    "label": {
+      "fontSize": 9,
+      "fontFace": "Segoe UI",
+      "color": "#A3AAB5"
+    }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "title": [
+          {
+            "fontSize": 12,
+            "fontFamily": "Segoe UI Semibold",
+            "fontColor": {
+              "solid": {
+                "color": "#E8EAED"
+              }
+            },
+            "alignment": "left"
+          }
+        ],
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#1E2128"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": {
+              "solid": {
+                "color": "#2A2E37"
+              }
+            },
+            "radius": 8
+          }
+        ],
+        "categoryAxis": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#A3AAB5"
+              }
+            },
+            "showAxisTitle": false
+          }
+        ],
+        "valueAxis": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#A3AAB5"
+              }
+            },
+            "showAxisTitle": false,
+            "gridlineColor": {
+              "solid": {
+                "color": "#2A2E37"
+              }
+            }
+          }
+        ],
+        "legend": [
+          {
+            "fontSize": 9,
+            "labelColor": {
+              "solid": {
+                "color": "#A3AAB5"
+              }
+            },
+            "position": "Top"
+          }
+        ]
+      }
+    }
+  }
+}

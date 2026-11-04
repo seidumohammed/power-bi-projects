@@ -1,0 +1,66 @@
+table fact_Social
+
+	column PostID
+		dataType: string
+		isHidden
+		sourceColumn: PostID
+		summarizeBy: none
+
+	column PostDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: PostDate
+		summarizeBy: none
+
+	column ContentID
+		dataType: string
+		isHidden
+		sourceColumn: ContentID
+		summarizeBy: none
+
+	column PlatformID
+		dataType: string
+		isHidden
+		sourceColumn: PlatformID
+		summarizeBy: none
+
+	column Impressions
+		dataType: int64
+		isHidden
+		sourceColumn: Impressions
+		summarizeBy: none
+
+	column Engagements
+		dataType: int64
+		isHidden
+		sourceColumn: Engagements
+		summarizeBy: none
+
+	column Shares
+		dataType: int64
+		isHidden
+		sourceColumn: Shares
+		summarizeBy: none
+
+	column FollowersGained
+		dataType: int64
+		isHidden
+		sourceColumn: FollowersGained
+		summarizeBy: none
+
+	partition fact_Social = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, duplicate post_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "social.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"post_id"}),
+			    WithPostDate = Table.AddColumn(Deduped, "PostDate", each if [post_date] = null or Text.Trim([post_date]) = "" then null else try Date.FromText([post_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([post_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Renamed = Table.RenameColumns(WithPostDate, {{"post_id", "PostID"}, {"content_id", "ContentID"}, {"platform_id", "PlatformID"}, {"impressions", "Impressions"}, {"engagements", "Engagements"}, {"shares", "Shares"}, {"followers_gained", "FollowersGained"}}),
+			    Selected = Table.SelectColumns(Renamed, {"PostID", "PostDate", "ContentID", "PlatformID", "Impressions", "Engagements", "Shares", "FollowersGained"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"PostID", type text}, {"ContentID", type text}, {"PlatformID", type text}, {"Impressions", Int64.Type}, {"Engagements", Int64.Type}, {"Shares", Int64.Type}, {"FollowersGained", Int64.Type}}, "en-US")
+			in
+			    Typed
+

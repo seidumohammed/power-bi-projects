@@ -1,0 +1,31 @@
+relationship 38c5db73-05ed-57a0-9911-71ed284eb88d
+	fromColumn: fact_Email.SendDate
+	toColumn: dim_Date.Date
+
+relationship e0677168-0cf3-5ed2-b16e-461b99703d11
+	fromColumn: fact_Email.ContentID
+	toColumn: dim_Content.ContentID
+
+relationship 923ea797-6dbd-517e-a21d-576388b4dd65
+	fromColumn: fact_Email.AudienceID
+	toColumn: dim_Audience.AudienceID
+
+relationship caa0e547-529d-55f3-bd0a-c24320744cb3
+	fromColumn: fact_Social.PostDate
+	toColumn: dim_Date.Date
+
+relationship 9a4241f3-aac0-5bd1-a7f8-b49c9b305daf
+	fromColumn: fact_Social.ContentID
+	toColumn: dim_Content.ContentID
+
+relationship cca99060-c610-5503-8928-3ace302f407b
+	fromColumn: fact_Social.PlatformID
+	toColumn: dim_Platform.PlatformID
+
+relationship 756bc913-1adc-5815-9ce9-058a5d6f473e
+	fromColumn: fact_Web.WeekStart
+	toColumn: dim_Date.Date
+
+relationship 427138a6-7d99-52cc-9fd3-2c0233623830
+	fromColumn: fact_Web.ContentID
+	toColumn: dim_Content.ContentID

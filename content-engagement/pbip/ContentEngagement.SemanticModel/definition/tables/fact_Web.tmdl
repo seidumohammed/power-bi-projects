@@ -1,0 +1,68 @@
+table fact_Web
+
+	column WebID
+		dataType: string
+		isHidden
+		sourceColumn: WebID
+		summarizeBy: none
+
+	column WeekStart
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: WeekStart
+		summarizeBy: none
+
+	column ContentID
+		dataType: string
+		isHidden
+		sourceColumn: ContentID
+		summarizeBy: none
+
+	column Sessions
+		dataType: int64
+		isHidden
+		sourceColumn: Sessions
+		summarizeBy: none
+
+	column Users
+		dataType: int64
+		isHidden
+		sourceColumn: Users
+		summarizeBy: none
+
+	column BounceRate
+		dataType: double
+		isHidden
+		formatString: "0.0%"
+		sourceColumn: BounceRate
+		summarizeBy: none
+
+	column AvgSeconds
+		dataType: double
+		isHidden
+		sourceColumn: AvgSeconds
+		summarizeBy: none
+
+	column Signups
+		dataType: int64
+		isHidden
+		sourceColumn: Signups
+		summarizeBy: none
+
+	partition fact_Web = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, bounce rate stored as text ('42%') in some rows, duplicate web_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "web.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"web_id"}),
+			    WithWeekStart = Table.AddColumn(Deduped, "WeekStart", each if [week_start] = null or Text.Trim([week_start]) = "" then null else try Date.FromText([week_start], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([week_start], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithBounceRate = Table.AddColumn(WithWeekStart, "BounceRate", each if Text.EndsWith(Text.Trim([bounce_rate]), "%") then Number.FromText(Text.Replace(Text.Trim([bounce_rate]), "%", ""), "en-US") / 100 else Number.FromText(Text.Trim([bounce_rate]), "en-US"), type number),
+			    Renamed = Table.RenameColumns(WithBounceRate, {{"web_id", "WebID"}, {"content_id", "ContentID"}, {"sessions", "Sessions"}, {"users", "Users"}, {"avg_seconds", "AvgSeconds"}, {"signups", "Signups"}}),
+			    Selected = Table.SelectColumns(Renamed, {"WebID", "WeekStart", "ContentID", "Sessions", "Users", "BounceRate", "AvgSeconds", "Signups"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"WebID", type text}, {"ContentID", type text}, {"Sessions", Int64.Type}, {"Users", Int64.Type}, {"AvgSeconds", type number}, {"Signups", Int64.Type}}, "en-US")
+			in
+			    Typed
+

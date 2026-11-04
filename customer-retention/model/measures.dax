@@ -1,0 +1,164 @@
+// =====================================================================================
+// CUSTOMER ACQUISITION AND RETENTION: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Customers | format: #,0 | desc: Customers who signed up in the dates selected.
+New Customers =
+CALCULATE (
+    COUNTROWS ( dim_Customer ),
+    TREATAS ( VALUES ( dim_Date[Date] ), dim_Customer[SignupDate] )
+)
+
+// folder: Customers | format: #,0 | desc: Customers who left in the dates selected.
+Churned Customers =
+CALCULATE (
+    COUNTROWS ( dim_Customer ),
+    TREATAS ( VALUES ( dim_Date[Date] ), dim_Customer[ChurnDate] )
+)
+
+// folder: Customers | format: #,0 | desc: Customers signed up by the last date shown, minus those who left by then.
+Customers at Period End =
+VAR LastDay = MAX ( dim_Date[Date] )
+VAR Joined = CALCULATE ( COUNTROWS ( dim_Customer ), dim_Customer[SignupDate] <= LastDay )
+VAR Left = COUNTROWS ( FILTER ( dim_Customer, NOT ISBLANK ( dim_Customer[ChurnDate] ) && dim_Customer[ChurnDate] <= LastDay ) )
+RETURN Joined - Left
+
+// folder: Customers | format: #,0 | desc: Customers at the start of the first date shown.
+Customers at Period Start =
+VAR FirstDay = MIN ( dim_Date[Date] )
+VAR Joined = CALCULATE ( COUNTROWS ( dim_Customer ), dim_Customer[SignupDate] < FirstDay )
+VAR Left = COUNTROWS ( FILTER ( dim_Customer, NOT ISBLANK ( dim_Customer[ChurnDate] ) && dim_Customer[ChurnDate] < FirstDay ) )
+RETURN Joined - Left
+
+// folder: Retention | format: 0.0% | desc: Customers who left divided by the average size of the base in the period.
+Churn Rate % =
+DIVIDE ( [Churned Customers], [Customers at Period Start] + [New Customers] / 2 )
+
+// folder: Retention | format: 0.0% | desc: One minus the churn rate.
+Retention Rate % =
+1 - [Churn Rate %]
+
+// folder: Revenue | format: #,0 | desc: Number of orders.
+Orders =
+COUNTROWS ( fact_Order )
+
+// folder: Revenue | format: #,0 | desc: Order value (GHS).
+Revenue =
+SUM ( fact_Order[OrderValueGHS] )
+
+// folder: Revenue | format: #,0.00 | desc: Revenue per order (GHS).
+Avg Order Value =
+DIVIDE ( [Revenue], [Orders] )
+
+// folder: Customers | format: #,0 | desc: Customers who ordered in the dates selected.
+Active Customers =
+DISTINCTCOUNT ( fact_Order[CustomerID] )
+
+// folder: Retention | format: 0.0 | desc: Orders divided by customers who ordered.
+Orders per Active Customer =
+DIVIDE ( [Orders], [Active Customers] )
+
+// folder: Retention | format: 0.0% | desc: Customers with two or more orders in the dates selected.
+Repeat Customer % =
+DIVIDE (
+    COUNTROWS ( FILTER ( VALUES ( fact_Order[CustomerID] ), CALCULATE ( COUNTROWS ( fact_Order ) ) >= 2 ) ),
+    [Active Customers]
+)
+
+// folder: Funnel | format: #,0 | desc: Visits to the app or site.
+Visits =
+SUM ( fact_Funnel[Visits] )
+
+// folder: Funnel | format: #,0 | desc: Accounts created.
+Signups =
+SUM ( fact_Funnel[Signups] )
+
+// folder: Funnel | format: #,0 | desc: Customers who placed a first order within 30 days of signup.
+First Orders =
+SUM ( fact_Funnel[FirstOrders] )
+
+// folder: Funnel | format: 0.0% | desc: Signups divided by visits.
+Visit to Signup % =
+DIVIDE ( [Signups], [Visits] )
+
+// folder: Funnel | format: 0.0% | desc: First orders divided by signups.
+Signup to First Order % =
+DIVIDE ( [First Orders], [Signups] )
+
+// folder: Cost | format: #,0 | desc: Marketing spend (GHS).
+Marketing Spend =
+SUM ( fact_Spend[SpendGHS] )
+
+// folder: Cost | format: #,0.00 | desc: Customer acquisition cost: marketing spend per new customer (GHS).
+CAC =
+IF (
+    ISFILTERED ( dim_Customer[Segment] ) || ISFILTERED ( dim_Customer[Region] ),
+    BLANK (),   -- spend is not split by segment or region
+    DIVIDE ( [Marketing Spend], [New Customers] )
+)
+
+// folder: Value | format: #,0 | desc: All revenue of the customers selected divided by the customers who ordered (GHS).
+Revenue per Customer to Date =
+DIVIDE (
+    CALCULATE ( [Revenue], ALL ( dim_Date ) ),
+    CALCULATE ( [Active Customers], ALL ( dim_Date ) )
+)
+
+// folder: Value | format: 0.0 | desc: Revenue per customer divided by the cost of winning one.
+LTV to CAC =
+DIVIDE ( [Revenue per Customer to Date], [CAC] )
+
+// folder: Time intelligence | format: #,0 | desc: New Customers in the same period one year earlier. Use it on a monthly chart, not on a card.
+New Customers PY =
+CALCULATE ( [New Customers], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in new customers in the latest year selected compared with the year before (same quarters if a quarter is selected).
+New Customers YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [New Customers], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [New Customers], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: New Customers from the start of the year to the date shown.
+New Customers YTD =
+TOTALYTD ( [New Customers], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly new customers over the last three months up to the month shown.
+New Customers 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [New Customers], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Revenue in the same period one year earlier. Use it on a monthly chart, not on a card.
+Revenue PY =
+CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in revenue in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Revenue YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Revenue from the start of the year to the date shown.
+Revenue YTD =
+TOTALYTD ( [Revenue], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly revenue over the last three months up to the month shown.
+Revenue 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Revenue], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Grocery delivery app, Ghana. Period: Jan 2024 to Dec 2025."

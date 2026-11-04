@@ -1,0 +1,78 @@
+table fact_Email
+
+	column EmailID
+		dataType: string
+		isHidden
+		sourceColumn: EmailID
+		summarizeBy: none
+
+	column SendDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: SendDate
+		summarizeBy: none
+
+	column ContentID
+		dataType: string
+		isHidden
+		sourceColumn: ContentID
+		summarizeBy: none
+
+	column AudienceID
+		dataType: string
+		isHidden
+		sourceColumn: AudienceID
+		summarizeBy: none
+
+	column Sent
+		dataType: int64
+		isHidden
+		sourceColumn: Sent
+		summarizeBy: none
+
+	column Delivered
+		dataType: int64
+		isHidden
+		sourceColumn: Delivered
+		summarizeBy: none
+
+	column Opens
+		dataType: int64
+		isHidden
+		sourceColumn: Opens
+		summarizeBy: none
+
+	column Clicks
+		dataType: int64
+		isHidden
+		sourceColumn: Clicks
+		summarizeBy: none
+
+	column Unsubscribes
+		dataType: int64
+		isHidden
+		sourceColumn: Unsubscribes
+		summarizeBy: none
+
+	column Signups
+		dataType: int64
+		isHidden
+		sourceColumn: Signups
+		summarizeBy: none
+
+	partition fact_Email = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, duplicate email_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "email.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"email_id"}),
+			    WithSendDate = Table.AddColumn(Deduped, "SendDate", each if [send_date] = null or Text.Trim([send_date]) = "" then null else try Date.FromText([send_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([send_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Renamed = Table.RenameColumns(WithSendDate, {{"email_id", "EmailID"}, {"content_id", "ContentID"}, {"audience_id", "AudienceID"}, {"sent", "Sent"}, {"delivered", "Delivered"}, {"opens", "Opens"}, {"clicks", "Clicks"}, {"unsubscribes", "Unsubscribes"}, {"signups", "Signups"}}),
+			    Selected = Table.SelectColumns(Renamed, {"EmailID", "SendDate", "ContentID", "AudienceID", "Sent", "Delivered", "Opens", "Clicks", "Unsubscribes", "Signups"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"EmailID", type text}, {"ContentID", type text}, {"AudienceID", type text}, {"Sent", Int64.Type}, {"Delivered", Int64.Type}, {"Opens", Int64.Type}, {"Clicks", Int64.Type}, {"Unsubscribes", Int64.Type}, {"Signups", Int64.Type}}, "en-US")
+			in
+			    Typed
+

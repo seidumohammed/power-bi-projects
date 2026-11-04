@@ -1,0 +1,21 @@
+campaign_id,campaign,objective,channel_id,category
+CP01,Google Search Brand search,Awareness,CH1,Fashion
+CP02,Google Search Generic search,Awareness,CH1,Electronics
+CP03,Google Search Shopping ads,Conversion,CH1,Electronics
+CP04,Google Search Competitor terms,Awareness,CH1,Electronics
+CP05,Meta Prospecting,Retention,CH2,Fashion
+CP06,Meta Retargeting,Conversion,CH2,Fashion
+CP07,  Meta Catalogue sales ,Conversion,CH2,Fashion
+CP08,Meta Lead form,Traffic,CH2,Fashion
+CP09,TikTok Spark ads,Awareness,CH3,Fashion
+CP10,TikTok Creator challenge,Traffic,CH3,Home
+CP11,TikTok Shop launch,Awareness,CH3,Electronics
+CP12,YouTube Pre-roll,Retention,CH4,Home
+CP13,YouTube Product demo,Awareness,CH4,Electronics
+CP14,YouTube Seasonal reel,Conversion,CH4,Home
+CP15,Influencer Ambassador,Traffic,CH5,Fashion
+CP16,Influencer Unboxing,Traffic,CH5,Home
+CP17,Influencer Discount code,Conversion,CH5,Electronics
+CP18,Influencer Gift guide,Traffic,CH5,Home
+CP19,Display Banner prospecting,Awareness,CH6,Beauty
+CP20,Display Site retargeting,Conversion,CH6,Fashion

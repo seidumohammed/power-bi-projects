@@ -1,0 +1,50 @@
+table fact_Order
+
+	column OrderID
+		dataType: string
+		isHidden
+		sourceColumn: OrderID
+		summarizeBy: none
+
+	column OrderDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: OrderDate
+		summarizeBy: none
+
+	column CustomerID
+		dataType: string
+		isHidden
+		sourceColumn: CustomerID
+		summarizeBy: none
+
+	column OrderValueGHS
+		dataType: double
+		isHidden
+		formatString: "#,0.00"
+		sourceColumn: OrderValueGHS
+		summarizeBy: none
+
+	column Items
+		dataType: int64
+		isHidden
+		sourceColumn: Items
+		summarizeBy: none
+
+	partition fact_Order = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, order value stored as text ('GHS 85.50') in some rows, duplicate order_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "orders.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"order_id"}),
+			    WithOrderDate = Table.AddColumn(Deduped, "OrderDate", each if [order_date] = null or Text.Trim([order_date]) = "" then null else try Date.FromText([order_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([order_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithOrderValueGHS = Table.AddColumn(WithOrderDate, "OrderValueGHS", each if [order_value_ghs] = null or Text.Trim([order_value_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([order_value_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Renamed = Table.RenameColumns(WithOrderValueGHS, {{"order_id", "OrderID"}, {"customer_id", "CustomerID"}, {"items", "Items"}}),
+			    Selected = Table.SelectColumns(Renamed, {"OrderID", "OrderDate", "CustomerID", "OrderValueGHS", "Items"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"OrderID", type text}, {"CustomerID", type text}, {"Items", Int64.Type}}, "en-US")
+			in
+			    Typed
+

@@ -1,0 +1,45 @@
+table fact_Funnel
+
+	column Month
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: Month
+		summarizeBy: none
+
+	column ChannelID
+		dataType: string
+		isHidden
+		sourceColumn: ChannelID
+		summarizeBy: none
+
+	column Visits
+		dataType: int64
+		isHidden
+		sourceColumn: Visits
+		summarizeBy: none
+
+	column Signups
+		dataType: int64
+		isHidden
+		sourceColumn: Signups
+		summarizeBy: none
+
+	column FirstOrders
+		dataType: int64
+		isHidden
+		sourceColumn: FirstOrders
+		summarizeBy: none
+
+	partition fact_Funnel = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "funnel.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"month", "Month"}, {"channel_id", "ChannelID"}, {"visits", "Visits"}, {"signups", "Signups"}, {"first_orders", "FirstOrders"}}),
+			    Selected = Table.SelectColumns(Renamed, {"Month", "ChannelID", "Visits", "Signups", "FirstOrders"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"Month", type date}, {"ChannelID", type text}, {"Visits", Int64.Type}, {"Signups", Int64.Type}, {"FirstOrders", Int64.Type}}, "en-US")
+			in
+			    Typed
+

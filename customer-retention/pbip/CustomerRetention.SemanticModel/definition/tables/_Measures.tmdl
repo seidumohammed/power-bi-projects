@@ -1,0 +1,203 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure 'New Customers' =
+			CALCULATE (
+			    COUNTROWS ( dim_Customer ),
+			    TREATAS ( VALUES ( dim_Date[Date] ), dim_Customer[SignupDate] )
+			)
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Churned Customers' =
+			CALCULATE (
+			    COUNTROWS ( dim_Customer ),
+			    TREATAS ( VALUES ( dim_Date[Date] ), dim_Customer[ChurnDate] )
+			)
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Customers at Period End' =
+			VAR LastDay = MAX ( dim_Date[Date] )
+			VAR Joined = CALCULATE ( COUNTROWS ( dim_Customer ), dim_Customer[SignupDate] <= LastDay )
+			VAR Left = COUNTROWS ( FILTER ( dim_Customer, NOT ISBLANK ( dim_Customer[ChurnDate] ) && dim_Customer[ChurnDate] <= LastDay ) )
+			RETURN Joined - Left
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Customers at Period Start' =
+			VAR FirstDay = MIN ( dim_Date[Date] )
+			VAR Joined = CALCULATE ( COUNTROWS ( dim_Customer ), dim_Customer[SignupDate] < FirstDay )
+			VAR Left = COUNTROWS ( FILTER ( dim_Customer, NOT ISBLANK ( dim_Customer[ChurnDate] ) && dim_Customer[ChurnDate] < FirstDay ) )
+			RETURN Joined - Left
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Churn Rate %' =
+			DIVIDE ( [Churned Customers], [Customers at Period Start] + [New Customers] / 2 )
+		formatString: "0.0%"
+		displayFolder: Retention
+
+	measure 'Retention Rate %' =
+			1 - [Churn Rate %]
+		formatString: "0.0%"
+		displayFolder: Retention
+
+	measure Orders =
+			COUNTROWS ( fact_Order )
+		formatString: "#,0"
+		displayFolder: Revenue
+
+	measure Revenue =
+			SUM ( fact_Order[OrderValueGHS] )
+		formatString: "#,0"
+		displayFolder: Revenue
+
+	measure 'Avg Order Value' =
+			DIVIDE ( [Revenue], [Orders] )
+		formatString: "#,0.00"
+		displayFolder: Revenue
+
+	measure 'Active Customers' =
+			DISTINCTCOUNT ( fact_Order[CustomerID] )
+		formatString: "#,0"
+		displayFolder: Customers
+
+	measure 'Orders per Active Customer' =
+			DIVIDE ( [Orders], [Active Customers] )
+		formatString: "0.0"
+		displayFolder: Retention
+
+	measure 'Repeat Customer %' =
+			DIVIDE (
+			    COUNTROWS ( FILTER ( VALUES ( fact_Order[CustomerID] ), CALCULATE ( COUNTROWS ( fact_Order ) ) >= 2 ) ),
+			    [Active Customers]
+			)
+		formatString: "0.0%"
+		displayFolder: Retention
+
+	measure Visits =
+			SUM ( fact_Funnel[Visits] )
+		formatString: "#,0"
+		displayFolder: Funnel
+
+	measure Signups =
+			SUM ( fact_Funnel[Signups] )
+		formatString: "#,0"
+		displayFolder: Funnel
+
+	measure 'First Orders' =
+			SUM ( fact_Funnel[FirstOrders] )
+		formatString: "#,0"
+		displayFolder: Funnel
+
+	measure 'Visit to Signup %' =
+			DIVIDE ( [Signups], [Visits] )
+		formatString: "0.0%"
+		displayFolder: Funnel
+
+	measure 'Signup to First Order %' =
+			DIVIDE ( [First Orders], [Signups] )
+		formatString: "0.0%"
+		displayFolder: Funnel
+
+	measure 'Marketing Spend' =
+			SUM ( fact_Spend[SpendGHS] )
+		formatString: "#,0"
+		displayFolder: Cost
+
+	measure CAC =
+			IF (
+			    ISFILTERED ( dim_Customer[Segment] ) || ISFILTERED ( dim_Customer[Region] ),
+			    BLANK (),   -- spend is not split by segment or region
+			    DIVIDE ( [Marketing Spend], [New Customers] )
+			)
+		formatString: "#,0.00"
+		displayFolder: Cost
+
+	measure 'Revenue per Customer to Date' =
+			DIVIDE (
+			    CALCULATE ( [Revenue], ALL ( dim_Date ) ),
+			    CALCULATE ( [Active Customers], ALL ( dim_Date ) )
+			)
+		formatString: "#,0"
+		displayFolder: Value
+
+	measure 'LTV to CAC' =
+			DIVIDE ( [Revenue per Customer to Date], [CAC] )
+		formatString: "0.0"
+		displayFolder: Value
+
+	measure 'New Customers PY' =
+			CALCULATE ( [New Customers], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'New Customers YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [New Customers], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [New Customers], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'New Customers YTD' =
+			TOTALYTD ( [New Customers], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'New Customers 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [New Customers], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue PY' =
+			CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Revenue YTD' =
+			TOTALYTD ( [Revenue], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Revenue], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Grocery delivery app, Ghana. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

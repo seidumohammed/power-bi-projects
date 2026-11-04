@@ -1,0 +1,82 @@
+table dim_Date
+	dataCategory: Time
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: "dd mmm yyyy"
+		sourceColumn: Date
+		summarizeBy: none
+
+	column Year
+		dataType: int64
+		sourceColumn: Year
+		summarizeBy: none
+
+	column Quarter
+		dataType: string
+		sourceColumn: Quarter
+		summarizeBy: none
+
+	column MonthNumber
+		dataType: int64
+		isHidden
+		sourceColumn: MonthNumber
+		summarizeBy: none
+
+	column MonthName
+		dataType: string
+		sourceColumn: MonthName
+		summarizeBy: none
+		sortByColumn: MonthNumber
+
+	column MonthStart
+		dataType: dateTime
+		formatString: "mmm yy"
+		sourceColumn: MonthStart
+		summarizeBy: none
+
+	column YearMonth
+		dataType: string
+		sourceColumn: YearMonth
+		summarizeBy: none
+
+	column DayNumber
+		dataType: int64
+		isHidden
+		sourceColumn: DayNumber
+		summarizeBy: none
+
+	column DayName
+		dataType: string
+		sourceColumn: DayName
+		summarizeBy: none
+		sortByColumn: DayNumber
+
+	column IsWeekend
+		dataType: boolean
+		sourceColumn: IsWeekend
+		summarizeBy: none
+
+	partition dim_Date = m
+		mode: import
+		source =
+			// Generated calendar covering the data. Mark it as the date table in Power BI (Table tools > Mark as date table > Date).
+			let
+			    StartDate = #date(2024, 1, 1),
+			    EndDate = #date(2025, 12, 31),
+			    Days = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+			    AsTable = Table.FromList(Days, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+			    Typed = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
+			    Year = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+			    Quarter = Table.AddColumn(Year, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+			    MonthNumber = Table.AddColumn(Quarter, "MonthNumber", each Date.Month([Date]), Int64.Type),
+			    MonthName = Table.AddColumn(MonthNumber, "MonthName", each Date.ToText([Date], "MMM", "en-GB"), type text),
+			    MonthStart = Table.AddColumn(MonthName, "MonthStart", each Date.StartOfMonth([Date]), type date),
+			    YearMonth = Table.AddColumn(MonthStart, "YearMonth", each Date.ToText([Date], "yyyy-MM", "en-GB"), type text),
+			    DayNumber = Table.AddColumn(YearMonth, "DayNumber", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type),
+			    DayName = Table.AddColumn(DayNumber, "DayName", each Date.ToText([Date], "ddd", "en-GB"), type text),
+			    IsWeekend = Table.AddColumn(DayName, "IsWeekend", each Date.DayOfWeek([Date], Day.Monday) >= 5, type logical)
+			in
+			    IsWeekend
+

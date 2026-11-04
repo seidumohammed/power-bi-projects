@@ -1,0 +1,158 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure Spend =
+			SUM ( fact_Ads[SpendGHS] )
+		formatString: "#,0"
+		displayFolder: Cost
+
+	measure Impressions =
+			SUM ( fact_Ads[Impressions] )
+		formatString: "#,0"
+		displayFolder: Reach
+
+	measure Clicks =
+			SUM ( fact_Ads[Clicks] )
+		formatString: "#,0"
+		displayFolder: Reach
+
+	measure Conversions =
+			SUM ( fact_Ads[Conversions] )
+		formatString: "#,0"
+		displayFolder: Results
+
+	measure Revenue =
+			SUM ( fact_Ads[RevenueGHS] )
+		formatString: "#,0"
+		displayFolder: Results
+
+	measure 'CTR %' =
+			DIVIDE ( [Clicks], [Impressions] )
+		formatString: "0.00%"
+		displayFolder: Reach
+
+	measure CPC =
+			DIVIDE ( [Spend], [Clicks] )
+		formatString: "0.00"
+		displayFolder: Cost
+
+	measure CPM =
+			DIVIDE ( [Spend] * 1000, [Impressions] )
+		formatString: "0.00"
+		displayFolder: Cost
+
+	measure 'Conversion Rate %' =
+			DIVIDE ( [Conversions], [Clicks] )
+		formatString: "0.00%"
+		displayFolder: Results
+
+	measure CPA =
+			DIVIDE ( [Spend], [Conversions] )
+		formatString: "0.00"
+		displayFolder: Cost
+
+	measure ROAS =
+			DIVIDE ( [Revenue], [Spend] )
+		formatString: "0.00"
+		displayFolder: Results
+
+	measure 'Avg Order Value' =
+			DIVIDE ( [Revenue], [Conversions] )
+		formatString: "#,0"
+		displayFolder: Results
+
+	measure Budget =
+			IF (
+			    ISFILTERED ( dim_Campaign[Campaign] ) || ISFILTERED ( dim_Campaign[Objective] ) || ISFILTERED ( dim_Campaign[Category] ),
+			    BLANK (),   -- budgets are set by channel
+			    CALCULATE (
+			        SUM ( fact_Budget[BudgetGHS] ),
+			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Budget[MonthStart] )
+			    )
+			)
+		formatString: "#,0"
+		displayFolder: Budget
+
+	measure 'Budget Used %' =
+			DIVIDE ( [Spend], [Budget] )
+		formatString: "0.0%"
+		displayFolder: Budget
+
+	measure 'Budget Remaining' =
+			[Budget] - [Spend]
+		formatString: "#,0;-#,0"
+		displayFolder: Budget
+
+	measure 'Spend PY' =
+			CALCULATE ( [Spend], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Spend YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Spend], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Spend], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Spend YTD' =
+			TOTALYTD ( [Spend], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Spend 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Spend], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue PY' =
+			CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Revenue YTD' =
+			TOTALYTD ( [Revenue], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Revenue 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Revenue], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Paid media, online retailer in Accra. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

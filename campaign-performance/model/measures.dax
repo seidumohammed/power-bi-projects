@@ -1,0 +1,125 @@
+// =====================================================================================
+// CAMPAIGN PERFORMANCE: DAX measures
+// Create a measure table first: Home > Enter data > one column "Dummy" > name the table "_Measures",
+// then hide the Dummy column. Add each measure below to _Measures (Table tools > New measure).
+// Each block starts with: "// folder: <display folder> | format: <format string> | desc: <plain-language meaning>".
+// =====================================================================================
+
+// folder: Cost | format: #,0 | desc: Money spent on advertising (GHS).
+Spend =
+SUM ( fact_Ads[SpendGHS] )
+
+// folder: Reach | format: #,0 | desc: Times ads were shown.
+Impressions =
+SUM ( fact_Ads[Impressions] )
+
+// folder: Reach | format: #,0 | desc: Clicks on ads.
+Clicks =
+SUM ( fact_Ads[Clicks] )
+
+// folder: Results | format: #,0 | desc: Orders attributed to ads.
+Conversions =
+SUM ( fact_Ads[Conversions] )
+
+// folder: Results | format: #,0 | desc: Revenue attributed to ads (GHS).
+Revenue =
+SUM ( fact_Ads[RevenueGHS] )
+
+// folder: Reach | format: 0.00% | desc: Clicks divided by impressions.
+CTR % =
+DIVIDE ( [Clicks], [Impressions] )
+
+// folder: Cost | format: 0.00 | desc: Spend per click (GHS).
+CPC =
+DIVIDE ( [Spend], [Clicks] )
+
+// folder: Cost | format: 0.00 | desc: Spend per 1,000 impressions (GHS).
+CPM =
+DIVIDE ( [Spend] * 1000, [Impressions] )
+
+// folder: Results | format: 0.00% | desc: Conversions divided by clicks.
+Conversion Rate % =
+DIVIDE ( [Conversions], [Clicks] )
+
+// folder: Cost | format: 0.00 | desc: Spend per conversion (GHS).
+CPA =
+DIVIDE ( [Spend], [Conversions] )
+
+// folder: Results | format: 0.00 | desc: Revenue for each GHS 1 spent.
+ROAS =
+DIVIDE ( [Revenue], [Spend] )
+
+// folder: Results | format: #,0 | desc: Revenue per conversion (GHS).
+Avg Order Value =
+DIVIDE ( [Revenue], [Conversions] )
+
+// folder: Budget | format: #,0 | desc: Planned spend for the months and channels selected.
+Budget =
+IF (
+    ISFILTERED ( dim_Campaign[Campaign] ) || ISFILTERED ( dim_Campaign[Objective] ) || ISFILTERED ( dim_Campaign[Category] ),
+    BLANK (),   -- budgets are set by channel
+    CALCULATE (
+        SUM ( fact_Budget[BudgetGHS] ),
+        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Budget[MonthStart] )
+    )
+)
+
+// folder: Budget | format: 0.0% | desc: Spend divided by budget.
+Budget Used % =
+DIVIDE ( [Spend], [Budget] )
+
+// folder: Budget | format: #,0;-#,0 | desc: Budget minus spend. Negative means overspent.
+Budget Remaining =
+[Budget] - [Spend]
+
+// folder: Time intelligence | format: #,0 | desc: Spend in the same period one year earlier. Use it on a monthly chart, not on a card.
+Spend PY =
+CALCULATE ( [Spend], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in spend in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Spend YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Spend], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Spend], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Spend from the start of the year to the date shown.
+Spend YTD =
+TOTALYTD ( [Spend], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly spend over the last three months up to the month shown.
+Spend 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Spend], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Time intelligence | format: #,0 | desc: Revenue in the same period one year earlier. Use it on a monthly chart, not on a card.
+Revenue PY =
+CALCULATE ( [Revenue], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+
+// folder: Time intelligence | format: 0.0% | desc: Change in revenue in the latest year selected compared with the year before (same quarters if a quarter is selected).
+Revenue YoY % =
+VAR LatestYear = MAX ( dim_Date[Year] )
+VAR CurrentValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear )
+VAR PreviousValue = CALCULATE ( [Revenue], dim_Date[Year] = LatestYear - 1 )
+RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+
+// folder: Time intelligence | format: #,0 | desc: Revenue from the start of the year to the date shown.
+Revenue YTD =
+TOTALYTD ( [Revenue], dim_Date[Date] )
+
+// folder: Time intelligence | format: #,0 | desc: Average monthly revenue over the last three months up to the month shown.
+Revenue 3M Average =
+VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+RETURN
+    DIVIDE (
+        CALCULATE ( [Revenue], Window ),
+        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+    )
+
+// folder: Labels | format: General | desc: Reminder that the data is synthetic.
+Data Note =
+"Synthetic data for demonstration. Paid media, online retailer in Accra. Period: Jan 2024 to Dec 2025."

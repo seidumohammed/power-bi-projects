@@ -1,0 +1,44 @@
+table dim_Campaign
+
+	column CampaignID
+		dataType: string
+		isHidden
+		sourceColumn: CampaignID
+		summarizeBy: none
+
+	column Campaign
+		dataType: string
+		sourceColumn: Campaign
+		summarizeBy: none
+
+	column Objective
+		dataType: string
+		sourceColumn: Objective
+		summarizeBy: none
+
+	column ChannelID
+		dataType: string
+		isHidden
+		sourceColumn: ChannelID
+		summarizeBy: none
+
+	column Category
+		dataType: string
+		sourceColumn: Category
+		summarizeBy: none
+
+	partition dim_Campaign = m
+		mode: import
+		source =
+			// Cleaning: objective in mixed case, campaign names with stray spaces.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "campaigns.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Cleanobjective = Table.TransformColumns(Promoted, {{"objective", each Text.Proper(Text.Trim(_)), type text}}),
+			    Cleancampaign = Table.TransformColumns(Cleanobjective, {{"campaign", each Text.Trim(_), type text}}),
+			    Renamed = Table.RenameColumns(Cleancampaign, {{"campaign_id", "CampaignID"}, {"campaign", "Campaign"}, {"objective", "Objective"}, {"channel_id", "ChannelID"}, {"category", "Category"}}),
+			    Selected = Table.SelectColumns(Renamed, {"CampaignID", "Campaign", "Objective", "ChannelID", "Category"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"CampaignID", type text}, {"Campaign", type text}, {"Objective", type text}, {"ChannelID", type text}, {"Category", type text}}, "en-US")
+			in
+			    Typed
+

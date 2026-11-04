@@ -1,0 +1,199 @@
+table _Measures
+
+	column Dummy
+		dataType: int64
+		isHidden
+		sourceColumn: Dummy
+		summarizeBy: none
+
+	measure 'Content Published' =
+			CALCULATE (
+			    COUNTROWS ( dim_Content ),
+			    TREATAS ( VALUES ( dim_Date[Date] ), dim_Content[PublishDate] )
+			)
+		formatString: "#,0"
+		displayFolder: Content
+
+	measure 'Emails Sent' =
+			SUM ( fact_Email[Sent] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Emails Delivered' =
+			SUM ( fact_Email[Delivered] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Delivery Rate %' =
+			DIVIDE ( [Emails Delivered], [Emails Sent] )
+		formatString: "0.0%"
+		displayFolder: Email
+
+	measure 'Email Opens' =
+			SUM ( fact_Email[Opens] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Open Rate %' =
+			DIVIDE ( [Email Opens], [Emails Delivered] )
+		formatString: "0.0%"
+		displayFolder: Email
+
+	measure 'Email Clicks' =
+			SUM ( fact_Email[Clicks] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Click Rate %' =
+			DIVIDE ( [Email Clicks], [Emails Delivered] )
+		formatString: "0.0%"
+		displayFolder: Email
+
+	measure 'Click to Open %' =
+			DIVIDE ( [Email Clicks], [Email Opens] )
+		formatString: "0.0%"
+		displayFolder: Email
+
+	measure Unsubscribes =
+			SUM ( fact_Email[Unsubscribes] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Unsubscribe Rate %' =
+			DIVIDE ( [Unsubscribes], [Emails Delivered] )
+		formatString: "0.00%"
+		displayFolder: Email
+
+	measure 'Email Signups' =
+			SUM ( fact_Email[Signups] )
+		formatString: "#,0"
+		displayFolder: Email
+
+	measure 'Social Impressions' =
+			SUM ( fact_Social[Impressions] )
+		formatString: "#,0"
+		displayFolder: Social
+
+	measure Engagements =
+			SUM ( fact_Social[Engagements] )
+		formatString: "#,0"
+		displayFolder: Social
+
+	measure 'Engagement Rate %' =
+			DIVIDE ( [Engagements], [Social Impressions] )
+		formatString: "0.0%"
+		displayFolder: Social
+
+	measure Shares =
+			SUM ( fact_Social[Shares] )
+		formatString: "#,0"
+		displayFolder: Social
+
+	measure 'Followers Gained' =
+			SUM ( fact_Social[FollowersGained] )
+		formatString: "#,0"
+		displayFolder: Social
+
+	measure Sessions =
+			SUM ( fact_Web[Sessions] )
+		formatString: "#,0"
+		displayFolder: Web
+
+	measure 'Web Users' =
+			SUM ( fact_Web[Users] )
+		formatString: "#,0"
+		displayFolder: Web
+
+	measure 'Bounce Rate %' =
+			DIVIDE ( SUMX ( fact_Web, fact_Web[BounceRate] * fact_Web[Sessions] ), [Sessions] )
+		formatString: "0.0%"
+		displayFolder: Web
+
+	measure 'Avg Time on Page (sec)' =
+			DIVIDE ( SUMX ( fact_Web, fact_Web[AvgSeconds] * fact_Web[Sessions] ), [Sessions] )
+		formatString: "0"
+		displayFolder: Web
+
+	measure 'Web Signups' =
+			SUM ( fact_Web[Signups] )
+		formatString: "#,0"
+		displayFolder: Web
+
+	measure 'Web Signup Rate %' =
+			DIVIDE ( [Web Signups], [Sessions] )
+		formatString: "0.00%"
+		displayFolder: Web
+
+	measure 'Total Signups' =
+			[Email Signups] + [Web Signups]
+		formatString: "#,0"
+		displayFolder: Results
+
+	measure 'Sessions PY' =
+			CALCULATE ( [Sessions], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sessions YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Sessions], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Sessions], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Sessions YTD' =
+			TOTALYTD ( [Sessions], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Sessions 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Sessions], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Engagements PY' =
+			CALCULATE ( [Engagements], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Engagements YoY %' =
+			VAR LatestYear = MAX ( dim_Date[Year] )
+			VAR CurrentValue = CALCULATE ( [Engagements], dim_Date[Year] = LatestYear )
+			VAR PreviousValue = CALCULATE ( [Engagements], dim_Date[Year] = LatestYear - 1 )
+			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
+		formatString: "0.0%"
+		displayFolder: Time intelligence
+
+	measure 'Engagements YTD' =
+			TOTALYTD ( [Engagements], dim_Date[Date] )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Engagements 3M Average' =
+			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
+			RETURN
+			    DIVIDE (
+			        CALCULATE ( [Engagements], Window ),
+			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
+			    )
+		formatString: "#,0"
+		displayFolder: Time intelligence
+
+	measure 'Data Note' =
+			"Synthetic data for demonstration. Financial-literacy publisher, Ghana. Period: Jan 2024 to Dec 2025."
+		displayFolder: Labels
+
+	partition _Measures = m
+		mode: import
+		source =
+			let
+			    Source = #table(type table [Dummy = Int64.Type], {{1}})
+			in
+			    Source
+

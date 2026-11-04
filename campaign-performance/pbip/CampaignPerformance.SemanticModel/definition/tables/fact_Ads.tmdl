@@ -1,0 +1,70 @@
+table fact_Ads
+
+	column AdID
+		dataType: string
+		isHidden
+		sourceColumn: AdID
+		summarizeBy: none
+
+	column AdDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: AdDate
+		summarizeBy: none
+
+	column CampaignID
+		dataType: string
+		isHidden
+		sourceColumn: CampaignID
+		summarizeBy: none
+
+	column Impressions
+		dataType: int64
+		isHidden
+		sourceColumn: Impressions
+		summarizeBy: none
+
+	column Clicks
+		dataType: int64
+		isHidden
+		sourceColumn: Clicks
+		summarizeBy: none
+
+	column SpendGHS
+		dataType: double
+		isHidden
+		formatString: "#,0.00"
+		sourceColumn: SpendGHS
+		summarizeBy: none
+
+	column Conversions
+		dataType: int64
+		isHidden
+		sourceColumn: Conversions
+		summarizeBy: none
+
+	column RevenueGHS
+		dataType: double
+		isHidden
+		formatString: "#,0.00"
+		sourceColumn: RevenueGHS
+		summarizeBy: none
+
+	partition fact_Ads = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, spend and revenue stored as text ('GHS 1,250.00') in some rows, duplicate ad_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "ad_results.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"ad_id"}),
+			    WithAdDate = Table.AddColumn(Deduped, "AdDate", each if [ad_date] = null or Text.Trim([ad_date]) = "" then null else try Date.FromText([ad_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([ad_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    WithSpendGHS = Table.AddColumn(WithAdDate, "SpendGHS", each if [spend_ghs] = null or Text.Trim([spend_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([spend_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    WithRevenueGHS = Table.AddColumn(WithSpendGHS, "RevenueGHS", each if [revenue_ghs] = null or Text.Trim([revenue_ghs]) = "" then null else Number.FromText(Text.Trim(Text.Replace(Text.Replace(Text.Replace([revenue_ghs], "GHS", ""), ",", ""), " ", "")), "en-US"), type number),
+			    Renamed = Table.RenameColumns(WithRevenueGHS, {{"ad_id", "AdID"}, {"campaign_id", "CampaignID"}, {"impressions", "Impressions"}, {"clicks", "Clicks"}, {"conversions", "Conversions"}}),
+			    Selected = Table.SelectColumns(Renamed, {"AdID", "AdDate", "CampaignID", "Impressions", "Clicks", "SpendGHS", "Conversions", "RevenueGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"AdID", type text}, {"CampaignID", type text}, {"Impressions", Int64.Type}, {"Clicks", Int64.Type}, {"Conversions", Int64.Type}}, "en-US")
+			in
+			    Typed
+

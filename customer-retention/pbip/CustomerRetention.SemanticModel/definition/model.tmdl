@@ -1,0 +1,12 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table dim_Channel
+ref table dim_Customer
+ref table fact_Order
+ref table fact_Funnel
+ref table fact_Spend
+ref table dim_Date
+ref table _Measures

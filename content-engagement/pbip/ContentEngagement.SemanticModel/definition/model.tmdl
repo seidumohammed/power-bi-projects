@@ -1,0 +1,13 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+
+ref table dim_Content
+ref table dim_Platform
+ref table dim_Audience
+ref table fact_Email
+ref table fact_Social
+ref table fact_Web
+ref table dim_Date
+ref table _Measures

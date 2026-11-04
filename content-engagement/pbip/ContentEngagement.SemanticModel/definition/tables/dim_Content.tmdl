@@ -1,0 +1,53 @@
+table dim_Content
+
+	column ContentID
+		dataType: string
+		isHidden
+		sourceColumn: ContentID
+		summarizeBy: none
+
+	column Title
+		dataType: string
+		sourceColumn: Title
+		summarizeBy: none
+
+	column Topic
+		dataType: string
+		sourceColumn: Topic
+		summarizeBy: none
+
+	column Format
+		dataType: string
+		sourceColumn: Format
+		summarizeBy: none
+
+	column Author
+		dataType: string
+		sourceColumn: Author
+		summarizeBy: none
+
+	column PublishDate
+		dataType: dateTime
+		isHidden
+		formatString: "dd mmm yyyy"
+		sourceColumn: PublishDate
+		summarizeBy: none
+
+	partition dim_Content = m
+		mode: import
+		source =
+			// Cleaning: dates in two formats, topic and format in mixed case, author with stray spaces, duplicate content_id rows.
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "content.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Deduped = Table.Distinct(Promoted, {"content_id"}),
+			    WithPublishDate = Table.AddColumn(Deduped, "PublishDate", each if [publish_date] = null or Text.Trim([publish_date]) = "" then null else try Date.FromText([publish_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([publish_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+			    Cleantopic = Table.TransformColumns(WithPublishDate, {{"topic", each Text.Proper(Text.Trim(_)), type text}}),
+			    Cleanformat = Table.TransformColumns(Cleantopic, {{"format", each Text.Proper(Text.Trim(_)), type text}}),
+			    Cleanauthor = Table.TransformColumns(Cleanformat, {{"author", each Text.Trim(_), type text}}),
+			    Renamed = Table.RenameColumns(Cleanauthor, {{"content_id", "ContentID"}, {"title", "Title"}, {"topic", "Topic"}, {"format", "Format"}, {"author", "Author"}}),
+			    Selected = Table.SelectColumns(Renamed, {"ContentID", "Title", "Topic", "Format", "Author", "PublishDate"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"ContentID", type text}, {"Title", type text}, {"Topic", type text}, {"Format", type text}, {"Author", type text}}, "en-US")
+			in
+			    Typed
+

@@ -1,0 +1,25 @@
+table dim_Platform
+
+	column PlatformID
+		dataType: string
+		isHidden
+		sourceColumn: PlatformID
+		summarizeBy: none
+
+	column Platform
+		dataType: string
+		sourceColumn: Platform
+		summarizeBy: none
+
+	partition dim_Platform = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "platforms.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"platform_id", "PlatformID"}, {"platform", "Platform"}}),
+			    Selected = Table.SelectColumns(Renamed, {"PlatformID", "Platform"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"PlatformID", type text}, {"Platform", type text}}, "en-US")
+			in
+			    Typed
+

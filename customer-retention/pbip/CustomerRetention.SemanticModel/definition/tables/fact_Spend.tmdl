@@ -1,0 +1,34 @@
+table fact_Spend
+
+	column Month
+		dataType: dateTime
+		isHidden
+		formatString: "mmm yy"
+		sourceColumn: Month
+		summarizeBy: none
+
+	column ChannelID
+		dataType: string
+		isHidden
+		sourceColumn: ChannelID
+		summarizeBy: none
+
+	column SpendGHS
+		dataType: double
+		isHidden
+		formatString: "#,0.00"
+		sourceColumn: SpendGHS
+		summarizeBy: none
+
+	partition fact_Spend = m
+		mode: import
+		source =
+			let
+			    Source = Csv.Document(File.Contents(DataFolder & "spend.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+			    Renamed = Table.RenameColumns(Promoted, {{"month", "Month"}, {"channel_id", "ChannelID"}, {"spend_ghs", "SpendGHS"}}),
+			    Selected = Table.SelectColumns(Renamed, {"Month", "ChannelID", "SpendGHS"}),
+			    Typed = Table.TransformColumnTypes(Selected, {{"Month", type date}, {"ChannelID", type text}, {"SpendGHS", type number}}, "en-US")
+			in
+			    Typed
+
