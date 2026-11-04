@@ -1,30 +1,34 @@
 table dim_Carrier
+	lineageTag: cb82a5f5-9a27-4839-ae08-25a99342a6da
 
 	column CarrierID
 		dataType: string
 		isHidden
-		sourceColumn: CarrierID
+		lineageTag: c571974f-8e62-4094-be82-7402e762b555
 		summarizeBy: none
+		sourceColumn: CarrierID
 
 	column Carrier
 		dataType: string
-		sourceColumn: Carrier
+		lineageTag: 2aec40fc-0205-429e-b846-1538aeb5c61e
 		summarizeBy: none
+		sourceColumn: Carrier
 
 	column Mode
 		dataType: string
-		sourceColumn: Mode
+		lineageTag: 19f8f75a-3478-4eed-83ec-b50c0afdc3e2
 		summarizeBy: none
+		sourceColumn: Mode
 
 	partition dim_Carrier = m
 		mode: import
 		source =
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "carriers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Renamed = Table.RenameColumns(Promoted, {{"carrier_id", "CarrierID"}, {"carrier", "Carrier"}, {"mode", "Mode"}}),
-			    Selected = Table.SelectColumns(Renamed, {"CarrierID", "Carrier", "Mode"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"CarrierID", type text}, {"Carrier", type text}, {"Mode", type text}}, "en-US")
-			in
-			    Typed
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "carriers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"carrier_id", "CarrierID"}, {"carrier", "Carrier"}, {"mode", "Mode"}}),
+				    Selected = Table.SelectColumns(Renamed, {"CarrierID", "Carrier", "Mode"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"CarrierID", type text}, {"Carrier", type text}, {"Mode", type text}}, "en-US")
+				in
+				    Typed
 

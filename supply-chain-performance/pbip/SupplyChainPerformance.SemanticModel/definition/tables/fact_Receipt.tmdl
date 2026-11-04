@@ -1,96 +1,137 @@
 table fact_Receipt
+	lineageTag: 0c742c14-8325-4c4f-94eb-fb61ec239a24
 
 	column ReceiptID
 		dataType: string
 		isHidden
-		sourceColumn: ReceiptID
+		lineageTag: 9b03f8c1-924e-4320-843f-8676c3e5b30a
 		summarizeBy: none
+		sourceColumn: ReceiptID
 
 	column PODate
 		dataType: dateTime
 		isHidden
-		formatString: "dd mmm yyyy"
-		sourceColumn: PODate
+		formatString: dd mmm yyyy
+		lineageTag: 38047ca4-749e-4a5d-ae6b-2928cd4dd1bc
 		summarizeBy: none
+		sourceColumn: PODate
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column ExpectedDate
 		dataType: dateTime
 		isHidden
-		formatString: "dd mmm yyyy"
-		sourceColumn: ExpectedDate
+		formatString: dd mmm yyyy
+		lineageTag: 78655d7e-5cb5-49dc-9ab7-f1fe28219307
 		summarizeBy: none
+		sourceColumn: ExpectedDate
+
+		variation Variation
+			isDefault
+			relationship: 239e339d-25f9-4877-956c-6ab940d2f6fb
+			defaultHierarchy: LocalDateTable_c65a8e3f-9ad6-4ad1-8b87-0aaf4b50b7e0.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column ReceiptDate
 		dataType: dateTime
 		isHidden
-		formatString: "dd mmm yyyy"
-		sourceColumn: ReceiptDate
+		formatString: dd mmm yyyy
+		lineageTag: e4530357-54c8-477b-8bc9-5b22853b46e5
 		summarizeBy: none
+		sourceColumn: ReceiptDate
+
+		variation Variation
+			isDefault
+			relationship: 27c37e08-d4c1-42bd-8490-10f352ef6264
+			defaultHierarchy: LocalDateTable_264bdc1d-0afb-4671-aa72-d0969a08bae7.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column SupplierID
 		dataType: string
 		isHidden
-		sourceColumn: SupplierID
+		lineageTag: 5da5a383-b65f-46c6-a840-04383b996c37
 		summarizeBy: none
+		sourceColumn: SupplierID
 
 	column ProductID
 		dataType: string
 		isHidden
-		sourceColumn: ProductID
+		lineageTag: c13dcade-5bab-435c-bd17-a76ddf937b3a
 		summarizeBy: none
+		sourceColumn: ProductID
 
 	column WarehouseID
 		dataType: string
 		isHidden
-		sourceColumn: WarehouseID
+		lineageTag: a0b28c56-7403-4ed2-b32d-e0684664e802
 		summarizeBy: none
+		sourceColumn: WarehouseID
 
 	column OrderedQty
 		dataType: int64
 		isHidden
+		lineageTag: f5053356-ee22-48fb-afa9-16cbdfbf172a
+		summarizeBy: sum
 		sourceColumn: OrderedQty
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	column ReceivedQty
 		dataType: int64
 		isHidden
+		lineageTag: 9afc2477-c8f2-4e9b-88fb-8aefdf977fa1
+		summarizeBy: sum
 		sourceColumn: ReceivedQty
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	column RejectedQty
 		dataType: int64
 		isHidden
+		lineageTag: c7b3b0fe-05db-4bf9-964b-c864531893f2
+		summarizeBy: sum
 		sourceColumn: RejectedQty
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	column IsOnTime
 		dataType: int64
 		isHidden
+		lineageTag: 71065b92-c9f8-47fd-9ecb-2180a85c3fe3
+		summarizeBy: sum
 		sourceColumn: IsOnTime
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	column LeadTimeDays
 		dataType: int64
 		isHidden
+		lineageTag: d785dab0-9a0f-4873-8735-24063a81c41d
+		summarizeBy: sum
 		sourceColumn: LeadTimeDays
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	partition fact_Receipt = m
 		mode: import
 		source =
-			// Cleaning: dates in two formats and duplicate receipt_id rows.
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "receipts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Deduped = Table.Distinct(Promoted, {"receipt_id"}),
-			    WithPODate = Table.AddColumn(Deduped, "PODate", each if [po_date] = null or Text.Trim([po_date]) = "" then null else try Date.FromText([po_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([po_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
-			    WithExpectedDate = Table.AddColumn(WithPODate, "ExpectedDate", each if [expected_date] = null or Text.Trim([expected_date]) = "" then null else try Date.FromText([expected_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([expected_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
-			    WithReceiptDate = Table.AddColumn(WithExpectedDate, "ReceiptDate", each if [receipt_date] = null or Text.Trim([receipt_date]) = "" then null else try Date.FromText([receipt_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([receipt_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
-			    Renamed = Table.RenameColumns(WithReceiptDate, {{"receipt_id", "ReceiptID"}, {"supplier_id", "SupplierID"}, {"product_id", "ProductID"}, {"warehouse_id", "WarehouseID"}, {"ordered_qty", "OrderedQty"}, {"received_qty", "ReceivedQty"}, {"rejected_qty", "RejectedQty"}}),
-			    Selected = Table.SelectColumns(Renamed, {"ReceiptID", "PODate", "ExpectedDate", "ReceiptDate", "SupplierID", "ProductID", "WarehouseID", "OrderedQty", "ReceivedQty", "RejectedQty"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"ReceiptID", type text}, {"SupplierID", type text}, {"ProductID", type text}, {"WarehouseID", type text}, {"OrderedQty", Int64.Type}, {"ReceivedQty", Int64.Type}, {"RejectedQty", Int64.Type}}, "en-US"),
-			    AddIsOnTime = Table.AddColumn(Typed, "IsOnTime", each if [ReceiptDate] <= [ExpectedDate] then 1 else 0, Int64.Type),
-			    AddLeadTimeDays = Table.AddColumn(AddIsOnTime, "LeadTimeDays", each Duration.Days([ReceiptDate] - [PODate]), Int64.Type)
-			in
-			    AddLeadTimeDays
+				// Cleaning: dates in two formats and duplicate receipt_id rows.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "receipts.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Deduped = Table.Distinct(Promoted, {"receipt_id"}),
+				    WithPODate = Table.AddColumn(Deduped, "PODate", each if [po_date] = null or Text.Trim([po_date]) = "" then null else try Date.FromText([po_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([po_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    WithExpectedDate = Table.AddColumn(WithPODate, "ExpectedDate", each if [expected_date] = null or Text.Trim([expected_date]) = "" then null else try Date.FromText([expected_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([expected_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    WithReceiptDate = Table.AddColumn(WithExpectedDate, "ReceiptDate", each if [receipt_date] = null or Text.Trim([receipt_date]) = "" then null else try Date.FromText([receipt_date], [Format = "yyyy-MM-dd", Culture = "en-GB"]) otherwise Date.FromText([receipt_date], [Format = "dd/MM/yyyy", Culture = "en-GB"]), type date),
+				    Renamed = Table.RenameColumns(WithReceiptDate, {{"receipt_id", "ReceiptID"}, {"supplier_id", "SupplierID"}, {"product_id", "ProductID"}, {"warehouse_id", "WarehouseID"}, {"ordered_qty", "OrderedQty"}, {"received_qty", "ReceivedQty"}, {"rejected_qty", "RejectedQty"}}),
+				    Selected = Table.SelectColumns(Renamed, {"ReceiptID", "PODate", "ExpectedDate", "ReceiptDate", "SupplierID", "ProductID", "WarehouseID", "OrderedQty", "ReceivedQty", "RejectedQty"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"ReceiptID", type text}, {"SupplierID", type text}, {"ProductID", type text}, {"WarehouseID", type text}, {"OrderedQty", Int64.Type}, {"ReceivedQty", Int64.Type}, {"RejectedQty", Int64.Type}}, "en-US"),
+				    AddIsOnTime = Table.AddColumn(Typed, "IsOnTime", each if [ReceiptDate] <= [ExpectedDate] then 1 else 0, Int64.Type),
+				    AddLeadTimeDays = Table.AddColumn(AddIsOnTime, "LeadTimeDays", each Duration.Days([ReceiptDate] - [PODate]), Int64.Type)
+				in
+				    AddLeadTimeDays
+
+	annotation PBI_ResultType = Table
 

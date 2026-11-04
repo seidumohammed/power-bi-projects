@@ -1,37 +1,42 @@
 table dim_Customer
+	lineageTag: 9153c907-ea9f-475d-8910-7f376f7206ac
 
 	column CustomerID
 		dataType: string
 		isHidden
-		sourceColumn: CustomerID
+		lineageTag: 25254032-e1fd-4da7-b64d-9b179124314c
 		summarizeBy: none
+		sourceColumn: CustomerID
 
 	column Customer
 		dataType: string
-		sourceColumn: Customer
+		lineageTag: 52579a87-a140-4ac2-8d90-af7d2dd87624
 		summarizeBy: none
+		sourceColumn: Customer
 
 	column CustomerType
 		dataType: string
-		sourceColumn: CustomerType
+		lineageTag: 84dbbfc3-d796-459c-8a21-f928c0e72f22
 		summarizeBy: none
+		sourceColumn: CustomerType
 
 	column Region
 		dataType: string
-		sourceColumn: Region
+		lineageTag: 119863ab-ec52-4c65-a5c2-b4f81b408f39
 		summarizeBy: none
+		sourceColumn: Region
 
 	partition dim_Customer = m
 		mode: import
 		source =
-			// Cleaning: customer_type has stray spaces and mixed case.
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "customers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Cleancustomertype = Table.TransformColumns(Promoted, {{"customer_type", each Text.Proper(Text.Trim(_)), type text}}),
-			    Renamed = Table.RenameColumns(Cleancustomertype, {{"customer_id", "CustomerID"}, {"customer", "Customer"}, {"customer_type", "CustomerType"}, {"region", "Region"}}),
-			    Selected = Table.SelectColumns(Renamed, {"CustomerID", "Customer", "CustomerType", "Region"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"CustomerID", type text}, {"Customer", type text}, {"CustomerType", type text}, {"Region", type text}}, "en-US")
-			in
-			    Typed
+				// Cleaning: customer_type has stray spaces and mixed case.
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "customers.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Cleancustomertype = Table.TransformColumns(Promoted, {{"customer_type", each Text.Proper(Text.Trim(_)), type text}}),
+				    Renamed = Table.RenameColumns(Cleancustomertype, {{"customer_id", "CustomerID"}, {"customer", "Customer"}, {"customer_type", "CustomerType"}, {"region", "Region"}}),
+				    Selected = Table.SelectColumns(Renamed, {"CustomerID", "Customer", "CustomerType", "Region"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"CustomerID", type text}, {"Customer", type text}, {"CustomerType", type text}, {"Region", type text}}, "en-US")
+				in
+				    Typed
 

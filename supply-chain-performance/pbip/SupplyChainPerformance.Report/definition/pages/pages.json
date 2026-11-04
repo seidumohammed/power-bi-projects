@@ -1,10 +1,10 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.1.0/schema.json",
   "pageOrder": [
     "page1_service",
     "page2_hubs_carriers",
     "page3_inventory",
     "page4_suppliers"
   ],
-  "activePageName": "page1_service"
+  "activePageName": "page4_suppliers"
 }

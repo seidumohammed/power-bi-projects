@@ -1,82 +1,99 @@
 table dim_Date
+	lineageTag: e696f532-076a-4edf-bddd-153d890ac3f5
 	dataCategory: Time
 
 	column Date
 		dataType: dateTime
 		isKey
-		formatString: "dd mmm yyyy"
-		sourceColumn: Date
+		formatString: dd mmm yyyy
+		lineageTag: fbca218b-4520-4978-862d-401c4b7c957d
 		summarizeBy: none
+		sourceColumn: Date
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column Year
 		dataType: int64
-		sourceColumn: Year
+		lineageTag: 1191b56c-aa64-4d2e-825b-daf5e9097043
 		summarizeBy: none
+		sourceColumn: Year
 
 	column Quarter
 		dataType: string
-		sourceColumn: Quarter
+		lineageTag: c6010a44-dde0-49fb-bd47-8d4f7de3311a
 		summarizeBy: none
+		sourceColumn: Quarter
 
 	column MonthNumber
 		dataType: int64
 		isHidden
-		sourceColumn: MonthNumber
+		lineageTag: 7483cd77-faa2-4ee6-bb3f-c8797c8b1bc5
 		summarizeBy: none
+		sourceColumn: MonthNumber
 
 	column MonthName
 		dataType: string
-		sourceColumn: MonthName
+		lineageTag: 79e6b4fd-a915-40af-8afa-36517139637e
 		summarizeBy: none
+		sourceColumn: MonthName
 		sortByColumn: MonthNumber
 
 	column MonthStart
 		dataType: dateTime
-		formatString: "mmm yy"
-		sourceColumn: MonthStart
+		formatString: mmm yy
+		lineageTag: 07f01728-0555-4109-a31f-b3f29c9f218b
 		summarizeBy: none
+		sourceColumn: MonthStart
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column YearMonth
 		dataType: string
-		sourceColumn: YearMonth
+		lineageTag: e285bdd5-fc79-4817-a72a-248e257ee21b
 		summarizeBy: none
+		sourceColumn: YearMonth
 
 	column DayNumber
 		dataType: int64
 		isHidden
-		sourceColumn: DayNumber
+		lineageTag: ebbd9be6-1797-4b11-8b10-735239040543
 		summarizeBy: none
+		sourceColumn: DayNumber
 
 	column DayName
 		dataType: string
-		sourceColumn: DayName
+		lineageTag: d0c5341a-bb5a-45fe-a160-ba38ca3a7248
 		summarizeBy: none
+		sourceColumn: DayName
 		sortByColumn: DayNumber
 
 	column IsWeekend
 		dataType: boolean
-		sourceColumn: IsWeekend
+		lineageTag: 2c4cdd2a-edf4-46b3-aa7d-37e7672e2be2
 		summarizeBy: none
+		sourceColumn: IsWeekend
 
 	partition dim_Date = m
 		mode: import
 		source =
-			// Generated calendar covering the data. Mark it as the date table in Power BI (Table tools > Mark as date table > Date).
-			let
-			    StartDate = #date(2024, 1, 1),
-			    EndDate = #date(2025, 12, 31),
-			    Days = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
-			    AsTable = Table.FromList(Days, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
-			    Typed = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
-			    Year = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
-			    Quarter = Table.AddColumn(Year, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
-			    MonthNumber = Table.AddColumn(Quarter, "MonthNumber", each Date.Month([Date]), Int64.Type),
-			    MonthName = Table.AddColumn(MonthNumber, "MonthName", each Date.ToText([Date], "MMM", "en-GB"), type text),
-			    MonthStart = Table.AddColumn(MonthName, "MonthStart", each Date.StartOfMonth([Date]), type date),
-			    YearMonth = Table.AddColumn(MonthStart, "YearMonth", each Date.ToText([Date], "yyyy-MM", "en-GB"), type text),
-			    DayNumber = Table.AddColumn(YearMonth, "DayNumber", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type),
-			    DayName = Table.AddColumn(DayNumber, "DayName", each Date.ToText([Date], "ddd", "en-GB"), type text),
-			    IsWeekend = Table.AddColumn(DayName, "IsWeekend", each Date.DayOfWeek([Date], Day.Monday) >= 5, type logical)
-			in
-			    IsWeekend
+				// Generated calendar covering the data. Mark it as the date table in Power BI (Table tools > Mark as date table > Date).
+				let
+				    StartDate = #date(2024, 1, 1),
+				    EndDate = #date(2025, 12, 31),
+				    Days = List.Dates(StartDate, Duration.Days(EndDate - StartDate) + 1, #duration(1, 0, 0, 0)),
+				    AsTable = Table.FromList(Days, Splitter.SplitByNothing(), {"Date"}, null, ExtraValues.Error),
+				    Typed = Table.TransformColumnTypes(AsTable, {{"Date", type date}}),
+				    Year = Table.AddColumn(Typed, "Year", each Date.Year([Date]), Int64.Type),
+				    Quarter = Table.AddColumn(Year, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text),
+				    MonthNumber = Table.AddColumn(Quarter, "MonthNumber", each Date.Month([Date]), Int64.Type),
+				    MonthName = Table.AddColumn(MonthNumber, "MonthName", each Date.ToText([Date], "MMM", "en-GB"), type text),
+				    MonthStart = Table.AddColumn(MonthName, "MonthStart", each Date.StartOfMonth([Date]), type date),
+				    YearMonth = Table.AddColumn(MonthStart, "YearMonth", each Date.ToText([Date], "yyyy-MM", "en-GB"), type text),
+				    DayNumber = Table.AddColumn(YearMonth, "DayNumber", each Date.DayOfWeek([Date], Day.Monday) + 1, Int64.Type),
+				    DayName = Table.AddColumn(DayNumber, "DayName", each Date.ToText([Date], "ddd", "en-GB"), type text),
+				    IsWeekend = Table.AddColumn(DayName, "IsWeekend", each Date.DayOfWeek([Date], Day.Monday) >= 5, type logical)
+				in
+				    IsWeekend
+
+	annotation PBI_ResultType = Table
 

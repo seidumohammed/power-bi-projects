@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "page1_service_v27",
   "position": {
     "x": 671,
@@ -11,7 +11,6 @@
   },
   "visual": {
     "visualType": "areaChart",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -28,7 +27,8 @@
                 }
               },
               "queryRef": "dim_Date.MonthStart",
-              "nativeQueryRef": "MonthStart"
+              "nativeQueryRef": "MonthStart",
+              "active": true
             }
           ]
         },
@@ -341,6 +341,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

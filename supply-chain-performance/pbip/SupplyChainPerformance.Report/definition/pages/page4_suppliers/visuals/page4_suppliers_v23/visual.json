@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "page4_suppliers_v23",
   "position": {
     "x": 818,
@@ -11,7 +11,6 @@
   },
   "visual": {
     "visualType": "scatterChart",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -28,43 +27,8 @@
                 }
               },
               "queryRef": "dim_Supplier.Supplier",
-              "nativeQueryRef": "Supplier"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Supplier Lead Time (days)"
-                }
-              },
-              "queryRef": "_Measures.Supplier Lead Time (days)",
-              "nativeQueryRef": "Supplier Lead Time (days)"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Supplier On-Time %"
-                }
-              },
-              "queryRef": "_Measures.Supplier On-Time %",
-              "nativeQueryRef": "Supplier On-Time %"
+              "nativeQueryRef": "Supplier",
+              "active": true
             }
           ]
         },
@@ -83,6 +47,43 @@
               },
               "queryRef": "_Measures.Supplier Deliveries",
               "nativeQueryRef": "Supplier Deliveries"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Supplier Lead Time (days)"
+                }
+              },
+              "queryRef": "_Measures.Supplier Lead Time (days)",
+              "nativeQueryRef": "Supplier Lead Time (days)",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Supplier On-Time %"
+                }
+              },
+              "queryRef": "_Measures.Supplier On-Time %",
+              "nativeQueryRef": "Supplier On-Time %"
             }
           ]
         }
@@ -284,6 +285,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

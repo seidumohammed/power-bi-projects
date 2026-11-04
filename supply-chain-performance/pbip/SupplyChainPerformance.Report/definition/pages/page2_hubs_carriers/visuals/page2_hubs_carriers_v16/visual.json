@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "page2_hubs_carriers_v16",
   "position": {
     "x": 720,
@@ -11,27 +11,8 @@
   },
   "visual": {
     "visualType": "pivotTable",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dim_Warehouse"
-                    }
-                  },
-                  "Property": "Warehouse"
-                }
-              },
-              "queryRef": "dim_Warehouse.Warehouse",
-              "nativeQueryRef": "Warehouse"
-            }
-          ]
-        },
         "Columns": {
           "projections": [
             {
@@ -46,7 +27,27 @@
                 }
               },
               "queryRef": "dim_Date.Quarter",
-              "nativeQueryRef": "Quarter"
+              "nativeQueryRef": "Quarter",
+              "active": true
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dim_Warehouse"
+                    }
+                  },
+                  "Property": "Warehouse"
+                }
+              },
+              "queryRef": "dim_Warehouse.Warehouse",
+              "nativeQueryRef": "Warehouse",
+              "active": true
             }
           ]
         },
@@ -403,6 +404,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

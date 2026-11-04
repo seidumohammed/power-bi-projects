@@ -1,34 +1,49 @@
 table fact_Target
+	lineageTag: a406a900-f54e-4e64-be1b-3baeafe58c27
 
 	column MonthStart
 		dataType: dateTime
 		isHidden
-		formatString: "mmm yy"
-		sourceColumn: MonthStart
+		formatString: mmm yy
+		lineageTag: 61cfbd27-7176-4af4-a26f-6247cf1dad0e
 		summarizeBy: none
+		sourceColumn: MonthStart
+
+		variation Variation
+			isDefault
+			relationship: 9d54499c-516d-48cd-96af-a99a51d2de92
+			defaultHierarchy: LocalDateTable_4d0b2087-f029-4e8c-854c-15db1a6e1a57.'Date Hierarchy'
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column Warehouse
 		dataType: string
 		isHidden
-		sourceColumn: Warehouse
+		lineageTag: fbf1f2d6-89f7-4162-a5ff-cbc95adb86a9
 		summarizeBy: none
+		sourceColumn: Warehouse
 
 	column OTIFTarget
 		dataType: double
 		isHidden
-		formatString: "0%"
+		formatString: 0%
+		lineageTag: f601c5a8-6da4-4486-9483-295821b3816c
+		summarizeBy: sum
 		sourceColumn: OTIFTarget
-		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
 
 	partition fact_Target = m
 		mode: import
 		source =
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"warehouse", "Warehouse"}, {"otif_target", "OTIFTarget"}}),
-			    Selected = Table.SelectColumns(Renamed, {"MonthStart", "Warehouse", "OTIFTarget"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"MonthStart", type date}, {"Warehouse", type text}, {"OTIFTarget", type number}}, "en-US")
-			in
-			    Typed
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "targets.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"month", "MonthStart"}, {"warehouse", "Warehouse"}, {"otif_target", "OTIFTarget"}}),
+				    Selected = Table.SelectColumns(Renamed, {"MonthStart", "Warehouse", "OTIFTarget"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"MonthStart", type date}, {"Warehouse", type text}, {"OTIFTarget", type number}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_ResultType = Table
 

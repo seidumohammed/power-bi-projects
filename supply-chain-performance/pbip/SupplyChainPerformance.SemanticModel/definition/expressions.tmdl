@@ -1,1 +1,5 @@
 expression DataFolder = "C:\path\to\power-bi-projects\supply-chain-performance\data\raw\" meta [IsParameterQuery = true, Type = "Text", IsParameterQueryRequired = true]
+	lineageTag: 457dce4d-708c-4f6a-96a1-7e72f3502c49
+
+	annotation PBI_ResultType = Text
+

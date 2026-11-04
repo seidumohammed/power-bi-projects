@@ -49,3 +49,34 @@ relationship 619c82ce-fb12-56d2-ac5c-1b868dc65225
 relationship 92ff1ca1-6dee-5f37-8ce1-ea09fd5d18e6
 	fromColumn: fact_Target.Warehouse
 	toColumn: dim_Warehouse.Warehouse
+
+relationship 40a421da-be14-40a3-be70-c3de7567a083
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_OrderLine.RequiredDate
+	toColumn: LocalDateTable_3f7dab95-fef3-46b8-bf56-33883d3f806e.Date
+
+relationship d5e32b4b-0fda-4cc9-9c94-ca92ac767491
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_OrderLine.ShipDate
+	toColumn: LocalDateTable_395436d2-8be0-4e70-9e70-0a199564bc0a.Date
+
+relationship a47901cd-e718-4f0a-b63f-b9031e49a3f4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_OrderLine.DeliveryDate
+	toColumn: LocalDateTable_f526266e-c28d-46d1-be19-b4c1d3804e84.Date
+
+relationship 239e339d-25f9-4877-956c-6ab940d2f6fb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_Receipt.ExpectedDate
+	toColumn: LocalDateTable_c65a8e3f-9ad6-4ad1-8b87-0aaf4b50b7e0.Date
+
+relationship 27c37e08-d4c1-42bd-8490-10f352ef6264
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_Receipt.ReceiptDate
+	toColumn: LocalDateTable_264bdc1d-0afb-4671-aa72-d0969a08bae7.Date
+
+relationship 9d54499c-516d-48cd-96af-a99a51d2de92
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_Target.MonthStart
+	toColumn: LocalDateTable_4d0b2087-f029-4e8c-854c-15db1a6e1a57.Date
+

@@ -1,75 +1,70 @@
 table _Measures
+	lineageTag: fa116752-3ffb-4477-9e37-f3c2483bdb3c
 
-	column Dummy
-		dataType: int64
-		isHidden
-		sourceColumn: Dummy
-		summarizeBy: none
-
-	measure 'Order Lines' =
-			COUNTROWS ( fact_OrderLine )
-		formatString: "#,0"
+	measure 'Order Lines' = COUNTROWS ( fact_OrderLine )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 8b3546a0-0374-45aa-b12e-1056d8771dcf
 
-	measure Orders =
-			DISTINCTCOUNT ( fact_OrderLine[OrderID] )
-		formatString: "#,0"
+	measure Orders = DISTINCTCOUNT ( fact_OrderLine[OrderID] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 0c2be242-e999-4dbb-b90c-467be29ea41e
 
-	measure 'Units Ordered' =
-			SUM ( fact_OrderLine[OrderedQty] )
-		formatString: "#,0"
+	measure 'Units Ordered' = SUM ( fact_OrderLine[OrderedQty] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 5e402ad7-04ba-47d7-8c95-59e0c4d555d5
 
-	measure 'Units Shipped' =
-			SUM ( fact_OrderLine[ShippedQty] )
-		formatString: "#,0"
+	measure 'Units Shipped' = SUM ( fact_OrderLine[ShippedQty] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 4ca97f09-8356-4144-a009-fda498171ccd
 
-	measure 'Fill Rate %' =
-			DIVIDE ( [Units Shipped], [Units Ordered] )
-		formatString: "0.0%"
+	measure 'Fill Rate %' = DIVIDE ( [Units Shipped], [Units Ordered] )
+		formatString: 0.0%
 		displayFolder: Service
+		lineageTag: 9aec3b43-d18a-4870-ab3f-4c535470ccab
 
-	measure 'On-Time %' =
-			DIVIDE ( SUM ( fact_OrderLine[IsOnTime] ), [Order Lines] )
-		formatString: "0.0%"
+	measure 'On-Time %' = DIVIDE ( SUM ( fact_OrderLine[IsOnTime] ), [Order Lines] )
+		formatString: 0.0%
 		displayFolder: Service
+		lineageTag: 46f3d0c5-94d4-4191-8ced-0f2021ea9fed
 
-	measure 'In-Full %' =
-			DIVIDE ( SUM ( fact_OrderLine[IsInFull] ), [Order Lines] )
-		formatString: "0.0%"
+	measure 'In-Full %' = DIVIDE ( SUM ( fact_OrderLine[IsInFull] ), [Order Lines] )
+		formatString: 0.0%
 		displayFolder: Service
+		lineageTag: 71ac2bb9-6da9-45dd-900c-1d800c489550
 
-	measure 'OTIF %' =
-			DIVIDE ( SUM ( fact_OrderLine[IsOTIF] ), [Order Lines] )
-		formatString: "0.0%"
+	measure 'OTIF %' = DIVIDE ( SUM ( fact_OrderLine[IsOTIF] ), [Order Lines] )
+		formatString: 0.0%
 		displayFolder: Service
+		lineageTag: b20b37a2-08dd-41e6-919f-b6e0c3f99724
 
-	measure 'Late Lines' =
-			[Order Lines] - SUM ( fact_OrderLine[IsOnTime] )
-		formatString: "#,0"
+	measure 'Late Lines' = [Order Lines] - SUM ( fact_OrderLine[IsOnTime] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 0b8e55fd-f800-4c20-a25a-cf42eded5cef
 
-	measure 'Avg Lead Time (days)' =
-			AVERAGE ( fact_OrderLine[LeadTimeDays] )
-		formatString: "0.0"
+	measure 'Avg Lead Time (days)' = AVERAGE ( fact_OrderLine[LeadTimeDays] )
+		formatString: 0.0
 		displayFolder: Service
+		lineageTag: e0211c7f-f3a7-4409-879f-3545a11e8f7b
 
-	measure 'Shipped Value (GHS)' =
-			SUM ( fact_OrderLine[ShippedValueGHS] )
-		formatString: "#,0"
+	measure 'Shipped Value (GHS)' = SUM ( fact_OrderLine[ShippedValueGHS] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 537cba77-d9ab-4da4-aeda-55f8585b4d50
 
-	measure 'Freight Cost (GHS)' =
-			SUM ( fact_OrderLine[FreightCostGHS] )
-		formatString: "#,0"
+	measure 'Freight Cost (GHS)' = SUM ( fact_OrderLine[FreightCostGHS] )
+		formatString: #,0
 		displayFolder: Service
+		lineageTag: 241251f3-1d21-4aa1-80e1-5b2c0db1ec4e
 
-	measure 'Freight per Unit (GHS)' =
-			DIVIDE ( [Freight Cost (GHS)], [Units Shipped] )
-		formatString: "0.00"
+	measure 'Freight per Unit (GHS)' = DIVIDE ( [Freight Cost (GHS)], [Units Shipped] )
+		formatString: 0.00
 		displayFolder: Service
+		lineageTag: 7355116a-915c-41f1-ac88-bb2be7b4e91a
 
 	measure 'OTIF Target' =
 			IF (
@@ -80,18 +75,19 @@ table _Measures
 			        TREATAS ( VALUES ( dim_Date[MonthStart] ), fact_Target[MonthStart] )
 			    )
 			)
-		formatString: "0.0%"
+		formatString: 0.0%
 		displayFolder: Targets
+		lineageTag: a5681a66-aaa0-4519-8d89-dc0f074197b5
 
-	measure 'OTIF Attainment %' =
-			DIVIDE ( [OTIF %], [OTIF Target] )
-		formatString: "0.0%"
+	measure 'OTIF Attainment %' = DIVIDE ( [OTIF %], [OTIF Target] )
+		formatString: 0.0%
 		displayFolder: Targets
+		lineageTag: a0cdc313-ef71-437e-9482-6da83c1d09c1
 
-	measure 'OTIF Gap (points)' =
-			[OTIF %] - [OTIF Target]
-		formatString: "0.0%;-0.0%"
+	measure 'OTIF Gap (points)' = [OTIF %] - [OTIF Target]
+		formatString: 0.0%;-0.0%
 		displayFolder: Targets
+		lineageTag: ce3bde3c-0a48-4e83-91a0-1199234f0b01
 
 	measure 'OTIF Status' =
 			SWITCH (
@@ -102,73 +98,78 @@ table _Measures
 			    "Missed"
 			)
 		displayFolder: Targets
+		lineageTag: b4c43dd6-3083-45e6-8937-85d8481c36c0
 
 	measure 'Stock On Hand (units)' =
 			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
 			RETURN CALCULATE ( SUM ( fact_Stock[OnHandQty] ), fact_Stock[SnapshotDate] = LastSnap )
-		formatString: "#,0"
+		formatString: #,0
 		displayFolder: Inventory
+		lineageTag: 270a9afb-9cff-47db-bfc6-85d46c4f2479
 
 	measure 'Stock Value (GHS)' =
 			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
 			RETURN SUMX ( FILTER ( fact_Stock, fact_Stock[SnapshotDate] = LastSnap ), fact_Stock[OnHandQty] * RELATED ( dim_Product[UnitCostGHS] ) )
-		formatString: "#,0"
+		formatString: #,0
 		displayFolder: Inventory
+		lineageTag: a0087fd5-bc85-41b9-9913-92c0c5255d30
 
 	measure 'Days of Cover' =
 			VAR LastSnap = MAX ( fact_Stock[SnapshotDate] )
 			VAR Demand = CALCULATE ( SUM ( fact_Stock[DemandQty] ), fact_Stock[SnapshotDate] = LastSnap )
 			RETURN DIVIDE ( [Stock On Hand (units)], Demand / 30 )
-		formatString: "0"
+		formatString: 0
 		displayFolder: Inventory
+		lineageTag: 9b660299-47f5-4fc0-9484-90a5abd69ad6
 
-	measure 'Stockout Rate %' =
-			DIVIDE ( SUM ( fact_Stock[IsStockout] ), COUNTROWS ( fact_Stock ) )
-		formatString: "0.0%"
+	measure 'Stockout Rate %' = DIVIDE ( SUM ( fact_Stock[IsStockout] ), COUNTROWS ( fact_Stock ) )
+		formatString: 0.0%
 		displayFolder: Inventory
+		lineageTag: 2a608131-fe7c-48a8-80f3-270e9973939a
 
-	measure 'Supplier Deliveries' =
-			COUNTROWS ( fact_Receipt )
-		formatString: "#,0"
+	measure 'Supplier Deliveries' = COUNTROWS ( fact_Receipt )
+		formatString: #,0
 		displayFolder: Suppliers
+		lineageTag: 7893608e-20c7-4b14-a718-1ec82f7ec086
 
-	measure 'Supplier On-Time %' =
-			DIVIDE ( SUM ( fact_Receipt[IsOnTime] ), [Supplier Deliveries] )
-		formatString: "0.0%"
+	measure 'Supplier On-Time %' = DIVIDE ( SUM ( fact_Receipt[IsOnTime] ), [Supplier Deliveries] )
+		formatString: 0.0%
 		displayFolder: Suppliers
+		lineageTag: 1fcd69c4-4717-4efe-873e-3b8a14816880
 
-	measure 'Supplier Fill %' =
-			DIVIDE ( SUM ( fact_Receipt[ReceivedQty] ), SUM ( fact_Receipt[OrderedQty] ) )
-		formatString: "0.0%"
+	measure 'Supplier Fill %' = DIVIDE ( SUM ( fact_Receipt[ReceivedQty] ), SUM ( fact_Receipt[OrderedQty] ) )
+		formatString: 0.0%
 		displayFolder: Suppliers
+		lineageTag: c88bf5b9-0120-4b32-aa68-aaec81ec86e3
 
-	measure 'Rejection Rate %' =
-			DIVIDE ( SUM ( fact_Receipt[RejectedQty] ), SUM ( fact_Receipt[ReceivedQty] ) )
-		formatString: "0.0%"
+	measure 'Rejection Rate %' = DIVIDE ( SUM ( fact_Receipt[RejectedQty] ), SUM ( fact_Receipt[ReceivedQty] ) )
+		formatString: 0.0%
 		displayFolder: Suppliers
+		lineageTag: 6967a2c1-b472-4c40-b05d-9925527fee77
 
-	measure 'Supplier Lead Time (days)' =
-			AVERAGE ( fact_Receipt[LeadTimeDays] )
-		formatString: "0.0"
+	measure 'Supplier Lead Time (days)' = AVERAGE ( fact_Receipt[LeadTimeDays] )
+		formatString: 0.0
 		displayFolder: Suppliers
+		lineageTag: f089ac01-6a50-4395-86d2-7506608f054a
 
-	measure 'Shipped Value PY' =
-			CALCULATE ( [Shipped Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
-		formatString: "#,0"
+	measure 'Shipped Value PY' = CALCULATE ( [Shipped Value (GHS)], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: a0a8370c-5743-4542-933d-d96d20c94b20
 
 	measure 'Shipped Value YoY %' =
 			VAR LatestYear = MAX ( dim_Date[Year] )
 			VAR CurrentValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear )
 			VAR PreviousValue = CALCULATE ( [Shipped Value (GHS)], dim_Date[Year] = LatestYear - 1 )
 			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
-		formatString: "0.0%"
+		formatString: 0.0%
 		displayFolder: Time intelligence
+		lineageTag: f637c29e-f8b2-4e92-9b37-8935426aa738
 
-	measure 'Shipped Value YTD' =
-			TOTALYTD ( [Shipped Value (GHS)], dim_Date[Date] )
-		formatString: "#,0"
+	measure 'Shipped Value YTD' = TOTALYTD ( [Shipped Value (GHS)], dim_Date[Date] )
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: c0ff5b84-5ab8-4df3-b23b-9b6f85d54523
 
 	measure 'Shipped Value 3M Average' =
 			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
@@ -177,26 +178,28 @@ table _Measures
 			        CALCULATE ( [Shipped Value (GHS)], Window ),
 			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
 			    )
-		formatString: "#,0"
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: 22e2c970-db1c-45a2-9655-bd9dc1612b60
 
-	measure 'Order Lines PY' =
-			CALCULATE ( [Order Lines], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
-		formatString: "#,0"
+	measure 'Order Lines PY' = CALCULATE ( [Order Lines], SAMEPERIODLASTYEAR ( dim_Date[Date] ) )
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: dcdc496f-a734-4c98-8dda-4b2c37796476
 
 	measure 'Order Lines YoY %' =
 			VAR LatestYear = MAX ( dim_Date[Year] )
 			VAR CurrentValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear )
 			VAR PreviousValue = CALCULATE ( [Order Lines], dim_Date[Year] = LatestYear - 1 )
 			RETURN DIVIDE ( CurrentValue - PreviousValue, PreviousValue )
-		formatString: "0.0%"
+		formatString: 0.0%
 		displayFolder: Time intelligence
+		lineageTag: dc9edbcc-9f55-4099-99a6-3c9a5d5f686b
 
-	measure 'Order Lines YTD' =
-			TOTALYTD ( [Order Lines], dim_Date[Date] )
-		formatString: "#,0"
+	measure 'Order Lines YTD' = TOTALYTD ( [Order Lines], dim_Date[Date] )
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: 51d4a8d2-e3f0-49c1-940b-733fd5593e64
 
 	measure 'Order Lines 3M Average' =
 			VAR Window = DATESINPERIOD ( dim_Date[Date], MAX ( dim_Date[Date] ), -3, MONTH )
@@ -205,18 +208,28 @@ table _Measures
 			        CALCULATE ( [Order Lines], Window ),
 			        CALCULATE ( DISTINCTCOUNT ( dim_Date[MonthStart] ), Window )
 			    )
-		formatString: "#,0"
+		formatString: #,0
 		displayFolder: Time intelligence
+		lineageTag: e06f5680-7bf6-47ed-9f30-1be1e2a598df
 
-	measure 'Data Note' =
-			"Synthetic data for demonstration. Ghana distribution network. Period: Jan 2024 to Dec 2025."
+	measure 'Data Note' = "Synthetic data for demonstration. Ghana distribution network. Period: Jan 2024 to Dec 2025."
 		displayFolder: Labels
+		lineageTag: 48d43558-4805-4b55-b277-f3983921dce0
+
+	column Dummy
+		dataType: int64
+		isHidden
+		lineageTag: be374a09-e9f6-4d27-8500-3f279db3e9b6
+		summarizeBy: none
+		sourceColumn: Dummy
 
 	partition _Measures = m
 		mode: import
 		source =
-			let
-			    Source = #table(type table [Dummy = Int64.Type], {{1}})
-			in
-			    Source
+				let
+				    Source = #table(type table [Dummy = Int64.Type], {{1}})
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
 

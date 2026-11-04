@@ -1,48 +1,55 @@
 table dim_Product
+	lineageTag: b3ae4510-0a92-44d3-86ae-f685e2e060c7
 
 	column ProductID
 		dataType: string
 		isHidden
-		sourceColumn: ProductID
+		lineageTag: ab92a71d-e157-442e-933d-452a93d3418c
 		summarizeBy: none
+		sourceColumn: ProductID
 
 	column Product
 		dataType: string
-		sourceColumn: Product
+		lineageTag: 92f21a1b-80d5-4a3d-be0e-c8bc785e80a1
 		summarizeBy: none
+		sourceColumn: Product
 
 	column Category
 		dataType: string
-		sourceColumn: Category
+		lineageTag: f7ed3a9d-a57d-4fe0-9e05-9aa182d9c49e
 		summarizeBy: none
+		sourceColumn: Category
 
 	column SupplierID
 		dataType: string
 		isHidden
-		sourceColumn: SupplierID
+		lineageTag: 2f14abcc-fff2-43b0-ac8b-e1f2520f0272
 		summarizeBy: none
+		sourceColumn: SupplierID
 
 	column UnitCostGHS
 		dataType: double
 		isHidden
-		sourceColumn: UnitCostGHS
+		lineageTag: 762a881c-015b-4799-8d0f-8a49490d5b0f
 		summarizeBy: none
+		sourceColumn: UnitCostGHS
 
 	column UnitPriceGHS
 		dataType: double
 		isHidden
-		sourceColumn: UnitPriceGHS
+		lineageTag: 30589668-859a-4958-a442-495f8785d688
 		summarizeBy: none
+		sourceColumn: UnitPriceGHS
 
 	partition dim_Product = m
 		mode: import
 		source =
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Renamed = Table.RenameColumns(Promoted, {{"product_id", "ProductID"}, {"product", "Product"}, {"category", "Category"}, {"supplier_id", "SupplierID"}, {"unit_cost_ghs", "UnitCostGHS"}, {"unit_price_ghs", "UnitPriceGHS"}}),
-			    Selected = Table.SelectColumns(Renamed, {"ProductID", "Product", "Category", "SupplierID", "UnitCostGHS", "UnitPriceGHS"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"ProductID", type text}, {"Product", type text}, {"Category", type text}, {"SupplierID", type text}, {"UnitCostGHS", type number}, {"UnitPriceGHS", type number}}, "en-US")
-			in
-			    Typed
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "products.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"product_id", "ProductID"}, {"product", "Product"}, {"category", "Category"}, {"supplier_id", "SupplierID"}, {"unit_cost_ghs", "UnitCostGHS"}, {"unit_price_ghs", "UnitPriceGHS"}}),
+				    Selected = Table.SelectColumns(Renamed, {"ProductID", "Product", "Category", "SupplierID", "UnitCostGHS", "UnitPriceGHS"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"ProductID", type text}, {"Product", type text}, {"Category", type text}, {"SupplierID", type text}, {"UnitCostGHS", type number}, {"UnitPriceGHS", type number}}, "en-US")
+				in
+				    Typed
 

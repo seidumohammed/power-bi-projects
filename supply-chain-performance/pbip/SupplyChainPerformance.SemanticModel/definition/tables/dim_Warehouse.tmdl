@@ -1,30 +1,34 @@
 table dim_Warehouse
+	lineageTag: d1c90bfb-3289-487d-a14c-8abdb0bd8eb1
 
 	column WarehouseID
 		dataType: string
 		isHidden
-		sourceColumn: WarehouseID
+		lineageTag: 24a4e389-4e8c-4237-b3da-7d9f7e895b69
 		summarizeBy: none
+		sourceColumn: WarehouseID
 
 	column Warehouse
 		dataType: string
-		sourceColumn: Warehouse
+		lineageTag: e941e70d-ce19-4add-ab33-0f5295021db5
 		summarizeBy: none
+		sourceColumn: Warehouse
 
 	column Region
 		dataType: string
-		sourceColumn: Region
+		lineageTag: e71c5332-9beb-4749-a94e-ddd7ad26d471
 		summarizeBy: none
+		sourceColumn: Region
 
 	partition dim_Warehouse = m
 		mode: import
 		source =
-			let
-			    Source = Csv.Document(File.Contents(DataFolder & "warehouses.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
-			    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
-			    Renamed = Table.RenameColumns(Promoted, {{"warehouse_id", "WarehouseID"}, {"warehouse", "Warehouse"}, {"region", "Region"}}),
-			    Selected = Table.SelectColumns(Renamed, {"WarehouseID", "Warehouse", "Region"}),
-			    Typed = Table.TransformColumnTypes(Selected, {{"WarehouseID", type text}, {"Warehouse", type text}, {"Region", type text}}, "en-US")
-			in
-			    Typed
+				let
+				    Source = Csv.Document(File.Contents(DataFolder & "warehouses.csv"), [Delimiter = ",", Encoding = 65001, QuoteStyle = QuoteStyle.Csv]),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars = true]),
+				    Renamed = Table.RenameColumns(Promoted, {{"warehouse_id", "WarehouseID"}, {"warehouse", "Warehouse"}, {"region", "Region"}}),
+				    Selected = Table.SelectColumns(Renamed, {"WarehouseID", "Warehouse", "Region"}),
+				    Typed = Table.TransformColumnTypes(Selected, {{"WarehouseID", type text}, {"Warehouse", type text}, {"Region", type text}}, "en-US")
+				in
+				    Typed
 

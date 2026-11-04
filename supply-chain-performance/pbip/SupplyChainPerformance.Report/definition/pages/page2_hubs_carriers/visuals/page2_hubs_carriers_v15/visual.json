@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.0.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
   "name": "page2_hubs_carriers_v15",
   "position": {
     "x": 266,
@@ -11,7 +11,6 @@
   },
   "visual": {
     "visualType": "scatterChart",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -28,43 +27,8 @@
                 }
               },
               "queryRef": "dim_Carrier.Carrier",
-              "nativeQueryRef": "Carrier"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "Freight per Unit (GHS)"
-                }
-              },
-              "queryRef": "_Measures.Freight per Unit (GHS)",
-              "nativeQueryRef": "Freight per Unit (GHS)"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "_Measures"
-                    }
-                  },
-                  "Property": "OTIF %"
-                }
-              },
-              "queryRef": "_Measures.OTIF %",
-              "nativeQueryRef": "OTIF %"
+              "nativeQueryRef": "Carrier",
+              "active": true
             }
           ]
         },
@@ -83,6 +47,43 @@
               },
               "queryRef": "_Measures.Order Lines",
               "nativeQueryRef": "Order Lines"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "Freight per Unit (GHS)"
+                }
+              },
+              "queryRef": "_Measures.Freight per Unit (GHS)",
+              "nativeQueryRef": "Freight per Unit (GHS)",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Measures"
+                    }
+                  },
+                  "Property": "OTIF %"
+                }
+              },
+              "queryRef": "_Measures.OTIF %",
+              "nativeQueryRef": "OTIF %"
             }
           ]
         }
@@ -284,6 +285,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }
